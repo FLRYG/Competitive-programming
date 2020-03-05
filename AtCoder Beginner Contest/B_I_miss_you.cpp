@@ -1,14 +1,13 @@
 #include <iostream>
-#include <string>
+using namespace std;
 
 int main(){
-    char* S;
-    std::cin>>S;
+    char S[101];
+    cin>>S;
     
-    char X[]
-    for(int i=0;strlen(S)-1;i++){
-        *(S+i)='x';
+    for(int i=0;S[i];i++){
+        S[i]='x';
     }
 
-    std::cout<<S;
+    cout<<S;
 }
