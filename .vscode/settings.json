@@ -38,6 +38,7 @@
         "string": "cpp",
         "map": "cpp",
         "xtree": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "vector": "cpp"
     }
 }
