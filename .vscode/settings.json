@@ -39,6 +39,9 @@
         "map": "cpp",
         "xtree": "cpp",
         "list": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "forward_list": "cpp",
+        "iterator": "cpp"
     }
 }
