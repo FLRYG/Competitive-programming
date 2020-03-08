@@ -1,8 +1,43 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stdio.h>
+#include <algorithm>
 using namespace std;
+
+//二つのstringに分けて考える
+int main(){
+    string S;
+    cin>>S;
+    int Q;
+    cin>>Q;
+    string R;
+
+    int t,f;
+    char c;
+    bool b=false;
+    for(int i=0;i<Q;i++){
+        cin>>t;
+        if(t==1){
+            string tmp=S;
+            S=R;
+            R=tmp;
+        }else{
+            cin>>f>>c;
+            if(f==1){
+                R+=c;
+            }else{
+                S+=c;
+            }
+        }
+    }
+    reverse(R.begin(),R.end());
+    string ans=R+S;
+
+    cout<<ans;
+}
+
+/*
+TLE :reverse,insertに時間がかかる
 
 void reverse(string &s){
     char tmp;
@@ -39,3 +74,4 @@ int main(){
 
     cout<<S;
 }
+*/

@@ -42,6 +42,8 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "forward_list": "cpp",
-        "iterator": "cpp"
-    }
+        "iterator": "cpp",
+        "regex": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }
