@@ -1,4 +1,5 @@
 //全探索
+//深さ優先探索
 
 #include <iostream>
 using namespace std;
@@ -27,5 +28,4 @@ int main(){
     }else{
         cout<<"No";
     }
-
 }

@@ -43,7 +43,8 @@
         "algorithm": "cpp",
         "forward_list": "cpp",
         "iterator": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "stack": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
