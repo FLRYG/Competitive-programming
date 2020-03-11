@@ -44,7 +44,8 @@
         "forward_list": "cpp",
         "iterator": "cpp",
         "regex": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

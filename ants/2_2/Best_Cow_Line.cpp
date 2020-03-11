@@ -2,33 +2,34 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string>
 using namespace std;
 
 int N;
-char* S;
-char* T;
+string S;
+string ans;
 
 int main(){
     cin>>N;
     cin>>S;
     
     int a=0;
-    int b=N-2;
+    int b=N-1;
     while(a<=b){
         bool left=true;
-        for(int i=a;i<=b;i++){
-            if(S[i]<S[b-i+a]){
+        for(int i=0;a+i<=b;i++){
+            if(S[a+i]<S[b-i]){
                 left=true;
                 break;
-            }else if(S[i]>S[b-i+a]){
+            }else if(S[a+i]>S[b-i]){
                 left=false;
                 break;
             }
         }
 
-        if(left) T+=S[a++];
-        else     T+=S[b--];
+        if(left) ans+=S[a++];
+        else     ans+=S[b--];
     }
 
-    cout<<T;
+    cout<<ans;
 }
