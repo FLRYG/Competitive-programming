@@ -6,14 +6,15 @@ long A,B,K;
 int main(){
     cin>>A>>B>>K;
 
-    for(long i=0;i<K;i++){
-        if(A>=1){
-            A--;
-        }else if(B>=1){
-            B--;
-        }else{
-            break;
-        }
+    if(K<A){
+        A=A-K;
+    }else{
+        B=B-(K-A);
+        A=0;
+    }
+
+    if(B<0){
+        B=0;
     }
 
     cout<<A<<' '<<B;

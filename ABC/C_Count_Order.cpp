@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 int N;
@@ -7,8 +9,15 @@ int Q[8];
 
 int E[8];
 
-int calc(int x[],int n){
-    
+bool equal(int x[]){
+    bool res=true;
+    for(int i=0;i<N;i++){
+        if(x[i]!=E[i]){
+            res=false;
+            break;
+        }
+    }
+    return res;
 }
 
 int main(){
@@ -21,5 +30,18 @@ int main(){
         E[i]=i+1;
     }
 
+    int p=1,q=1;
+    do{
+        if(!equal(P))p++;
+        else break;
+    }while(next_permutation(E,E+N));
+    sort(E,E+N);
+    do{
+        if(!equal(Q))q++;
+        else break;
+    }while(next_permutation(E,E+N));
 
+    int ans=abs(p-q);
+    
+    cout<<ans;
 }

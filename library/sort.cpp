@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 template <class T>
 inline void qswap(T& a,T& b);
@@ -34,13 +35,13 @@ int main(){
     int a[]={5,2,7,0,3,6,8,4,1,2,9};
     qsort(a,0,sizeof(a)/sizeof(a[0]));
     for(auto x:a){
-        std::cout<<x<<' ';
+        cout<<x<<' ';
     }
-    std::cout<<'\n';
+    cout<<'\n';
 
     double b[]={2.4,3.7,7.9,0.4,7.1,9.6,4.3};
     qsort(b,0,sizeof(b)/sizeof(b[0]));
     for(auto x:b){
-        std::cout<<x<<' ';
+        cout<<x<<' ';
     }
 }
