@@ -5,27 +5,22 @@
 using namespace std;
 
 int N;
-char a='a';
-char* s;
 
-void fan(int n){
-
+void dfs(string s,char n){
+    if(s.size()==N){
+        cout<<s<<endl;
+        return;
+    }else{
+        for(char a='a';a<=n;a++){
+            string t=s;
+            t+=a;
+            dfs(t,max((int)n,a+1));
+        }
+    }
 }
 
 int main(){
     cin>>N;
-    s=new char[N];
 
-    for(int i=0;i<N;i++){
-        s[i]='a';
-    }
-    cout<<s<<endl;
-
-    for(int i=N-1;i>0;i++){
-        fan(i);
-    }
-
-    
-
-    delete[] s;
+    dfs("",'a');
 }
