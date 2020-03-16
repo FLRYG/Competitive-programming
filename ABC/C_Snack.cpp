@@ -1,3 +1,9 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+long A,B;
+
 template<class T>
 T gcd(T a, T b)
 {
@@ -14,4 +20,12 @@ template<class T>
 T lcm(T a, T b)
 {
     return a * b / gcd(a, b);
+}
+
+int main(){
+    cin>>A>>B;
+
+    long ans=lcm(A,B);
+
+    cout<<ans<<endl;
 }
