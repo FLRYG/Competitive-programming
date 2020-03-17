@@ -1,6 +1,54 @@
 ﻿#include <iostream>
+using namespace std;
 
-int power(int a, int b);
+const int INF=1000;
+
+int N,M;
+int C[3]={INF,INF,INF};
+
+int pow10(int x){
+	if(x==0) return 1;
+	else return 10*pow10(x-1);
+}
+
+int main(){
+	cin>>N>>M;
+	bool b=true;
+	for(int i=0;i<M;i++){
+		int s;
+		int c;
+		cin>>s>>c;
+		if(C[s-1]==INF || C[s-1]==c){
+			C[s-1]=c;
+		}else{
+			b=false;
+		}
+	}
+
+	if(!b){
+		cout<<-1<<endl;
+		return 0;
+	}
+	if(C[3-N]==0){
+		cout<<-1<<endl;
+		return 0;
+	}
+
+	if(C[3-N]==INF){
+		C[3-N]=1;
+	}
+
+	int ans=0;
+	for(int i=0;i<3;i++){
+		if(C[i]!=INF){
+			ans+=C[i]*pow10(2-i);
+		}
+	}
+
+	cout<<ans<<endl;
+}
+
+/*int power(int a, int b);
 
 int main()
 {
@@ -94,4 +142,4 @@ int power(int a, int b)
 		res *= a;
 	}
 	return res;
-}
+}*/
