@@ -18,8 +18,8 @@ int main(){
 		int s;
 		int c;
 		cin>>s>>c;
-		if(C[s-1]==INF || C[s-1]==c){
-			C[s-1]=c;
+		if(C[s-1+3-N]==INF || C[s-1+3-N]==c){
+			C[s-1+3-N]=c;
 		}else{
 			b=false;
 		}
@@ -29,12 +29,12 @@ int main(){
 		cout<<-1<<endl;
 		return 0;
 	}
-	if(C[3-N]==0){
+	if(C[3-N]==0 && N>1){
 		cout<<-1<<endl;
 		return 0;
 	}
 
-	if(C[3-N]==INF){
+	if(C[3-N]==INF && N>1){
 		C[3-N]=1;
 	}
 

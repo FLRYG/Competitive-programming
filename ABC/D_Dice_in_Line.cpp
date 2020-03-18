@@ -1,7 +1,40 @@
 #include <iostream>
 using namespace std;
 
+int N,K;
+int P[200000];
+
 int main(){
+    cin>>N>>K;
+    for(int i=0;i<N;i++){
+        cin>>P[i];
+    }
+
+    int sum=0;
+    int ans=0;
+    for(int i=0;i<K;i++){
+        sum+=P[i];
+        ans+=P[i];
+    }
+
+    for(int i=0;i<N-K;i++){
+        sum-=P[i];
+        sum+=P[i+K];
+        if(sum>ans){
+            ans=sum;
+        }
+    }
+
+    if((ans+K)%2==0){
+        ans=(ans+K)/2;
+        cout<<ans<<endl;
+    }else{
+        ans=(ans+K)/2;
+        cout<<ans<<".5"<<endl;
+    }
+}
+
+/*int main(){
     int N,K;
     cin>>N>>K;
     double* p=new double[N];
@@ -25,4 +58,4 @@ int main(){
 
     cout<<(max+3)/2;
 
-}
+}*/
