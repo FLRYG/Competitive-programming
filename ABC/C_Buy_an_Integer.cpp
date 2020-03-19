@@ -2,13 +2,11 @@
 #include <string>
 using namespace std;
 
+const long MIN=0,MAX=1'000'000'000;
 long A,B,X;
 long dN;
 
 long digit(long k){
-    if(k==0){
-        return 1;
-    }
     long ans=0;
     long c=1;
     while(k>=c){
@@ -19,12 +17,12 @@ long digit(long k){
 }
 
 long f(long begin,long end){
-    if(begin==end){
+    if(end-begin<=1){
         return begin;
     }
     long N=(begin+end)/2;
-    long res=A*N+B*digit(N);
-    if(res<=X){
+    long sum=A*N+B*digit(N);
+    if(sum<=X){
         return f(N,end);
     }else{
         return f(begin,N);
@@ -34,7 +32,11 @@ long f(long begin,long end){
 int main(){
     cin>>A>>B>>X;
 
-    long ans=f(0,1'000'000'000);
+    if(A*MAX+B*digit(MAX)<=X){
+        cout<<MAX<<endl;
+        return 0;
+    }
+    long ans=f(MIN,MAX);
     
     cout<<ans<<endl;
 }
