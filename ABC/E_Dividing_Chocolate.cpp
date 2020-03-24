@@ -18,22 +18,26 @@ int main(){
     for(int n=0;n<1<<(H-1);n++){
         int group=0;
         vector<int> id(H);
+        vector<int> white={0};
         for(int i=0;i<H;i++){
-            id[i]=0;
-            if(n>>i&1) group++;
+            id[i]=group;
+            if(n>>i&1){
+                group++;
+                //cout<<"group++"<<endl;
+                white.push_back(0);
+            }
         }
 
         int res=group;
-        vector<int> white(group);
-        fill(white.begin(),white.end(),0);
         bool first=true;
-        cout<<"n="<<n<<endl;
+        //cout<<"n="<<n<<endl;
         for(int j=0;j<W;j++){
+            //cout<<" j="<<j<<endl;
             for(int i=0;i<H;i++){
-                cout<<"  (i,j)=("<<i<<","<<j<<")"<<endl;
+                //cout<<"  (i,j)=("<<i<<","<<j<<")"<<endl;
                 if(S[i][j]=='1'){
                     white[id[i]]++;
-                    cout<<"     white["<<id[i]<<"]="<<white[id[i]]<<endl;
+                    //cout<<"     white["<<id[i]<<"]="<<white[id[i]]<<endl;
                     if(white[id[i]]>K && first){
                         goto a;
                     }else if(white[id[i]]>K){
@@ -41,7 +45,7 @@ int main(){
                         res++;
                         fill(white.begin(),white.end(),0);
                         first=true;
-                        cout<<"  <|="<<j+1<<">"<<endl;
+                        //cout<<"  <|="<<j+1<<">"<<endl;
                         goto b;
                     }
                 }
@@ -51,7 +55,7 @@ int main(){
         }
         ans=min(ans,res);
         a:;
-        cout<<"[ans="<<ans<<"]"<<endl;
+        //cout<<"[ans="<<ans<<"]"<<endl;
     }
 
     cout<<ans<<endl;
