@@ -46,7 +46,8 @@
         "regex": "cpp",
         "stack": "cpp",
         "queue": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "iomanip": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
