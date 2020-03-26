@@ -1,8 +1,53 @@
 ﻿#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <queue>
+#define rep(i,n) for(int i=0;i<n;i++)
+using namespace std;
+typedef long long ll;
 
-const long int divide=1000000007L;
+const ll MOD=1'000'000'007;
 
-long int conbinationX(long int n,long int r)
+ll n,a,b;
+
+ll mpow(ll x,ll n){
+	if(n==0) return 1;
+	if(n%2==1) return x*mpow(x,n-1)%MOD;
+	else return mpow(x*x%MOD,n/2)%MOD;
+}
+
+ll mfrac(ll n){
+	ll res=1;
+	for(int i=1;i<=n;i++) res=res*i%MOD;
+	return res;
+}
+
+ll mcomb(ll n,ll r){
+	if(n-r<r) r=n-r;
+	ll x=1;
+	for(int i=0;i<r;i++) x=x*(n-i)%MOD;
+	ll y=mpow(mfrac(r),MOD-2);
+	return x*y%MOD;
+}
+
+int main(){
+	cin>>n>>a>>b;
+
+	cout<<mfrac(13)<<endl;
+
+	ll x=mpow(2,n);
+	ll y=mcomb(n,a);
+	ll z=mcomb(n,b);
+	cout<<x<<" "<<y<<" "<<z<<endl;;
+
+	ll ans=(x-y-z-1)%MOD;
+	cout<<ans<<endl;
+}
+
+/*long int conbinationX(long int n,long int r)
 {
 	if (r > n / 2) {
 		r = n - r;
@@ -67,4 +112,4 @@ int main()
 	//res = main - 1 - A - B;
 
 	std::cout << res;
-}
+}*/
