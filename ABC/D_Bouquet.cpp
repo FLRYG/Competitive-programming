@@ -35,15 +35,15 @@ ll mcomb(ll n,ll r){
 
 int main(){
 	cin>>n>>a>>b;
-
-	cout<<mfrac(13)<<endl;
-
+	
 	ll x=mpow(2,n);
 	ll y=mcomb(n,a);
 	ll z=mcomb(n,b);
-	cout<<x<<" "<<y<<" "<<z<<endl;;
+	//cout<<x<<" "<<y<<" "<<z<<endl;;
 
 	ll ans=(x-y-z-1)%MOD;
+	if(ans<0) ans+=MOD;
+
 	cout<<ans<<endl;
 }
 
