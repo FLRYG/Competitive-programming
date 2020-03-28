@@ -5,27 +5,24 @@
 #include <vector>
 #include <iomanip>
 #include <queue>
-#include <map>
-#include <unordered_map>
-#include <iterator>
 #define rep(i,n) for(int i=0;i<n;i++)
 using namespace std;
 typedef long long ll;
 
 int N;
-unordered_map<string,int> S;
 
 int main(){
-    ll ans=0;
-
     cin>>N;
-    rep(i,N){
-        string s;
-        cin>>s;
-        sort(s.begin(),s.end());
-        S[s]++;
-        ans+=S[s]-1;
+
+    int ans=0;
+    for(int i=0;i<=5;i++){
+        if(i%2==0 && pow(10,i)<=N && N<pow(10,i+1)){
+            ans+=N-pow(10,i)+1;
+            break;
+        }else if(i%2==0 && pow(10,i+1)<=N){
+            ans+=pow(10,i+1)-pow(10,i);
+        }
     }
-    
+
     cout<<ans<<endl;
 }

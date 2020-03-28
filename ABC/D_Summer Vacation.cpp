@@ -9,49 +9,31 @@
 using namespace std;
 typedef long long ll;
 
-template <class T>
-inline void qswap(T& a,T& b);
-template <class T>
-void qsort(T* x,int left,int right);
-
 int N,M;
-int A[100001];
-int B[100001];
 pair<int,int> AB[100001];
-int dp[100001];
+int daycount[100001];
+priority_queue<int> bqueue;
 
 int main(){
     cin>>N>>M;
-    rep(i,N) cin>>AB[i].first>>AB[i].second;
-
+    rep(i,N){
+        cin>>AB[i].first>>AB[i].second;
+        daycount[AB[i].first]++;
+    }
     sort(AB,AB+N);
 
+    int index=0;
+    int ans=0;
     for(int i=1;i<=M;i++){
-        
-    }
-}
-
-template <class T>
-inline void qswap(T& a,T& b){
-    T tmp=a;
-    a=b;
-    b=tmp;
-}
-
-template <class T>
-void qsort(T* x,int left,int right){
-    if(right-left<=1) return;
-    int pivod=x[(right+left)/2];
-
-    qswap(x[(right+left)/2],x[right-1]);
-    int i=left;
-    for(int j=left;j<right-1;j++){
-        if(x[j]<pivod){
-            qswap(x[i++],x[j]);
+        for(int j=index;j<index+daycount[i];j++){
+            bqueue.push(AB[j].second);
+        }
+        index+=daycount[i];
+        if(!bqueue.empty()){
+            ans+=bqueue.top();
+            bqueue.pop();
         }
     }
-    qswap(x[i],x[right-1]);
 
-    qsort(x,left,i);
-    qsort(x,i+1,right);
+    cout<<ans<<endl;
 }

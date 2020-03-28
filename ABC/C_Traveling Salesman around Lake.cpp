@@ -5,27 +5,25 @@
 #include <vector>
 #include <iomanip>
 #include <queue>
-#include <map>
-#include <unordered_map>
-#include <iterator>
 #define rep(i,n) for(int i=0;i<n;i++)
 using namespace std;
 typedef long long ll;
 
-int N;
-unordered_map<string,int> S;
+ll K,N;
+ll A[200000];
 
 int main(){
-    ll ans=0;
+    cin>>K>>N;
+    rep(i,N) cin>>A[i];
 
-    cin>>N;
-    rep(i,N){
-        string s;
-        cin>>s;
-        sort(s.begin(),s.end());
-        S[s]++;
-        ans+=S[s]-1;
+    sort(A,A+N);
+
+    ll max_d=K-A[N-1]+A[0];
+    for(int i=0;i<N;i++){
+        max_d=max(max_d,A[i+1]-A[i]);
     }
-    
+
+    ll ans=K-max_d;
+
     cout<<ans<<endl;
 }
