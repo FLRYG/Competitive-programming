@@ -49,6 +49,12 @@ T next_prime(T x){
     return res;
 }
 
+template<class T>
+bool prime(T x){
+    if(x==next_prime(x-1)) return true;
+    return false;
+}
+
 int main(){
     int prime=1;
     for(int i=0;i<100;i++){

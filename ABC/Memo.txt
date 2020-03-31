@@ -1,3 +1,4 @@
+C - GCD on Blackboard               漸化式をうまく立てる問題
 C - Typical Stairs                  dpを使う問題（一次元）
 D - Face Produces Unhappiness       同じ向きを向いていると幸せな問題
 D - String Formation                二つのstringをうまく使う問題
