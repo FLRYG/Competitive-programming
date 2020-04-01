@@ -10,19 +10,25 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+int N,M;
+int X[100000];
+priority_queue<int,vector<int>,greater<int>> dis; 
 
 int main(){
-    cin>>N;
-    rep(i,5) cin>>tp[i];
+    cin>>N>>M;
+    rep(i,M) cin>>X[i];
 
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    sort(X,X+M);
+
+    rep(i,M-1){
+        dis.push(X[i+1]-X[i]);
     }
 
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
+    int ans=0;
+    rep(i,(N-1)){
+        ans+=dis.top();
+        dis.pop();
+    }
 
     cout<<ans<<endl;
 }

@@ -10,19 +10,24 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+int N;
+int L[10];
+
+int maxl=0;
+int sum=0;
 
 int main(){
     cin>>N;
-    rep(i,5) cin>>tp[i];
-
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    rep(i,N){
+        cin>>L[i];
+        sum+=L[i];
+        if(maxl<L[i]) maxl=L[i];
     }
+    sum-=maxl;
 
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
-
-    cout<<ans<<endl;
+    if(maxl<sum){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
+    }
 }

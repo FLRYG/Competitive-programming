@@ -10,19 +10,20 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+template<class T>T gcd(T a, T b){if(a<b){a^=b;b^=a;a^=b;}return b?gcd(b,a%b):a;}
+template<class T>T lcm(T a, T b){return a*b/gcd(a,b);}
+
+int N;
+int A[100000];
 
 int main(){
     cin>>N;
-    rep(i,5) cin>>tp[i];
+    rep(i,N) cin>>A[i];
 
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    int ans=0;
+    rep(i,N){
+        ans=gcd(ans,A[i]);
     }
-
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
 
     cout<<ans<<endl;
 }

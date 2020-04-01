@@ -10,19 +10,22 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+ll N,M;
+pair<ll,ll> AB[100000];
 
 int main(){
-    cin>>N;
-    rep(i,5) cin>>tp[i];
+    cin>>N>>M;
+    rep(i,N) cin>>AB[i].first>>AB[i].second;
 
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    sort(AB,AB+N);
+
+    ll ans=0;
+    ll c=0;
+    rep(i,N){
+        if(c>=M) break;
+        ans+=AB[i].first*min(AB[i].second,M-c);
+        c+=min(AB[i].second,M-c);
     }
-
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
 
     cout<<ans<<endl;
 }

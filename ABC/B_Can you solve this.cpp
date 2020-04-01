@@ -10,19 +10,23 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+int N,M,C;
+int B[20];
+int A[20][20];
 
 int main(){
-    cin>>N;
-    rep(i,5) cin>>tp[i];
+    cin>>N>>M>>C;
+    rep(i,M) cin>>B[i];
+    rep(i,N) rep(j,M) cin>>A[i][j];
 
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    int ans=0;
+    rep(i,N){
+        int sum=C;
+        rep(j,M){
+            sum+=A[i][j]*B[j];
+        }
+        if(sum>0) ans++;
     }
-
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
 
     cout<<ans<<endl;
 }

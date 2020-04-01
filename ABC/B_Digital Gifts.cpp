@@ -10,19 +10,22 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+int N;
+double x[10];
+string u[10];
 
 int main(){
     cin>>N;
-    rep(i,5) cin>>tp[i];
+    rep(i,N) cin>>x[i]>>u[i];
 
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    double ans=0;
+    rep(i,N){
+        if(u[i]=="JPY"){
+            ans+=x[i];
+        }else{
+            ans+=380000.0*x[i];
+        }
     }
 
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
-
-    cout<<ans<<endl;
+    cout<<setprecision(16)<<ans<<endl;
 }

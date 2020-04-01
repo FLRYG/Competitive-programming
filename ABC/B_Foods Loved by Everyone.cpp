@@ -10,19 +10,25 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+int N,M;
+int K[30];
+int A[30][30];
+int res[31];
 
 int main(){
-    cin>>N;
-    rep(i,5) cin>>tp[i];
-
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    cin>>N>>M;
+    rep(i,N){
+        cin>>K[i];
+        rep(j,K[i]){
+            cin>>A[i][j];
+            res[A[i][j]]++;
+        }
     }
 
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
+    int ans=0;
+    repn(i,M){
+        if(res[i]==N) ans++;
+    }
 
     cout<<ans<<endl;
 }

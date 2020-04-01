@@ -10,19 +10,15 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll tp[5];
+string S;
 
 int main(){
-    cin>>N;
-    rep(i,5) cin>>tp[i];
+    cin>>S;
 
-    ll mini=100100100100100100;
-    rep(i,5){
-        if(tp[i]<mini) mini=tp[i];
+    if(S[5]=='0' && 
+      (S[6]=='1' || S[6]=='2' || S[6]=='3' || S[6]=='4')){
+          cout<<"Heisei"<<endl;
+    }else{
+        cout<<"TBD"<<endl;
     }
-
-    ll ans=N%mini==0?N/mini+4:N/mini+5;
-
-    cout<<ans<<endl;
 }
