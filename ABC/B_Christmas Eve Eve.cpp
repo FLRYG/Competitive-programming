@@ -5,32 +5,29 @@
 #include <vector>
 #include <iomanip>
 #include <queue>
+#include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
 using namespace std;
 typedef long long ll;
 
-int N,M;
-int X[100000];
-priority_queue<int> dis; 
+int N;
+priority_queue<int> p;
 
 int main(){
-    cin>>N>>M;
-    rep(i,M) cin>>X[i];
-    if(N>=M){
-        cout<<0<<endl;
-        return 0;
+    cin>>N;
+    rep(i,N){
+        int x;
+        cin>>x;
+        p.push(x);
     }
 
-    sort(X,X+M);
-
-    int ans=X[M-1]-X[0];
-    rep(i,M-1){
-        dis.push(X[i+1]-X[i]);
-    }
-    rep(i,N-1){
-        ans-=dis.top();
-        dis.pop();
+    int ans=0;
+    ans+=p.top()/2;
+    p.pop();
+    while(!p.empty()){
+        ans+=p.top();
+        p.pop();
     }
 
     cout<<ans<<endl;
