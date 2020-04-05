@@ -13,35 +13,27 @@ typedef long long ll;
 
 int powi(int x,int n){if(n==0)return 1;return x*powi(x,n-1);}
 
-int N;
+ll N;
 const int table[3]={3,5,7};
 
-bool _753(int k){
+bool _753(ll k){
     int digit=log10(k)+1;
-    bool c3,c5,c7;
-        rep(i,digit){
-            if(k%10==3) c3=true;
-            if(k%10==5) c5=true;
-            if(k%10==7) c7=true;
-            k/=10;
-        }
+    bool c3=false,c5=false,c7=false;
+    rep(i,digit){
+        if(k%10==3) c3=true;
+        else if(k%10==5) c5=true;
+        else if(k%10==7) c7=true;
+        k/=10;
+    }
     return c3&&c5&&c7;
 }
 
-int def(int x,int m){
+int def(ll x,ll m){
     int res=0;
     rep(i,3){
-        int k=10*x+table[i];
-        cout<<
-        //int digit=log10(k)+1;
+        ll k=10*x+table[i];
         if(k<=m){
-            /*bool c3,c5,c7;
-            rep(i,digit){
-                if(k%10==3) c3=true;
-                if(k%10==5) c5=true;
-                if(k%10==7) c7=true;
-                k/=10;
-            }*/
+            //cout<<k<<' '<<_753(k)<<endl;
             if(_753(k)) res++;
             res+=def(k,m);
         }

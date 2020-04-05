@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include <algorithm>
 #include <cmath>
 #include <string>
@@ -11,23 +12,20 @@
 using namespace std;
 typedef long long ll;
 
-int N;
-double T,A;
-double H[1000];
+string S;
+int length;
+int dp[100000][13];
 
 int main(){
-    cin>>N>>T>>A;
-    rep(i,N) cin>>H[i];
+    cin>>S;
+    length=S.size();
 
-    int ans;
-    double val=10001001;
-    rep(i,N){
-        double abst=abs(A-(T-H[i]*0.006));
-        if(abst<val){
-            val=abst;
-            ans=i+1;
-        }
+    for(int i=0;i<length;i++){
+        int x;
+        if(S[length-i-1]=='?') x=-1;
+        else S[length-i-1]-'0';
+
+        
+
     }
-
-    cout<<ans<<endl;
 }
