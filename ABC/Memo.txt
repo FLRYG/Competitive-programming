@@ -1,8 +1,9 @@
 C - GCD on Blackboard               漸化式をうまく立てる問題
-C - Typical Stairs                  dpを使う問題（一次元）
+C - Typical Stairs                  dpを使う問題
 D - Face Produces Unhappiness       同じ向きを向いていると幸せな問題
 D - String Formation                二つのstringをうまく使う問題
 E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
+E - Crested Ibis vs Monster         dp
 
 std::setprecision(int scale)        浮動小数点数を出力する精度を設定する
 dequeue

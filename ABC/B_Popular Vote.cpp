@@ -6,26 +6,32 @@
 #include <vector>
 #include <iomanip>
 #include <queue>
+#include <deque>
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
 using namespace std;
 typedef long long ll;
 
-int H,W;
-char S[2000][2000];
-int L[2000][2000];
-int R[2000][2000];
-int U[2000][2000];
-int D[2000][2000];
+int N,M;
+int A[100];
+double sum=0;
 
 int main(){
-    cin>>H>>W;
-    rep(i,H) rep(j,W) cin>>S[i][j];
+    cin>>N>>M;
+    rep(i,N){
+        cin>>A[i];
+        sum+=A[i];
+    }
 
-    rep(i,H){
-        rep(j,W){
-            if(S[i][j]);
-        }
+    int c=0;
+    rep(i,N){
+        if(A[i]>=sum/(4.0*M)) c++;
+    }
+
+    if(c>=M){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
     }
 }
