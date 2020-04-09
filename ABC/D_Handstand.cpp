@@ -15,38 +15,50 @@ typedef long long ll;
 
 int N,K;
 string S;
-int t[100000];
+pair<int,int> t[100000];
 
 int main(){
     cin>>N>>K>>S;
     
-    int num=S[0];
+    int num=S[0]-'0';
+    t[0].second=num;
     int index=0;
     rep(i,N){
-        if(num==S[i]) t[index]++;
+        if(num==S[i]-'0') t[index].first++;
         else{
-            t[++index]++;
+            t[++index].first++;
             num=(num+1)%2;
+            t[index].second=num;
         }
     }
     index++;
-    
-    int sign=S[0];
-    if((index%2==0 || (index%2==1 && sign==1)) && index/2<=K){
-        cout<<N<<endl;
-        return 0;
-    }else if(index%2==1 && sign==0 && index/2+1<=K){
-        cout<<N<<endl;
-        return 0;
+    //rep(i,index) cout<<t[i].first<<' ';
+    //cout<<endl;
+
+    int sum=0;
+    if(t[0].second==0){
+        rep(i,min(2*K,index)){
+            sum+=t[i].first;
+        }
+    }else{
+        rep(i,min(2*K+1,index)){
+            sum+=t[i].first;
+        }
+    }
+    //cout<<"0:"<<sum<<endl;
+
+    int ans=sum;
+    int n=t[index-1].second==0?index-2*K:index-2*K-1;
+    repn(i,n){
+        if(t[i].second==0){
+            sum-=t[i-1].first;
+        }else{
+            sum-=t[i-1].first;
+            sum+=t[i+2*K-1].first+t[i+2*K].first;
+        }
+        ans=max(ans,sum);
+        //cout<<i<<":"<<sum<<endl;
     }
 
-    int ans=0;
-    rep(i,index){
-        if(i%2==)
-    }
-
-
-    
-
-
+    cout<<ans<<endl;
 }
