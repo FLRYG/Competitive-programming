@@ -25,20 +25,22 @@ int main(){
         for(int cy=0;cy<=100;cy++){
             bool first=true;
             int H=1;
-            int maxH;
             rep(i,N){
-                if(xyh[i][2]==0){
-                    maxH=abs(xyh[i][0]-cx)+abs(xyh[i][1]-cy);
+                if(xyh[i][2]==0) continue;
+                int res=abs(xyh[i][0]-cx)+abs(xyh[i][1]-cy)+xyh[i][2];
+                if(first){
+                    H=res;
+                    first=!first;
                 }else{
-                    int res=abs(xyh[i][0]-cx)+abs(xyh[i][1]-cy)+xyh[i][2];
-                    if(first){
-                        H=res;
-                        first=!first;
-                    }else{
-                        if(res!=H) goto a;
-                    }
+                    if(!(res==H)) goto a;
                 }
             }
+            //十分条件///
+            rep(i,N){
+                if(xyh[i][2]==0 && H-abs(xyh[i][0]-cx)-abs(xyh[i][1]-cy)>0)
+                    goto a;
+            }
+            ////////////
             ans[0]=cx; ans[1]=cy; ans[2]=H;
             goto b;
             a:;
