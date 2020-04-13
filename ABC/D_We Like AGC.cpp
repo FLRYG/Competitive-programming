@@ -16,6 +16,21 @@ typedef long long ll;
 const ll MOD=1'000'000'007;
 
 int N;
+
+ll dfs(int n,char a3,char a2,char a1,ll t){
+    if(n==3) return 61;
+    ll res=t;
+    if(a2==)
+}
+
+int main(){
+    cin>>N;
+
+    dfs()
+}
+
+/*
+int N;
 ll dp[101][5];
 
 void init(){
@@ -45,4 +60,4 @@ int main(){
 
     ll ans=dp[N][4]>=0?dp[N][4]:dp[N][4]+MOD;
     cout<<ans<<endl;
-}
+}*/
