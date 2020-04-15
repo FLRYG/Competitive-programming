@@ -12,26 +12,16 @@
 using namespace std;
 typedef long long ll;
 
-const ll MOD=1'000'000'007;
-
-ll N;
-ll A[300000];
+ll N,K;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    cin>>N>>K;
 
-    ll ans=0;
-    for(int i=0;i<=60;i++){
-        ll zero=0,one=0;
-        rep(j,N){
-            if(A[j]>>i&1) one++;
-            else zero++;
-        }
-        ans+=(zero*one%MOD)*(((ll)1<<i)%MOD)%MOD;
-        ans%=MOD;
+    ll ans=(N/K)*(N/K)*(N/K);
+    if(K%2==0){
+        ll x=N%K>=K/2?N/K+1:N/K;
+        ans+=x*x*x;
     }
-    if(ans<0) ans+=MOD;
 
     cout<<ans<<endl;
 }

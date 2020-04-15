@@ -7,7 +7,7 @@ const ll MOD=1'000'000'007;
 ll mpow(ll x,ll n){
     if(n==0) return 1;
     else if(n%2) return x*mpow(x,n-1)%MOD;
-    return mpow(x*x%MOD,n/2);
+    return mpow(x*x%MOD,n/2)%MOD;
 }
 
 ll mfrac(ll n){
