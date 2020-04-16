@@ -10,9 +10,16 @@ using namespace std;
 typedef long long ll;
 
 int N;
+
+
+int main(){
+
+}
+
+/*
+int N;
 queue<int> A[1000];
 bool energy[1000];
-
 
 //O(N^3) TLE
 int main(){
@@ -53,4 +60,4 @@ int main(){
     }else{
         cout<<-1<<endl;
     }
-}
+}*/

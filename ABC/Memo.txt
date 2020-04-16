@@ -1,6 +1,7 @@
 C - GCD on Blackboard               漸化式をうまく立てる問題
 C - Typical Stairs                  dpを使う問題
 C - Triangular Relationship         必要十分条件を見極める
+C - Synthetic Kadomatsu             全　探　索
 D - Face Produces Unhappiness       同じ向きを向いていると幸せな問題
 D - String Formation                二つのstringをうまく使う問題
 D - Handstand                       条件分岐が複雑
