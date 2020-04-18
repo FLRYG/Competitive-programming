@@ -6,6 +6,8 @@ D - Face Produces Unhappiness       同じ向きを向いていると幸せな�
 D - String Formation                二つのstringをうまく使う問題
 D - Handstand                       条件分岐が複雑
 D - XOR World                       xorの性質を使う
+D - Christmas                       再　帰
+D - Lunlun Number                   queueを使う
 E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
 E - Crested Ibis vs Monster         dpを使う
 

@@ -16,8 +16,13 @@ typedef long long ll;
 ll N,X;
 ll L[51],P[51];
 
-ll f(ll n){
-    
+ll dfs(ll n,ll x){
+    if(n==0) return P[0];
+    if(x==1) return 0;
+    if(x<=1+L[n-1]) return dfs(n-1,x-1);
+    if(x==1+L[n-1]+1) return P[n-1]+1;
+    if(x<=1+L[n-1]+1+L[n-1]) return P[n-1]+1+dfs(n-1,x-(1+L[n-1]+1));
+    if(x==1+L[n-1]+1+L[n-1]+1) return P[n];
 }
 
 int main(){
@@ -29,21 +34,6 @@ int main(){
         P[i]=2*P[i-1]+1;
     }
 
-    ll ans=0;
-    int i=0;
-    while(X>0){
-        if(X>L[i]){
-            i++;
-        }else if(X<L[i]){
-            cout<<"ll"<<endl;
-            ans+=P[i-1]+2;
-            X-=L[i-1];
-            i=0;
-        }else{
-            ans=P[i];
-            X=0;
-        }
-    }
-
+    ll ans=dfs(N,X);
     cout<<ans<<endl;
 }
