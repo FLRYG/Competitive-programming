@@ -26,7 +26,7 @@ Union_Find::~Union_Find(){
 
 int Union_Find::find(int x){
     if(par[x]==x) return x;
-    return par[x]=this->find[par[x]];
+    return par[x]=find(par[x]);
 }
 
 void Union_Find::unite(int x,int y){

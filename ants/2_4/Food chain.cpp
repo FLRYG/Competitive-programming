@@ -41,7 +41,7 @@ Union_Find::~Union_Find(){
 
 int Union_Find::find(int x){
     if(par[x]==x) return x;
-    return par[x]=this->find[par[x]];
+    return par[x]=find(par[x]);
 }
 
 void Union_Find::unite(int x,int y){
@@ -89,8 +89,18 @@ int main(){
             }else{
                 uf.unite(x,y);
                 uf.unite(x+N,y+N);
-                uf.unite(x+N*2,y+N*2)
+                uf.unite(x+N*2,y+N*2);
+            }
+        }else{
+            if(uf.same(x,y) || uf.same(x,y+N*2)){
+                ans++;
+            }else{
+                uf.unite(x,y+N);
+                uf.unite(x+N,y+N*2);
+                uf.unite(x+N*2,y);
             }
         }
     }
+
+    cout<<ans<<endl;
 }
