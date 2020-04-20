@@ -14,14 +14,14 @@ using namespace std;
 typedef long long ll;
 
 int N;
-int A[200001];
+int A[200005];
+int ans[200005];
 
 int main(){
     cin>>N;
-    rep(i,N-1) cin>>A[i];
+    for(int i=2;i<=N;i++) cin>>A[i];
 
-    int ans[200001];
-    rep(i,N-1) ans[A[i]]++;
+    for(int i=2;i<=N;i++) ans[A[i]]++;
 
     repn(i,N) cout<<ans[i]<<endl;
 }

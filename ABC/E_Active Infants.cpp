@@ -16,11 +16,25 @@ typedef pair<ll,int> P;
 
 ll N;
 ll A[2000];
+ll dp[2000][2000];
 bool chk[2000];
 
 int main(){
     cin>>N;
     rep(i,N) cin>>A[i];
+
+    rep(i,N) rep(j,N) dp[i][j]=A[i]*abs(i-j);
+
+    fill(chk,chk+N,false);
+    ll LR[2]={0,N-1};
+    while(LR[0]<=LR[1]){
+        ll res=0;
+        rep(i,2){
+            rep(j,N){
+                
+            }
+        }
+    }
 
     fill(chk,chk+N,false);
     ll ans1=0;
@@ -33,8 +47,13 @@ int main(){
         rep(j,N){
             if(chk[j]) continue;
             ll y=A[j];
-            res=max(res,(x+y)*abs(i-j));
-            if(res==(x+y)*abs(i-j)) index=j;
+            ll s=(x+y)*abs(i-j);
+            if(res<s){
+                res=s;
+                index=j;
+            }else if(res==s){
+                index=min(abs(i-index),abs((ll)(i-j)));
+            }
         }
         chk[index]=true;
         ans1+=res;
@@ -51,8 +70,13 @@ int main(){
         rep(j,N){
             if(chk[j]) continue;
             ll y=A[j];
-            res=max(res,(x+y)*abs(i-j));
-            if(res==(x+y)*abs(i-j)) index=j;
+            ll s=(x+y)*abs(i-j);
+            if(res<s){
+                res=s;
+                index=j;
+            }else if(res==s){
+                index=min(abs(i-index),abs((ll)(i-j)));
+            }
         }
         chk[index]=true;
         ans2+=res;
