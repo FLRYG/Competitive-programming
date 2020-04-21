@@ -13,17 +13,27 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int x[100002];
+string S;
+ll K;
 
 int main(){
-    cin>>N>>K;
-    repn(i,N) cin>>x[i];
-
-    int ans=1001001001;
-    repn(i,N-K+1){
-        ans=min(ans,min(abs(x[i])+abs(x[i+K-1]-x[i]),abs(x[i+K-1])+abs(x[i+K-1]-x[i])));
+    cin>>S>>K;
+    
+    if(K<=100){
+        bool b=true;
+        rep(i,K){
+            if(S[i]!='1') b=false;
+        }
+        if(b){
+            cout<<1<<endl;
+            return 0;
+        }
     }
 
-    cout<<ans<<endl;
+    rep(i,S.size()){
+        if(S[i]!='1'){
+            cout<<S[i]<<endl;
+            break;
+        }
+    }
 }

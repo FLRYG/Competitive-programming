@@ -13,16 +13,26 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int x[100002];
+int N;
 
 int main(){
-    cin>>N>>K;
-    repn(i,N) cin>>x[i];
+    cin>>N;
 
-    int ans=1001001001;
-    repn(i,N-K+1){
-        ans=min(ans,min(abs(x[i])+abs(x[i+K-1]-x[i]),abs(x[i+K-1])+abs(x[i+K-1]-x[i])));
+    int ans=0;
+    for(int i=1;i<=N;i+=2){
+        int x=i;
+        int cnt=1;
+        for(int j=2;j<=100;j++){
+            int a=1;
+            while(x%j==0){
+                a++;
+                x/=j;
+            }
+            if(a>0) cnt*=a;
+        }
+        if(cnt==8){
+            ans++;
+        }
     }
 
     cout<<ans<<endl;

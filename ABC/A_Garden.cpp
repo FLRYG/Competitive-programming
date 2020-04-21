@@ -13,17 +13,10 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int x[100002];
+int A,B;
 
 int main(){
-    cin>>N>>K;
-    repn(i,N) cin>>x[i];
+    cin>>A>>B;
 
-    int ans=1001001001;
-    repn(i,N-K+1){
-        ans=min(ans,min(abs(x[i])+abs(x[i+K-1]-x[i]),abs(x[i+K-1])+abs(x[i+K-1]-x[i])));
-    }
-
-    cout<<ans<<endl;
+    cout<<(A-1)*(B-1)<<endl;
 }

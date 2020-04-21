@@ -14,13 +14,15 @@ using namespace std;
 typedef long long ll;
 
 int H,W;
-string a[105];
+string a[100];
 
 int main(){
     cin>>H>>W;
     rep(i,H) cin>>a[i];
 
-    int r[105],c[105];
+    int r[100],c[100];
+    fill(r,r+100,0);
+    fill(c,c+100,0);
     rep(i,H){
         rep(j,W){
             if(a[i][j]=='#'){
@@ -33,7 +35,9 @@ int main(){
     rep(i,H){
         if(r[i]==1){
             rep(j,W){
-                if(c[j]==1) cout<<a[i][j];
+                if(c[j]==1){
+                    cout<<a[i][j];
+                }
             }
             cout<<endl;
         }
