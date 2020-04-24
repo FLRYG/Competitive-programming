@@ -1,18 +1,5 @@
-#include <iostream>
-#include <stdio.h>
-#include <algorithm>
-#include <cmath>
-#include <string>
-#include <vector>
-#include <iomanip>
-#include <queue>
-#include <deque>
-#include <unordered_map>
-#include <map>
-#define rep(i,n) for(int i=0;i<n;i++)
-#define repn(i,n) for(int i=1;i<=n;i++)
+#include<iostream>
 using namespace std;
-typedef long long ll;
 
 struct mint{
     int x;
@@ -56,23 +43,3 @@ struct mint{
     friend istream& operator>>(istream& is, mint& a) { is >> a.x; return is;}
     friend ostream& operator<<(ostream& os, const mint& a) { os << a.x; return os;}
 };
-
-mint N;
-string ans;
-
-int main(){
-    cin>>N;
-
-    mint M=-2;
-    while(N!=0){
-        ans.push_back('0'+N%M);
-        N/=M;
-    }
-
-    reverse(ans.begin(),ans.end());
-    if(ans.size()==0){
-        cout<<0<<endl;
-        return 0;
-    }
-    cout<<ans<<endl;
-}
