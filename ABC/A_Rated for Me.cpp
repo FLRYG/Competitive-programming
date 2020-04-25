@@ -14,26 +14,16 @@
 using namespace std;
 typedef long long ll;
 
-ll N,M;
-ll A[100001];
-ll sum[100001];
-map<int,ll> cnt;
+int R;
 
 int main(){
-    cin>>N>>M;
-    repn(i,N){
-        cin>>A[i];
-        A[i]%=M;
+    cin>>R;
+
+    if(R<1200){
+        cout<<"ABC"<<endl;
+    }else if(R<2800){
+        cout<<"ARC"<<endl;
+    }else{
+        cout<<"AGC"<<endl;
     }
-
-    repn(i,N) sum[i]=(sum[i-1]+A[i])%M; 
-    for(int i=0;i<=N;i++) cnt[sum[i]%M]++;
-
-    ll ans=0;
-    for(auto e:cnt){
-        ans+=e.second*(e.second-1);
-    }
-    ans/=2;
-
-    cout<<ans<<endl;
 }

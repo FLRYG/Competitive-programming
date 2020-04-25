@@ -14,26 +14,23 @@
 using namespace std;
 typedef long long ll;
 
-ll N,M;
-ll A[100001];
-ll sum[100001];
-map<int,ll> cnt;
+string S;
 
 int main(){
-    cin>>N>>M;
-    repn(i,N){
-        cin>>A[i];
-        A[i]%=M;
-    }
+    cin>>S;
 
-    repn(i,N) sum[i]=(sum[i-1]+A[i])%M; 
-    for(int i=0;i<=N;i++) cnt[sum[i]%M]++;
-
-    ll ans=0;
-    for(auto e:cnt){
-        ans+=e.second*(e.second-1);
+    string ans="AC";
+    if(S[0]!='A') ans="WA";
+    int cnt=0;
+    for(int i=2;i<S.size()-1;i++){
+        if(S[i]=='C') cnt++;
     }
-    ans/=2;
+    if(cnt!=1) ans="WA";
+    rep(i,S.size()){
+        if(!(S[i]=='A' || S[i]=='C')){
+            if(!('a'<=S[i] && S[i]<='z')) ans="WA";
+        }
+    }
 
     cout<<ans<<endl;
 }
