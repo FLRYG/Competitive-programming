@@ -15,8 +15,7 @@ using namespace std;
 typedef long long ll;
 
 int D,G;
-int p[101],c[101];
-int dp[1001];
+int p[100],c[100];
 
 int main(){
     cin>>D>>G;
@@ -30,25 +29,20 @@ int main(){
         for(int j=0;j<D;j++){
             if(i>>j&1){
                 res+=p[j];
-                g-=100*(j+1)*p[j]+c[i];
+                g-=(100*(j+1)*p[j]+c[j]);
             }else{
                 maximum=j;
             }
-            cout<<"g="<<g<<endl;
         }
         
-        if(G<=0){
-            cout<<"aaa"<<endl;
+        if(g<=0){
             ans=min(ans,res);
         }else{
-            cout<<"bbb"<<endl;
             if(g/(100.0*(maximum+1))<=p[maximum]){
-                cout<<"ccc"<<endl;
                 res+=ceil(g/(100.0*(maximum+1)));
                 ans=min(ans,res);
             }
         }
-        cout<<ans<<"\n\n";
     }
 
     cout<<ans<<endl;
