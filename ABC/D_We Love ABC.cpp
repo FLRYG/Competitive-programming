@@ -14,15 +14,29 @@
 using namespace std;
 typedef long long ll;
 
+const ll MOD=1'000'000'007;
+
 string S;
-int ABC[3][100000];
+ll dp[100001][3];
 
 int main(){
     cin>>S;
 
-    repn(i,S.size()){
-        
+    for(int i=S.size()-1;i>=0;i--){
+        dp[i][0]=dp[i+1][0];
+        dp[i][1]=dp[i+1][1];
+        dp[i][2]=dp[i+1][2];
+        if(S[i]=='A') dp[i][0]+=dp[i][1];
+        if(S[i]=='B') dp[i][1]+=dp[i][2];
+        if(S[i]=='C') dp[i][2]++;
+        if(S[i]=='?'){
+            dp[i][2]++;
+            dp[i][1]+=dp[i][2];
+            dp[i][0]+=dp[i][1];
+        }
+        //rep(j,3) dp[i][j]%=MOD;
     }
 
-
+    ll ans=dp[0][0];
+    cout<<ans<<endl;
 }
