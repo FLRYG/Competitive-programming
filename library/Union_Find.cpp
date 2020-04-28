@@ -1,8 +1,6 @@
-class Union_Find{
-private:
+struct Union_Find{
     int* par;                       //親
     int* rank;                      //木の深さ
-public:
     Union_Find(int n);
     ~Union_Find();
     int find(int x);                //木の根を求める
@@ -32,9 +30,7 @@ int Union_Find::find(int x){
 void Union_Find::unite(int x,int y){
     x=find(x);
     y=find(y);
-    
     if(x==y) return;
-
     if(rank[x]<rank[y]){
         par[x]=y;
     }else{

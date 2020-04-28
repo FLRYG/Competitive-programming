@@ -15,15 +15,19 @@ using namespace std;
 typedef long long ll;
 
 string S,T;
-int cnts[26],cntt[26];
 
 int main(){
     cin>>S>>T;
 
     rep(i,S.size()){
-        cnts[S[i]-'a']++;
-        cntt[T[i]-'a']++;
+        char x=S[S.size()-1];
+        S.pop_back();
+        S=x+S;
+        if(S==T){
+            cout<<"Yes"<<endl;
+            return 0;
+        }
     }
 
-    rep() 
+    cout<<"No"<<endl;
 }

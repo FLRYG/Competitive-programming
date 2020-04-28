@@ -14,18 +14,23 @@
 using namespace std;
 typedef long long ll;
 
-int N,X,Y;
-int ans[2000];
+int N,M;
+pair<int,int> ba[100000];
 
 int main(){
-    cin>>N>>X>>Y;
+    cin>>N>>M;
+    rep(i,M) cin>>ba[i].second>>ba[i].first;
 
-    for(int i=1;i<=N-1;i++){
-        for(int j=i+1;j<=N;j++){
-            int k=min(abs(i-j),abs(i-X)+1+abs(j-Y));
-            ans[k]++;
+    sort(ba,ba+M);
+
+    int ans=1;
+    int b=ba[0].first;
+    repn(i,M-1){
+        if(b<=ba[i].second){
+            ans++;
+            b=ba[i].first;
         }
     }
 
-    repn(i,N-1) cout<<ans[i]<<endl;
+    cout<<ans<<endl;
 }

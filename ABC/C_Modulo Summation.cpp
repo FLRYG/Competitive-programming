@@ -14,18 +14,15 @@
 using namespace std;
 typedef long long ll;
 
-int N,X,Y;
-int ans[2000];
+int N;
+int a[3000];
 
 int main(){
-    cin>>N>>X>>Y;
+    cin>>N;
+    rep(i,N) cin>>a[i];
 
-    for(int i=1;i<=N-1;i++){
-        for(int j=i+1;j<=N;j++){
-            int k=min(abs(i-j),abs(i-X)+1+abs(j-Y));
-            ans[k]++;
-        }
-    }
+    int ans=0;
+    rep(i,N) ans+=a[i]-1;
 
-    repn(i,N-1) cout<<ans[i]<<endl;
+    cout<<ans<<endl;
 }
