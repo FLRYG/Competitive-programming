@@ -1,51 +1,63 @@
 #include <iostream>
+#include <stdio.h>
 #include <algorithm>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <queue>
+#include <deque>
+#include <map>
+#include <unordered_map>
+#define rep(i,n) for(int i=0;i<n;i++)
+#define repn(i,n) for(int i=1;i<=n;i++)
 using namespace std;
+typedef long long ll;
 
-long N,M;
-long A[100100];
-long B[100100];
+template<class T>T gcd(T a, T b){if(a<b){a^=b;b^=a;a^=b;}return b?gcd(b,a%b):a;}
+template<class T>T lcm(T a, T b){return a/gcd(a,b)*b;}
 
-long gcd(long a, long b)
-{
-    if (a < b) {
-        a ^= b;
-        b ^= a;
-        a ^= b;
-    }
-    
-    return b ? gcd(b, a % b) : a;
-}
-
-long lcm(long a, long b)
-{
-    return a * b / gcd(a, b);
-}
+ll N,M;
+ll a[100000];
+map<ll,ll> m;
 
 int main(){
     cin>>N>>M;
-    for(int i=0;i<N;i++){
-        cin>>A[i];
-        B[i]=A[i]/2;
+    rep(i,N){
+        cin>>a[i];
+        a[i]/=2;
+        m[a[i]]++;
     }
 
-    long sta=B[0];
-    long two=1;
-    while(sta%2==0){
-        sta/=2;
+    ll two=1;
+    ll x=a[0];
+    while(x%2==0){
         two*=2;
+        x/=2;
     }
-    long l=1;
-    for(int k=0;k<N;k++){
-        if(B[k]%two==0){
-            l=lcm(l,B[k]);
-        }else{
+    repn(i,N-1){
+        ll x=a[i];
+        if(x%two!=0){
+            cout<<0<<endl;
+            return 0;
+        }
+        x/=two;
+        if(x%2==0){
             cout<<0<<endl;
             return 0;
         }
     }
 
-    int ans=M/l-M/(l*2);
+    ll l=a[0];
+    m[0]=-1;
+    repn(i,N-1){
+        if(a[i]>0){
+            l=lcm(l,a[i]);
+            m[a[i]]=-1;
+        }
+    }
 
-    cout<<ans;
+    int ans=M/l;
+    ans=ans&1?ans/2+1:ans/2;
+    cout<<ans<<endl;
 }
