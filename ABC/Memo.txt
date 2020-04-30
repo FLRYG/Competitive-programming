@@ -10,6 +10,7 @@ D - XOR World                       xorの性質を使う
 D - Christmas                       再　帰
 D - Lunlun Number                   queueを使う
 D - Even Relation                   木
+D - Digits Parade                   動的計画法　テンプレ
 E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
 E - Crested Ibis vs Monster         dpを使う
 

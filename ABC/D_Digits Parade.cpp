@@ -12,20 +12,52 @@
 using namespace std;
 typedef long long ll;
 
+const ll MOD=1'000'000'007;
+
+ll mpow(ll x,ll n){
+    if(n==0) return 1;
+    else if(n%2) return x*mpow(x,n-1)%13;
+    return mpow(x*x%13,n/2)%13;
+}
+
 string S;
-int length;
-int dp[100000][13];
+ll length;
+ll dp[13];
 
 int main(){
     cin>>S;
     length=S.size();
 
-    for(int i=0;i<length;i++){
-        int x;
-        if(S[length-i-1]=='?') x=-1;
-        else S[length-i-1]-'0';
-
-        
-
+    for(int i=length-1;i>=0;i--){
+        ll m[13];
+        fill(m,m+13,0);
+        ll p10=mpow(10,(length-1)-i);
+        if(S[i]!='?'){
+            ll x=S[i]-'0';
+            m[x*p10%13]++;
+        }else{
+            rep(j,10){
+                m[j*p10%13]++;
+            }
+        }
+        ll res[13];
+        fill(res,res+13,0);
+        if(i==length-1){
+            rep(i,13){
+                res[i]=m[i];
+            }
+        }else{
+            rep(i,13){
+                rep(j,13){
+                    if(m[i]!=0 && dp[j]!=0) res[(i+j)%13]+=(m[i]*dp[j])%MOD;
+                }
+            }
+        }
+        rep(i,13){
+            dp[i]=res[i];
+        }
     }
+
+    ll ans=dp[5]%MOD;
+    cout<<ans<<endl;
 }

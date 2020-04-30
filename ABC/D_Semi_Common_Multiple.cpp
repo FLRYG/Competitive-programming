@@ -19,45 +19,32 @@ template<class T>T lcm(T a, T b){return a/gcd(a,b)*b;}
 
 ll N,M;
 ll a[100000];
-map<ll,ll> m;
 
 int main(){
     cin>>N>>M;
     rep(i,N){
         cin>>a[i];
         a[i]/=2;
-        m[a[i]]++;
     }
 
-    ll two=1;
-    ll x=a[0];
-    while(x%2==0){
-        two*=2;
-        x/=2;
-    }
-    repn(i,N-1){
-        ll x=a[i];
-        if(x%two!=0){
-            cout<<0<<endl;
-            return 0;
-        }
-        x/=two;
-        if(x%2==0){
+    ll l=1;
+    rep(i,N){
+        l=lcm(l,a[i]);
+        if(l>M){
             cout<<0<<endl;
             return 0;
         }
     }
 
-    ll l=a[0];
-    m[0]=-1;
-    repn(i,N-1){
-        if(a[i]>0){
-            l=lcm(l,a[i]);
-            m[a[i]]=-1;
-        }
+    bool b=true;
+    rep(i,N){
+        b&=(l/a[i])&1;
+    }
+    if(!b){
+        cout<<0<<endl;
+        return 0;
     }
 
-    int ans=M/l;
-    ans=ans&1?ans/2+1:ans/2;
+    ll ans=(M/l+1)/2;
     cout<<ans<<endl;
 }
