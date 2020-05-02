@@ -1,7 +1,7 @@
 struct unionFind{
     int* par;                       //親
     int* rank;                      //木の深さ
-    int* scale;
+    int* scale;                     //木のサイズ
     unionFind(int n);
     ~unionFind();
     int find(int x);                //木の根を求める
@@ -22,9 +22,7 @@ unionFind::unionFind(int n){
 }
 
 unionFind::~unionFind(){
-    delete[] par;
-    delete[] rank;
-    delete[] scale;
+    delete[] par,rank,scale;
 }
 
 int unionFind::find(int x){

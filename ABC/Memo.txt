@@ -11,6 +11,9 @@ D - Christmas                       再　帰
 D - Lunlun Number                   queueを使う
 D - Even Relation                   木
 D - Digits Parade                   動的計画法　テンプレ
+D - We Like AGC                     動的計画法　頑張る
+D - Decayed Bridges                 Union_Find
+D - AtCoder Express 2               累　積　和
 E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
 E - Crested Ibis vs Monster         dpを使う
 
@@ -18,6 +21,6 @@ std::setprecision(int scale)        浮動小数点数を出力する精度を�
 dequeue
 priority_queue<T>                   優先順位付きキュー（降順）
 priority_queue<T,
-    vector<T>,greater<int>>           優先順位付きキュー（昇順）
+    vector<T>,greater<int>>         優先順位付きキュー（昇順）
 unordered_map<Key,T>                hash map　のこと
 string t;int n=atoi(t.c_str());     string から int の変換

@@ -16,48 +16,40 @@ typedef long long ll;
 const ll MOD=1'000'000'007;
 
 int N;
-
-ll dfs(int n,char a3,char a2,char a1,ll t){
-    if(n==3) return 61;
-    ll res=t;
-    if(a2==)
-}
+ll dp[101][4][4][4];
 
 int main(){
     cin>>N;
 
-    dfs()
-}
+    dp[0][3][3][3]=1;
 
-/*
-int N;
-ll dp[101][5];
+    rep(i,N){
+        rep(j,4){
+            rep(k,4){
+                rep(l,4){
+                    if(dp[i][j][k][l]==0) continue;
+                    rep(a,4){
+                        if(k==0 && l==1 && a==2) continue;
+                        if(k==1 && l==0 && a==2) continue;
+                        if(k==0 && l==2 && a==1) continue;
+                        if(j==0 && k==1 && a==2) continue;
+                        if(j==0 && l==1 && a==2) continue;
+                        dp[i+1][k][l][a]+=dp[i][j][k][l];
+                        dp[i+1][k][l][a]%=MOD;
+                    }
+                }
+            }
+        }
+    }
 
-void init(){
+    ll ans=0;
     rep(i,4){
-        dp[1][i]=1;
+        rep(j,4){
+            rep(k,4){
+                ans+=dp[N][i][j][k];
+            }
+        }
     }
-    dp[1][4]=4;
-    rep(i,4){
-        dp[2][i]=4;
-    }
-    dp[2][4]=16;
-}
-
-int main(){
-    cin>>N;
-
-    init();
-
-    for(int i=3;i<=N;i++){
-        dp[i][0]=dp[i-1][4]%MOD;
-        dp[i][1]=(dp[i-1][4]-dp[i-2][0]-dp[i-2][2]-dp[i-3][0]*3)%MOD;
-        dp[i][2]=(dp[i-1][4]-dp[i-2][0])%MOD;
-        dp[i][3]=dp[i-1][4]%MOD;
-        dp[i][4]=(dp[i][0]+dp[i][1]+dp[i][2]+dp[i][3])%MOD;
-        if(dp[i][4]<0) dp[i][4]+=MOD;
-    }
-
-    ll ans=dp[N][4]>=0?dp[N][4]:dp[N][4]+MOD;
+    ans%=MOD;
     cout<<ans<<endl;
-}*/
+}
