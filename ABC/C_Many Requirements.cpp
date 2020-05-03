@@ -14,36 +14,19 @@
 using namespace std;
 typedef long long ll;
 
+struct q{
+    int a,b,c,d;
+    q(int a=0,int b=0,int c=0,int d=0):a(a),b(b),c(c),d(d){}
+};
+
 int N,M,Q;
-pair<int,pair<int,pair<int,int>>> dabc[50];
-map<int,int> ab[11];
-int cc[11];
-int x[11];
+q x[50];
 
 int main(){
     cin>>N>>M>>Q;
-    rep(i,Q) cin>>dabc[i].second.first
-                >>dabc[i].second.second.first
-                >>dabc[i].second.second.second
-                >>dabc[i].first;
-
-    sort(dabc,dabc+Q,greater<int>());
-
-    int ans=0;
     rep(i,Q){
-        int a=dabc[i].second.first;
-        int b=dabc[i].second.second.first;
-        int c=dabc[i].second.second.second;
-        if(ab[a][b]==0){
-            for(int i=a;i<N;i++){
-                x[i]++;
-            }
-            ans+=dabc[i].first;
-            ab[a][b]++;
-            ab[b][a]++;
-            cc[c]++;
-        }
+        int a,b,c,d;
+        cin>>a>>b>>c>>d;
+        x[i]=q(a,b,c,d);
     }
-
-    cout<<ans<<endl;
 }

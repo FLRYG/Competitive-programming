@@ -14,14 +14,21 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int A[100000];
+int N;
+int a[100000];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>N;
+    rep(i,N) cin>>a[i];
 
-    int ans=ceil((double)(N-1)/(K-1));
-    
-    cout<<ans<<endl;
+    int res=0;
+    rep(i,N){
+        res^=a[i];
+    }
+
+    if(res==0){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
+    }
 }

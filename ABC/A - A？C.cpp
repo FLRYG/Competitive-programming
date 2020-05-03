@@ -11,17 +11,18 @@
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
+#define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int A[100000];
+string S;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>S;
 
-    int ans=ceil((double)(N-1)/(K-1));
-    
-    cout<<ans<<endl;
+    if(S=="ARC"){
+        cout<<"ABC"<<endl;
+    }else{
+        cout<<"ARC"<<endl;
+    }
 }

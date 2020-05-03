@@ -14,14 +14,27 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int A[100000];
+int N;
+int a[100001];
+bool b[100001];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>N;
+    repn(i,N) cin>>a[i];
 
-    int ans=ceil((double)(N-1)/(K-1));
-    
-    cout<<ans<<endl;
+    int ans=0;
+    int i=1;
+    while(true){
+        if(i==2){
+            cout<<ans<<endl;
+            return 0;
+        }
+        if(b[i]){
+            cout<<-1<<endl;
+            return 0;
+        }
+        b[i]=true;
+        ans++;
+        i=a[i];
+    }
 }

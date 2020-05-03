@@ -14,14 +14,17 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int A[100000];
+int K,S;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>K>>S;
 
-    int ans=ceil((double)(N-1)/(K-1));
-    
+    int ans=0;
+    for(int i=0;i<=K;i++){
+        for(int j=0;j<=K;j++){
+            if(0<=S-i-j && S-i-j<=K) ans++;
+        }
+    }
+
     cout<<ans<<endl;
 }

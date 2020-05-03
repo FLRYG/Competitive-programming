@@ -11,17 +11,28 @@
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
+#define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
 
-int N,K;
-int A[100000];
+int Na,Nb;
+int A[100000], B[100000];
+map<int,int> m;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>Na>>Nb;
+    rep(i,Na) cin>>A[i];
+    rep(i,Nb) cin>>B[i];
 
-    int ans=ceil((double)(N-1)/(K-1));
-    
+    rep(i,Na) m[A[i]]++;
+    rep(i,Nb) m[B[i]]++;
+
+    double x=0, y=0;
+    repr(e,m){
+        if(e.second==1) y++;
+        if(e.second==2){x++; y++;}
+    }
+
+    double ans=x/y;
     cout<<ans<<endl;
 }
