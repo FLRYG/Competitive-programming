@@ -4,6 +4,7 @@
     C - Triangular Relationship         必要十分条件を見極める
     C - Synthetic Kadomatsu             全　探　索
     C - All Green                       O(2^N*N)で解く
+    C - Many Requirements               全探索、深さ優先探索 ***
     D - Face Produces Unhappiness       同じ向きを向いていると幸せな問題
     D - String Formation                二つのstringをうまく使う問題
     D - Handstand                       条件分岐が複雑
@@ -20,12 +21,11 @@
 
 <<AGC>>
     A - Diverse Word                    辞書順
+    B - Reverse and Compare             リバースさせるべき部分を考える ***
 
-
-std::setprecision(int scale)        浮動小数点数を出力する精度を設定する
-dequeue
-priority_queue<T>                   優先順位付きキュー（降順）
+std::setprecision(int scale)            浮動小数点数を出力する精度を設定する
+priority_queue<T>                       優先順位付きキュー（降順）
 priority_queue<T,
-    vector<T>,greater<int>>         優先順位付きキュー（昇順）
-unordered_map<Key,T>                hash map　のこと
-string t;int n=atoi(t.c_str());     string から int の変換
+    vector<T>,greater<int>>             優先順位付きキュー（昇順）
+unordered_map<Key,T>                    hash map　のこと
+string t;int n=atoi(t.c_str());         string から int の変換

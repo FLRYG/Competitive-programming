@@ -11,24 +11,30 @@
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
-#define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
 
-string A;
-ll cnt[26];
+int H,W,A,B;
+int ans[1000][1000];
 
 int main(){
-    cin>>A;
+    cin>>H>>W>>A>>B;
 
-    rep(i,A.size()){
-        cnt[A[i]-'a']++;
+    for(int i=0;i<B;i++){
+        for(int j=A;j<W;j++){
+            ans[i][j]=1;
+        }
+    }
+    for(int i=B;i<H;i++){
+        for(int j=0;j<A;j++){
+            ans[i][j]=1;
+        }
     }
 
-    ll ans=A.size()*(A.size()-1)/2+1;
-    for(int i=0;i<26;i++){
-        ans-=cnt[i]*(cnt[i]-1)/2;
+    rep(i,H){
+        rep(j,W){
+            cout<<ans[i][j];
+        }
+        cout<<endl;
     }
-
-    cout<<ans<<endl;
 }

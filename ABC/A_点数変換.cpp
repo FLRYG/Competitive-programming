@@ -15,20 +15,22 @@
 using namespace std;
 typedef long long ll;
 
-string A;
-ll cnt[26];
+int N;
+double A,B;
+double S[100000];
 
 int main(){
-    cin>>A;
+    cin>>N>>A>>B;
+    rep(i,N) cin>>S[i];
 
-    rep(i,A.size()){
-        cnt[A[i]-'a']++;
+    bool b=true;
+    rep(i,N-1) if(S[i]!=S[i+1]) b=false;
+    if(b){
+        cout<<-1<<endl;
+        return 0;
     }
 
-    ll ans=A.size()*(A.size()-1)/2+1;
-    for(int i=0;i<26;i++){
-        ans-=cnt[i]*(cnt[i]-1)/2;
-    }
-
-    cout<<ans<<endl;
+    double sum=0;
+    rep(i,N) sum+=S[i];
+    double Q=sum/N-A;
 }

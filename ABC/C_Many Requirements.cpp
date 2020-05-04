@@ -14,19 +14,33 @@
 using namespace std;
 typedef long long ll;
 
-struct q{
-    int a,b,c,d;
-    q(int a=0,int b=0,int c=0,int d=0):a(a),b(b),c(c),d(d){}
-};
-
 int N,M,Q;
-q x[50];
+int a[50],b[50],c[50],d[50];
+int ans=0;
+
+void dfs(vector<int> A){
+    if(A.size()==N+1){
+        int res=0;
+        rep(i,Q){
+            if(A[b[i]]-A[a[i]]==c[i]){
+                res+=d[i];
+            }
+        }
+        ans=max(ans,res);
+        return;
+    }
+    A.push_back(A.back());
+    while(A.back()<=M){
+        dfs(A);
+        A.back()++;
+    }
+}
 
 int main(){
     cin>>N>>M>>Q;
-    rep(i,Q){
-        int a,b,c,d;
-        cin>>a>>b>>c>>d;
-        x[i]=q(a,b,c,d);
-    }
+    rep(i,Q) cin>>a[i]>>b[i]>>c[i]>>d[i];
+
+    dfs(vector<int>(1,1));
+
+    cout<<ans<<endl;
 }
