@@ -15,22 +15,25 @@
 using namespace std;
 typedef long long ll;
 
-int N;
-double A,B;
-double S[100000];
+int N,C,K;
+int T[100000];
 
 int main(){
-    cin>>N>>A>>B;
-    rep(i,N) cin>>S[i];
+    cin>>N>>C>>K;
+    rep(i,N) cin>>T[i];
+    sort(T,T+N);
 
     bool b=true;
-    rep(i,N-1) if(S[i]!=S[i+1]) b=false;
-    if(b){
-        cout<<-1<<endl;
-        return 0;
+    int s;
+    int ans=0;
+    int cnt=0;
+    rep(i,N){
+        if(b){
+            s=T[i];
+            cnt++;
+            s=
+            b=false;
+        }
+        if(cnt==C || T[i])
     }
-
-    double sum=0;
-    rep(i,N) sum+=S[i];
-    double Q=sum/N-A;
 }
