@@ -23,17 +23,27 @@ int main(){
     rep(i,N) cin>>T[i];
     sort(T,T+N);
 
-    bool b=true;
+    bool first=true;
     int s;
     int ans=0;
     int cnt=0;
     rep(i,N){
-        if(b){
-            s=T[i];
+        if(first){
             cnt++;
-            s=
-            b=false;
+            s=T[i]+K;
+            first=false;
+            continue;
         }
-        if(cnt==C || T[i])
+        if(cnt<C && T[i]<=s){
+            cnt++;
+        }else{
+            cnt=0;
+            ans++;
+            first=true;
+            i--;
+        }
     }
+    if(cnt) ans++;
+
+    cout<<ans<<endl;
 }
