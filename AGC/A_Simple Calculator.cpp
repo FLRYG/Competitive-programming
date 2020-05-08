@@ -20,14 +20,15 @@ ll x,y;
 int main(){
     cin>>x>>y;
 
-    ll ans;
+    ll ans=1001001001001001;
     if(x<=y){
-        if(abs(x)>abs(y)) ans=y-x;
-        else ans=abs(y)-abs(x)+1;
+        ans=min(ans,y-x);
+        if(abs(x)<=abs(y)){
+            ans=1+abs(y)-abs(x);
+        }
     }else{
-        ans=abs(abs(x)-abs(y));
-        if(x*y>0) ans+=2;
-        else ans++;
+        if(x*y>0) ans=2+abs(x)-abs(y);
+        else ans=min(ans,)
     }
 
     cout<<ans<<endl;
