@@ -15,16 +15,23 @@
 using namespace std;
 typedef long long ll;
 
-ll x,y;
+string s;
+int K;
 
 int main(){
-    cin>>x>>y;
+    cin>>s>>K;
 
-    ll ans=1001001001001001;
-    if(x<=y) ans=min(ans,y-x);
-    if(-x<=y) ans=min(ans,1+y+x);
-    if(x<=-y) ans=min(ans,1-y-x);
-    if(-x<=-y) ans=min(ans,2-y+x);
+    int size=s.size();
+    rep(i,size){
+        int x=('z'-s[i]+1)%26;
+        if(x<=K){
+            s[i]='a';
+            K-=x;
+        }
+    }
+    K%=26;
+    s[size-1]+=K;
+    if(s[size-1]>'z') s[size]-=26;
 
-    cout<<ans<<endl;
+    cout<<s<<endl;
 }

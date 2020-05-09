@@ -56,7 +56,8 @@
         "xlocbuf": "cpp",
         "xlocmes": "cpp",
         "xlocmon": "cpp",
-        "xloctime": "cpp"
+        "xloctime": "cpp",
+        "concepts": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

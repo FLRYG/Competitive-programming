@@ -15,16 +15,25 @@
 using namespace std;
 typedef long long ll;
 
-ll x,y;
+int N;
+int cnt[100001];
 
 int main(){
-    cin>>x>>y;
+    cin>>N;
+    rep(i,N){
+        int a;
+        cin>>a;
+        cnt[a]++;
+    }
+    repn(i,100000) cnt[i]=max(0,cnt[i]-1);
 
-    ll ans=1001001001001001;
-    if(x<=y) ans=min(ans,y-x);
-    if(-x<=y) ans=min(ans,1+y+x);
-    if(x<=-y) ans=min(ans,1-y-x);
-    if(-x<=-y) ans=min(ans,2-y+x);
+    int ans=N;
+    int sum=0;
+    repn(i,100000){
+        sum+=cnt[i];
+    }
+    ans-=sum;
+    if(sum%2==1) ans--;
 
     cout<<ans<<endl;
 }

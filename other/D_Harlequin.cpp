@@ -15,16 +15,18 @@
 using namespace std;
 typedef long long ll;
 
-ll x,y;
-
 int main(){
-    cin>>x>>y;
+    int n;
+    int a[100000];
+    cin>>n;
+    rep(i,n) cin>>a[i];
 
-    ll ans=1001001001001001;
-    if(x<=y) ans=min(ans,y-x);
-    if(-x<=y) ans=min(ans,1+y+x);
-    if(x<=-y) ans=min(ans,1-y-x);
-    if(-x<=-y) ans=min(ans,2-y+x);
+    int ans=0;
+    rep(i,n) ans|=(a[i]&1);
 
-    cout<<ans<<endl;
+    if(ans){
+        cout<<"first"<<endl;
+    }else{
+        cout<<"second"<<endl;
+    }
 }

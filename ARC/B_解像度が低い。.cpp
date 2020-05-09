@@ -15,16 +15,23 @@
 using namespace std;
 typedef long long ll;
 
-ll x,y;
+int N,K;
+int A[300000];
 
 int main(){
-    cin>>x>>y;
+    cin>>N>>K;
+    rep(i,N) cin>>A[i];
 
-    ll ans=1001001001001001;
-    if(x<=y) ans=min(ans,y-x);
-    if(-x<=y) ans=min(ans,1+y+x);
-    if(x<=-y) ans=min(ans,1-y-x);
-    if(-x<=-y) ans=min(ans,2-y+x);
+    int ans=0;
+    int cnt=1;
+    repn(i,N-1){
+        if(A[i-1]<A[i]) cnt++;
+        else{
+            if(cnt>=K) ans+=cnt-K+1;
+            cnt=1;
+        }
+    }
+    if(cnt>=K) ans+=cnt-K+1;
 
     cout<<ans<<endl;
 }
