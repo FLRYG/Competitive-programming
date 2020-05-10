@@ -14,28 +14,25 @@
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
+typedef pair<ll,int> P;
 
 ll N;
-ll A[200001];
-ll sum[200001];
-map<ll,ll> m;
+ll A[100000], B[100000];
+ll sum[100000];
 
 int main(){
     cin>>N;
-    repn(i,N) cin>>A[i];
-
-    repn(i,N){
-        sum[i]=sum[i-1]+A[i];
-    }
-
-    for(int i=0;i<=N;i++){
-        m[sum[i]]++;
+    rep(i,N){
+        cin>>A[i]>>B[i];
+        sum[i]=A[i]+B[i];
     }
 
     ll ans=0;
-    repr(e,m){
-        ans+=e.second*(e.second-1)/2;
-    }
+    rep(i,N) ans-=B[i];
+
+    sort(sum,sum+N,greater<>());
+
+    for(int i=0;i<N;i+=2) ans+=sum[i];
 
     cout<<ans<<endl;
 }

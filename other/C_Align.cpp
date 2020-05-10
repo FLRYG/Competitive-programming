@@ -15,27 +15,24 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll A[200001];
-ll sum[200001];
-map<ll,ll> m;
+int N;
+int A[100000];
+deque<int> deq;
 
 int main(){
     cin>>N;
-    repn(i,N) cin>>A[i];
+    rep(i,N) cin>>A[i];
 
-    repn(i,N){
-        sum[i]=sum[i-1]+A[i];
+    sort(A,A+N);
+
+    int l=1, r=N-1;
+    int cnt=0;
+    deq.push_back(A[0]);
+    repn(i,N-1){
+        if(r){
+            if(cnt=0){
+                deq.pop_front(A[])
+            }
+        }
     }
-
-    for(int i=0;i<=N;i++){
-        m[sum[i]]++;
-    }
-
-    ll ans=0;
-    repr(e,m){
-        ans+=e.second*(e.second-1)/2;
-    }
-
-    cout<<ans<<endl;
 }

@@ -15,27 +15,17 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll A[200001];
-ll sum[200001];
-map<ll,ll> m;
+string S,T;
 
 int main(){
-    cin>>N;
-    repn(i,N) cin>>A[i];
+    cin>>S>>T;
 
-    repn(i,N){
-        sum[i]=sum[i-1]+A[i];
+    rep(i,S.size()){
+        if(S[i]!=T[i]){
+            cout<<"No"<<endl;
+            return 0;
+        }
     }
 
-    for(int i=0;i<=N;i++){
-        m[sum[i]]++;
-    }
-
-    ll ans=0;
-    repr(e,m){
-        ans+=e.second*(e.second-1)/2;
-    }
-
-    cout<<ans<<endl;
+    cout<<"Yes"<<endl;
 }

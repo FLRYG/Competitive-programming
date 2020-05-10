@@ -15,27 +15,23 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
-ll A[200001];
-ll sum[200001];
-map<ll,ll> m;
+ll A,B,C,K;
 
 int main(){
-    cin>>N;
-    repn(i,N) cin>>A[i];
-
-    repn(i,N){
-        sum[i]=sum[i-1]+A[i];
-    }
-
-    for(int i=0;i<=N;i++){
-        m[sum[i]]++;
-    }
+    cin>>A>>B>>C>>K;
 
     ll ans=0;
-    repr(e,m){
-        ans+=e.second*(e.second-1)/2;
-    }
+
+    ans+=min(A,K);
+    K-=A;
+    K=max(K,(ll)0);
+
+    K-=B;
+    K=max(K,(ll)0);
+
+    ans+=-1*min(C,K);
+    K-=C;
+    K=max(K,(ll)0);
 
     cout<<ans<<endl;
 }

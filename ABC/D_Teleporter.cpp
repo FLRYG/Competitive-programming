@@ -15,27 +15,33 @@
 using namespace std;
 typedef long long ll;
 
-ll N;
+ll N,K;
 ll A[200001];
-ll sum[200001];
-map<ll,ll> m;
+ll P[200001];
 
 int main(){
-    cin>>N;
+    cin>>N>>K;
     repn(i,N) cin>>A[i];
+    fill(P,P+N+1,-1);
 
-    repn(i,N){
-        sum[i]=sum[i-1]+A[i];
+    ll t=0;
+    ll pos=1;
+    do{
+        P[pos]=t;
+        pos=A[pos];
+        t++;
+        if(t==K){
+            cout<<pos<<endl;
+            return 0;
+        }
+    }while(P[pos]==-1);
+
+    K-=P[pos];
+    K%=(t-P[pos]);
+    
+    rep(i,K){
+        pos=A[pos];
     }
 
-    for(int i=0;i<=N;i++){
-        m[sum[i]]++;
-    }
-
-    ll ans=0;
-    repr(e,m){
-        ans+=e.second*(e.second-1)/2;
-    }
-
-    cout<<ans<<endl;
+    cout<<pos<<endl;
 }
