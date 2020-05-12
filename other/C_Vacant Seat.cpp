@@ -21,26 +21,27 @@ int N;
 string s;
 
 void dfs(int start,int end){
+    //cout<<"aaa1"<<endl;
     int v1,v2,vc;
     int c=(start+end)/2;
 
+    //cout<<"aaa2"<<endl;
     if(memo[start]==-1){
         cout<<start<<'\n'<<flush;
         cin>>s;
         if(m[s]==2){
-            cout<<start<<'\n'<<flush;
             return;
         }
         v1=memo[start]=m[s];
     }else{
         v1=memo[start];
     }
-    
+
+    //cout<<"aaa3"<<endl;
     if(memo[end]==-1){
         cout<<end<<'\n'<<flush;
         cin>>s;
         if(m[s]==2){
-            cout<<end<<'\n'<<flush;
             return;
         }
         v2=memo[end]=m[s];
@@ -48,16 +49,17 @@ void dfs(int start,int end){
         v2=memo[end];
     }
 
+    //cout<<"aaa4"<<endl;
     if(memo[start]!=memo[end] && end-start<=2){
         cout<<start+1<<'\n'<<flush;
         return;
     }
 
+    //cout<<"aaa5"<<endl;
     if(memo[c]==-1){
         cout<<c<<'\n'<<flush;
         cin>>s;
         if(m[s]==2){
-            cout<<end<<'\n'<<flush;
             return;
         }
         vc=memo[c]=m[s];
@@ -65,18 +67,28 @@ void dfs(int start,int end){
         vc=memo[c];
     }
 
-    if(v1!=vc){
-        dfs(start,c);
-    }else if(v2!=vc){
-        dfs(c,end);
+    //cout<<"aaa6"<<endl;
+    if((c-start-1)%2==1){
+        if(v1!=vc){
+            dfs(start,c);
+        }else if(v2!=vc){
+            dfs(c,end);
+        }
+    }else{
+        if(v1==vc){
+            dfs(start,c-1);
+        }else if(v2==vc){
+            dfs(c+1,end);
+        }
     }
+    
 }
 
 int main(){
     m["Male"]=0;
     m["Female"]=1;
     m["Vacant"]=2;
-    fill(memo,memo+N,-1);
+    fill(memo,memo+99999,-1);
     cin>>N;
 
     dfs(0,N-1);
