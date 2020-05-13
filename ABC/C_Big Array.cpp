@@ -15,9 +15,26 @@
 using namespace std;
 typedef long long ll;
 
-int N;
-int a[100000], b[100000];
+ll N,K;
+ll cnt[100001];
 
 int main(){
+    cin>>N>>K;
+    rep(i,N){
+        ll a,b;
+        cin>>a>>b;
+        cnt[a]+=b;
+    }
 
+    ll ans;
+    ll sum=0;
+    repn(i,100000){
+        sum+=cnt[i];
+        if(K<=sum){
+            ans=i;
+            break;
+        }
+    }
+
+    cout<<ans<<endl;
 }
