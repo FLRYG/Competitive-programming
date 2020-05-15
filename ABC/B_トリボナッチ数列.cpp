@@ -15,26 +15,20 @@
 using namespace std;
 typedef long long ll;
 
-ll N,P;
-map<ll,ll> cnt;
-
-ll pow(ll a,ll b){if(b==0)return 1;if(b&1)return a*pow(a,b-1);return pow(a*a,b/2);}
+const int MOD=10007;
 
 int main(){
-    cin>>N>>P;
+    int n;
+    cin>>n;
+    int a_3=0, a_2=0, a_1=1;
 
-    for(int i=2;i<=1000000;i++){
-        while(P%i==0){
-            P/=i;
-            cnt[i]++;
-        }
-    }
-    cnt[P]++;
-
-    ll ans=1;
-    repr(e,cnt){
-        ans*=max(pow(e.first,(e.second/N)),1LL);
+    rep(i,n-1){
+        int a=(a_1+a_2+a_3)%MOD;
+        a_3=a_2;
+        a_2=a_1;
+        a_1=a;
     }
 
+    int ans=a_3;
     cout<<ans<<endl;
 }
