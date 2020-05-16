@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 typedef long long ll;
 
@@ -26,6 +27,22 @@ ll mcomb(ll n,ll r){
     ll res=mperm(n,r);
     return res*mpow(mfrac(r),MOD-2)%MOD;
 }
+
+//パスカルの三角形を利用
+ll pcomb(ll n, ll r){
+    vector<vector<ll>> v(n+1,vector<ll>(n+1,0));
+    for(int i = 0;i <v.size(); i++){
+        v[i][0]=1;
+        v[i][i]=1;
+    }
+    for(int k = 1;k <v.size();k++){
+        for(int j = 1;j<k;j++){
+            v[k][j]=(v[k-1][j-1]+v[k-1][j]);
+        }
+    }
+    return v[n][r];
+}
+
 
 int main(){
     cout<<mfrac(13)<<endl;
