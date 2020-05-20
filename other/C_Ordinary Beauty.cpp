@@ -20,5 +20,10 @@ ll n,m,d;
 int main(){
     cin>>n>>m>>d;
 
-    
+    double x=(m-1)*(n-d);
+    if(d!=0) x*=2;
+    double y=n*n;
+
+    double ans=x/y;
+    cout<<setprecision(16)<<ans<<endl;
 }

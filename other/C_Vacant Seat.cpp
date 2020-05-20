@@ -20,7 +20,7 @@ int memo[99999];
 int N;
 string s;
 
-void dfs(int start,int end){
+void bs(int start,int end){
     //cout<<"aaa1"<<endl;
     int v1,v2,vc;
     int c=(start+end)/2;
@@ -49,12 +49,6 @@ void dfs(int start,int end){
         v2=memo[end];
     }
 
-    //cout<<"aaa4"<<endl;
-    if(memo[start]!=memo[end] && end-start<=2){
-        cout<<start+1<<'\n'<<flush;
-        return;
-    }
-
     //cout<<"aaa5"<<endl;
     if(memo[c]==-1){
         cout<<c<<'\n'<<flush;
@@ -68,18 +62,14 @@ void dfs(int start,int end){
     }
 
     //cout<<"aaa6"<<endl;
-    if((c-start-1)%2==1){
-        if(v1!=vc){
-            dfs(start,c);
-        }else if(v2!=vc){
-            dfs(c,end);
-        }
-    }else{
-        if(v1==vc){
-            dfs(start,c-1);
-        }else if(v2==vc){
-            dfs(c+1,end);
-        }
+    if((c-start)%2==1 && v1==vc){
+        bs(start,c);
+    }else if((c-start)%2==0 && v1!=vc){
+        bs(start,c);
+    }else if((end-c)%2==1 && v2==vc){
+        bs(c,end);
+    }else if((end-c)%2==0 && v2!=vc){
+        bs(c,end);
     }
     
 }
@@ -91,5 +81,5 @@ int main(){
     fill(memo,memo+99999,-1);
     cin>>N;
 
-    dfs(0,N-1);
+    bs(0,N-1);
 }
