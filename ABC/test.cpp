@@ -13,21 +13,12 @@
 using namespace std;
 typedef long long ll;
 
-const char* c="ACGT";
-
 int main(){
-    string ans="";
-    rep(i,4){
-        ans+=c[i];
-        rep(j,4){
-            ans+=c[j];
-            rep(k,4){
-                ans+=c[k];
-                cout<<ans<<endl;
-                ans.pop_back();
-            }
-            ans.pop_back();
-        }
-        ans.pop_back();
-    }
+    double x;
+    cin>>x;
+
+    double a=x*(sqrt(pow(x,2)+1)-x);
+    double b=x/(sqrt(pow(x,2)+1)+x);
+
+    cout<<setprecision(16)<<"a= "<<a<<"\nb= "<<b<<endl;
 }
