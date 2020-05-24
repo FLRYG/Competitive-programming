@@ -22,7 +22,9 @@ unionFind::unionFind(int n){
 }
 
 unionFind::~unionFind(){
-    delete[] par,rank,scale;
+    delete[] par;
+    delete[] rank;
+    delete[] scale;
 }
 
 int unionFind::find(int x){
