@@ -14,10 +14,39 @@
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
-typedef pair<int,int> P;
 
-queue<int> que;
+int N;
+int F[100][10];
+int P[100][11];
 
 int main(){
-que
+    cin>>N;
+    rep(i,N){
+        rep(j,5){
+            cin>>F[i][j];
+        }
+    }
+    rep(i,N){
+        rep(j,11){
+            int p;
+            cin>>p;
+            if(j==0) P[i][j]=p;
+            else P[i][j]=P[i][j-1]+p;
+        }
+    }
+
+    int ans=-1001001001;
+    for(int i=1;i<1<<10;i++){
+        int sum=0;
+        rep(j,N){
+            int c=0;
+            rep(k,10){
+                if(i>>k&F[j][k]) c++;
+            }
+            sum+=P[j][c];
+        }
+        ans=max(ans,sum);
+    }
+
+    cout<<ans<<endl;
 }

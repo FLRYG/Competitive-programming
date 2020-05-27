@@ -13,6 +13,14 @@
 using namespace std;
 typedef long long ll;
 
+const ll MOD=1024;
+
+ll mpow(ll x,ll n){
+    if(n==0) return 1;
+    if(n%2) return x*mpow(x,n-1)%MOD;
+    return mpow(x*x%MOD,n/2)%MOD;
+}
+
 int main(){
-    
+    cout<<mpow(501,MOD-2)<<endl;
 }
