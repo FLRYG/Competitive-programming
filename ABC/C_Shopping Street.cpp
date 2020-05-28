@@ -22,16 +22,13 @@ int P[100][11];
 int main(){
     cin>>N;
     rep(i,N){
-        rep(j,5){
+        rep(j,10){
             cin>>F[i][j];
         }
     }
     rep(i,N){
         rep(j,11){
-            int p;
-            cin>>p;
-            if(j==0) P[i][j]=p;
-            else P[i][j]=P[i][j-1]+p;
+            cin>>P[i][j];
         }
     }
 
