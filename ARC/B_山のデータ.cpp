@@ -15,17 +15,30 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
+int N;
+int h[300000];
 
 int main(){
-    cin>>N>>K;
-    
-    ll ans=0;
-    repn(b,N){
-        ans+=N/b*max(0,b-K);
-        ans+=max(0,N%b-K+1);
+    cin>>N;
+    rep(i,N) cin>>h[i];
+
+    int ans=1;
+    int s=0,t=0,u=0;
+    bool plus=true;
+    repn(i,N-1){
+        if(h[i-1]<h[i]){
+            if(!plus){
+                s=t=u=i-1;
+            }
+            t++;
+            u++;
+            plus=true;
+        }else if(h[i-1]>h[i]){
+            u++;
+            plus=false;
+        }
+        ans=max(ans,u-s+1);
     }
-    if(K==0) ans-=N;
 
     cout<<ans<<endl;
 }

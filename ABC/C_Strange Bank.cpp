@@ -15,17 +15,24 @@
 using namespace std;
 typedef long long ll;
 
-int N,K;
+int N;
+int dp[100001];
 
 int main(){
-    cin>>N>>K;
-    
-    ll ans=0;
-    repn(b,N){
-        ans+=N/b*max(0,b-K);
-        ans+=max(0,N%b-K+1);
-    }
-    if(K==0) ans-=N;
+    cin>>N;
 
-    cout<<ans<<endl;
+    repn(i,N){
+        int x6=6, x9=9;
+        dp[i]=1+dp[i-1];
+        while(i-x6>=0){
+            dp[i]=min(dp[i],1+dp[i-x6]);
+            x6*=6;
+        }
+        while(i-x9>=0){
+            dp[i]=min(dp[i],1+dp[i-x9]);
+            x9*=9;
+        }
+    }
+
+    cout<<dp[N]<<endl;
 }
