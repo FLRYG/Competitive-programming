@@ -25,19 +25,22 @@ int main(){
     rep(i,N) cin>>a[i];
 
     int ans=MIN;
-    rep(i,N-1){
-        int maxi=MIN;
-        for(int j=i+1;j<N;j++){
+    rep(i,N){
+        int aomax=MIN;
+        int tamax=MIN;
+        rep(j,N){
+            if(i==j) continue;
             int aoki=0, taka=0;
-            for(int k=0;k<=j-i;k++){
-                if(k%2==0) aoki+=a[k+i];
-                else taka+=a[k+i];
+            for(int k=0;k<=abs(j-i);k++){
+                if(k&1) aoki+=a[k+min(i,j)];
+                else taka+=a[k+min(i,j)];
             }
-            if(aoki>maxi){
-                maxi=aoki;
-                ans=max(ans,taka);
+            if(aoki>aomax){
+                aomax=aoki;
+                tamax=taka;
             }
         }
+        ans=max(ans,tamax);
     }
 
     cout<<ans<<endl;
