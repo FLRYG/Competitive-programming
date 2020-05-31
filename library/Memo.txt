@@ -32,6 +32,7 @@
 <<other>>
     C - Different Strokes               間接的な計算
     C - 説明会                          ソート・条件
+    C - Folia                           貪欲法・条件(不等式の利用)　***
 
 std::setprecision(int scale)            浮動小数点数を出力する精度を設定する
 priority_queue<T>                       優先順位付きキュー（降順）
