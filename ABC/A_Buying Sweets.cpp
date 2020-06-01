@@ -15,14 +15,13 @@
 using namespace std;
 typedef long long ll;
 
-ll A;
-double b;
+int X,A,B;
 
 int main(){
-    cin>>A>>b;
-    ll B=b*100;
+    cin>>X>>A>>B;
 
-    ll ans=A*B/100;
+    X-=A;
+    while(X>=B) X-=B;
 
-    cout<<ans<<endl;
+    cout<<X<<endl;
 }
