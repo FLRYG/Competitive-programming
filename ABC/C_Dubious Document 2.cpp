@@ -47,7 +47,7 @@ int main(){
     rep(i,S.size()){
         if(S[i]=='?') S[i]='a';
     }
-    for(int i=begin;i<=begin+T.size();i++){
+    for(int i=begin;i<begin+T.size();i++){
         S[i]=T[i-begin];
     }
 

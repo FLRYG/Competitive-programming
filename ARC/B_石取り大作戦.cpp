@@ -22,7 +22,13 @@ int main(){
     cin>>N>>A>>B;
 
     string ans;
-    if(A>B){
+    if(1<=N-(N/B*B+1) && N-(N/B*B+1)<=A){
+        ans="Takahashi";
+    }else{
+        ans="Aoki";
+    }
+
+    /*if(A>B || N<=A){
         ans="Takahashi";
     }else if(A<B){
         ans="Aoki";
@@ -31,7 +37,9 @@ int main(){
             if(N&1) ans="Takahashi";
             else ans="Aoki";
         }else{
-            ans=
+            ans="Takahashi";
         }
-    }
+    }*/
+
+    cout<<ans<<endl;
 }
