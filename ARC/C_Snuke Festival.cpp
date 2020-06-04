@@ -16,54 +16,39 @@ using namespace std;
 typedef long long ll;
 
 int N;
-priority_queue<int> A,B,C;
-map<int,int> cntA, cntB;
+int A[100000], B[100000], C[100000];
 
 int main(){
-    cin >> N;
+    cin>>N;
+    rep(i,N) cin>>A[i];
+    rep(i,N) cin>>B[i];
+    rep(i,N) cin>>C[i];
+    sort(A,A+N,greater<int>());
+    sort(B,B+N,greater<int>());
+    sort(C,C+N,greater<int>());
+
+    int cntB[100000];
+    int head=0;
     rep(i,N){
-        int x;
-        cin>>x;
-        A.push(x);
-        cntA[x]++;
+        while(head!=N && B[i]<=A[head]) head++;
+        cntB[i]=N-head;
     }
-    rep(i,N){
-        int x;
-        cin>>x;
-        B.push(x);
-        cntB[x]++;
-    }
-    rep(i,N){
-        int x;
-        cin>>x;
-        C.push(x);
-    }
+    //rep(i,N) cout<<cntB[i]<<' '; cout<<'\n';
     int sum=0;
-    repr(e,cntA){
-        e.second+=sum;
-        sum=e.second;
+    rep(i,N){
+        cntB[N-1-i]+=sum;
+        sum=cntB[N-1-i];
     }
-    sum=0;
-    repr(e,cntB){
-        e.second+=sum;
-        sum=e.second;
-    }
+    //rep(i,N) cout<<cntB[i]<<' '; cout<<'\n';
 
     int ans=0;
-    while(!(A.empty() || B.empty() || C.empty())){
-        int a=A.top();
-        int b=B.top();
-        int c=C.top();
-        cout<<a<<' '<<b<<' '<<c<<endl;
-        if(!(b<c)){
-            B.pop();
-        }else if(!(a<b)){
-            A.pop();
-        }else{
-            ans+=cntA[a]*cntB[b];
-            C.pop();
-            cout<<ans<<endl;       
-        }
+    head=0;
+    rep(i,N){
+        while(head!=N && C[i]<=B[head]) head++;
+        if(head==N) break;
+        //cout<<i<<' '<<cntB[head]<<endl;
+        ans+=cntB[head];
     }
+
     cout<<ans<<endl;
 }
