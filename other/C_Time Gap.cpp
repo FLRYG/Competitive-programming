@@ -17,19 +17,33 @@ typedef long long ll;
 
 int N;
 int D[51];
+int T[24];
 
 int main(){
     cin>>N;
     rep(i,N) cin>>D[i];
     D[N]=0;
+    sort(D,D+N+1);
 
-    int ans=0;
     rep(i,N+1){
-        rep(j,N+1){
-            if(i==j) continue;
-            int s=min(abs(D[i]-D[j]),abs(24-D[i]-D[j]));
-            cout<<i<<' '<<j<<": "<<s<<endl;
-            ans=max(ans,s);
+        if(i&1){
+            T[(24-D[i])%24]++;
+        }else{
+            T[D[i]]++;
+        }
+    }
+
+    int ans=1001001;
+    int sum=1001001;
+    rep(i,25){
+        if(T[i%24]==1){
+            ans=min(ans,sum);
+            sum=1;
+        }else if(T[i%24]==0){
+            sum++;
+        }else{
+            ans=0;
+            break;
         }
     }
 
