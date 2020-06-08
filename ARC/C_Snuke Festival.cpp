@@ -15,8 +15,8 @@
 using namespace std;
 typedef long long ll;
 
-int N;
-int A[100000], B[100000], C[100000];
+ll N;
+ll A[100000], B[100000], C[100000];
 
 int main(){
     cin>>N;
@@ -24,20 +24,26 @@ int main(){
     rep(i,N) cin>>B[i];
     rep(i,N) cin>>C[i];
     sort(A,A+N);
+    sort(B,B+N);
     sort(C,C+N);
 
-    int ans=0;
+    ll ans=0;
+    ll ai=0, ci=0;
     rep(i,N){
-        int* a=upper_bound(A,A+N,B[i]+1);
-        int* c=upper_bound(C,C+N,B[i]-1);
+        ll a,c;
+        while(A[ai]<B[i] && ai<N) ai++;
+        a=ai;
 
-        cout<<(a-A)<<(c-C)<<endl;
+        while(!(B[i]<C[ci]) && ci<N) ci++;
+        c=N-ci;
+
+        ans+=a*c;
     }
     
     cout<<ans<<endl;
 }
 
-
+/*
 int N;
 int A[100000], B[100000], C[100000];
 
@@ -74,6 +80,7 @@ int main(){
     
     cout<<ans<<endl;
 }
+*/
 
 /*
 int N;
