@@ -6,6 +6,7 @@
     C - All Green                       O(2^N*N)で解く
     C - Many Requirements               全探索、深さ優先探索 ***
     C - Strange Bank                    動的計画法　テンプレ
+    C - Sugar Water                     制約に注目
     D - Face Produces Unhappiness       同じ向きを向いていると幸せな問題
     D - String Formation                二つのstringをうまく使う問題
     D - Handstand                       条件分岐が複雑

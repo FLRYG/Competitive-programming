@@ -23,6 +23,6 @@ int main(){
     if(c=='O' || c=='P' || c=='K' || c=='L'){
         cout<<"Right"<<endl;
     }else{
-        cout<<"left"<<endl;
+        cout<<"Left"<<endl;
     }
 }

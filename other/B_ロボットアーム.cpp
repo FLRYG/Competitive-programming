@@ -21,10 +21,9 @@ double l1,l2,l3;
 int main(){
     cin>>l1>>l2>>l3;
 
-    double ans=pi*(l1+l2+l3)*(l1+l2+l3);
-    if(l1>l2+l3){
-        ans-=pi*(l1-l2-l3)*(l1-l2-l3);
-    }
+    double ans=(l1+l2+l3)*(l1+l2+l3);
+    ans-=pow(max(max(0.0,l2-l1-l3),max(l1-l2-l3,l3-l1-l2)),2);
+    ans*=pi;
 
     cout<<setprecision(16)<<ans<<endl;
 }
