@@ -27,23 +27,42 @@ int main(){
     int ans=0;
     rep(i,N){
         ans+=A[i];
-        if(A[i]>0) plus++;
-        if(A[i]<0) minus++;
-        //if(A[i]==0) zero++;
+        if(A[i]>=0) plus++;
+        else minus++;
     }
-    if(plus==N || minus==N) ans-=2;
-    cout<<ans<<endl;
-
-    int left=0, right=N-1;
-    if(A[left]*A[right]>0){
-        
-    }
-    while(right-left>1){
-        int l=A[left], r=A[right];
-        if(abs(A[left+1])>=abs(A[right-1])){
-            A[right]=r-l;
+    if(plus==0 || minus==0){
+        ans-=2;
+        cout<<ans<<endl;
+        cout<<A[N-1]<<' '<<A[0]<<endl;
+        if(plus==0){
+            A[0]=A[N-1]-A[0];
+            plus++;
+            minus--;
+            N--;
         }else{
-            A[left]=l-r;
+            A[0]=A[0]-A[N-1];
+            plus--;
+            minus++;
+            N--;
         }
+    }else{
+        cout<<ans<<endl;
+    }
+    
+    sort(A,A+N);
+
+    int a=A[minus-1];
+    minus--;
+    while(plus>1){
+        cout<<a<<' '<<A[minus+plus]<<endl;
+        a-=A[minus+plus];
+        plus--;
+    }
+    cout<<a<<' '<<A[minus+plus]<<endl;
+    a=A[plus-1]-a;
+    while(minus>0){
+        cout<<a<<A[minus-1]<<endl;
+        a-=A[minus-1];
+        minus--;
     }
 }
