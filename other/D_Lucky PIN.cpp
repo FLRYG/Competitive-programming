@@ -16,17 +16,25 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-int A,B,C,X,Y;
+int N;
+string S;
 
 int main(){
-    cin>>A>>B>>C>>X>>Y;
+    cin>>N>>S;
 
-    int ans=1001001001;
-    rep(i,max(X,Y)+1){
-        int x=max(0,X-i);
-        int y=max(0,Y-i);
-        int res=A*x+B*y+2*C*i;
-        ans=min(ans,res);
+    int ans=0;
+    rep(num,1000){
+        char a='0'+(num/100);
+        char b='0'+num/10%10;
+        char c='0'+num%10;
+        int cnt=0;
+        rep(i,N){
+            if(cnt==0 && S[i]==a) cnt++;
+            else if(cnt==1&& S[i]==b) cnt++;
+            else if(cnt==2&& S[i]==c) cnt++;
+            else if(cnt==3) break;
+        }
+        if(cnt==3) ans++;
     }
 
     cout<<ans<<endl;

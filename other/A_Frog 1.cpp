@@ -16,18 +16,22 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-int A,B,C,X,Y;
+int N;
+int h[100001];
+int dp[100001];
 
 int main(){
-    cin>>A>>B>>C>>X>>Y;
+    cin>>N;
+    repn(i,N) cin>>h[i];
 
-    int ans=1001001001;
-    rep(i,max(X,Y)+1){
-        int x=max(0,X-i);
-        int y=max(0,Y-i);
-        int res=A*x+B*y+2*C*i;
-        ans=min(ans,res);
+    h[0]=1001001001;
+    dp[0]=0;
+    dp[1]=0;
+    for(int i=2;i<=N;i++){
+        int a=dp[i-1]+abs(h[i]-h[i-1]);
+        int b=dp[i-2]+abs(h[i]-h[i-2]);
+        dp[i]=min(a,b);
     }
 
-    cout<<ans<<endl;
+    cout<<dp[N]<<endl;
 }
