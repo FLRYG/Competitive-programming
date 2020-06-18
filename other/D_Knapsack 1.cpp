@@ -7,18 +7,16 @@
 #include <iomanip>
 #include <queue>
 #include <deque>
+#include <map>
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
+#define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
+typedef long double ld;
+
+
 
 int main(){
-    char a='a';
-    rep(i,100){
-        char s=a+i;
-        int x=a+i;
-
-        cout<<x<<' '<<s<<endl;
-    }
 }
