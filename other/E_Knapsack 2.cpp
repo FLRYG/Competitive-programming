@@ -25,13 +25,8 @@ int main(){
     repn(i,N) cin>>w[i]>>v[i];
 
     repn(i,N){
-        repn(j,W){
-            if(j<w[i]) dp[i][j]=dp[i-1][j];
-            else dp[i][j]=max(dp[i-1][j],dp[i-1][j-w[i]]+v[i]);
+        repn(j,N*1000){
+            dp[i][j]=
         }
     }
-
-    ll ans=0;
-    repn(i,W) ans=max(ans,dp[N][i]);
-    cout<<ans<<endl;
 }
