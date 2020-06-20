@@ -23,10 +23,17 @@ ll dp[101][100001];
 int main(){
     cin>>N>>W;
     repn(i,N) cin>>w[i]>>v[i];
+    fill(dp[0],dp[0]+N*1000+1,1001001001);
+    dp[0][0]=0;
 
     repn(i,N){
         repn(j,N*1000){
-            dp[i][j]=
+            if(j<v[i]) dp[i][j]=dp[i-1][j];
+            else dp[i][j]=min(dp[i-1][j],dp[i-1][j-v[i]]+w[i]);
         }
     }
+
+    ll ans=0;
+    repn(i,N*1000+1) ans=max(a
+    cout<<ans<<endl;
 }
