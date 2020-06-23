@@ -24,7 +24,7 @@ int main(){
     cin>>N>>S;
 
     rep(i,N){
-        if(S[i+1]=='W') W[i+1]++;
+        if(S[i]=='W') W[i+1]++;
         else E[i+1]++;
         W[i+2]=W[i+1];
         E[i+2]=E[i+1];
