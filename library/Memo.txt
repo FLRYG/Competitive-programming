@@ -48,3 +48,9 @@ priority_queue<T,
 unordered_map<Key,T>                    hash map　のこと
 string t;int n=atoi(t.c_str());         string から int の変換
 sort(B,B+N,greater<>());                降順ソート
+
+
+<<典型的問題>>
+    D - Knapsack 1                      ナップザック問題
+    E - Knapsack 2                      ナップザック問題
+    F - LCS                             最長共通部分列問題
