@@ -16,18 +16,26 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-string s,t;
-int dp[3001][3001];
+ll N,M,K;
+ll A[200001], B[200001];
 
 int main(){
-    cin>>s>>t;
+    cin>>N>>M>>K;
+    repn(i,N) cin>>A[i];
+    repn(i,M) cin>>B[i];
 
-    repn(i,s.size()){
-        repn(j,t.size()){
-            if(s[i-1]==t[j-1]) dp[i][j]=dp[i-1][j-1]+1;
-            else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-        }
+    repn(i,N) A[i]+=A[i-1];
+    repn(i,M) B[i]+=B[i-1];
+
+    ll ans=0;
+    rep(i,N+1){
+        if(A[i]>K) continue;
+        ll res=i;
+        ll time=K-A[i];
+        auto p=lower_bound(B,B+M+1,time+1);
+        res+=(p-B)-1;
+        ans=max(ans,res);
     }
 
-    cout<<dp[s.size()][t.size()]<<endl;
+    cout<<ans<<endl;
 }

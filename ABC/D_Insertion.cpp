@@ -20,6 +20,27 @@ int N;
 string S;
 
 int main(){
+    cout<<('('<')')<<endl;
+    cin>>N>>S;
+
+    int l=0, r=0;
+    int L=0, R=0;
+    char prev=')';
+    rep(i,N){
+        if(S[i]=='('){
+            if(prev==')'){
+                if(l>r) L+=l-r;
+                else if(l<r) 
+            }
+        }
+        if(S[i]==')'){
+            l++;
+        }
+    }
+}
+
+/*
+int main(){
     cin>>N>>S;
 
     int l=0, r=0;
@@ -31,13 +52,13 @@ int main(){
         if(S[N-i-1]=='(') r++;
         else break;
     }
-    //cout<<l<<' '<<r<<endl;
+    cout<<l<<' '<<r<<endl;
     int L=0,R=0;
     rep(i,N-(l+r)){
         if(S[i+l]==')') L++;
         if(S[i+l]=='(') R++;
     }
-    //cout<<L<<' '<<R<<endl;
+    cout<<L<<' '<<R<<endl;
     l+=max(0,L-R);
     r+=max(0,R-L);
     
@@ -49,3 +70,4 @@ int main(){
 
     cout<<ans<<endl;
 }
+*/

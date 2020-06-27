@@ -16,18 +16,13 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-string s,t;
-int dp[3001][3001];
+string S,T;
 
 int main(){
-    cin>>s>>t;
+    cin>>S>>T;
 
-    repn(i,s.size()){
-        repn(j,t.size()){
-            if(s[i-1]==t[j-1]) dp[i][j]=dp[i-1][j-1]+1;
-            else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-        }
-    }
+    int ans=0;
+    rep(i,S.size()) if(S[i]!=T[i]) ans++;
 
-    cout<<dp[s.size()][t.size()]<<endl;
+    cout<<ans<<endl;
 }
