@@ -18,6 +18,7 @@
     D - We Like AGC                     動的計画法　頑張る
     D - Decayed Bridges                 Union_Find
     D - AtCoder Express 2               累積和 イモス法
+    D - Sum of Divisors                 割らない　ピラミッド
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
 

@@ -17,17 +17,17 @@ typedef long long ll;
 typedef long double ld;
 
 ll N;
+ll A[300];
 
 int main(){
     cin>>N;
+    rep(i,N) cin>>A[i];
+
+    ll sum=0;
+    rep(i,N) sum^=A[i];
+    sum^=A[0]^A[1];
 
     ll ans=0;
-    repn(i,N){
-        ll n=N/i;
-        ans+=i*n*(n+1)/2;
-    }
+    
 
-    cout<<ans<<endl;
 }
-
-//O(√N)も可
