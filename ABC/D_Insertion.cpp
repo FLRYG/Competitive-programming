@@ -20,24 +20,63 @@ int N;
 string S;
 
 int main(){
-    cout<<('('<')')<<endl;
     cin>>N>>S;
 
     int l=0, r=0;
-    int L=0, R=0;
-    char prev=')';
     rep(i,N){
-        if(S[i]=='('){
-            if(prev==')'){
-                if(l>r) L+=l-r;
-                else if(l<r) 
-            }
-        }
+        if(S[i]=='(') l++;
+        else if(l>0) l--;
+        else r++;
+    }
+
+    string ans;
+    rep(i,r) ans+='(';
+    ans+=S;
+    rep(i,l) ans+=')';
+
+    cout<<ans<<endl;
+}
+
+/*
+int main(){
+    cin>>N>>S;
+
+    int L=0;
+    map<int,int,greater<int>> m;
+    char prev=')';
+    int l=0, r=0;
+    rep(i,N){
         if(S[i]==')'){
             l++;
+            prev=')';
+        }
+        if(S[i]=='('){
+            if(prev==')'){
+                if(l>r){
+                    L+=l-r;
+                }else if(r>l){
+                    m[i]+=r-l;
+                }
+                l=0;r=0;
+            }
+            r++;
+            prev='(';
         }
     }
+    if(l>r){
+        L+=l-r;
+    }else if(r>l){
+        m[N]+=r-l;
+    }
+
+    repr(e,m){
+        rep(i,e.second) S.insert(e.first,")");
+    }
+    rep(i,L) S.insert(0,"(");
+
+    cout<<S<<endl;
 }
+*/
 
 /*
 int main(){
