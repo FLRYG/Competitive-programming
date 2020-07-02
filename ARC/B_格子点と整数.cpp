@@ -16,12 +16,24 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-int N;
-int a[100], b[100];
-int c[100], d[100];
+ll N;
+ll x[100], y[100];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>a[i]>>b[i];
-    rep(i,N) cin>>c[i]>>d[i];
+    rep(i,N) cin>>x[i]>>y[i];
+
+    ll ans=0;
+    for(int i=0;i<N-2;i++){
+        for(int j=i+1;j<N-1;j++){
+            for(int k=j+1;k<N;k++){
+                ll a=x[j]-x[i], b=y[j]-y[i];
+                ll c=x[k]-x[i], d=y[k]-y[i];
+                ll S=abs(a*d-b*c);
+                if(S%2==0 && S!=0) ans++;
+            }
+        }
+    }
+
+    cout<<ans<<endl;
 }

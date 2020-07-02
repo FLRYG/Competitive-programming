@@ -16,12 +16,23 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-int N;
-int a[100], b[100];
-int c[100], d[100];
+ll L;
+ll B[100000];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>a[i]>>b[i];
-    rep(i,N) cin>>c[i]>>d[i];
+    cin>>L;
+    rep(i,L) cin>>B[i];
+
+    ll sum=0;
+    rep(i,L) sum^=B[i];
+    if(sum!=0){
+        cout<<-1<<endl;
+        return 0;
+    }
+
+    ll ans=0;
+    rep(i,L){
+        cout<<ans<<endl;
+        ans^=B[i];
+    }
 }
