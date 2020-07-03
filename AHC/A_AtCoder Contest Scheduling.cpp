@@ -31,7 +31,7 @@ void input(){
 int main(){
     input();
 
-    ll v=0;
+    /*ll v=0;
     repn(d,D){
         ll maxi=0;
         ll k=0;
@@ -45,6 +45,24 @@ int main(){
         last[k]=d;
         repn(i,26) v-=c[i]*(d-last[i]);
         cout<<k<<endl;
+    }*/
+
+    repn(d,D){
+        ll maxi=0;
+        ll idx=0;
+        repn(i,26){
+            ll sum=s[d][i];
+            repn(j,26){
+                if(i==j) continue;
+                sum-=c[j]*(d-last[j]);
+            }
+            if(sum>=maxi){
+                idx=i;
+                maxi=sum;
+            }
+        }
+        last[idx]=d;
+        cout<<idx<<endl;
     }
 }
 
