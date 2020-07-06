@@ -23,11 +23,11 @@ int main(){
     cin>>N;
     rep(i,N) cin>>W[i];
 
-    vector<string> ans(N);
+    vector<string> ans(N,"");
     rep(k,N){
         string s;
-        rep(i,W[k].size()){
-            if(W[k][i]=='b' || W[k][i]=='B' || W[k][i]=='c' || W[k][i]=='c') s+="1";
+        rep(i,(int)W[k].size()){
+            if(W[k][i]=='b' || W[k][i]=='B' || W[k][i]=='c' || W[k][i]=='C') s+="1";
             else if(W[k][i]=='d' || W[k][i]=='D' || W[k][i]=='w' || W[k][i]=='W') s+="2";
             else if(W[k][i]=='t' || W[k][i]=='T' || W[k][i]=='j' || W[k][i]=='J') s+="3";
             else if(W[k][i]=='f' || W[k][i]=='F' || W[k][i]=='q' || W[k][i]=='Q') s+="4";
@@ -41,10 +41,12 @@ int main(){
         ans[k]=s;
     }
 
+    bool e=false;
     rep(i,N){
-        if(ans[i].size()!=0){
+        if(ans[i].size()>0){
+            if(e) cout<<' ';
             cout<<ans[i];
-            if(i<N-1) cout<<' ';
+            e=true;
         }
     }
     cout<<endl;
