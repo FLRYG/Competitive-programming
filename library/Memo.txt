@@ -42,7 +42,7 @@
 Overflooooooooooooooooooooooooooow!!!!!!!!!!!
 
 3.14159'26535'89793                     円周率
-std::setprecision(int scale)            浮動小数点数を出力する精度を設定する
+cout<<fixed<<setprecision(1);           浮動小数点数を出力する精度を設定する
 priority_queue<T>                       優先順位付きキュー（降順）
 priority_queue<T,
     vector<T>,greater<T>>               優先順位付きキュー（昇順）
