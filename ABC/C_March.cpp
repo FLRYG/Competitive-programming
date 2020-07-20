@@ -12,10 +12,10 @@
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
-#define MOD 1'000'000'007
 using namespace std;
 typedef long long ll;
 typedef long double ld;
+ll const MOD=1'000'000'007;
 
 ll N;
 string S[100000];
@@ -37,8 +37,7 @@ int main(){
     rep(i,5-2){
         for(int j=i+1;j<5-1;j++){
             for(int k=j+1;k<5;k++){
-                ans+=cnt[i]*cnt[j]%MOD*cnt[k]%MOD;
-                ans%=MOD;
+                ans+=cnt[i]*cnt[j]*cnt[k];
             }
         }
     }
