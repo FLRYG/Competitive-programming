@@ -32,6 +32,7 @@
     B - Joker                           bfs
 
 <<other>>
+    B - Two Arrays                      考察
     C - Different Strokes               間接的な計算
     C - 説明会                          ソート・条件
     C - Folia                           貪欲法・条件(不等式の利用)　***

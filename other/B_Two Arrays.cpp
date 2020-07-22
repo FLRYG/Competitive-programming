@@ -17,16 +17,27 @@ typedef long long ll;
 typedef long double ld;
 ll const MOD=1'000'000'007;
 
+ll N;
+ll a[10000], b[10000];
+
 int main(){
-    int N;
     cin>>N;
+    rep(i,N) cin>>a[i];
+    rep(i,N) cin>>b[i];
 
-    ll a=1,b=1;
+    ll sum=0;
+    rep(i,N) sum+=b[i]-a[i];
+    ll cnt=0;
     rep(i,N){
-        ll tmp=a;
-        a=a+b;
-        b=tmp;
+        if(a[i]<b[i]){
+            cnt+=(b[i]-a[i]+1)/2*2;
+        }else{
+            cnt+=b[i]-a[i];
+        }
     }
-
-    cout<<a<<' '<<b<<endl;
+    if(cnt<=sum){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
+    }
 }
