@@ -30,9 +30,7 @@ int main(){
     ll cnt=0;
     rep(i,N){
         if(a[i]<b[i]){
-            cnt+=(b[i]-a[i]+1)/2*2;
-        }else{
-            cnt+=b[i]-a[i];
+            cnt+=(b[i]-a[i]+1)/2;
         }
     }
     if(cnt<=sum){
