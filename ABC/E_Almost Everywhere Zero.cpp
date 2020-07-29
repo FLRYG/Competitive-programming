@@ -46,20 +46,24 @@ ll K;
 ll dp[4][105];
 
 int main(){
-    cout<<("12"<"1")<<endl;
     cin>>N>>K;
 
-    ll ans=mcomb(N.size()-1,K)*mpow(9,K)+(N[0]-'0'-1)*mcomb(N.size()-1,K-1)*mpow(9,K-1);
-    cout<<ans<<endl;
-    repn(i,N.size()-1){
-        dp[1][i]=dp[1][i-1]+(N[N.size()-i]-'0');
-        dp[2][i]=dp[1][i-1]*(N[N.size()-i]-'0');
-        dp[3][i]=dp[2][i-1]*(N[N.size()-i]-'0');
-    }
-    if(K==1){
-        ans+=dp[K-1][N.size()-1]+1;
-    }else{
-        ans+=dp[K-1][N.size()-1]*1;
+    // ll ans=mcomb(N.size()-1,K)*mpow(9,K)+(N[0]-'0'-1)*mcomb(N.size()-1,K-1)*mpow(9,K-1);
+    // cout<<ans<<endl;
+    // repn(i,N.size()-1){
+    //     dp[1][i]=dp[1][i-1]+(N[N.size()-i]-'0');
+    //     dp[2][i]=dp[1][i-1]*(N[N.size()-i]-'0');
+    //     dp[3][i]=dp[2][i-1]*(N[N.size()-i]-'0');
+    // }
+    // if(K==1){
+    //     ans+=dp[K-1][N.size()-1]+1;
+    // }else{
+    //     ans+=dp[K-1][N.size()-1]*1;
+    // }
+    ll ans=0;
+    repn(i,K){
+        ans+=mcomb(N.size()-i,K-(i-1))*mpow(9,K-(i-1));
+        ans+=(N[0]-'0'-1)*mcomb(N.size()-i,K-1-(i-1))*mpow(9,K-1-(i-1));
     }
 
     cout<<ans<<endl;
