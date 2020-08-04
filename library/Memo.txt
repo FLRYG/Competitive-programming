@@ -21,6 +21,7 @@
     D - Sum of Divisors                 割らない　ピラミッド
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
+    E - Almost Everywhere Zero          dp
 
 <<ARC>>
     D - Remainder Reminder              余りの問題
@@ -40,7 +41,7 @@
     C - Lamps                           計算量見積り
 
 
-Overflooooooooooooooooooooooooooow!!!!!!!!!!!
+Overflow
 
 3.14159'26535'89793                     円周率
 cout<<fixed<<setprecision(1);           浮動小数点数を出力する精度を設定する

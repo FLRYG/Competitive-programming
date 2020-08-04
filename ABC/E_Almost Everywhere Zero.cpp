@@ -15,56 +15,30 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-ll const MOD=1'000'000'007;
-
-ll mpow(ll x,ll n){
-    if(n==0) return 1;
-    else if(n%2) return x*mpow(x,n-1);
-    return mpow(x*x,n/2);
-}
-
-ll mfrac(ll n){
-    if(n==0) return 1;
-    else return n*mfrac(n-1);
-}
-
-ll mperm(ll n,ll r){
-    ll res=1;
-    for(ll i=0;i<r;i++) res=res*(n-i);
-    return res;
-}
-
-ll mcomb(ll n,ll r){
-    if(r>n) return 0;
-    if(r>n-r) r=n-r;
-    ll res=mperm(n,r);
-    return res/mfrac(r);
-}
+ll const MOD=1000000007;
 
 string N;
 ll K;
-ll dp[4][105];
+ll dp[101][4][2];
 
 int main(){
     cin>>N>>K;
 
-    // ll ans=mcomb(N.size()-1,K)*mpow(9,K)+(N[0]-'0'-1)*mcomb(N.size()-1,K-1)*mpow(9,K-1);
-    // cout<<ans<<endl;
-    // repn(i,N.size()-1){
-    //     dp[1][i]=dp[1][i-1]+(N[N.size()-i]-'0');
-    //     dp[2][i]=dp[1][i-1]*(N[N.size()-i]-'0');
-    //     dp[3][i]=dp[2][i-1]*(N[N.size()-i]-'0');
-    // }
-    // if(K==1){
-    //     ans+=dp[K-1][N.size()-1]+1;
-    // }else{
-    //     ans+=dp[K-1][N.size()-1]*1;
-    // }
-    ll ans=0;
-    repn(i,K){
-        ans+=mcomb(N.size()-i,K-(i-1))*mpow(9,K-(i-1));
-        ans+=(N[0]-'0'-1)*mcomb(N.size()-i,K-1-(i-1))*mpow(9,K-1-(i-1));
+    repn(i,N.size()) dp[i][0][0]=1;
+    dp[1][1][0]=N[0]-'0'-1;
+    dp[1][1][1]=1;
+    repn(i,N.size()-1){
+        repn(j,K){
+            if(N[i]!='0') dp[i+1][j][1]=dp[i][j-1][1];
+            else dp[i+1][j][1]=dp[i][j][1];
+            dp[i+1][j][0]+=dp[i][j-1][0]*9;
+            dp[i+1][j][0]+=dp[i][j][0];
+            dp[i+1][j][0]+=dp[i][j-1][1]*max(0,N[i]-'0'-1);
+            if(N[i]!='0') dp[i+1][j][0]+=dp[i][j][1];
+        }
     }
+
+    int ans=dp[N.size()][K][0]+dp[N.size()][K][1];
 
     cout<<ans<<endl;
 }
