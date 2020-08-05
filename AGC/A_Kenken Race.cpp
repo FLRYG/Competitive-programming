@@ -15,7 +15,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-ll const MOD=1'000'000'007;
+ll const MOD=1000000007;
 
 int N,A,B,C,D;
 string S;
@@ -26,16 +26,16 @@ int main(){
     bool flag=true;
     if(C<D){
         rep(i,D-B-1){
-            flag&=(S[B+i-1]=='.' || S[B+i]=='.');
+            flag&=(S[(B-1)+i-1]=='.' || S[(B-1)+i]=='.');
         }
         S[D-1]='#';
         rep(i,C-A-1){
-            flag&=(S[A+i-1]=='.' || S[A+i]=='.');
+            flag&=(S[(A-1)+i-1]=='.' || S[(A-1)+i]=='.');
         }
     }else{
         bool f=false;
         rep(i,D-B+1){
-            if(S[B+i-1]=='.' && S[B+i]=='.' && S[B+i+1]=='.') f=true;
+            if(S[(B-1)+i-1]=='.' && S[(B-1)+i]=='.' && S[(B-1)+i+1]=='.') f=true;
         }
         flag&=f;
     }
