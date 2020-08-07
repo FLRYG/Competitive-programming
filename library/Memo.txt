@@ -45,13 +45,23 @@
 Overflow
 
 3.14159'26535'89793                     円周率
+
 cout<<fixed<<setprecision(1);           浮動小数点数を出力する精度を設定する
+
 priority_queue<T>                       優先順位付きキュー（降順）
+
 priority_queue<T,
     vector<T>,greater<T>>               優先順位付きキュー（昇順）
+
 unordered_map<Key,T>                    hash map　のこと
+
 string t;int n=atoi(t.c_str());         string から int の変換
+
 sort(B,B+N,greater<>());                降順ソート
+
+char S[140]; cin.getline(S,sizeof(S));  空白を含む文をそのまま入力
+
+string S; getline(cin,S);               空白を含む文をそのまま入力(その2)
 
 
 <<典型的問題>>

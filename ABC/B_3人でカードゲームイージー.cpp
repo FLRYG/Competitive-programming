@@ -16,25 +16,24 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 ll const MOD=1000000007;
-typedef pair<ll,ll> P;
 
-ll N;
-ll A[100001];
-ll sum[100001];
+string S[3];
 
 int main(){
-    cin>>N;
-    repn(i,N) cin>>A[i];
+    rep(i,3) cin>>S[i];
 
-    sort(A+1,A+N+1);
-
-    repn(i,N) sum[i]=sum[i-1]+A[i];
-
-    ll ans=1;
-    repn(i,N-1){
-        if(A[N-i+1]<=2*sum[N-i]) ans++;
-        else break;
+    int idx[3]={0,0,0};
+    int t=0;
+    while(S[t].size()>idx[t]){
+        if(S[t][idx[t]]=='a'){idx[t]++; t=0;}
+        else if(S[t][idx[t]]=='b'){idx[t]++; t=1;}
+        else if(S[t][idx[t]]=='c'){idx[t]++; t=2;}
     }
+
+    string ans;
+    if(t==0) ans='A';
+    if(t==1) ans='B';
+    if(t==2) ans='C';
 
     cout<<ans<<endl;
 }
