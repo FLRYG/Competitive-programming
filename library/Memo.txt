@@ -40,6 +40,7 @@
     C - Folia                           貪欲法・条件(不等式の利用)　***
     C - Successive Subtraction          アルゴリズムを考える
     C - Lamps                           計算量見積り
+    C - Strawberry Cakes                再帰
 
 
 Overflow
