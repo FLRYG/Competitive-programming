@@ -20,15 +20,22 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[200000];
-int B[200000];
+string S;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    cin>>S;
 
-    sort(A,A+N);
-    sort(B,B+N,greater)
+    ll ans=0;
+    rep(i,S.size()){
+        if(S[i]=='U'){
+            ans+=S.size()-i-1;
+            ans+=2*i;
+        }
+        if(S[i]=='D'){
+            ans+=2*(S.size()-i-1);
+            ans+=i;
+        }
+    }
+
+    cout<<ans<<endl;
 }
-

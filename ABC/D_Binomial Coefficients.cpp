@@ -20,15 +20,20 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[200000];
-int B[200000];
+ll n;
+ll a[100000];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    cin>>n;
+    rep(i,n) cin>>a[i];
 
-    sort(A,A+N);
-    sort(B,B+N,greater)
+    ll maxi=0;
+    rep(i,n) maxi=max(maxi,a[i]);
+
+    ll r=0;
+    rep(i,n){
+        if(min(maxi-r,r)<min(maxi-a[i],a[i])) r=a[i];
+    } 
+
+    cout<<maxi<<' '<<r<<endl;
 }
-

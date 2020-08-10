@@ -21,14 +21,19 @@ typedef long double ld;
 ll const MOD=1000000007;
 
 int N;
-int A[200000];
-int B[200000];
+int R[3000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    rep(i,N) cin>>R[i];
 
-    sort(A,A+N);
-    sort(B,B+N,greater)
+    int ans=N;
+    repn(i,N-2){
+        if((R[i-1]>=R[i] || R[i]<=R[i+1]) && (R[i-1]<=R[i] || R[i]>=R[i+1])){
+            ans--;
+        }
+    }
+    if(ans<3) ans=0;
+
+    cout<<ans<<endl;
 }
-

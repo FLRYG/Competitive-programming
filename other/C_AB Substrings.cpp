@@ -21,14 +21,29 @@ typedef long double ld;
 ll const MOD=1000000007;
 
 int N;
-int A[200000];
-int B[200000];
+string s[10000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    rep(i,N) cin>>s[i];
 
-    sort(A,A+N);
-    sort(B,B+N,greater)
+    int ans=0;
+    int ra=0, lb=0, ba=0;
+    rep(i,N){
+        if(s[i][0]=='B' && s[i][s[i].size()-1]=='A') ba++;
+        else if(s[i][s[i].size()-1]=='A') ra++;
+        else if(s[i][0]=='B') lb++;
+        rep(j,s[i].size()-1){
+            if(s[i][j]=='A' && s[i][j+1]=='B') ans++;
+        }
+    }
+
+    if(ba>0){
+        ans+=ba-1;
+        if(ra>0){ans++;ra--;}
+        if(lb>0){ans++;lb--;}
+    }
+    ans+=min(ra,lb);
+
+    cout<<ans<<endl;
 }
-

@@ -21,14 +21,19 @@ typedef long double ld;
 ll const MOD=1000000007;
 
 int N;
-int A[200000];
-int B[200000];
+string s="abc";
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
 
-    sort(A,A+N);
-    sort(B,B+N,greater)
+    rep(i,pow(3,N)){
+        string ans;
+        int n=i;
+        rep(j,N){
+            ans+=s[n%3];
+            n/=3;
+        }
+        reverse(ans.begin(),ans.end());
+        cout<<ans<<endl;
+    }
 }
-

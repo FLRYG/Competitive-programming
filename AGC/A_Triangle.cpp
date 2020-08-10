@@ -20,15 +20,19 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[200000];
-int B[200000];
+ll S;
+ll X[3];
+ll Y[3];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    cin>>S;
 
-    sort(A,A+N);
-    sort(B,B+N,greater)
+    X[1]=Y[2]=(ll)ceil(sqrt(S));
+    Y[1]=1;
+    X[2]=X[1]*Y[2]-S;
+
+    rep(i,3) cout<<X[i]<<' '<<Y[i]<<' ';
+    cout<<endl;
+
+    //cout<<abs(X[1]*Y[2]-Y[1]*X[2])<<endl;
 }
-
