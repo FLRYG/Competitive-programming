@@ -20,25 +20,18 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int R[3000];
+ll N;
+ll a[100001];
+ll dp[100001];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>R[i];
+    repn(i,N) cin>>a[i];
+    a[0]=a[1];
 
-    int ans=1;
-    int up=-1;
-    rep(i,N-1){
-        if(R[i]>R[i+1]){
-            if(up!=0) ans++;
-            up=0;
-        }else if(R[i]<R[i+1]){
-            if(up!=1) ans++;
-            up=1;
-        }
+    for(int i=2;i<=N;i++){
+        dp[i]=min(abs(a[i]-a[i-1])+dp[i-1],abs(a[i]-a[i-2])+dp[i-2]);
     }
-    if(ans<3) ans=0;
 
-    cout<<ans<<endl;
+    cout<<dp[N]<<endl;
 }

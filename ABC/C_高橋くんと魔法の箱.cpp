@@ -21,24 +21,19 @@ typedef long double ld;
 ll const MOD=1000000007;
 
 int N;
-int R[3000];
+int a[100000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>R[i];
+    rep(i,N) cin>>a[i];
 
-    int ans=1;
-    int up=-1;
-    rep(i,N-1){
-        if(R[i]>R[i+1]){
-            if(up!=0) ans++;
-            up=0;
-        }else if(R[i]<R[i+1]){
-            if(up!=1) ans++;
-            up=1;
-        }
+    map<int,int> m;
+    rep(i,N){
+        while(a[i]%2==0) a[i]/=2;
+        m[a[i]]++;
     }
-    if(ans<3) ans=0;
+
+    int ans=m.size();
 
     cout<<ans<<endl;
 }

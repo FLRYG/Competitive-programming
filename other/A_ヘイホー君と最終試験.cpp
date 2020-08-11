@@ -20,25 +20,23 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int R[3000];
+ll N,K,M,R;
+ll S[100];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>R[i];
+    cin>>N>>K>>M>>R;
+    rep(i,N-1) cin>>S[i];
 
-    int ans=1;
-    int up=-1;
-    rep(i,N-1){
-        if(R[i]>R[i+1]){
-            if(up!=0) ans++;
-            up=0;
-        }else if(R[i]<R[i+1]){
-            if(up!=1) ans++;
-            up=1;
-        }
-    }
-    if(ans<3) ans=0;
+    sort(S,S+N-1,greater<>());
+
+    ll ok=K*R;
+    ll res=0;
+    rep(i,K-1) res+=S[i];
+
+    ll ans=ok-res;
+    if(ans<=S[K-1]) ans=0;
+    else if(ans>M) ans=-1;
+    else if(ans<0) ans=0;
 
     cout<<ans<<endl;
 }

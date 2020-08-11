@@ -21,24 +21,34 @@ typedef long double ld;
 ll const MOD=1000000007;
 
 int N;
-int R[3000];
+string S;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>R[i];
+    cin>>N>>S;
 
-    int ans=1;
-    int up=-1;
-    rep(i,N-1){
-        if(R[i]>R[i+1]){
-            if(up!=0) ans++;
-            up=0;
-        }else if(R[i]<R[i+1]){
-            if(up!=1) ans++;
-            up=1;
+    if(N%2==0){
+        cout<<-1<<endl;
+        return 0;
+    }
+
+    string l,r="b";
+    repn(i,N/2){
+        if(i%3==1){
+            l+='a';
+            r+='c';
+        }else if(i%3==2){
+            l+='c';
+            r+='a';
+        }else{
+            l+='b';
+            r+='b';
         }
     }
-    if(ans<3) ans=0;
+
+    reverse(l.begin(),l.end());
+    string s=l+r;
+    int ans=-1;
+    if(s==S) ans=N/2;
 
     cout<<ans<<endl;
 }
