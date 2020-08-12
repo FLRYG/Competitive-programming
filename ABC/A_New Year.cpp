@@ -20,19 +20,10 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M,L;
-int P,Q,R;
+int M;
 
 int main(){
-    cin>>N>>M>>L>>P>>Q>>R;
+    cin>>M;
 
-    int ans=0;
-    ans=max(ans,(N/P)*(M/Q)*(L/R));
-    ans=max(ans,(N/P)*(M/R)*(L/Q));
-    ans=max(ans,(N/Q)*(M/P)*(L/R));
-    ans=max(ans,(N/Q)*(M/R)*(L/P));
-    ans=max(ans,(N/R)*(M/P)*(L/Q));
-    ans=max(ans,(N/R)*(M/Q)*(L/P));
-
-    cout<<ans<<endl;
+    cout<<(24-M)+24<<endl;
 }

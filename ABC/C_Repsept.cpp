@@ -25,5 +25,16 @@ ll K;
 int main(){
     cin>>K;
 
-    
+    ll val=0;
+    ll ans=-1;
+    rep(i,K){
+        val=val*10+7;
+        val%=K;
+        if(val==0){
+            ans=i+1;
+            break;
+        }
+    }
+
+    cout<<ans<<endl;
 }

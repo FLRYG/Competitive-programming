@@ -15,24 +15,23 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<ll,ll> P;
+//typedef pair<int,int> P;
 //ll const INF=1001001001;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M,L;
-int P,Q,R;
+ll K,A,B;
 
 int main(){
-    cin>>N>>M>>L>>P>>Q>>R;
+    cin>>K>>A>>B;
 
-    int ans=0;
-    ans=max(ans,(N/P)*(M/Q)*(L/R));
-    ans=max(ans,(N/P)*(M/R)*(L/Q));
-    ans=max(ans,(N/Q)*(M/P)*(L/R));
-    ans=max(ans,(N/Q)*(M/R)*(L/P));
-    ans=max(ans,(N/R)*(M/P)*(L/Q));
-    ans=max(ans,(N/R)*(M/Q)*(L/P));
+    ll ans=0;
+    ans=max(ans,1+K);
+    if(A+1<B){
+        ll res=A+(K-(A-1))/2*(B-A);
+        if((K-(A-1))%2==1) res++;
+        ans=max(ans,res);
+    }
 
     cout<<ans<<endl;
 }

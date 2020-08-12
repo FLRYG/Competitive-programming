@@ -1,5 +1,5 @@
 <<ABC>>
-    C - GCD on Blackboard               漸化式をうまく立てる問題
+    C - GCD on Blackboard               累積和？
     C - Typical Stairs                  dpを使う問題
     C - Triangular Relationship         必要十分条件を見極める
     C - Synthetic Kadomatsu             全　探　索
@@ -20,6 +20,7 @@
     D - AtCoder Express 2               累積和
     D - Sum of Divisors                 割らない　ピラミッド
     D - Wall                            最短路
+    D - Multiple of 2019                余りの性質を利用　***
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
     E - Almost Everywhere Zero          dp

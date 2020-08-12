@@ -15,24 +15,21 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<ll,ll> P;
+//typedef pair<int,int> P;
 //ll const INF=1001001001;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M,L;
-int P,Q,R;
+string N;
 
 int main(){
-    cin>>N>>M>>L>>P>>Q>>R;
+    cin>>N;
 
-    int ans=0;
-    ans=max(ans,(N/P)*(M/Q)*(L/R));
-    ans=max(ans,(N/P)*(M/R)*(L/Q));
-    ans=max(ans,(N/Q)*(M/P)*(L/R));
-    ans=max(ans,(N/Q)*(M/R)*(L/P));
-    ans=max(ans,(N/R)*(M/P)*(L/Q));
-    ans=max(ans,(N/R)*(M/Q)*(L/P));
+    int odd=0, even=0;
+    rep(i,N.size()){
+        if(i&1) even+=N[N.size()-i-1]-'0';
+        else odd+=N[N.size()-i-1]-'0';
+    }
 
-    cout<<ans<<endl;
+    cout<<even<<' '<<odd<<endl;
 }
