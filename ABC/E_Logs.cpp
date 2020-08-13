@@ -15,30 +15,44 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<ll,ll> P;
+typedef pair<double,int> P;
 //ll const INF=1001001001;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[200000];
-int B[200000];
+int N,K;
+double A[200000];
+int cnt[200000];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    cin>>N>>K;
+    rep(i,N) cin>>A[i];
 
-    sort(A,A+N);
-    sort(B,B+N);
+    priority_queue<P> q;
+    rep(i,N) q.push(P(A[i],i));
 
-    int ans=0;
-    if(N&1){
-        ans=B[N/2]-A[N/2]+1;
-    }else{
-        int ma=A[N/2-1]+A[N/2];
-        int mb=B[N/2-1]+B[N/2];
-        ans=mb-ma+1;
+    rep(i,K){
+        P p=q.top(); q.pop();
+        cnt[p.second]++;
+        q.push(P(A[p.second]/(cnt[p.second]+1),p.second));
     }
+
+    int ans=ceil(q.top().first);
+    cout<<ans<<endl;
+}
+
+/*
+ll N,K;
+ll A[200000];
+
+int main(){
+    cin>>N>>K;
+    rep(i,N) cin>>A[i];
+
+    ll ans=0;
+    rep(i,N) ans+=A[i];
+    ans=(ans+1)/(K+1);
 
     cout<<ans<<endl;
 }
+*/

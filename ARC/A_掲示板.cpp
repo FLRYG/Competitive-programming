@@ -21,7 +21,7 @@ typedef long double ld;
 ll const MOD=1000000007;
 
 int N,M;
-int a[200001];
+int a[200000];
 int cnt[100001];
 
 int main(){

@@ -15,30 +15,32 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<ll,ll> P;
+//typedef pair<int,int> P;
 //ll const INF=1001001001;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[200000];
-int B[200000];
+int H,W,N;
+int a[10000];
+int ans[100][100];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    cin>>H>>W>>N;
+    rep(i,N) cin>>a[i];
 
-    sort(A,A+N);
-    sort(B,B+N);
-
-    int ans=0;
-    if(N&1){
-        ans=B[N/2]-A[N/2]+1;
-    }else{
-        int ma=A[N/2-1]+A[N/2];
-        int mb=B[N/2-1]+B[N/2];
-        ans=mb-ma+1;
+    int idx=0;
+    rep(i,N){
+        rep(j,a[i]){
+            int r=idx/W;
+            int c=idx%W;
+            if(r&1) c=W-c-1;
+            ans[r][c]=i+1;
+            idx++;
+        }
     }
 
-    cout<<ans<<endl;
+    rep(i,H){
+        rep(j,W) cout<<ans[i][j]<<' ';
+        cout<<endl;
+    }
 }
