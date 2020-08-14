@@ -15,31 +15,31 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<int,int> P;
+typedef pair<int,int> P;
 //ll const INF=1001001001;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll A[2000];
+int H,W,D;
+int A[301][301];
+int Q;
+int L[100001];
+int R[100001];
+P memo[90001];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>H>>W>>D;
+    repn(i,H) repn(j,W) cin>>A[i][j];
+    cin>>Q;
+    repn(i,Q) cin>>L[i]>>R[i];
 
-    ll ans=0;
-    rep(i,N){
-        ll bef=0,aft=0;
-        rep(j,N){
-            if(A[i]>A[j]){
-                if(j<i) bef++;
-                if(i<j) aft++;
-            }
+    repn(i,H) repn(j,W) memo[A[i][j]]=P(i,j);
+
+    repn(i,Q){
+        int ans=0;
+        for(int j=L[i];j<R[i];j+=D){
+            ans+=abs(memo[j].first-memo[j+D].first)+abs(memo[j].second-memo[j+D].second);
         }
-        //cout<<bef<<' '<<aft<<endl;
-        ans+=K*aft+(bef+aft)*((K*(K-1)/2)%MOD)%MOD;
-        ans%=MOD;
+        cout<<ans<<endl;
     }
-
-    cout<<ans<<endl;
 }

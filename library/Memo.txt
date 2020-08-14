@@ -24,6 +24,7 @@
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
     E - Almost Everywhere Zero          dp
+    E - Logs                            二分探索
 
 <<ARC>>
     D - Remainder Reminder              余りの問題
@@ -70,3 +71,12 @@ string S; getline(cin,S);               空白を含む文をそのまま入力(
     D - Knapsack 1                      ナップザック問題
     E - Knapsack 2                      ナップザック問題
     F - LCS                             最長共通部分列問題
+    E - Logs                            二分探索
+
+
+<<再>>
+    C - Repsept
+    E - 常ならずグラフ
+    D - Multiple of 2019
+    E - Count Median
+    E - Logs

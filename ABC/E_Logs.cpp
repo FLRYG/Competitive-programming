@@ -21,37 +21,54 @@ typedef pair<double,int> P;
 ll const MOD=1000000007;
 
 int N,K;
+int A[200000];
+
+int cut(int X){
+    int res=0;
+    rep(i,N) res+=(A[i]-1)/X;
+    return res; 
+}
+
+int main(){
+    cin>>N>>K;
+    rep(i,N) cin>>A[i];
+
+    int l=0,  r=1000000000;
+    while(r-l>1){
+        int X=(l+r)/2;
+        int cnt=cut(X);
+        if(cnt<=K) r=X;
+        else l=X;
+    }
+
+    int ans=r;
+    cout<<ans<<endl;
+}
+
+/*
+int N,K;
 double A[200000];
+double sum[200000];
 int cnt[200000];
 
 int main(){
     cin>>N>>K;
     rep(i,N) cin>>A[i];
 
-    priority_queue<P> q;
-    rep(i,N) q.push(P(A[i],i));
+    sort(A,A+N);
 
-    rep(i,K){
-        P p=q.top(); q.pop();
-        cnt[p.second]++;
-        q.push(P(A[p.second]/(cnt[p.second]+1),p.second));
+    repn(i,N) sum[i]+=sum[i-1]+A[i-1];
+    cout<<setprecision(16)<<sum[N]<<endl;
+
+    double m=sum[N]/K;
+
+    rep(i,N){
+        cnt[i]=1+(int)(A[i+1]/m)-(int)(A[i]/m);
+        cout<<cnt[i]<<endl;
     }
 
-    int ans=ceil(q.top().first);
-    cout<<ans<<endl;
-}
-
-/*
-ll N,K;
-ll A[200000];
-
-int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
-
-    ll ans=0;
-    rep(i,N) ans+=A[i];
-    ans=(ans+1)/(K+1);
+    int ans=0;
+    rep(i,N) ans=max(ans,(int)(A[i]/cnt[i]));
 
     cout<<ans<<endl;
 }

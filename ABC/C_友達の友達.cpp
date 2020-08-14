@@ -20,26 +20,21 @@ typedef long double ld;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll A[2000];
+int N,M;
+int A[11];
+int B[11];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>N>>M;
+    repn(i,M) cin>>A[i]>>B[i];
 
-    ll ans=0;
-    rep(i,N){
-        ll bef=0,aft=0;
-        rep(j,N){
-            if(A[i]>A[j]){
-                if(j<i) bef++;
-                if(i<j) aft++;
-            }
-        }
-        //cout<<bef<<' '<<aft<<endl;
-        ans+=K*aft+(bef+aft)*((K*(K-1)/2)%MOD)%MOD;
-        ans%=MOD;
+    vector<int> G[11];
+    repn(i,M){
+        G[A[i]].push_back(B[i]);
+        G[B[i]].push_back(A[i]);
     }
 
-    cout<<ans<<endl;
+    repn(i,N){
+        
+    }
 }
