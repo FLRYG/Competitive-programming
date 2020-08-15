@@ -74,9 +74,14 @@ string S; getline(cin,S);               空白を含む文をそのまま入力(
     E - Logs                            二分探索
 
 
-<<再>>
+<<再1>>
     C - Repsept
     E - 常ならずグラフ
     D - Multiple of 2019
     E - Count Median
     E - Logs
+
+<<再2>>
+    D - Practical Skill Test
+    B - Reversi
+

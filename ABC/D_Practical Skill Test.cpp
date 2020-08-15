@@ -25,7 +25,8 @@ int A[301][301];
 int Q;
 int L[100001];
 int R[100001];
-P memo[90001];
+P idx[90001];
+int sum[90001];
 
 int main(){
     cin>>H>>W>>D;
@@ -33,13 +34,18 @@ int main(){
     cin>>Q;
     repn(i,Q) cin>>L[i]>>R[i];
 
-    repn(i,H) repn(j,W) memo[A[i][j]]=P(i,j);
+    repn(i,H) repn(j,W) idx[A[i][j]]=P(i,j);
+
+    repn(i,D){
+        for(int j=i+D;j<=H*W;j+=D){
+            int x=abs(idx[j].first-idx[j-D].first);
+            int y=abs(idx[j].second-idx[j-D].second);
+            sum[j]=sum[j-D]+x+y;
+        }
+    }
 
     repn(i,Q){
-        int ans=0;
-        for(int j=L[i];j<R[i];j+=D){
-            ans+=abs(memo[j].first-memo[j+D].first)+abs(memo[j].second-memo[j+D].second);
-        }
+        int ans=sum[R[i]]-sum[L[i]];
         cout<<ans<<endl;
     }
 }
