@@ -23,7 +23,6 @@ ll const MOD=1000000007;
 ll N,K;
 ll P[5001];
 ll C[5001];
-bool chk[5001];
 
 int main(){
     cin>>N>>K;
@@ -32,26 +31,19 @@ int main(){
 
     ll ans=-INF;
     repn(idx,N){
-        fill(chk,chk+N+1,false);
-        ll pos=idx;
-        ll sum=0;
-        ll cnt=0;
-        repn(i,N){
-            pos=P[pos];
-            if(chk[pos]) break;
+        ll sum=C[idx];
+        ll cnt=1;
+        for(int pos=P[idx];pos!=idx;pos=P[pos]){
             sum+=C[pos];
             cnt++;
         }
-
+        
         ll res=0;
-        if(sum>0){
-            res=(K-1)/cnt*sum;
-        }
+        if(sum>0) res=K/cnt*sum;
         ll roop=K%cnt;
         if(roop==0) roop=cnt;
-        pos=idx;
-        repn(i,roop){
-            pos=P[pos];
+        //cout<<idx<<' '<<sum<<' '<<cnt<<' '<<res<<endl;
+        for(int pos=P[idx],i=0;i<roop;pos=P[pos],i++){
             res+=C[pos];
             ans=max(ans,res);
         }

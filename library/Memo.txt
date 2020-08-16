@@ -66,6 +66,8 @@ char S[140]; cin.getline(S,sizeof(S));  空白を含む文をそのまま入力
 
 string S; getline(cin,S);               空白を含む文をそのまま入力(その2)
 
+lower
+
 
 <<典型的問題>>
     D - Knapsack 1                      ナップザック問題
@@ -80,6 +82,7 @@ string S; getline(cin,S);               空白を含む文をそのまま入力(
     D - Multiple of 2019
     E - Count Median
     E - Logs
+    B - Backfront
 
 <<再2>>
     D - Practical Skill Test
