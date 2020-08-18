@@ -26,6 +26,27 @@ ll X;
 int main(){
     cin>>X;
 
+    ll A=0,B=0;
+    for(ll i=-500;i<=500;i++){
+        for(ll j=-500;j<=500;j++){
+            if(pow(i,5)-pow(j,5)==X){
+                A=i;
+                B=j;
+                break;
+            }
+        }
+    }
+
+    cout<<A<<' '<<B<<endl;
+}
+
+
+/*
+ll X;
+
+int main(){
+    cin>>X;
+
     if(X==1){
         cout<<0<<' '<<-1<<endl;
         return 0;
@@ -57,3 +78,4 @@ int main(){
 
     cout<<A<<' '<<B<<endl;
 }
+*/
