@@ -20,28 +20,13 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll A[81];
+int N,K;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
-    A[N]=0;
-    
-    ll inf=INF, sup=0;
-    rep(i,N) inf=min(inf,A[i]);
-    rep(i,N) sup=max(sup,A[i]);
+    cin>>N>>K;
 
-
-    ll ans=1000;
-    ll l=0;
-    rep(i,N){
-        if(A[i]>A[i+1]){
-            ll cnt=ans/A[l];
-            ans=ans%A[l]+cnt*A[i];
-            l=i+1;
-        }
-    }
+    string ans="NO";
+    if(N>=2*K) ans="YES";
 
     cout<<ans<<endl;
-} 
+}

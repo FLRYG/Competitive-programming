@@ -20,28 +20,29 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll A[81];
+ll N,K;
+ll s[100000];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
-    A[N]=0;
-    
-    ll inf=INF, sup=0;
-    rep(i,N) inf=min(inf,A[i]);
-    rep(i,N) sup=max(sup,A[i]);
+    cin>>N>>K;
+    rep(i,N) cin>>s[i];
 
-
-    ll ans=1000;
-    ll l=0;
+    ll r=0;
+    ll val=1;
+    ll ans=0;
     rep(i,N){
-        if(A[i]>A[i+1]){
-            ll cnt=ans/A[l];
-            ans=ans%A[l]+cnt*A[i];
-            l=i+1;
+        if(K==0) break;
+        if(s[i]==0){
+            ans=N;
+            break;
         }
+        while(val<=K && r<N){
+            val*=s[r];
+            r++;
+        }
+        val/=s[i];
+        ans=max(ans,r-i-1);
     }
 
-    cout<<ans<<endl;
-} 
+    cout<<ans<<endl;;
+}
