@@ -9,7 +9,7 @@
 #include <deque>
 #include <map>
 #include <unordered_map>
-#define rep(i,n) for(ll i=0;i<n;i++)
+#define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
 using namespace std;
@@ -20,29 +20,21 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll s[100000];
+ll N;
+ll A[200000];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>s[i];
+    cin>>N;
+    rep(i,N) cin>>A[i];
 
-    ll r=0;
-    ll val=1;
     ll ans=0;
+    ll sup=0;
     rep(i,N){
-        if(s[i]==0){
-            ans=N;
-            break;
+        if(sup>A[i]){
+            ans+=sup-A[i];
         }
-        while((val<=K && r<N) || i==r){
-            val*=s[r];
-            r++;
-        }
-        ans=max(ans,r-i-1);
-        val/=s[i];
-        //cout<<i<<' '<<r<<' '<<val<<endl;
+        sup=max(sup,A[i]);
     }
 
-    cout<<ans<<endl;;
+    cout<<ans<<endl;
 }
