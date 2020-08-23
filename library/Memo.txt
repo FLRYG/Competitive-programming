@@ -70,6 +70,7 @@ lower
 
 
 <<典型的問題>>
+    C - 列                              尺取り法
     D - Knapsack 1                      ナップザック問題
     E - Knapsack 2                      ナップザック問題
     F - LCS                             最長共通部分列問題
@@ -84,6 +85,7 @@ lower
     E - Logs
     B - Backfront
     E - Strings of Impurity
+    C - 列
 
 <<再2>>
     D - Practical Skill Test

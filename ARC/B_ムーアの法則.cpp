@@ -15,20 +15,25 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+//typedef pair<int,int> P;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W;
-string S[400];
-
+ld P;
 
 int main(){
-    cin>>S>>W;
-    rep(i,H) cin>>S[i];
+    cin>>P;
 
+    ld init=4;
+    ld prev=init;
+    rep(i,10){
+        ld f=prev+P*pow(2,-3*prev/2);
+        ld a=1+P*pow(2,-3*prev/2)*log(2)*(-3)/2;
+        prev=prev-f/a;
+    }
+
+    ld ans=prev+P*pow(2,-3*prev/2);
+    cout<<setprecision(16)<<ans<<endl;
     
-
-
 }

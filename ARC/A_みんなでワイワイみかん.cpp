@@ -15,20 +15,18 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+//typedef pair<int,int> P;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W;
-string S[400];
-
+ll A,B,K,L;
 
 int main(){
-    cin>>S>>W;
-    rep(i,H) cin>>S[i];
+    cin>>A>>B>>K>>L;
 
-    
+    ll ans=A*K;
+    ans=min(ans,min(K/L*B+K%L*A,((K-1)/L+1)*B));
 
-
+    cout<<ans<<endl;
 }

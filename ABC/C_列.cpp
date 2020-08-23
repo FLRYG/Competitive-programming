@@ -35,14 +35,15 @@ int main(){
             ans=N;
             break;
         }
-        while((val<=K && r<N) || i==r){
+        val=max(val,(ll)1);
+        r=max(r,i);
+        while(r<N && val*s[r]<=K){
             val*=s[r];
             r++;
         }
-        ans=max(ans,r-i-1);
+        ans=max(ans,r-i);
         val/=s[i];
-        //cout<<i<<' '<<r<<' '<<val<<endl;
     }
 
-    cout<<ans<<endl;;
+    cout<<ans<<endl;
 }

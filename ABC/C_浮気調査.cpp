@@ -15,20 +15,33 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+//typedef pair<int,int> P;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W;
-string S[400];
-
+int txa,tya;
+int txb,tyb;
+int T,V;
+int n;
+int x[1000], y[1000];
 
 int main(){
-    cin>>S>>W;
-    rep(i,H) cin>>S[i];
+    cin>>txa>>tya;
+    cin>>txb>>tyb;
+    cin>>T>>V>>n;
+    rep(i,n) cin>>x[i]>>y[i];
 
-    
+    string ans="NO";
+    rep(i,n){
+        double d=0;
+        d+=sqrt((txa-x[i])*(txa-x[i])+(tya-y[i])*(tya-y[i]));
+        d+=sqrt((txb-x[i])*(txb-x[i])+(tyb-y[i])*(tyb-y[i]));
+        if(d<=T*V){
+            ans="YES";
+            break;
+        }
+    }
 
-
+    cout<<ans<<endl;
 }
