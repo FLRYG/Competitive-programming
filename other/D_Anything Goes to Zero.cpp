@@ -12,64 +12,40 @@
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
-#define MOD 1'000'000'007
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-
-string tostring(int x){
-    string s;
-    while(x>0){
-        int i=x%2;
-        s+=i+'0';
-        x/=2;
-    }
-    reverse(s.begin(),s.end());
-    return s;
-}
+//typedef pair<int,int> P;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
+ll const MOD=1000000007;
 
 int N;
 string X;
-int memo[200001];
+
+int f(int n,int cnt){
+    if(n==0) return 1;
+    n%=cnt;
+    return f(n,__builtin_popcount(n))+1;
+}
 
 int main(){
     cin>>N>>X;
 
     int cnt=0;
-    rep(i,N){
-        if(X[i]=='1') cnt++;
-    }
+    rep(i,N) cnt+=X[i]-'0';
+
+    int plus=0, minus=0;
+    rep(i,N) plus=(plus*2+(X[i]-'0'))%(cnt+1);
+    rep(i,N) minus=(minus*2+(X[i]-'0'))%(cnt-1);
+    cout<<plus<<' '<<minus<<endl;
 
     rep(i,N){
-        string s=X;
-        int cn=cnt;
-        if(s[i]=='0'){
-            s[i]='1';
-            cn++;
-        }
-        else{
-            s[i]='0';
-            cn--;
-        }
-        int ans=0;
-        int y=0;
-        do{
-            string t=tostring(cn);
-            rep(j,s.size()-t.size()+1){
-                if(s[i]=='1'){
-                    rep(k,t.size()){
-                        if(t[k]=='1'){
-                            if(s[j+k]=='1') s[j+k]='0';
-                            else s[j+k]='1';
-                        }
-                    }
-                }
-            }
-            string u;
-            for(int i;1<<i<=cn;i++){
-                u+=s[s.size()-i-1];
-            }
-            ans++;
-        }while(y>0);
+        int n;
+        if(X[i]==0) n=plus;
+        else n=minus;
+        cout<<n<<' '<<__builtin_popcount(n)<<endl;
+        int ans=f(n,__builtin_popcount(n));
+        cout<<ans<<endl;
     }
 }
