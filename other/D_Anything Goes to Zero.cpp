@@ -46,29 +46,32 @@ int main(){
 
     int plus=0, minus=0;
     rep(i,N) plus=(plus*2+(X[i]-'0'))%(cnt+1);
-    rep(i,N) minus=(minus*2+(X[i]-'0'))%(cnt-1);
-    cout<<plus<<' '<<minus<<'\n'<<endl;
+    if(cnt>1) rep(i,N) minus=(minus*2+(X[i]-'0'))%(cnt-1);
+    //cout<<plus<<' '<<minus<<'\n'<<endl;
     
     vector<int> tmpp(N+1); tmpp[N]=0;
     vector<int> tmpm(N+1); tmpm[N]=0;
     rep(i,N) tmpp[N-i-1]=(tmpp[N-i]*2+1)%(cnt+1);
-    rep(i,N) tmpm[N-i-1]=(tmpm[N-i]*2+1)%(cnt-1);
-    rep(i,N) cout<<tmpp[i]<<endl;cout<<endl;
-    rep(i,N) cout<<tmpm[i]<<endl;cout<<endl;
+    if(cnt>1) rep(i,N) tmpm[N-i-1]=(tmpm[N-i]*2+1)%(cnt-1);
+    //rep(i,N) cout<<tmpp[i]<<endl;cout<<endl;
+    //rep(i,N) cout<<tmpm[i]<<endl;cout<<endl;
 
     rep(i,N){
-        int n;
-        int diff;
-        if(X[i]==0){
+        int n=0;
+        int diff=0;
+        if(X[i]=='0'){
             diff=(tmpp[i]-tmpp[i+1]+cnt+1)%(cnt+1);
             n=(plus+diff+cnt+1)%(cnt+1);
-        }else{
+        }else if(cnt>1){
             diff=(tmpm[i]-tmpm[i+1]+cnt-1)%(cnt-1);
-            n=(plus+diff+cnt-1)%(cnt-1);
+            n=(minus-diff+cnt-1)%(cnt-1);
+        }else{
+            cout<<0<<endl;
+            continue;
         }
-        cout<<diff<<' '<<n<<"\n\n";
-        cout<<n<<' '<<popcount(n)<<endl;
+        //cout<<diff<<' '<<n<<endl;
+        //cout<<n<<' '<<popcount(n)<<endl;
         int ans=f(n,popcount(n));
-        cout<<ans<<endl;
+        cout<<ans<<endl;//cout<<endl;
     }
 }

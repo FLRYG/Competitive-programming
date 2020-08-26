@@ -43,6 +43,7 @@
     C - Successive Subtraction          アルゴリズムを考える
     C - Lamps                           計算量見積り
     C - Strawberry Cakes                再帰
+    D - Anything Goes to Zero           余り
 
 
 Overflow
@@ -86,8 +87,11 @@ lower
     B - Backfront
     E - Strings of Impurity
     C - 列
+    D - Anything Goes to Zero
+    B - ヘイホー君と削除
 
 <<再2>>
     D - Practical Skill Test
     B - Reversi
+    D - Menagerie
 
