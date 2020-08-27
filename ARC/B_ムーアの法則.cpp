@@ -20,20 +20,43 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ld P;
+double P;
 
+inline double f(double x){
+    return x+P/pow(2,2*x/3);
+}
+
+inline double df(double x){
+    return 1+P*log(2)*(-2)/pow(2,2*x/3)/3;
+}
+
+//二分法
 int main(){
     cin>>P;
 
-    ld init=4;
-    ld prev=init;
-    rep(i,10){
-        ld f=prev+P*pow(2,-3*prev/2);
-        ld a=1+P*pow(2,-3*prev/2)*log(2)*(-3)/2;
-        prev=prev-f/a;
+    double low=0, high=100;
+    while(high-low>0.0000000001){
+        double mid=(low+high)/2;
+        if(df(mid)<0) low=mid;
+        else high=mid;
     }
 
-    ld ans=prev+P*pow(2,-3*prev/2);
-    cout<<setprecision(16)<<ans<<endl;
-    
+    cout<<setprecision(16)<<f(high)<<endl;
 }
+
+/*
+//三分探索
+int main(){
+    cin>>P;
+
+    double low=0, high=100;
+    while(high-low>0.0000000001){
+        double left=high/3+2*low/3;
+        double right=2*high/3+low/3;
+        if(f(left)>f(right)) low=left;
+        else high=right;
+    }
+
+    cout<<setprecision(16)<<f(high)<<endl;
+}
+*/

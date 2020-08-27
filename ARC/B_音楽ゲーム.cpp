@@ -21,32 +21,21 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-vector<int> v[100000];
-int chk[100000];
+char x[101][9];
 
 int main(){
     cin>>N;
-    rep(i,N-1){
-        int a,b;
-        cin>>a>>b;
-        v[a-1].push_back(b-1);
-        v[b-1].push_back(a-1);
-    }
+    repn(i,N) rep(j,9) cin>>x[i][j]; 
 
-    vector<int> ans;
-    priority_queue<int,vector<int>,greater<int>> q;
-    q.push(0);
-    chk[0]=true;
-    while(!q.empty()){
-        int n=q.top(); q.pop();
-        ans.push_back(n);
-        repr(e,v[n]){
-            if(chk[e]) continue;
-            q.push(e);
-            chk[e]=true;
+    int ans=0;
+    rep(j,9){
+        repn(i,N){
+            if(x[i][j]=='x') ans++;
+            else if(x[i][j]=='o'){
+                if(x[i-1][j]!='o') ans++;
+            }
         }
     }
 
-    rep(i,ans.size()-1) cout<<(ans[i]+1)<<' ';
-    cout<<(ans[N-1]+1)<<endl;
+    cout<<ans<<endl;
 }

@@ -21,6 +21,7 @@
     D - Sum of Divisors                 割らない　ピラミッド
     D - Wall                            最短路
     D - Multiple of 2019                余りの性質を利用　***
+    D - joisino's travel                最短路＋全探索
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
     E - Almost Everywhere Zero          dp
@@ -28,6 +29,7 @@
 
 <<ARC>>
     D - Remainder Reminder              余りの問題
+    B - ムーアの法則                    三分探索、二分法
 
 <<AGC>>
     A - Diverse Word                    辞書順
@@ -94,4 +96,5 @@ lower
     D - Practical Skill Test
     B - Reversi
     D - Menagerie
+    D - joisino's travel
 
