@@ -20,17 +20,29 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-template<class T>T gcd(T a, T b){return b?gcd(b,a%b):a;}
-template<class T>T lcm(T a, T b){return a/gcd(a,b)*b;}
+int ax,ay,bx,by;
+int N;
+int X[101], Y[101];
 
-int A,B,C;
+int g(int a, int b, int c, int d, int e, int f){
+    return a*d+b*e+c*f-a*f-b*c-d*e;
+}
 
 int main(){
-    cin>>A>>B>>C;
+    cin>>ax>>ay>>bx>>by;
+    cin>>N;
+    rep(i,N) cin>>X[i]>>Y[i];
+    X[N]=X[0], Y[N]=Y[0];
 
-    string ans="YES";
-    int g=gcd(A,B);
-    if(C%g!=0) ans="NO";
+    int ans=0;
+    rep(i,N){
+        int s=g(ax,ay,bx,by,X[i],Y[i]);
+        int t=g(ax,ay,bx,by,X[i+1],Y[i+1]);
+        int u=g(X[i],Y[i],X[i+1],Y[i+1],ax,ay);
+        int v=g(X[i],Y[i],X[i+1],Y[i+1],bx,by);
+        if(s*t<0 && u*v<0) ans++;
+    }
 
+    ans=ans/2+1;
     cout<<ans<<endl;
 }

@@ -15,6 +15,10 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
+//typedef pair<int,int> P;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
+ll const MOD=1000000007;
 
 ll D;
 ll c[26+1];
@@ -28,37 +32,21 @@ void input(){
     repn(i,D) repn(j,26) cin>>s[i][j];
 }
 
-int main(){
-    input();
-
-    /*ll v=0;
+// 貪欲法 62,634,806
+void solve1(){
     repn(d,D){
-        ll maxi=0;
-        ll k=0;
-        repn(i,26){
-            if(maxi<=s[d][i]){
-                maxi=s[d][i];
-                k=i;
-            }
-        }
-        v+=maxi;
-        last[k]=d;
-        repn(i,26) v-=c[i]*(d-last[i]);
-        cout<<k<<endl;
-    }*/
-
-    repn(d,D){
-        ll maxi=0;
+        ll maxi=-LINF;
         ll idx=0;
         repn(i,26){
-            ll sum=s[d][i];
+            ll res=0;
+            res+=s[d][i];
             repn(j,26){
                 if(i==j) continue;
-                sum-=c[j]*(d-last[j]);
+                res-=c[j]*(d-last[j]);
             }
-            if(sum>=maxi){
+            if(maxi<res){
+                maxi=res;
                 idx=i;
-                maxi=sum;
             }
         }
         last[idx]=d;
@@ -66,24 +54,45 @@ int main(){
     }
 }
 
-/*
+// 貪欲法2
+void solve2(){
+    ll v[27][400];
+    ll max_score=-LINF;
+    ll max_idx=0;
+    rep(k,27){
+        ll score=0;
+        fill(last,last+27,0);
+        repn(d,D+k){
+            ll maxi=-LINF;
+            ll idx=0;
+            repn(i,26){
+                ll res=0;
+                if(d<=D) res+=s[d][i];
+                repn(j,26){
+                    if(i==j) continue;
+                    res-=c[j]*(d-last[j]);
+                }
+                if(maxi<res){
+                    maxi=res;
+                    idx=i;
+                }
+            }
+            last[idx]=d;
+            score+=maxi;
+            v[k][d]=idx;
+        }
+        if(max_score<score){
+            max_score=score;
+            max_idx=k;
+        }
+    }
+
+    repn(i,D){
+        cout<<v[max_idx][i]<<endl;
+    }  
+}
+
 int main(){
     input();
-
-    ll v=0;
-    repn(d,D){
-        ll maxi=0;
-        ll k=0;
-        repn(i,26){
-            if(maxi<=s[d][i]){
-                maxi=s[d][i];
-                k=i;
-            }
-        }
-        v+=maxi;
-        last[k]=d;
-        repn(i,26) v-=c[i]*(d-last[i]);
-        cout<<k<<endl;
-    }
+    solve2();
 }
-*/
