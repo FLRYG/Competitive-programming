@@ -25,7 +25,10 @@ int N;
 int X[101], Y[101];
 
 int g(int a, int b, int c, int d, int e, int f){
-    return a*d+b*e+c*f-a*f-b*c-d*e;
+    int res=a*d+b*e+c*f-a*f-b*c-d*e;
+    if(res<0) return -1;
+    else if(res>0) return 1;
+    return 0;
 }
 
 int main(){

@@ -20,29 +20,20 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[100000];
+string S,T;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    cin>>S>>T;
 
-    vector<int> v;
-    rep(i,N){
-        if(v.empty()){
-            v.push_back(A[i]);
-            continue;
+    int ans=0;
+    rep(i,S.size()-T.size()+1){
+        int cnt=0;
+        rep(j,T.size()){
+            if(S[i+j]==T[j]) cnt++;
         }
-        int l=-1, r=v.size();
-        while(r-l>1){
-            int mid=(l+r)/2;
-            if(v[mid]<A[i]) r=mid;
-            else l=mid;
-        }
-        if(r==v.size()) v.push_back(A[i]);
-        else v[r]=A[i];
+        ans=max(ans,cnt);
     }
+    ans=T.size()-ans;
 
-    int ans=v.size();
     cout<<ans<<endl;
 }

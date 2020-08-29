@@ -20,29 +20,12 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[100000];
+int D,T,S;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    cin>>D>>T>>S;
 
-    vector<int> v;
-    rep(i,N){
-        if(v.empty()){
-            v.push_back(A[i]);
-            continue;
-        }
-        int l=-1, r=v.size();
-        while(r-l>1){
-            int mid=(l+r)/2;
-            if(v[mid]<A[i]) r=mid;
-            else l=mid;
-        }
-        if(r==v.size()) v.push_back(A[i]);
-        else v[r]=A[i];
-    }
-
-    int ans=v.size();
-    cout<<ans<<endl;
+    if(T*S>=D) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
+    
 }

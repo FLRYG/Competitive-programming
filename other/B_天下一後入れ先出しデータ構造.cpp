@@ -22,6 +22,60 @@ typedef pair<ll,ll> P;
 //ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
+
+ll Q,L;
+string s;
+ll N,M;
+
+int main(){
+    cin>>Q>>L;
+    stack<P> stk;
+    ll sum=0;
+    rep(i,Q){
+        cin>>s;
+        if(s=="Push"){
+            cin>>N>>M;
+            stk.push(P(N,M));
+            sum+=N;
+            if(sum>L){
+                cout<<"FULL"<<endl;
+                return 0;
+            }
+        }
+        if(s=="Pop"){
+            cin>>N;
+            if(N>sum){
+                cout<<"EMPTY"<<endl;
+                return 0;
+            }
+            sum-=N;
+            while(N>0){
+                P p=stk.top(); stk.pop();
+                if(N>=p.first){
+                    N-=p.first;
+                }else{
+                    stk.push(P(p.first-N,p.second));
+                    N=0;
+                }
+            }
+        }
+        if(s=="Top"){
+            if(stk.empty()){
+                cout<<"EMPTY"<<endl;
+                return 0;
+            }
+            cout<<stk.top().second<<endl;
+        }
+        if(s=="Size"){
+            cout<<sum<<endl;
+        }
+    }
+
+    cout<<"SAFE"<<endl;
+}
+
+
+/*
 ll Q,L;
 string query[100000];
 stack<P> sta;
@@ -62,22 +116,24 @@ int main(){
                 N+=(s[idx]-'0')*ten;
                 ten*=10;
             }while(s[--idx]!=' ');
+
             if(N>sum){
                 cout<<"EMPTY"<<endl;
                 return 0;
             }
+
             sum-=N;
             while(N>0){
                 P p=sta.top(); sta.pop();
                 if(p.second>N){
                     sta.push(P(p.first,p.second-N));
-                    N-=N;
+                    N=0;
                 }else{
                     N-=p.second;
                 }
             }
         }else if(regex_search(s,sma,regex("Top"))){
-            if(sta.empty()){
+            if(sum==0){
                 cout<<"EMPTY"<<endl;
                 return 0;
             }
@@ -88,3 +144,4 @@ int main(){
     }
     cout<<"SAFE"<<endl;
 }
+*/

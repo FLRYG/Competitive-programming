@@ -21,28 +21,23 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-int A[100000];
+int s[100];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
+    rep(i,N) cin>>s[i];
 
-    vector<int> v;
-    rep(i,N){
-        if(v.empty()){
-            v.push_back(A[i]);
-            continue;
-        }
-        int l=-1, r=v.size();
-        while(r-l>1){
-            int mid=(l+r)/2;
-            if(v[mid]<A[i]) r=mid;
-            else l=mid;
-        }
-        if(r==v.size()) v.push_back(A[i]);
-        else v[r]=A[i];
+    sort(s,s+N);
+
+    int ans=0;
+    rep(i,N) ans+=s[i];
+
+    if(ans%10!=0){
+        cout<<ans<<endl;
+        return 0;
     }
 
-    int ans=v.size();
-    cout<<ans<<endl;
+    rep(i,N){
+        
+    }
 }

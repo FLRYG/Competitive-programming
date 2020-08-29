@@ -91,6 +91,7 @@ lower
     C - 列
     D - Anything Goes to Zero
     B - ヘイホー君と削除
+    E - Sequence Decomposing
 
 <<再2>>
     D - Practical Skill Test

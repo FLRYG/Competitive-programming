@@ -20,29 +20,51 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[100000];
+ll N;
+ll A[200001];
+
+int main(){
+    cin>>N;
+    repn(i,N) cin>>A[i];
+
+    vector<ll> sum(N+1);
+    repn(i,N){
+        sum[i]+=sum[i-1]+A[i];
+        sum[i]%=MOD;
+    }
+
+    ll ans=0;
+    repn(i,N){
+        ans+=A[i]*(sum[N]-sum[i]);
+        ans%=MOD;
+    }
+    if(ans<0) ans+=MOD;
+
+    cout<<ans<<endl;
+}
+
+/*
+ll N;
+ll A[200000];
 
 int main(){
     cin>>N;
     rep(i,N) cin>>A[i];
 
-    vector<int> v;
+    ll sum=0;
     rep(i,N){
-        if(v.empty()){
-            v.push_back(A[i]);
-            continue;
-        }
-        int l=-1, r=v.size();
-        while(r-l>1){
-            int mid=(l+r)/2;
-            if(v[mid]<A[i]) r=mid;
-            else l=mid;
-        }
-        if(r==v.size()) v.push_back(A[i]);
-        else v[r]=A[i];
+        sum+=A[i];
+        sum%=MOD;
     }
 
-    int ans=v.size();
+    ll ans=0;
+    rep(i,N){
+        ans+=A[i]*sum;
+        ans-=A[i]*A[i];
+        ans%=MOD;
+    }
+    ans/=2;
+    ans=(ans+MOD)%MOD;
+
     cout<<ans<<endl;
-}
+}*/
