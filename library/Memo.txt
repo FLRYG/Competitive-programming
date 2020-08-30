@@ -22,10 +22,12 @@
     D - Wall                            最短路
     D - Multiple of 2019                余りの性質を利用　***
     D - joisino's travel                最短路＋全探索
+    D - Patisserie ABC                  絶対値の外し方
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
     E - Almost Everywhere Zero          dp
     E - Logs                            二分探索
+    E - Coprime                         素因数分解？
 
 <<ARC>>
     D - Remainder Reminder              余りの問題
@@ -92,6 +94,8 @@ lower
     D - Anything Goes to Zero
     B - ヘイホー君と削除
     E - Sequence Decomposing
+    E - Coprime
+    D - Patisserie ABC
 
 <<再2>>
     D - Practical Skill Test

@@ -23,45 +23,35 @@ ll const MOD=1000000007;
 template<class T>T gcd(T a, T b){return b?gcd(b,a%b):a;}
 template<class T>T lcm(T a, T b){return a/gcd(a,b)*b;}
 
-ll N;
-ll A[1000000];
+int MAX=1000000;
+int N;
+int A[1000000];
 
 int main(){
     cin>>N;
     rep(i,N) cin>>A[i];
 
-    ll maxi=0;
-    rep(i,N) maxi=max(maxi,A[i]);
+    vector<int> cnt(MAX+1);
+    rep(i,N) cnt[A[i]]++;
 
-    vector<ll> D(maxi+1,0);
-    for(int i=2;i<=maxi;i++){
-        for(int j=1;i*j<=maxi;j++){
-            D[i*j]=j;
-        }
-    }
-
-    vector<ll> cnt(1001);
-    rep(i,N){
-        ll a=A[i];
-        while(a>1){
-            ll m=D[a];
-            while(a%m==0) a/=m;
-            cnt[m]++;
-        }
-    }
     bool flag=true;
-    rep(i,1000){
-        if(cnt[i]>1) flag=false;
+    for(int i=2;i<=MAX;i++){
+        int sum=0;
+        for(int j=i;j<=MAX;j+=i){
+            sum+=cnt[j];
+        }
+        if(sum>1){
+            flag=false;
+            break;
+        }
     }
     if(flag){
         cout<<"pairwise coprime"<<endl;
         return 0;
     }
-
-    ll g=0;
-    rep(i,N){
-        g=gcd(g,A[i]);
-    }
+    
+    int g=0;
+    rep(i,N) g=gcd(g,A[i]);
     if(g==1){
         cout<<"setwise coprime"<<endl;
     }else{

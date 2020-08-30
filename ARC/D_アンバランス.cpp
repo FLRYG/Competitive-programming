@@ -20,34 +20,8 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int s[100];
+
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>s[i];
-
-    sort(s,s+N);
-
-    int ans=0;
-    rep(i,N) ans+=s[i];
-
-    if(ans%10!=0){
-        cout<<ans<<endl;
-        return 0;
-    }
-
-    rep(i,N){
-        if(s[i]%10!=0){
-            ans-=s[i];
-            break;
-        }    
-    }
-
-    if(ans%10!=0){
-        cout<<ans<<endl;
-        return 0;
-    }
-
-    cout<<0<<endl;
+    
 }

@@ -16,6 +16,49 @@ using namespace std;
 typedef long long ll;
 
 ll N;
+ll A[100000];
+ll B[100000];
+ll C[100000];
+
+int main(){
+    cin>>N;
+    rep(i,N) cin>>A[i];
+    rep(i,N) cin>>B[i];
+    rep(i,N) cin>>C[i];
+    sort(A,A+N);
+    sort(B,B+N);
+    sort(C,C+N);
+
+    vector<ll> ab(100005);
+    rep(i,N){
+        ll l=-1, r=N;
+        while(r-l>1){
+            ll m=(l+r)/2;
+            if(B[i]<=A[m]) r=m;
+            else l=m; 
+        }
+        ab[i]=r;
+    }
+    rep(i,N-1) ab[i+1]+=ab[i];
+    //rep(i,N) cout<<ab[i]<<endl;
+
+    ll ans=0;
+    rep(i,N){
+        ll l=-1, r=N;
+        while(r-l>1){
+            ll m=(l+r)/2;
+            if(C[i]<=B[m]) r=m;
+            else l=m; 
+        }
+        if(r>0) ans+=ab[r-1];
+    }
+
+    cout<<ans<<endl;
+}
+
+
+/* AC
+ll N;
 ll A[100000], B[100000], C[100000];
 
 int main(){
@@ -42,81 +85,4 @@ int main(){
     
     cout<<ans<<endl;
 }
-
-/*
-int N;
-int A[100000], B[100000], C[100000];
-
-int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
-    rep(i,N) cin>>B[i];
-    rep(i,N) cin>>C[i];
-    sort(A,A+N);
-    sort(C,C+N);
-
-    int ans=0;
-    rep(i,N){
-        int a;
-        int left=-1, right=N, center;
-        while(right-left>1){
-            center=(left+right)/2;
-            if(A[center]<B[i]) left=center;
-            else right=center;
-        }
-        a=right;
-
-        int c;
-        left=-1, right=N;
-        while(right-left>1){
-            center=(left+right)/2;
-            if(C[center]>B[i]) right=center;
-            else left=center;
-        }
-        c=N-right;
-
-        ans+=a*c;
-    }
-    
-    cout<<ans<<endl;
-}
 */
-
-/*
-int N;
-int A[100000], B[100000], C[100000];
-
-int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
-    rep(i,N) cin>>B[i];
-    rep(i,N) cin>>C[i];
-    sort(A,A+N);
-    sort(B,B+N);
-    sort(C,C+N);
-
-    int cntB[100000];
-    int head=0;
-    rep(i,N){
-        while(head!=N && B[i]<=A[head]) head++;
-        cntB[i]=N-head;
-    }
-    rep(i,N) cout<<cntB[i]<<' '; cout<<'\n';
-    int sum=0;
-    rep(i,N){
-        cntB[N-1-i]+=sum;
-        sum=cntB[N-1-i];
-    }
-    rep(i,N) cout<<cntB[i]<<' '; cout<<'\n';
-
-    int ans=0;
-    head=0;
-    rep(i,N){
-        while(head!=N && C[i]<=B[head]) head++;
-        if(head==N) break;
-        //cout<<i<<' '<<cntB[head]<<endl;
-        ans+=cntB[head];
-    }
-
-    cout<<ans<<endl;
-}*/
