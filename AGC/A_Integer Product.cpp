@@ -21,6 +21,69 @@ ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
 ll N;
+ll A[200000];
+
+int main(){
+    cin>>N;
+    rep(i,N){
+        double a;
+        cin>>a;
+        A[i]=a*1e9;
+    }
+
+    vector<P> cnt(N);
+    vector<vector<ll>> v(20,vector<ll>(20,0));
+    rep(i,N){
+        ll two=0, five=0;
+        ll a=A[i];
+        rep(j,18){
+            if(a%2!=0) break;
+            a/=2;
+            two++;
+        }
+        rep(j,18){
+            if(a%5!=0) break;
+            a/=5;
+            five++;
+        }
+        //cout<<two<<' '<<five<<endl;
+        cnt[i]=P(two,five);
+        v[two][five]++;
+    }
+    //rep(i,19){rep(j,19){cout<<v[i][j]<<' ';}cout<<endl;}
+    rep(i,19){
+        for(int j=18;j>=0;j--){
+            v[i][j]+=v[i][j+1];
+        }
+    }
+    //cout<<endl;
+    //rep(i,19){rep(j,19){cout<<v[i][j]<<' ';}cout<<endl;}
+    rep(j,19){
+        for(int i=18;i>=0;i--){
+            v[i][j]+=v[i+1][j];
+        }
+    }
+    //cout<<endl;
+    //rep(i,19){rep(j,19){cout<<v[i][j]<<' ';}cout<<endl;}
+
+    ll ans=0;
+    rep(i,N){
+        ll two=18-cnt[i].first;
+        ll five=18-cnt[i].second;
+        ll res=v[two][five];
+        if(two<=cnt[i].first && five<=cnt[i].second) res--;
+        //cout<<i<<' '<<res<<endl;
+        ans+=res;
+    }
+    ans/=2;
+
+    cout<<ans<<endl;
+}
+
+
+
+/*
+ll N;
 double A[200000];
 ll a[200000];
 P cnt[200000];
@@ -87,3 +150,4 @@ int main(){
     }
     cout<<ans<<endl;
 }
+*/

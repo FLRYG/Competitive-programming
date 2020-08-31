@@ -20,18 +20,10 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,T;
-ll t[200000];
+ll A,K;
 
 int main(){
-    cin>>N>>T;
-    rep(i,N) cin>>t[i];
-
-    ll ans=0;
-    rep(i,N-1){
-        ans+=min(T,t[i+1]-t[i]);
-    }
-    ans+=T;
-
-    cout<<ans<<endl;
+    cin>>A>>K;
+    
+    
 }

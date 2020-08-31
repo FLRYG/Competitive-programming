@@ -32,6 +32,7 @@
 <<ARC>>
     D - Remainder Reminder              余りの問題
     B - ムーアの法則                    三分探索、二分法
+    D - アンバランス                    鳩ノ巣原理
 
 <<AGC>>
     A - Diverse Word                    辞書順
@@ -96,6 +97,7 @@ lower
     E - Sequence Decomposing
     E - Coprime
     D - Patisserie ABC
+    D - アンバランス
 
 <<再2>>
     D - Practical Skill Test
