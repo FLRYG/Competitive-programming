@@ -20,20 +20,25 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll A,K;
+int N;
 
 int main(){
-    cin>>A>>K;
+    cin>>N;
     
-    ll ans=0;
-    if(K==0){
-        ans=(ll)2e12-A;
-    }else{
-        while(A<(ll)2e12){
-            A+=1+K*A;
-            ans++;
+    bool flag=true;
+    repn(i,sqrt(N)){
+        if(i==1) continue;
+        if(N%i==0){
+            flag=false;
+            break;
         }
     }
+    if((N%10)%2!=0 && (N%10)%5!=0 && N%3!=0) flag=true;
+    if(N==1) flag=false;
 
-    cout<<ans<<endl;
+    if(flag){
+        cout<<"Prime"<<endl;
+    }else{
+        cout<<"Not Prime"<<endl;
+    }
 }

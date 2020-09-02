@@ -20,20 +20,17 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll A,K;
+string S;
+int N;
+int l[100], r[100];
 
 int main(){
-    cin>>A>>K;
-    
-    ll ans=0;
-    if(K==0){
-        ans=(ll)2e12-A;
-    }else{
-        while(A<(ll)2e12){
-            A+=1+K*A;
-            ans++;
-        }
+    cin>>S>>N;
+    rep(i,N) cin>>l[i]>>r[i];
+
+    rep(i,N){
+        reverse(S.begin()+l[i]-1,S.begin()+r[i]);
     }
 
-    cout<<ans<<endl;
+    cout<<S<<endl;
 }

@@ -22,45 +22,47 @@ ll const MOD=1000000007;
 
 ll N;
 ll A[200000];
+ll v[20][20];
 
 int main(){
     cin>>N;
     rep(i,N){
-        double a;
-        cin>>a;
-        A[i]=a*1e9;
+        string s;
+        cin>>s;
+        rep(i,s.size()){
+            if(s[i]=='.'){
+                repn(j,9){
+                    if(i+j<s.size()) continue;
+                    else s+='0';
+                }
+                goto x;
+            }
+        }
+        rep(i,9) s+='0';
+        x:;
+        ll a=0;
+        rep(i,s.size()){
+            if(s[i]!='.') a=a*10+(s[i]-'0');
+            else continue;
+        }
+        A[i]=a;
     }
 
     vector<P> cnt(N);
-    vector<vector<ll>> v(20,vector<ll>(20,0));
+    //vector<vector<ll>> v(20,vector<ll>(20,0));
     rep(i,N){
         ll two=0, five=0;
         ll a=A[i];
-        rep(j,18){
-            if(a%2!=0) break;
-            a/=2;
-            two++;
-        }
-        rep(j,18){
-            if(a%5!=0) break;
-            a/=5;
-            five++;
-        }
+        while(a%2==0 && two<18) a/=2, two++;
+        while(a%5==0 && five<18) a/=5, five++;
         //cout<<two<<' '<<five<<endl;
         cnt[i]=P(two,five);
         v[two][five]++;
     }
     //rep(i,19){rep(j,19){cout<<v[i][j]<<' ';}cout<<endl;}
-    rep(i,19){
+    for(int i=18;i>=0;i--){
         for(int j=18;j>=0;j--){
-            v[i][j]+=v[i][j+1];
-        }
-    }
-    //cout<<endl;
-    //rep(i,19){rep(j,19){cout<<v[i][j]<<' ';}cout<<endl;}
-    rep(j,19){
-        for(int i=18;i>=0;i--){
-            v[i][j]+=v[i+1][j];
+            v[i][j]+=v[i][j+1]+v[i+1][j]-v[i+1][j+1];
         }
     }
     //cout<<endl;

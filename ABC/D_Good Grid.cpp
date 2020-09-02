@@ -20,18 +20,32 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll A,K;
+int N,C;
+int D[31][31];
+int c[501][501];
+int sum[3][31];
 
 int main(){
-    cin>>A>>K;
-    
-    ll ans=0;
-    if(K==0){
-        ans=(ll)2e12-A;
-    }else{
-        while(A<(ll)2e12){
-            A+=1+K*A;
-            ans++;
+    cin>>N>>C;
+    repn(i,C) repn(j,C) cin>>D[i][j];
+    repn(i,N) repn(j,N) cin>>c[i][j];
+
+    repn(i,N){
+        repn(j,N){
+            repn(k,C){
+                sum[(i+j)%3][k]+=D[c[i][j]][k];
+            }
+        }
+    }
+
+    int ans=INF;
+    repn(i,C){
+        repn(j,C){
+            if(i==j) continue;
+            repn(k,C){
+                if(i==k || j==k) continue;
+                ans=min(ans,sum[0][i]+sum[1][j]+sum[2][k]);
+            }
         }
     }
 

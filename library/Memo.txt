@@ -98,6 +98,7 @@ lower
     E - Coprime
     D - Patisserie ABC
     D - アンバランス
+    A_Integer Product
 
 <<再2>>
     D - Practical Skill Test

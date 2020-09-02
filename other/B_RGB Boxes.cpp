@@ -20,18 +20,19 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll A,K;
+int R,G,B,N;
 
 int main(){
-    cin>>A>>K;
-    
-    ll ans=0;
-    if(K==0){
-        ans=(ll)2e12-A;
-    }else{
-        while(A<(ll)2e12){
-            A+=1+K*A;
-            ans++;
+    cin>>R>>G>>B>>N;
+
+    int ans=0;
+    rep(r,3001){
+        int x=R*r;
+        if(x>N) break;
+        rep(g,3001){
+            int y=G*g;
+            if(x+y>N) break;
+            if((N-x-y)%B==0) ans++;
         }
     }
 

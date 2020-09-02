@@ -20,20 +20,20 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll A,K;
+string N;
 
 int main(){
-    cin>>A>>K;
-    
-    ll ans=0;
-    if(K==0){
-        ans=(ll)2e12-A;
-    }else{
-        while(A<(ll)2e12){
-            A+=1+K*A;
-            ans++;
+    cin>>N;
+
+    int ans=9*(N.size()-1);
+    ans+=N[0]-'0'-1;
+    repn(i,N.size()-1){
+        if(N[i]!='9'){
+            goto a;
         }
     }
+    ans++;
+    a:;
 
     cout<<ans<<endl;
 }
