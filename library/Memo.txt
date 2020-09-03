@@ -98,7 +98,8 @@ lower
     E - Coprime
     D - Patisserie ABC
     D - アンバランス
-    A_Integer Product
+    A - Integer Product
+    D - Wizard in Maze
 
 <<再2>>
     D - Practical Skill Test
