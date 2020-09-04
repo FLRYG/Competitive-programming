@@ -20,26 +20,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int A,B;
+int N,M;
+int d[100];
 
 int main(){
-    cin>>A>>B;
+    cin>>N>>M;
+    rep(i,M) cin>>d[i];
 
-    int ans=A-B;
-    repn(a,999){
-        if(a<100) continue;
-        bool f=0;
-        if(A%100==a%100 || (A/100==a/100 && A%10==a%10)
-        || A/10==a/10) f=1; 
-        repn(b,999){
-            if(b<100) continue;
-            bool g=0;
-            if(B%100==b%100 || (B/100==b/100 && B%10==b%10)
-            || B/10==b/10) g=1;
-            if(f==1 && g==0) ans=max(ans,a-B); 
-            if(f==0 && g==1) ans=max(ans,A-b); 
-        }
+    vector<int> v(105);
+    rep(i,N+1) v[i]=i;
+
+    rep(i,M){
+        swap(v[0],v[d[i]]);
+        rep(i,N+1) cout<<v[i]<<' ';
+        cout<<endl;
     }
 
-    cout<<ans<<endl;
+    repn(i,N){
+        cout<<v[i]<<endl;
+    }
 }

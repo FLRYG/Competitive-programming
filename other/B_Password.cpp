@@ -21,6 +21,49 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 string s;
+
+int main(){
+    cin>>s;
+
+    if(s=="a" || s=="zzzzzzzzzzzzzzzzzzzz"){
+        cout<<"NO"<<endl;
+        return 0;
+    }
+
+    bool flag=true;
+    rep(i,s.size()) flag&=s[i]=='a';
+
+    if(flag){
+        s[0]++;
+        s.pop_back();
+        cout<<s<<endl;
+        return 0;
+    }
+
+    if(s.size()<20){
+        int i=0;
+        while(s[i]=='a') i++;
+        s[i]--;
+        s+='a';
+        cout<<s<<endl;
+        return 0;
+    }
+    
+    int k=0, l=s.size()-1;
+    rep(i,s.size()){
+        if(s[i]>s[k]) k=i;
+        if(s[i]<s[l]) l=i;
+    }
+    s[k]--;
+    s[l]++;
+    cout<<s<<endl;
+    return 0;
+}
+
+
+
+/*
+string s;
 char c[20];
 
 int main(){
@@ -57,3 +100,4 @@ int main(){
         cout<<"NO"<<endl;
     }
 }
+*/
