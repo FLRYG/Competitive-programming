@@ -22,6 +22,7 @@ ll const MOD=1000000007;
 
 int N,C;
 P p[100000];
+bool chk[100000];
 
 int main(){
     cin>>N>>C;
@@ -32,12 +33,28 @@ int main(){
         p[i].first.second=s-1;
         p[i].second=c;
     }
+    rep(i,N){
+        cout<<p[i].first.first<<' '<<p[i].first.second<<' '<<p[i].second<<endl;
+    }
 
     sort(p,p+N);
 
-    vector<int> time(1);
-    time[0]=0;
-    rep(i,N){
-        
+    int ans=0;
+    rep(k,C){
+        int time=0;
+        int cnt=0;
+        rep(i,N){
+            cout<<p[i].first.second<<endl;
+            if(!chk[i] && p[i].first.second>=time){
+                time=p[i].first.first;
+                cnt++;
+                chk[i]=true;
+            }
+            cout<<time<<endl;
+        }
+        if(cnt==0) break;
+        ans++;
     }
+
+    cout<<ans<<endl;
 }

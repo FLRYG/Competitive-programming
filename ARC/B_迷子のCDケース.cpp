@@ -31,9 +31,9 @@ int main(){
     rep(i,N+1) v[i]=i;
 
     rep(i,M){
-        swap(v[0],v[d[i]]);
-        rep(i,N+1) cout<<v[i]<<' ';
-        cout<<endl;
+        int idx=0;
+        rep(j,N+1) if(v[j]==d[i]) v[j]=v[0];
+        v[0]=d[i];
     }
 
     repn(i,N){
