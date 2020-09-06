@@ -14,8 +14,11 @@
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
-
-const ll MOD=998244353;
+typedef long double ld;
+//typedef pair<int,int> P;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
+ll const MOD=998244353;
 
 ll mpow(ll x,ll n){
     if(n==0) return 1;
@@ -46,8 +49,9 @@ int main(){
     cin>>N>>M>>K;
 
     ll ans=0;
-    rep(i,K+1){
-        ans+=M*mpow(M-1,N-i-1)%MOD;
+    rep(k,K+1){
+        ans+=mcomb(N-1,k)*i
+        //ans+=M*mpow(M-1,N-i-1)%MOD;
         ans%=MOD;
     }
 

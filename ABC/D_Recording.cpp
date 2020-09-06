@@ -33,9 +33,6 @@ int main(){
         p[i].first.second=s-1;
         p[i].second=c;
     }
-    rep(i,N){
-        cout<<p[i].first.first<<' '<<p[i].first.second<<' '<<p[i].second<<endl;
-    }
 
     sort(p,p+N);
 
@@ -43,14 +40,17 @@ int main(){
     rep(k,C){
         int time=0;
         int cnt=0;
+        int bef=-1;
         rep(i,N){
-            cout<<p[i].first.second<<endl;
-            if(!chk[i] && p[i].first.second>=time){
+            //cout<<p[i].first.second<<endl;
+            if(!chk[i] && (p[i].first.second>=time 
+            || (bef==p[i].second && p[i].first.second>=time-1))){
                 time=p[i].first.first;
                 cnt++;
                 chk[i]=true;
+                bef=p[i].second;
             }
-            cout<<time<<endl;
+            //cout<<time<<endl;
         }
         if(cnt==0) break;
         ans++;

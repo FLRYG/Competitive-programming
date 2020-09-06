@@ -20,27 +20,36 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
+int N;
 string S[3];
-ll cnt[3][26];
+int cnt[3][26];
 
 int main(){
     rep(i,3) cin>>S[i];
+    N=S[0].size()/2;
 
     rep(i,3){
-        rep(j,26){
-            cnt[S[i]-'0']++;
+        rep(j,2*N){
+            cnt[i][S[i][j]-'A']++;
         }
     }
 
-    ll N1=N2=S[0].size();
-    string ans="NO";
+    int suminf=0;
+    int sumsup=0;
     rep(i,26){
-        if(cnt[0][i]+cnt[1][i]<cnt[2][i]){
-            cout<<ans<<endl;
+        int mini=max(0,cnt[2][i]-cnt[1][i]);
+        int maxi=min(cnt[2][i],cnt[0][i]);
+        if(mini>cnt[0][i]){
+            cout<<"NO"<<endl;
             return 0;
         }
-        if(cnt[0][i]+cnt[1][i]==cnt[]){
+        suminf+=mini;
+        sumsup+=maxi;
+    }
 
-        }
+    if(suminf<=N && N<=sumsup){
+        cout<<"YES"<<endl;
+    }else{
+        cout<<"NO"<<endl;
     }
 }
