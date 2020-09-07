@@ -44,15 +44,15 @@ ll mcomb(ll n,ll r){
 }
 
 ll N,M,K;
+ll dp[200000];
 
 int main(){
     cin>>N>>M>>K;
 
     ll ans=0;
-    rep(k,K+1){
-        ans+=mcomb(N-1,k)*i
-        //ans+=M*mpow(M-1,N-i-1)%MOD;
-        ans%=MOD;
+    dp[K+1]=mpow(M,N);
+    repn(i,K){
+        dp[i]=dp[i-1]*mpow()
     }
 
     cout<<ans<<endl;

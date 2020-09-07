@@ -15,22 +15,36 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<pair<int,int>,int> P;
+typedef pair<int,int> P;
+typedef pair<pair<int,int>,int> PP;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N,C;
-P p[100000];
 bool chk[100000];
 
 int main(){
     cin>>N>>C;
+    vector<priority_queue<P,vector<P>,greater<P>>> p(C+1,vector<P>(0));
     rep(i,N){
         int s,t,c;
         cin>>s>>t>>c;
+        p[c].push_back(P(s,t));
+    }
+    repn(i,C){
+        int s=0;
+        int t=0;
+        rep(j,p[i].size()){
+
+        }
+    }
+
+
+    P p[100000];
+    rep(i,N){
         p[i].first.first=t;
-        p[i].first.second=s-1;
+        p[i].first.second=s;
         p[i].second=c;
     }
 
