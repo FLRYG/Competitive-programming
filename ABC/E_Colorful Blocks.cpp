@@ -26,33 +26,18 @@ ll mpow(ll x,ll n){
     return mpow(x*x%MOD,n/2)%MOD;
 }
 
-ll mfrac(ll n){
-    if(n==0) return 1;
-    else return n*mfrac(n-1)%MOD;
-}
-
-ll mperm(ll n,ll r){
-    ll res=1;
-    for(ll i=0;i<r;i++) res=res*(n-i)%MOD;
-    return res;
-}
-
-ll mcomb(ll n,ll r){
-    if(r>n-r) r=n-r;
-    ll res=mperm(n,r);
-    return res*mpow(mfrac(r),MOD-2)%MOD;
-}
-
 ll N,M,K;
-ll dp[200000];
 
 int main(){
     cin>>N>>M>>K;
 
     ll ans=0;
-    dp[K+1]=mpow(M,N);
-    repn(i,K){
-        dp[i]=dp[i-1]*mpow()
+    ll comb=1;
+    rep(i,K+1){
+        ans+=M*mpow(M-1,N-1-i)%MOD*comb%MOD;
+        ans%=MOD;
+        comb*=(N-1-i)*mpow(i+1,MOD-2)%MOD;
+        comb%=MOD;
     }
 
     cout<<ans<<endl;
