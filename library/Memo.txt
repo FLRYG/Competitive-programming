@@ -105,6 +105,7 @@ lower
     D - Wizard in Maze
     C - 錬金術士
     E - Colorful Blocks
+    D - Recording
 
 <<再2>>
     D - Practical Skill Test

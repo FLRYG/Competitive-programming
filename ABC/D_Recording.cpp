@@ -21,6 +21,53 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N,C;
+
+int main(){
+    cin>>N>>C;
+    vector<vector<P>> v(C,vector<P>(0));
+    rep(i,N){
+        int s,t,c;
+        cin>>s>>t>>c;
+        v[c-1].push_back(P(s,t));
+    }
+
+    vector<int> cnt(100002,0);
+    vector<int> x(100002,0);
+    rep(i,C){
+        fill(x.begin(),x.end(),0);
+        //cout<<i<<endl;
+        //rep(j,v[i].size()) cout<<v[i][j].first<<' '<<v[i][j].second<<endl;
+        rep(j,v[i].size()){
+            x[v[i][j].first]++;
+            x[v[i][j].second]--;
+        }
+        //repn(j,100) cout<<j%10<<' ';cout<<endl;
+        //repn(j,100) cout<<x[j]<<' ';cout<<endl;
+        for(int j=100000;j>=0;j--){
+            if(x[j]==-1){
+                x[j]++;
+                x[j+1]--;
+            }
+        }
+        //repn(j,100) cout<<j%10<<' ';cout<<endl;
+        //repn(j,100) cout<<x[j]<<' ';cout<<endl;
+        rep(j,100002){
+            cnt[j]+=x[j];
+        }
+    }
+
+    repn(i,100001){
+        cnt[i]+=cnt[i-1];
+    }
+
+    int ans=0;
+    repn(i,100000) ans=max(ans,cnt[i]);
+
+    cout<<ans<<endl;
+}
+
+/*
+int N,C;
 bool chk[100000];
 
 int main(){
@@ -33,25 +80,26 @@ int main(){
     }
     vector<P> vv(0);
     repn(i,C){
-        int s=0;
-        int t=0;
+        int s=1;
+        int t=1;
         int a=v[i].size();
         rep(j,a){
             P p=v[i].top(); v[i].pop(); 
             if(t==p.first){
                 t=p.second;
             }else{
-                if(s!=0 || t!=0){
+                if(s!=t){
                     vv.push_back(P(t,s-1));
                 }
                 s=p.first;
                 t=p.second;
             }
         }
-        vv.push_back(P(t,s-1));
+        if(s!=t) vv.push_back(P(t,s-1));
     }
 
     sort(vv.begin(),vv.end());
+    //rep(i,vv.size()) cout<<vv[i].second<<' '<<vv[i].first<<endl;
 
     int ans=0;
     rep(i,C){
@@ -70,3 +118,4 @@ int main(){
 
     cout<<ans<<endl;
 }
+*/
