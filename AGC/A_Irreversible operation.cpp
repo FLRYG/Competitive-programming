@@ -20,40 +20,21 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W,N;
-int sr,sc;
-string S,T;
-int cnt[2][4][200001];
+ll N;
+string S;
 
 int main(){
-    cout<<(char)65<<endl;
-    cin>>H>>W>>N>>sr>>sc>>S>>T;
-    map<char,int> m;
-    m['L']=0;
-    m['R']=1;
-    m['U']=2;
-    m['D']=3;
+    cin>>S;
+    N=S.size();
 
-    repn(i,N){
-        cnt[0][m[S[i-1]]][i]++;
-        cnt[1][m[T[i-1]]][i]++;
-    }
-    rep(i,2){
-        rep(j,4){
-            repn(k,N){
-                cnt[i][j][k]+=cnt[i][j][k-1];
-            }
-        }
-    }
-
-    int x=sr, y=sc;
+    ll w=0;
+    ll ans=0;
     rep(i,N){
-        if(S[i]=='L') x--;
-        if(S[i]=='U') y--;
-        if(x<1 || y<1){
-
+        if(S[i]=='W'){
+            ans+=i-w;
+            w++;
         }
     }
 
-    cout<<"YES"<<endl;
+    cout<<ans<<endl;
 }
