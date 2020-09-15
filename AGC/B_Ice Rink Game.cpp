@@ -27,25 +27,16 @@ int main(){
     cin>>K;
     rep(i,K) cin>>A[i];
 
-    ll L=2-1, R=2;
-    rep(i,K){
-        R=R+A[K-i-1]-1;
-    }
-    R++;
-
-    ll l=L, r=R;
-    while(r-l<1){
-        ll mid=(l+r)/2;
-        ll res=mid;
-        rep(i,K) res=res-res%A[i];
-        if(2<=res) r=mid;
-        else l=mid;
+    ll inf=2, sup=2;
+    for(int i=K-1;i>=0;i--){
+        if(sup/A[i]-(inf-1)/A[i]<=0){
+            cout<<-1<<endl;
+            return 0;
+        }
+        cout<<i<<endl;
+        inf=((inf-1)/A[i]+1)*A[i];
+        sup=sup/A[i]+A[i]-1;
     }
 
-    if(r==l+1 || r==R){
-        cout<<-1<<endl;
-    }
-
-    
-    cout<<ans1<<' '<<ans2<<endl;
+    cout<<inf<<' '<<sup<<endl;
 }

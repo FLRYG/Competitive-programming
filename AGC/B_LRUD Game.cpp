@@ -26,7 +26,6 @@ string S,T;
 int cnt[2][4][200001];
 
 int main(){
-    cout<<(char)65<<endl;
     cin>>H>>W>>N>>sr>>sc>>S>>T;
     map<char,int> m;
     m['L']=0;
@@ -46,13 +45,27 @@ int main(){
         }
     }
 
-    int x=sr, y=sc;
+    int x=sc, y=sr;
     rep(i,N){
         if(S[i]=='L') x--;
         if(S[i]=='U') y--;
         if(x<1 || y<1){
-
+            cout<<"NO"<<endl;
+            return 0;
         }
+        if(T[i]=='R') x=min(x+1,W);
+        if(T[i]=='D') y=min(y+1,H);
+    }
+    x=sc, y=sr;
+    rep(i,N){
+        if(S[i]=='R') x++;
+        if(S[i]=='D') y++;
+        if(x>W || y>H){
+            cout<<"NO"<<endl;
+            return 0;
+        }
+        if(T[i]=='L') x=max(x-1,1);
+        if(T[i]=='U') y=max(y-1,1);
     }
 
     cout<<"YES"<<endl;
