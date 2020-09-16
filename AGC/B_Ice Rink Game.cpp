@@ -33,9 +33,10 @@ int main(){
             cout<<-1<<endl;
             return 0;
         }
-        cout<<i<<endl;
+        //cout<<i<<endl;
         inf=((inf-1)/A[i]+1)*A[i];
-        sup=sup/A[i]+A[i]-1;
+        sup=sup/A[i]*A[i]+A[i]-1;
+
     }
 
     cout<<inf<<' '<<sup<<endl;

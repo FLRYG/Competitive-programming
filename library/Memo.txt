@@ -106,6 +106,7 @@ lower
     C - 錬金術士
     E - Colorful Blocks
     D - Recording
+    B - Ice Rink Game
 
 <<再2>>
     D - Practical Skill Test
