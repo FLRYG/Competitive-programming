@@ -113,4 +113,5 @@ lower
     B - Reversi
     D - Menagerie
     D - joisino's travel
+    D - equeue
 

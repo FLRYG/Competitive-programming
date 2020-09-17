@@ -7,39 +7,53 @@
 #include <iomanip>
 #include <queue>
 #include <deque>
+#include <map>
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
+#define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
+typedef long double ld;
+//typedef pair<int,int> P;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
+ll const MOD=1000000007;
 
 int N,K;
 int D[50];
 
 int main(){
-    cin>>N;
+    cin>>N>>K;
     rep(i,N) cin>>D[i];
 
     int ans=0;
-    repn(k,K){
+    repn(k,min(N,K)){
         rep(m,k+1){
-            deque<int> d;
-            rep(i,N) d.push_back(D[i]);
             vector<int> v;
+            int res=0;
+            //cout<<m<<' '<<k-m<<' '<<'/';
             rep(i,m){
-                if(!d.empty()) v.push_back(d.front()), d.pop_front();
+                //cout<<D[i]<<' ';
+                v.push_back(D[i]);
+                res+=D[i];
             }
-            rep(j,k-m){
-                if(!d.empty()) v.push_back(d.back()), d.pop_back();
+            //cout<<'/';
+            rep(i,k-m){
+                //cout<<D[N-i-1]<<' ';
+                v.push_back(D[N-i-1]);
+                res+=D[N-i-1];
             }
-            sort(v.begin(),v.end(),greater<>());
-            rep(i,min(K-k,(int)v.size())){
-                if(v[v.size()-i-1]<0) v.pop_back();
+            //cout<<endl;
+            sort(v.begin(),v.end());
+            //rep(i,v.size()) cout<<v[i]<<' '; //cout<<endl;
+            //cout<<res<<endl;
+            rep(i,K-k){
+                //cout<<v[i]<<endl;
+                if(v[i]<0) res+=-v[i];
                 else break;
             }
-            int res=0;
-            rep(i,v.size()) res+=v[i];
-            cout<<m<<' '<<k-m<<' '<<res<<endl;
+            //cout<<' '<<res<<endl;
             ans=max(ans,res);
         }
     }
