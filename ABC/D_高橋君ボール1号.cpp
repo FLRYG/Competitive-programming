@@ -24,19 +24,22 @@ ll const MOD=1000000007;
 double A,B,C;
 
 double f(double t){
-    return A*t+B*sin(C*PI*t);
+    return A*t+B*sin(C*PI*t);d
 }
 
 int main(){
     cin>>A>>B>>C;
 
-    double invC=1/C;
+    double r=1;
+    while(f(r)<100) r++;
+    double l=r-1;
 
-    double l=floor(A*2*C)/2/C;
-    double r=l+(1/2/C);
-    if(f(l)>f(r)) swap(l,r);
-    while(f(r)-f(l)>1e-6){
-        double m=(l+r)/2;
-        if(f(m)<100) 
+    while(abs(f(r)-100)>1e-6){
+        double mid=(l+r)/2;
+        if(f(mid)<100) l=mid;
+        else r=mid;
     }
+
+    //cout<<setprecision(16)<<f(r)<<endl;
+    cout<<setprecision(16)<<r<<endl;
 }
