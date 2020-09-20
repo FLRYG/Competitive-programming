@@ -19,30 +19,13 @@ typedef long double ld;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
-ll const MOD=998244353;
+ll const MOD=1000000007;
 
-ll N,K;
-ll L[10],R[10];
+int N;
+string S;
+string T[100];
 
 int main(){
-    cin>>N>>K;
-    rep(i,K) cin>>L[i]>>R[i];
-
-    vector<ll> dp(N+1,0);
-    dp[1]=1;
-    vector<ll> sum(N+1,0);
-    repn(i,N){
-        rep(j,K){
-            ll l=max((ll)0,i-R[j]-1);
-            ll r=max((ll)0,i-L[j]);
-            dp[i]+=sum[r]-sum[l];
-            dp[i]%=MOD;
-        }
-        sum[i]+=sum[i-1]+dp[i];
-        sum[i]%=MOD;
-    }
-    //repn(i,N) cout<<dp[i]<<' ';cout<<endl;
-
-    ll ans=(dp[N]+MOD)%MOD;
-    cout<<ans<<endl;
+    cin>>N>>S;
+    rep(i,N) cin>>T[i];
 }

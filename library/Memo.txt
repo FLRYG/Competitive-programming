@@ -23,6 +23,7 @@
     D - Multiple of 2019                余りの性質を利用　***
     D - joisino's travel                最短路＋全探索
     D - Patisserie ABC                  絶対値の外し方
+    D - Leaping Tak                     dp＋累積和
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dpを使う
     E - Almost Everywhere Zero          dp
@@ -107,6 +108,7 @@ lower
     E - Colorful Blocks
     D - Recording
     B - Ice Rink Game
+    D - Crossing
 
 <<再2>>
     D - Practical Skill Test
