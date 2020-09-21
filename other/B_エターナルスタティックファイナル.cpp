@@ -28,4 +28,19 @@ string T[100];
 int main(){
     cin>>N>>S;
     rep(i,N) cin>>T[i];
+
+    vector<int> dp(S.size()+1,0);
+    dp[0]=1;
+    repn(i,S.size()){
+        rep(j,N){
+            if(i<T[j].size()) continue;
+            if(S.substr(i-T[j].size(),T[j].size())==T[j]){
+                dp[i]+=dp[i-T[j].size()];
+                dp[i]%=MOD;
+            }
+        }
+    }
+    //rep(i,S.size()+1) cout<<dp[i];cout<<endl;
+
+    cout<<dp[S.size()]<<endl;
 }
