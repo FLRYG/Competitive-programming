@@ -21,25 +21,44 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-double A,B,C;
-
-double f(double t){
-    return A*t+B*sin(C*PI*t); 
-}
+int N,T;
+int A[100000];
 
 int main(){
-    cin>>A>>B>>C;
+    cin>>N>>T;
+    rep(i,N) cin>>A[i];
 
-    double r=1;
-    while(f(r)<100) r++;
-    double l=r-1;
+    int l,r;
+    
+}
 
-    while(abs(f(r)-100)>1e-6){
-        double mid=(l+r)/2;
-        if(f(mid)<100) l=mid;
-        else r=mid;
+/*
+int N,T;
+int A[1000002];
+
+int main(){
+    cin>>N>>T;
+    rep(i,N){
+        int a;
+        cin>>a;
+        A[a]++;
+        A[min(a+T,1000001)]--;
+    }
+    int ans=0;
+    int last=0;
+    repn(i,1000000){
+        A[i]+=A[i-1];
+        if(A[i]>0){
+            //cout<<i<<endl;
+            ans++;
+            last=i;
+        }
+    }
+    //cout<<ans<<endl;
+    if(A[1000001]>0){
+        ans+=T-(1000000-A[N-1]);
     }
 
-    //cout<<setprecision(16)<<f(r)<<endl;
-    cout<<setprecision(16)<<r<<endl;
+    cout<<ans<<endl;
 }
+*/

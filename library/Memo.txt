@@ -53,6 +53,7 @@
     C - Strawberry Cakes                再帰
     D - Anything Goes to Zero           余り
     C - 錬金術士                        範囲
+    B - エターナルスタティックファイナル  dp
 
 
 Overflow
@@ -109,6 +110,7 @@ lower
     D - Recording
     B - Ice Rink Game
     D - Crossing
+    B - エターナルスタティックファイナル
 
 <<再2>>
     D - Practical Skill Test
