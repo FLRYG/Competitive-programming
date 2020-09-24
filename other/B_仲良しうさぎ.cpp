@@ -21,23 +21,18 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,T;
-int A[100000];
+int N;
+int a[100001];
 
 int main(){
-    cin>>N>>T;
-    rep(i,N) cin>>A[i];
+    cin>>N;
+    repn(i,N) cin>>a[i];
 
-    int l=0, r=0;
     int ans=0;
-    rep(i,N){
-        if(r<A[i]){
-            ans+=r-l;
-            l=A[i];
-        }
-        r=A[i]+T;
+    repn(i,N){
+        if(i==a[a[i]]) ans++;
     }
-    ans+=r-l;
+    ans/=2;
 
     cout<<ans<<endl;
 }

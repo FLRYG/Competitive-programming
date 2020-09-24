@@ -21,23 +21,17 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,T;
-int A[100000];
+string S;
 
 int main(){
-    cin>>N>>T;
-    rep(i,N) cin>>A[i];
+    cin>>S;
 
-    int l=0, r=0;
-    int ans=0;
-    rep(i,N){
-        if(r<A[i]){
-            ans+=r-l;
-            l=A[i];
-        }
-        r=A[i]+T;
-    }
-    ans+=r-l;
+    string ans;
+    rep(i,S.size()+2) ans+='+';
+    ans+="\n+";
+    ans+=S;
+    ans+="+\n";
+    rep(i,S.size()+2) ans+='+';
 
     cout<<ans<<endl;
 }

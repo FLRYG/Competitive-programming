@@ -22,22 +22,31 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N,T;
-int A[100000];
+int A[1000000];
 
 int main(){
     cin>>N>>T;
     rep(i,N) cin>>A[i];
 
-    int l=0, r=0;
-    int ans=0;
+    int cost=0;
+    int mini=A[0];
     rep(i,N){
-        if(r<A[i]){
-            ans+=r-l;
-            l=A[i];
-        }
-        r=A[i]+T;
+        mini=min(mini,A[i]);
+        cost=max(cost,A[i]-mini);
     }
-    ans+=r-l;
+
+    int ans=0;
+    map<int,int> cnt;
+    mini=A[0];
+    rep(i,N){
+        mini=min(mini,A[i]);
+        cnt[A[i]]++;
+        if(A[i]-mini==cost){
+            ans+=cnt[mini];
+            cnt[mini+1]+=cnt[mini];
+            cnt[mini]=0;
+        }
+    }
 
     cout<<ans<<endl;
 }

@@ -15,29 +15,28 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<int,int> P;
+typedef pair<int,int> P;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,T;
+ll N;
 int A[100000];
+int B[100000];
 
 int main(){
-    cin>>N>>T;
-    rep(i,N) cin>>A[i];
+    cin>>N;
+    rep(i,N) cin>>A[i]>>B[i];
 
-    int l=0, r=0;
     int ans=0;
+    int a=0;
     rep(i,N){
-        if(r<A[i]){
-            ans+=r-l;
-            l=A[i];
+        if(A[i]>a){
+            ans=A[i]+B[i];
+            a=A[i];
         }
-        r=A[i]+T;
     }
-    ans+=r-l;
 
     cout<<ans<<endl;
 }

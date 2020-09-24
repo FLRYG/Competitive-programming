@@ -21,23 +21,42 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,T;
-int A[100000];
+int N;
 
 int main(){
-    cin>>N>>T;
-    rep(i,N) cin>>A[i];
+    cin>>N;
 
-    int l=0, r=0;
-    int ans=0;
-    rep(i,N){
-        if(r<A[i]){
-            ans+=r-l;
-            l=A[i];
-        }
-        r=A[i]+T;
+    vector<int> dist(N+1,0);
+    int s=1;
+    repn(i,N){
+        if(i==s) continue;
+        int d;
+        cout<<"? "<<s<<" "<<i<<endl;
+        cin>>d;
+        dist[i]=d;
     }
-    ans+=r-l;
 
-    cout<<ans<<endl;
+    int maxi=0;
+    repn(i,N){
+        if(dist[i]>maxi){
+            maxi=dist[i];
+            s=i;
+        }
+    }
+    
+    repn(i,N){
+        if(i==s){
+            dist[i]=0;
+            continue;
+        }
+        int d;
+        cout<<"? "<<s<<" "<<i<<endl;
+        cin>>d;
+        dist[i]=d;
+    }
+
+    int ans=0;
+    repn(i,N) ans=max(ans,dist[i]);
+
+    cout<<"! "<<ans<<endl;
 }

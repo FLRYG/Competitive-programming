@@ -27,7 +27,7 @@ int main(){
     cin>>N;
 
     int a;
-    rep(i,N){
+    repn(i,N){
         int x=i*(i+1)/2;
         if(x==N){
             a=i;
@@ -49,9 +49,9 @@ int main(){
         }
     }
 
-    cout<<"Yes\n"<<a<<endl;
+    cout<<"Yes\n"<<a+1<<endl;
     rep(i,a+1){
-        cout<<ans[i].size()<<' ';
+        cout<<a<<' ';
         rep(j,a){
             cout<<ans[i][j]<<' ';
         }
