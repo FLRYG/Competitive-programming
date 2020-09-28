@@ -27,13 +27,13 @@ int s,t;
 int main(){
     cin>>n>>m>>s>>t;
     s--, t--;
-    vector<P> v[1000];
+    vector<P> G[1000];
     rep(i,m){
         int x,y,d;
         cin>>x>>y>>d;
         x--, y--;
-        v[x].push_back(P(d,y));
-        v[y].push_back(P(d,x));
+        G[x].push_back(P(d,y));
+        G[y].push_back(P(d,x));
     }
 
     vector<int> sdist(n,INF);
@@ -42,16 +42,15 @@ int main(){
     q.push(P(0,s));
     while(!q.empty()){
         P p=q.top(); q.pop();
-        if(p.first>sdist[p.second]) continue;
-        repr(e,v[p.second]){
-            if(sdist[p.second]+e.first<sdist[e.second]){
-                sdist[e.second]=sdist[p.second]+e.first;
-                q.push(P(sdist[e.],e.second));
+        int v=p.second;
+        if(p.first>sdist[v]) continue;
+        rep(i,G[v].size()){
+            P e=G[v][i];
+            if(sdist[v]+e.first<sdist[e.second]){
+                sdist[e.second]=sdist[v]+e.first;
+                q.push(P(sdist[e.second],e.second));
             }
         }
-    }
-    rep(i,n){
-        cout<<i+1<<' '<<sdist[i]<<endl;
     }
 
     vector<int> tdist(n,INF);
@@ -59,21 +58,21 @@ int main(){
     q.push(P(0,t));
     while(!q.empty()){
         P p=q.top(); q.pop();
-        if(p.first>tdist[p.second]) continue;
-        repr(e,v[p.second]){
-            if(p.first+e.first<tdist[e.second]){
-                q.push(P(p.first+e.first,e.second));
-                tdist[e.second]=p.second+e.first;
+        int v=p.second;
+        if(p.first>tdist[v]) continue;
+        rep(i,G[v].size()){
+            P e=G[v][i];
+            if(tdist[v]+e.first<tdist[e.second]){
+                tdist[e.second]=tdist[v]+e.first;
+                q.push(P(tdist[e.second],e.second));
             }
         }
-    }
-    cout<<endl;
-    rep(i,n){
-        cout<<i+1<<' '<<tdist[i]<<endl;
     }
 
     int ans=-1;
     rep(i,n){
+        //cout<<i+1<<' '<<sdist[i]<<' '<<tdist[i]<<endl;
+        if(sdist[i]==INF) continue;
         if(sdist[i]==tdist[i]) ans=i+1;
     }
 

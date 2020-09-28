@@ -83,6 +83,7 @@ lower
 
 <<典型的問題>>
     C - 列                              尺取り法
+    C - 身体バランス                    ダイクストラ法
     D - Knapsack 1                      ナップザック問題
     E - Knapsack 2                      ナップザック問題
     F - LCS                             最長共通部分列問題
@@ -112,6 +113,7 @@ lower
     B - Ice Rink Game
     D - Crossing
     B - エターナルスタティックファイナル
+    C - 身体バランス
 
 <<再2>>
     D - Practical Skill Test
