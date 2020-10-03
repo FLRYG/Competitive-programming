@@ -16,24 +16,18 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 //typedef pair<int,int> P;
+double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int I[]={1,0,-1,0};
-int J[]={0,1,0,-1};
-
-int H,W;
-int a[1000][1000];
+int A,B;
 
 int main(){
-    cin>>H>>W;
-    rep(i,H) rep(j,W) cin>>a[i][j];
+    cin>>A>>B;
 
-    vector<vector<int>> cnt(H,vector<int>(W,1));
-    rep(i,H){
-        rep(j,W){
-            
-        }
-    }
+    int X=(A+B)/2;
+    int Y=(A-B)/2;
+
+    cout<<X<<' '<<Y<<endl;
 }
