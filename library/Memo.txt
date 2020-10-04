@@ -114,6 +114,7 @@ lower
     D - Crossing
     B - エターナルスタティックファイナル
     C - 身体バランス
+    D - 経路
 
 <<再2>>
     D - Practical Skill Test
