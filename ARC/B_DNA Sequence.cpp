@@ -15,7 +15,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<int,int> P;
+typedef pair<int,int> P;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
@@ -24,9 +24,8 @@ ll const MOD=1000000007;
 int N;
 string S;
 
-int main(){
-    cin>>N>>S;
-
+// O(N^2)
+void solve1(){
     vector<vector<int>> cnt(4,vector<int>(N+1,0));
     rep(i,N){
         rep(j,4) cnt[j][i+1]=cnt[j][i];
@@ -48,4 +47,31 @@ int main(){
     }
 
     cout<<ans<<endl;
+}
+
+// O(NlogN)
+void solve2(){
+    vector<vector<int>> cnt(4,vector<int>(N+1,0));
+    rep(i,N){
+        if(S[i]=='A') cnt[0][i+1]++;
+        if(S[i]=='T') cnt[1][i+1]++;
+        if(S[i]=='C') cnt[2][i+1]++;
+        if(S[i]=='G') cnt[3][i+1]++;
+    }
+    rep(i,4) repn(j,N) cnt[i][j]+=cnt[i][j-1];
+
+    map<P,int> m;
+    rep(i,N+1) m[P(cnt[0][i]-cnt[1][i],cnt[2][i]-cnt[3][i])]++;
+
+    int ans=0;
+    repr(e,m) ans+=e.second*(e.second-1)/2;
+
+    cout<<ans<<endl;
+}
+
+int main(){
+    cin>>N>>S;
+
+    //solve1();
+    solve2();
 }
