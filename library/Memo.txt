@@ -115,6 +115,7 @@ lower
     B - エターナルスタティックファイナル
     C - 身体バランス
     D - 経路
+    D - Leaping Tak
 
 <<再2>>
     D - Practical Skill Test
@@ -122,4 +123,5 @@ lower
     D - Menagerie
     D - joisino's travel
     D - equeue
+    E - 1 or 2
 
