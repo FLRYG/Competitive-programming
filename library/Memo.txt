@@ -116,6 +116,7 @@ lower
     C - 身体バランス
     D - 経路
     D - Leaping Tak
+    E - Lamps
 
 <<再2>>
     D - Practical Skill Test
