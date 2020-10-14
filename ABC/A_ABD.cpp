@@ -26,13 +26,8 @@ int N;
 int main(){
     cin>>N;
 
-    int ans=0;
-    int ten=1;
-    rep(i,9){
-        ans+=N/(10*ten)*ten;
-        ans+=max(0,min(N%(10*ten)-ten+1,ten));
-        ten*=10;
-    }
+    string ans="ABC";
+    if(1000<=N) ans="ABD";
 
     cout<<ans<<endl;
 }
