@@ -7,6 +7,7 @@
     C - Many Requirements               全探索、深さ優先探索                    ***
     C - Strange Bank                    動的計画法　テンプレ
     C - Sugar Water                     制約に注目                  ***
+    C - 正直者の高橋くん                 ワーシャルフロイド法＋幅優先探索
     D - Face Produces Unhappiness       同じ向きを向いていると幸せな問題
     D - String Formation                二つのstringをうまく使う問題
     D - Handstand                       条件分岐が複雑
@@ -117,6 +118,7 @@ lower
     D - 経路
     D - Leaping Tak
     E - Lamps
+    C - 正直者の高橋くん
 
 <<再2>>
     D - Practical Skill Test

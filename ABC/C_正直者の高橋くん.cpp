@@ -52,35 +52,35 @@ int main(){
         }
     }
 
-    rep(i,N){
-        rep(j,N){
-            cout<<dp[i][j]<<' ';
-        }cout<<endl;
-    }
-
-    ll ans=1;
-    ll cnt=0;
+    vector<ll> cnt(N,0);
+    vector<bool> chk(N,false);
+    cnt[a]=1;
     queue<int> q;
     q.push(a);
     q.push(-1);
-    while(true){
+    int step=0;
+    while(step<dp[a][b]){
         int p=q.front(); q.pop();
-        //cout<<p<<endl;
         if(p==-1){
-            ans*=cnt;
-            ans%=MOD;
-            cnt=0;
-            if(q.empty()) break;
+            step++;
+            //cout<<"step++\n"<<endl;
             q.push(-1);
             continue;
         }
         repr(e,xy[p]){
             if(dp[e][b]<dp[p][b]){
-                cnt++;
-                q.push(e);
+                cnt[e]+=cnt[p];
+                cnt[p]%=MOD;
+                if(!chk[e]){
+                    q.push(e);
+                    chk[e]=true;
+                }
             }
         }
+        //rep(i,N) cout<<i+1<<':'<<cnt[i]<<endl;
+        //cout<<endl;
     }
+    cnt[b]%=MOD;
 
-    cout<<ans<<endl;
+    cout<<cnt[b]<<endl;
 }
