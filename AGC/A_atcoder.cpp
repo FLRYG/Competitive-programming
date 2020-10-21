@@ -33,29 +33,20 @@ int main(){
         cin>>s;
 
         if(a<s) continue;
-
-        vector<int> cnt(26);
-        rep(i,s.size()) cnt[s[i]-'a']++;
-
-        if(cnt[0]==s.size()){
+        if(s==string(s.size(),'a')){
             ans[k]=-1;
             continue;
         }
-        
-        int res=INF;
+
+        int res=0;
         rep(i,s.size()){
-            int cnt=max(0,i-6);
-            //cout<<s[i]<<endl;
-            for(int j=min(i,6);j>=0;j--){
-                //cout<<' '<<a[j]<<endl;
-                if(s[i]>a[j]){
-                    //cout<<' '<<cnt<<endl;
-                    res=min(res,cnt);
-                    break;
-                }
-                else cnt++;
+            if(s[i]!='a'){
+                if(s[i]>'t') res=i-1;
+                else res=i;
+                break;
             }
         }
+
         ans[k]=res;
     }
 
