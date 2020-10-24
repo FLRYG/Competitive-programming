@@ -56,6 +56,7 @@
     D - Anything Goes to Zero           余り
     C - 錬金術士                        範囲
     B - エターナルスタティックファイナル  dp
+    B - Numbers on Papers               dp　おっそ
 
 
 Overflow
@@ -119,6 +120,7 @@ lower
     D - Leaping Tak
     E - Lamps
     C - 正直者の高橋くん
+    B - 大事な数なのでZ回書きまLた。
 
 <<再2>>
     D - Practical Skill Test
