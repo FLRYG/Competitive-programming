@@ -100,7 +100,7 @@ int main(){
                 r&=a[x][i]+a[y][i]<=K;
             }
             if(c) ufc.unite(x,y);
-            if(r) ufc.unite(x,y);
+            if(r) ufr.unite(x,y);
         }
     }
 
@@ -120,7 +120,6 @@ int main(){
             chkc[ufc.find(i)]=false;
         }
     }
-    cout<<cntr<<' '<<cntc<<endl;
 
     ll ans=cntr*cntc%MOD;
     cout<<ans<<endl;
