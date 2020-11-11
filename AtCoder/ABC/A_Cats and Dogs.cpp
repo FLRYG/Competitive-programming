@@ -21,28 +21,14 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int T;
+int A,B,X;
 
 int main(){
-    cin>>T;
-    rep(i,T){
-        ll N,A,B,C,D;
-        cin>>N>>A>>B>>C>>D;
+    cin>>A>>B>>X;
 
-        map<ll,ll> dp;
-        dp[N]=0;
-        dp[0]=LINF;
-        queue<ll> q;
-        q.push(N);
-        while(!q.empty()){
-            ll p=q.front(); q.pop();
-            if(p%2==0){
-                if(dp[p]+A<dp[p/2]){
-                    
-                }
-            }
-        }
-    }
-    
+    string ans="NO";
+    if(0<=X-A && X-A<=B) ans="YES";
+
+    cout<<ans<<endl;
     return 0;
 }
