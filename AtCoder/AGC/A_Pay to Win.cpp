@@ -25,24 +25,47 @@ int T;
 
 int main(){
     cin>>T;
-    rep(i,T){
+
+    vector<ll> ans(T);
+    rep(t,T){
         ll N,A,B,C,D;
         cin>>N>>A>>B>>C>>D;
 
-        map<ll,ll> dp;
-        dp[N]=0;
-        dp[0]=LINF;
-        queue<ll> q;
-        q.push(N);
-        while(!q.empty()){
-            ll p=q.front(); q.pop();
-            if(p%2==0){
-                if(dp[p]+A<dp[p/2]){
-                    
-                }
+        map<ll,ll> m;
+        m[0]=0;
+        ll two=1;
+        rep(i,62){
+            if(two>N){
+                m[two]=A*i+D;
+                break;
             }
+            ll thr=1;
+            rep(j,62){
+                if(two*thr>N){
+                    m[two*thr]=A*i+B*j+D;
+                    break;
+                }
+                ll fiv=1;
+                rep(k,62){
+                    m[two*thr*fiv]=A*i+B*j+C*k+D;
+                    if(two*thr*fiv>N) break;
+                    fiv*=5;
+                }
+                thr*=3;
+            }
+            two*=2;
         }
+
+        ll res=LINF;
+        repr(e,m){
+            cout<<e.first<<' '<<e.second<<endl;
+            res=min(res,e.second+D*abs(e.first-N));
+        }
+
+        ans[t]=res;
     }
+
+    rep(i,T) cout<<ans[i]<<endl;
     
     return 0;
 }
