@@ -23,6 +23,23 @@ ll const MOD=1000000007;
 
 int T;
 
+ll dfs(ll N, ll A, ll B, ll C, ll D, map<ll,ll> memo){
+    cout<<N<<endl;
+    if(N==0) return LINF;
+    if(N==1) return D;
+    if(memo[N]!=0) return memo[N];
+    ll res=LINF;
+    res=min(res,dfs(N/2,A,B,C,D,memo)+A+D*(N-N/2*2));
+    res=min(res,dfs(N/2+1,A,B,C,D,memo)+A+D*((N/2+1)*2-N));
+    res=min(res,dfs(N/3,A,B,C,D,memo)+B+D*(N-N/3*3));
+    res=min(res,dfs(N/3+1,A,B,C,D,memo)+B+D*((N/3+1)*3-N));
+    res=min(res,dfs(N/5,A,B,C,D,memo)+C+D*(N-N/5*5));
+    res=min(res,dfs(N/5+1,A,B,C,D,memo)+C+D*((N/5+1)*5-N));
+    memo[N]=res;
+    cout<<' '<<N<<' '<<res<<endl;
+    return res;
+}
+
 int main(){
     cin>>T;
 
@@ -30,39 +47,9 @@ int main(){
     rep(t,T){
         ll N,A,B,C,D;
         cin>>N>>A>>B>>C>>D;
+        map<ll,ll> memo;
 
-        map<ll,ll> m;
-        m[0]=0;
-        ll two=1;
-        rep(i,62){
-            if(two>N){
-                m[two]=A*i+D;
-                break;
-            }
-            ll thr=1;
-            rep(j,62){
-                if(two*thr>N){
-                    m[two*thr]=A*i+B*j+D;
-                    break;
-                }
-                ll fiv=1;
-                rep(k,62){
-                    m[two*thr*fiv]=A*i+B*j+C*k+D;
-                    if(two*thr*fiv>N) break;
-                    fiv*=5;
-                }
-                thr*=3;
-            }
-            two*=2;
-        }
-
-        ll res=LINF;
-        repr(e,m){
-            cout<<e.first<<' '<<e.second<<endl;
-            res=min(res,e.second+D*abs(e.first-N));
-        }
-
-        ans[t]=res;
+        ans[t]=dfs(N,A,B,C,D,memo);
     }
 
     rep(i,T) cout<<ans[i]<<endl;
