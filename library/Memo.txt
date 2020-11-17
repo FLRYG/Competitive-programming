@@ -41,6 +41,7 @@
 
 <<AGC>>
     A - Diverse Word                    辞書順
+    A - Pay to Win                      メモ化再帰
     B - Reverse and Compare             リバースさせるべき部分を考える ***
     B - Unplanned Queries               パリティ
     B - Joker                           bfs
@@ -82,6 +83,8 @@ string S; cin.ignore(); getline(cin,S); 空白を含む文をそのまま入力(
 
 lower
 
+a/b の切り上げは (a+(b-1))/b
+
 
 <<典型的問題>>
     C - 列                              尺取り法
@@ -122,6 +125,7 @@ lower
     C - 正直者の高橋くん
     B - 大事な数なのでZ回書きまLた。
     D - Hachi                           速
+    A - Pay to Win
 
 <<再2>>
     D - Practical Skill Test

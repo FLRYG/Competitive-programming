@@ -22,21 +22,24 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int T;
+ll A,B,C,D;
+map<ll,ll> memo;
 
-ll dfs(ll N, ll A, ll B, ll C, ll D, map<ll,ll> memo){
-    cout<<N<<endl;
-    if(N==0) return LINF;
+ll dfs(ll N){
+    //cout<<N<<endl;
+    if(N==0) return 0;
     if(N==1) return D;
     if(memo[N]!=0) return memo[N];
     ll res=LINF;
-    res=min(res,dfs(N/2,A,B,C,D,memo)+A+D*(N-N/2*2));
-    res=min(res,dfs(N/2+1,A,B,C,D,memo)+A+D*((N/2+1)*2-N));
-    res=min(res,dfs(N/3,A,B,C,D,memo)+B+D*(N-N/3*3));
-    res=min(res,dfs(N/3+1,A,B,C,D,memo)+B+D*((N/3+1)*3-N));
-    res=min(res,dfs(N/5,A,B,C,D,memo)+C+D*(N-N/5*5));
-    res=min(res,dfs(N/5+1,A,B,C,D,memo)+C+D*((N/5+1)*5-N));
+    if(N<res/D) res=N*D;
+    res=min(res,dfs(N/2)+A+D*(N-N/2*2));
+    res=min(res,dfs((N+1)/2)+A+D*(((N+1)/2)*2-N));
+    res=min(res,dfs(N/3)+B+D*(N-N/3*3));
+    res=min(res,dfs((N+2)/3)+B+D*(((N+2)/3)*3-N));
+    res=min(res,dfs(N/5)+C+D*(N-N/5*5));
+    res=min(res,dfs((N+4)/5)+C+D*(((N+4)/5)*5-N));
     memo[N]=res;
-    cout<<' '<<N<<' '<<res<<endl;
+    //cout<<' '<<N<<' '<<res<<endl;
     return res;
 }
 
@@ -45,11 +48,11 @@ int main(){
 
     vector<ll> ans(T);
     rep(t,T){
-        ll N,A,B,C,D;
+        ll N;
         cin>>N>>A>>B>>C>>D;
-        map<ll,ll> memo;
+        memo.clear();
 
-        ans[t]=dfs(N,A,B,C,D,memo);
+        ans[t]=dfs(N);
     }
 
     rep(i,T) cout<<ans[i]<<endl;
