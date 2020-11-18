@@ -22,12 +22,24 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int W,N,K;
-int A[50];
-int B[50];
+int A[51];
+int B[51];
+int dp[51][10001][51];
 
 int main(){
     cin>>W>>N>>K;
-    rep(i,N) cin>>A[i]>>B[i];
+    repn(i,N) cin>>A[i]>>B[i];
+
+    repn(i,N){
+        repn(j,W){
+            repn(k,K){
+                dp[i][j][k]=dp[i-1][j][k];
+                if(j>=A[i]) dp[i][j][k]=max(dp[i][j][k],dp[i-1][j-A[i]][k-1]+B[i]);
+            }
+        }
+    }
+
+    cout<<dp[N][W][K]<<endl;
     
     return 0;
 }
