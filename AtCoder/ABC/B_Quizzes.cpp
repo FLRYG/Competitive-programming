@@ -21,7 +21,19 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
+int N,X;
+string S;
+
 int main(){
+    cin>>N>>X>>S;
+
+    int ans=X;
+    rep(i,N){
+        if(S[i]=='o') ans++;
+        else ans=max(0,ans-1);
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

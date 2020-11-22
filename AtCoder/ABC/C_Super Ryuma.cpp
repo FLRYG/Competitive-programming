@@ -21,7 +21,18 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
+ll r[2];
+ll c[2];
+
 int main(){
+    rep(i,2) cin>>r[i]>>c[i];
+
+    int ans;
+    if(r[0]+c[0]==r[1]+c[1]
+    || r[0]-c[0]==r[1]-c[1]
+    || abs(r[0]-r[1])+abs(c[0]-c[1])<=3){
+        ans=1;
+    }else 
     
     return 0;
 }
