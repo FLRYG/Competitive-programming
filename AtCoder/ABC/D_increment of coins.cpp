@@ -24,7 +24,11 @@ ll const MOD=1000000007;
 
 
 int main(){
-    
+    cout<<'F'-'A'+1<<endl;
+    cout<<'L'-'A'+1<<endl;
+    cout<<'R'-'A'+1<<endl;
+    cout<<'Y'-'A'+1<<endl;
+    cout<<'G'-'A'+1<<endl;
     
     return 0;
 }

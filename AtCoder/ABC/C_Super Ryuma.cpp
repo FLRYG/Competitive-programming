@@ -21,18 +21,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll r[2];
-ll c[2];
+int a,b,c,d;
 
 int main(){
-    rep(i,2) cin>>r[i]>>c[i];
+    cin>>a>>b>>c>>d;
 
     int ans;
-    if(r[0]+c[0]==r[1]+c[1]
-    || r[0]-c[0]==r[1]-c[1]
-    || abs(r[0]-r[1])+abs(c[0]-c[1])<=3){
-        ans=1;
-    }else 
+    if(a==c && b==d) ans=0;
+    else if(a+b==c+d) ans=1;
+    else if(a-b==c-d) ans=1;
+    else if(abs(a-c)+abs(b-d)<=3) ans=1;
+    else if((a+b+c+d)%2==0) ans=2;
+    else if(abs(a-c)+abs(b-d)<=6) ans=2;
+    else if(abs((a+b)-(c+d))<=3) ans=2;
+    else if(abs((a-b)-(c-d))<=3) ans=2;
+    else ans=3;
+
+    cout<<ans<<endl;
     
     return 0;
 }
