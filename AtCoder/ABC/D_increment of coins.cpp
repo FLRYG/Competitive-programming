@@ -21,14 +21,20 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
+int A,B,C;
+double dp[100][100][100];
 
+double f(int A, int B, int C){
+    if(A==100 || B==100 || C==100) return 0;
+    if(dp[A][B][C]==0)
+        dp[A][B][C]=(A*f(A+1,B,C)+B*f(A,B+1,C)+C*f(A,B,C+1))/(double)(A+B+C)+1;
+    return dp[A][B][C];
+}
 
 int main(){
-    cout<<'F'-'A'+1<<endl;
-    cout<<'L'-'A'+1<<endl;
-    cout<<'R'-'A'+1<<endl;
-    cout<<'Y'-'A'+1<<endl;
-    cout<<'G'-'A'+1<<endl;
-    
+    cin>>A>>B>>C;
+
+    cout<<setprecision(16)<<f(A,B,C)<<endl;
+
     return 0;
 }
