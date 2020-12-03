@@ -21,7 +21,55 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
+ll N;
+ll T[100000];
+ll A[100000];
+
 int main(){
-    
+    cin>>N;
+    rep(i,N) cin>>T[i];
+    rep(i,N) cin>>A[i];
+
+    if(T[N-1]!=A[0]){
+        cout<<0<<endl;
+        return 0;
+    }
+
+    ll l=N-1, r=0;
+    rep(i,N) if(T[i]==A[i] && T[i]!=A[0]){
+        cout<<0<<endl;
+        return 0;
+    }
+    rep(i,N) if(T[N-1-i]==A[N-1-i]) l=N-1-i;
+    rep(i,N) if(T[i]==A[i]) r=i;
+
+    if(l>r){
+        cout<<0<<endl;
+        return 0;
+    }
+
+    ll ans=1;
+    repn(i,l){
+        if(T[i-1]==T[i]){
+            ans*=T[i];
+            ans%=MOD;
+        }
+    }
+    for(int i=N-2;i>=r;i--){
+        if(A[i]==A[i+1]){
+            ans*=A[i];
+            ans%=MOD;
+        }
+    }
+
+    if(r-l-1>0){
+        rep(i,r-l-1){
+            ans*=T[l];
+            ans%=MOD;
+        }
+    }
+
+    cout<<ans<<endl;
+
     return 0;
 }
