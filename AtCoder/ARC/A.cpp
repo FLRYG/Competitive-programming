@@ -21,18 +21,31 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll T,N;
-ll a[100000];
+ll N;
+ll cnt[31];
 
 int main(){
-    cin>>T;
+    cin>>N;
 
-    while(T--){
-        cin>>N;
-        rep(i,N) cin>>a[i];
-
-
+    for(ll i=2;i<=N;i++){
+        ll n=i;
+        for(ll j=2;j<=i;j++){
+            ll c=0;
+            while(n%j==0){
+                n/=j;
+                c++;
+            }
+            cnt[j]=max(cnt[j],c);
+        }
     }
 
+    ll ans=1;
+    repn(i,N){
+        if(cnt[i]!=0) rep(j,cnt[i]) ans*=i;
+    }
+    ans++;
+
+    cout<<ans<<endl;
+    
     return 0;
 }

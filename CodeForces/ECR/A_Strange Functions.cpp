@@ -21,18 +21,16 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll T,N;
-ll a[100000];
+int T;
+string N;
 
 int main(){
     cin>>T;
 
     while(T--){
         cin>>N;
-        rep(i,N) cin>>a[i];
-
-
+        cout<<N.size()<<endl;
     }
-
+    
     return 0;
 }

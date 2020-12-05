@@ -22,47 +22,49 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-string S,T;
+int P[200001];
+int idx[200001];
 
 int main(){
-    cin>>N>>S>>T;
+    cin>>N;
+    repn(i,N) cin>>P[i];
 
+    repn(i,N) idx[P[i]]=i;
+
+    vector<int> ans(N);
+    vector<int> s(N-1);
     int cnt=0;
-    rep(i,N){
-        if(S[i]=='1') cnt++;
-        if(T[i]=='1') cnt--;
-    }
-    if(cnt<0 || cnt&1){
-        cout<<-1<<endl;
-        return 0;
+    repn(i,N){
+        if(cnt>N-1) break;
+        for(int j=idx[i];j>i;j--){
+            if(cnt>N-1) break;
+            int tmp=P[j-1];
+            P[j-1]=P[j];
+            P[j]=tmp;
+            idx[P[j]]=j;
+            idx[P[j-1]]=j-1;
+            ans[cnt]=j-1;
+            cnt++;
+            s[j-1]++;
+        }
     }
 
-    int s=0;
-    int ans=0;
-    rep(t,N){
-        if(T[t]=='0') continue;
-        s=t;
-        while(s<N && S[s]=='0') s++;
-        if(s==N){
+    repn(i,N-1){
+        if(s[i]!=1){
             cout<<-1<<endl;
             return 0;
         }
-        S[s]='0';
-        ans+=s-t;
     }
-    // cout<<ans<<endl;
-    // cout<<S<<endl;
-    // cout<<T<<endl;
-
-    rep(i,N){
-        if(S[i]=='0') continue;
-        int j=i+1;
-        while(j<N && S[j]=='0') j++;
-        ans+=j-i;
-        i=j;
+    repn(i,N){
+        if(i!=P[i]){
+            cout<<-1<<endl;
+            return 0;
+        }
     }
 
-    cout<<ans<<endl;
+    rep(i,N-1){
+        cout<<ans[i]<<endl;
+    }
     
     return 0;
 }
