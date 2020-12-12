@@ -40,6 +40,7 @@
     D - Remainder Reminder              余りの問題
     B - ムーアの法則                    三分探索、二分法
     D - アンバランス                    鳩ノ巣原理
+    C - Exoswap                         愚直
 
 <<AGC>>
     A - Diverse Word                    辞書順
@@ -128,6 +129,7 @@ a/b の切り上げは (a+(b-1))/b
     B - 大事な数なのでZ回書きまLた。
     D - Hachi                           速
     A - Pay to Win
+    C - Exoswap
 
 <<再2>>
     D - Practical Skill Test
