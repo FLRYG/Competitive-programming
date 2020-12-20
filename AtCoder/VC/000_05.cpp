@@ -28,8 +28,23 @@ int popcount(string S){
 }
 
 int f(string n){
-    int res=0;
-    int tmp=
+    int p=popcount(n);
+    if(p==0) return 0;
+    // cout<<n<<' ';
+    int tmp=0;
+    rep(i,n.size()){
+        tmp*=2;
+        tmp+=n[i]-'0';
+        tmp%=p;
+    }
+    // cout<<tmp<<endl;
+    string m;
+    while(tmp>0){
+        m+=tmp%2+'0';
+        tmp/=2;
+    }
+    reverse(m.begin(),m.end());
+    return 1+f(m);
 }
 
 int N;
@@ -38,7 +53,13 @@ string X;
 int main(){
     cin>>N>>X;
 
-
+    string y;
+    rep(i,N){
+        y=X;
+        y[i]=y[i]=='0'?'1':'0';
+        //cout<<y<<endl;
+        cout<<f(y)<<endl;
+    }
     
     return 0;
 }
