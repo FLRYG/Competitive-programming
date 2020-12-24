@@ -280,6 +280,10 @@ string solve3(){
     return ans;
 }
 
+string solve04(){
+    
+}
+
 int main(){
     input();
 
