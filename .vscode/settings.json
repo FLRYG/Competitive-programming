@@ -58,7 +58,24 @@
         "xlocmon": "cpp",
         "xloctime": "cpp",
         "concepts": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "cinttypes": "cpp",
+        "fstream": "cpp",
+        "set": "cpp",
+        "sstream": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "*.tcc": "cpp",
+        "chrono": "cpp",
+        "clocale": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "functional": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "string_view": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

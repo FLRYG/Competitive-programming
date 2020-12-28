@@ -1,9 +1,18 @@
 #include <iostream>
 #include <random>
+using namespace std;
 
 int N;
 int MIN;
 int MAX;
+
+struct Random{
+    int SEED;
+    Random(int seed){SEED=seed;}
+    ~Random(){}
+    void setSeed(int seed){SEED=seed;}
+
+};
 
 int main(){
     std::cin>>N>>MIN>>MAX;

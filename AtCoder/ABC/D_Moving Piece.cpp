@@ -20,6 +20,71 @@ typedef long double ld;
 ll const INF=1001001001001001001;
 ll const MOD=1000000007;
 
+struct unionFind{
+    int* par;                       //親
+    int* rank;                      //木の深さ
+    int* scale;                     //木のサイズ
+    int quantity;                   //木の個数
+    unionFind(int n);
+    ~unionFind();
+    int find(int x);                //木の根を求める
+    void unite(int x,int y);        //xとyの属する集合を併合
+    bool same(int x,int y);         //xとyが同じ集合に属するか否か
+    int size(int x);                //xの属する集合のサイズ
+    int count();                    //木の個数
+};
+
+unionFind::unionFind(int n){
+    par=new int[n];
+    rank=new int[n];
+    scale=new int[n];
+    quantity=n;
+    for(int i=0;i<n;i++){
+        par[i]=i;
+        rank[i]=0;
+        scale[i]=1;
+    }
+}
+
+unionFind::~unionFind(){
+    delete[] par;
+    delete[] rank;
+    delete[] scale;
+}
+
+int unionFind::find(int x){
+    if(par[x]==x) return x;
+    return par[x]=find(par[x]);
+}
+
+void unionFind::unite(int x,int y){
+    x=find(x);
+    y=find(y);
+    if(x==y) return;
+    quantity--;
+    if(rank[x]<rank[y]){
+        par[x]=y;
+        scale[y]+=scale[x];
+    }else{
+        par[y]=x;
+        scale[x]+=scale[y];
+        if(rank[x]==rank[y]) rank[x]++;
+    }
+}
+
+bool unionFind::same(int x,int y){
+    return find(x)==find(y);
+}
+
+int unionFind::size(int x){
+    x=find(x);
+    return scale[x];
+}
+
+int unionFind::count(){
+    return quantity;
+}
+
 ll N,K;
 ll P[5001];
 ll C[5001];
@@ -29,27 +94,38 @@ int main(){
     repn(i,N) cin>>P[i];
     repn(i,N) cin>>C[i];
 
-    ll ans=-INF;
-    repn(idx,N){
-        ll sum=C[idx];
-        ll cnt=1;
-        for(int pos=P[idx];pos!=idx;pos=P[pos]){
-            sum+=C[pos];
-            cnt++;
-        }
-        
-        ll res=0;
-        if(sum>0) res=K/cnt*sum;
-        ll roop=K%cnt;
-        if(roop==0) roop=cnt;
-        //cout<<idx<<' '<<sum<<' '<<cnt<<' '<<res<<endl;
-        for(int pos=P[idx],i=0;i<roop;pos=P[pos],i++){
-            res+=C[pos];
-            ans=max(ans,res);
-        }
-    }
-    cout<<ans<<endl;
+    unionFind uf(N+1);
+    repn(i,N) uf.unite(i,P[i]);
+
+    vector<ll> point(N,0);
 }
+
+// int main(){
+//     cin>>N>>K;
+//     repn(i,N) cin>>P[i];
+//     repn(i,N) cin>>C[i];
+
+//     ll ans=-INF;
+//     repn(idx,N){
+//         ll sum=C[idx];
+//         ll cnt=1;
+//         for(int pos=P[idx];pos!=idx;pos=P[pos]){
+//             sum+=C[pos];
+//             cnt++;
+//         }
+        
+//         ll res=0;
+//         if(sum>0) res=K/cnt*sum;
+//         ll roop=K%cnt;
+//         if(roop==0) roop=cnt;
+//         //cout<<idx<<' '<<sum<<' '<<cnt<<' '<<res<<endl;
+//         for(int pos=P[idx],i=0;i<roop;pos=P[pos],i++){
+//             res+=C[pos];
+//             ans=max(ans,res);
+//         }
+//     }
+//     cout<<ans<<endl;
+// }
 
 /*
 ll N,K;
