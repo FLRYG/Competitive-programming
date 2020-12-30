@@ -4,6 +4,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <list>
 #include <iomanip>
 #include <queue>
 #include <deque>
@@ -161,6 +162,15 @@ void solve3(){
     repn(i,D) cout<<ans[i]<<endl;
 }
 
+ll computeScoreType(ll type, vector<ll> &vec){
+    ll score=0;
+    rep(i,vec.size()-1){
+        score+=vec[i]*(vec[i]-1)/2;
+    }
+    score*=c[type];
+    return score;
+}
+
 // 局所探索　一点変更＋二点スワップ
 // 112,605,135
 void solve4(){
@@ -172,7 +182,14 @@ void solve4(){
     vector<ll> ans(D+1);
     repn(d,D) ans[d]=mt()%26+1;
 
-    ll score=computeScore(ans);
+    vector<vector<ll>> type(26+1,vector<ll>());
+    repn(d,D) type[ans[d]].push_back(d);
+    repn(t,26) type[t].push_back(366);
+    vector<ll> score_type(26+1,0);
+    repn(t,26) score_type[t]=computeScoreType(t,type[t]);
+
+    ll score=0;
+    repn(t,26) score+=score_type[t];
 
     //int cnt=0;
     while(timer.getTime()<1975){
@@ -180,21 +197,21 @@ void solve4(){
         // 50%で一点変更
         // 50%で二点スワップ
         if(mt()%2){
-            ll day=mt()%365+1;
-            ll type=mt()%26+1;
-            ll old_day=ans[day];
-            ans[day]=type;
+            ll d=mt()%365+1;
+            ll t=mt()%26+1;
+            ll old_d=ans[d];
+            ans[d]=t;
             ll scr=computeScore(ans);
             if(scr>score) score=scr;
-            else ans[day]=old_day;
+            else ans[d]=old_d;
         }else{
-            ll day1=mt()%365+1;
-            ll day2=max(0LL,min(365LL,(ll)(day1+mt()%32-16)));
-            if(day2>=0) day2++;
-            swap(ans[day1],ans[day2]);
+            ll d1=mt()%365+1;
+            ll d2=max(0LL,min(365LL,(ll)(d1+mt()%32-16)));
+            if(d2>=0) d2++;
+            swap(ans[d1],ans[d2]);
             ll scr=computeScore(ans);
             if(scr>score) score=scr;
-            else swap(ans[day1],ans[day2]);
+            else swap(ans[d1],ans[d2]);
         }
     }
 

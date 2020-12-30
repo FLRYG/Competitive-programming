@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <stack>
 #include <queue>
 #include <deque>
 #include <map>
@@ -15,75 +16,11 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<int,int> P;
-//int const INF=1001001001;
-ll const INF=1001001001001001001;
+typedef pair<ll,ll> PP;
+double const PI=3.141592653589793;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
-
-struct unionFind{
-    int* par;                       //親
-    int* rank;                      //木の深さ
-    int* scale;                     //木のサイズ
-    int quantity;                   //木の個数
-    unionFind(int n);
-    ~unionFind();
-    int find(int x);                //木の根を求める
-    void unite(int x,int y);        //xとyの属する集合を併合
-    bool same(int x,int y);         //xとyが同じ集合に属するか否か
-    int size(int x);                //xの属する集合のサイズ
-    int count();                    //木の個数
-};
-
-unionFind::unionFind(int n){
-    par=new int[n];
-    rank=new int[n];
-    scale=new int[n];
-    quantity=n;
-    for(int i=0;i<n;i++){
-        par[i]=i;
-        rank[i]=0;
-        scale[i]=1;
-    }
-}
-
-unionFind::~unionFind(){
-    delete[] par;
-    delete[] rank;
-    delete[] scale;
-}
-
-int unionFind::find(int x){
-    if(par[x]==x) return x;
-    return par[x]=find(par[x]);
-}
-
-void unionFind::unite(int x,int y){
-    x=find(x);
-    y=find(y);
-    if(x==y) return;
-    quantity--;
-    if(rank[x]<rank[y]){
-        par[x]=y;
-        scale[y]+=scale[x];
-    }else{
-        par[y]=x;
-        scale[x]+=scale[y];
-        if(rank[x]==rank[y]) rank[x]++;
-    }
-}
-
-bool unionFind::same(int x,int y){
-    return find(x)==find(y);
-}
-
-int unionFind::size(int x){
-    x=find(x);
-    return scale[x];
-}
-
-int unionFind::count(){
-    return quantity;
-}
 
 ll N,K;
 ll P[5001];
@@ -94,10 +31,56 @@ int main(){
     repn(i,N) cin>>P[i];
     repn(i,N) cin>>C[i];
 
-    unionFind uf(N+1);
-    repn(i,N) uf.unite(i,P[i]);
+    ll ans=-LINF;
+    repn(n,N){
+        cout<<n<<' ';
+        vector<ll> chk(N+1,0);
+        vector<ll> idx(N+1);
+        vector<ll> scr(N+1,0);
+        ll pos=n;
+        ll cnt=0;
+        ll score=-LINF;
+        ll tmp=0;
+        ll k=K;
+        while(chk[P[pos]]==0 && k>0){
+            cnt++; k--;
+            pos=P[pos];
+            chk[pos]=cnt;
+            idx[cnt]=pos;
+            tmp+=C[pos];
+            scr[cnt]=tmp;
+            score=max(score,tmp);
+        }
+        cout<<score<<' '<<k<<' ';
+        if(k==0){
+            ans=max(ans,score);
+            continue;
+        }
+        // k=K;
+        // ll score2=scr[idx[min(k,chk[P[pos]]-1)]];
+        // k-=min(k,idx[chk[P[pos]]-1]);
+        // score2+=k/(cnt-chk[P[pos]]+1)*(scr[idx[cnt]]-scr[idx[chk[P[pos]]-1]]);
+        // cout<<score2<<' ';
+        // cout<<k%(cnt-chk[P[pos]]+1)<<' ';
+        // for(ll j=0;j<=k%(cnt-chk[P[pos]]+1);j++){
+        //     score=max(score,score2+scr[j+idx[chk[P[pos]]-1]]-scr[idx[chk[P[pos]]-1]]);
+        // }
+        // ans=max(ans,score);
+        k=K;
+        tmp=scr[min(k,chk[P[pos]]-1)];
+        cout<<tmp<<' '<<chk[P[pos]];
+        k-=min(k,chk[P[pos]]-1);
+        tmp+=k/(cnt-chk[P[pos]]+1)*(scr[cnt]-scr[chk[P[pos]-1]]);
+        for(ll j=0;j<=k%(cnt-chk[P[pos]]+1);j++){
+            score=max(score,tmp+scr[j+chk[P[pos]]-1]-scr[chk[P[pos]]-1]);
+        }
+        ans=max(ans,score);
+        cout<<score<<endl;
+    }
 
-    vector<ll> point(N,0);
+    cout<<ans<<endl;
+
+    return 0;
 }
 
 // int main(){
