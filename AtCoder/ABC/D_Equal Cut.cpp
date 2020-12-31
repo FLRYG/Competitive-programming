@@ -23,21 +23,79 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 ll N;
-ll A[200000];
+ll A[200001];
+
+inline ll mmax(ll a, ll b, ll c, ll d){
+    return max(max(a,b),max(c,d));
+}
+
+inline ll mmin(ll a, ll b, ll c, ll d){
+    return min(min(a,b),min(c,d));
+}
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
+    repn(i,N) cin>>A[i];
 
-    vector<ll> sum(N,0);
-    sum[0]=A[0];
-    repn(i,N-1) sum[i]=sum[i-1]+A[i];
+    vector<ll> sum(N+1,0);
+    repn(i,N) sum[i]=sum[i-1]+A[i];
 
-    ll P,Q,R,S;
-    ll i=1,j=3;
-    for(int k=2;k<=N-2;k++){
-        for(int )
+    ll P=0, Q=0, R=A[1], S=sum[N-1]-sum[2];
+    ll i=0,j=2;
+    ll ans=LINF;
+    for(ll k=2;k<=N-2;k++){
+        Q+=A[k-1];
+        R-=A[k-1];
+
+        ll d1=abs(sum[k]-2*sum[i]);
+        while(i+1<k && abs(sum[k]-2*sum[i+1])<d1){
+            d1=abs(sum[k]-2*sum[i+1]);
+            P=sum[i+1];
+            Q=sum[k]-sum[i+1];
+            i++;
+        }
+
+        j=max(j,k);
+        ll d2=abs(sum[N]+sum[k]-2*sum[j]);
+        // cout<<j<<endl;
+        // cout<<abs(sum[N]+sum[k]-2*sum[j+1])<<endl;
+        while(j+1<N && abs(sum[N]+sum[k]-2*sum[j+1])<d2){
+            d2=abs(sum[N]+sum[k]-2*sum[j+1]);
+            R=sum[j+1]-sum[k];
+            S=sum[N]-sum[j+1];
+            j++;
+        }
+        cout<<i<<' '<<k<<' '<<j<<endl;
+        cout<<P<<' '<<Q<<' '<<R<<' '<<S<<endl;
+        ans=min(ans,mmax(P,Q,R,S)-mmin(P,Q,R,S));
     }
+
+    // ll P=0, Q=A[0]+A[1], R=A[1], S=sum[N-1]-sum[1];
+    // ll i=1,j=3;
+    // ll ans=LINF;
+    // for(int k=2;k<=N-2;k++){
+    //     ll d1=LINF;
+    //     ll d2=LINF;
+    //     Q+=A[k-1];
+    //     R-=A[k-1];
+    //     while(i<k && abs((P+A[i-1])-(Q-A[i-1]))<d1){
+    //         P+=A[i-1];
+    //         Q-=A[i-1];
+    //         d1=abs((P+A[i-1])-(Q-A[i-1]));
+    //         i++;
+    //     }
+    //     while(j<N && abs((R+A[j-1])-(S-A[j-1]))<d2){
+    //         R+=A[j-1];
+    //         S-=A[j-1];
+    //         d2=abs((R+A[j-1])-(S-A[j-1]));
+    //         j++;
+    //     }
+    //     cout<<i-1<<' '<<k<<' '<<j-1<<endl;
+    //     cout<<P<<' '<<Q<<' '<<R<<' '<<S<<endl;
+    //     ans=min(ans,mmax(P,Q,R,S)-mmin(P,Q,R,S));
+    // }
+
+    cout<<ans<<endl;
     
     return 0;
 }
