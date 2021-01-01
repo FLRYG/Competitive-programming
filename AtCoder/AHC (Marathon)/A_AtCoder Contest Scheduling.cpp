@@ -9,6 +9,7 @@
 #include <queue>
 #include <deque>
 #include <map>
+#include <set>
 #include <unordered_map>
 #include <random>
 #define rep(i,n) for(int i=0;i<n;i++)
@@ -162,10 +163,10 @@ void solve3(){
     repn(i,D) cout<<ans[i]<<endl;
 }
 
-ll computeScoreType(ll type, vector<ll> &vec){
+ll computeScoreType(ll type, set<ll> &st){
     ll score=0;
-    rep(i,vec.size()-1){
-        score+=vec[i]*(vec[i]-1)/2;
+    for(auto i1=st.begin(),i2=++st.begin();i2!=st.end();i1++,i2++){
+        score+=(*i2-*i1)*(*i2-*i1-1)/2;
     }
     score*=c[type];
     return score;
@@ -182,12 +183,14 @@ void solve4(){
     vector<ll> ans(D+1);
     repn(d,D) ans[d]=mt()%26+1;
 
-    vector<vector<ll>> type(26+1,vector<ll>());
-    repn(d,D) type[ans[d]].push_back(d);
-    repn(t,26) type[t].push_back(366);
+    //　タイプごとの開催日
+    vector<set<ll>> type(26+1,set<ll>());
+    repn(t,26) type[t].insert(0);
+    repn(d,D) type[ans[d]].insert(d);
+    repn(t,26) type[t].insert(366);
+    // スコア計算
     vector<ll> score_type(26+1,0);
     repn(t,26) score_type[t]=computeScoreType(t,type[t]);
-
     ll score=0;
     repn(t,26) score+=score_type[t];
 
@@ -199,11 +202,25 @@ void solve4(){
         if(mt()%2){
             ll d=mt()%365+1;
             ll t=mt()%26+1;
-            ll old_d=ans[d];
-            ans[d]=t;
-            ll scr=computeScore(ans);
-            if(scr>score) score=scr;
-            else ans[d]=old_d;
+            //ll old_d=ans[d];
+            //ans[d]=t;
+            type[ans[d]].erase(d);
+            type[t].insert(d);
+            // ll scr=computeScore(ans);
+            ll scr1=computeScoreType(ans[d],type[ans[d]]);
+            ll scr2=computeScoreType(t,type[t]);
+            // if(scr>score) score=scr;
+            // else ans[d]=old_d;
+            if(scr1+scr2>score_type[ans[d]]+score_type[t]){
+                score=score-score_type[ans[d]]+score_type[t]+scr1+scr2;
+                score_type[ans[d]]=scr1;
+                score_type[t]=scr2;
+                ans[d]=t;
+            }else{
+                ans[d]=ans[d];
+                type[ans[d]].insert(d);
+                type[t].erase(d);
+            }
         }else{
             ll d1=mt()%365+1;
             ll d2=max(0LL,min(365LL,(ll)(d1+mt()%32-16)));

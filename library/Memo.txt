@@ -127,9 +127,10 @@ a/b の切り上げは (a+(b-1))/b
     E - Lamps
     C - 正直者の高橋くん
     B - 大事な数なのでZ回書きまLた。
-    D - Hachi                           速
+    D - Hachi                           speed
     A - Pay to Win
     C - Exoswap
+    D - Equal Cut                       speed
 
 <<再2>>
     D - Practical Skill Test
