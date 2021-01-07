@@ -35,6 +35,7 @@
     E - Coprime                         素因数分解？
     E - Count Median                    範囲
     E - Colorful Blocks                 組み合わせ
+    E - Roaming                         組み合わせ
 
 <<ARC>>
     D - Remainder Reminder              余りの問題
@@ -131,6 +132,7 @@ a/b の切り上げは (a+(b-1))/b
     A - Pay to Win
     C - Exoswap
     D - Equal Cut                       speed
+    E - Roaming
 
 <<再2>>
     D - Practical Skill Test
