@@ -42,6 +42,7 @@
     B - ムーアの法則                    三分探索、二分法
     D - アンバランス                    鳩ノ巣原理
     C - Exoswap                         愚直
+    A - Simple Math 2                   式変形
 
 <<AGC>>
     A - Diverse Word                    辞書順

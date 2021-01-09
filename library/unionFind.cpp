@@ -2,18 +2,21 @@ struct unionFind{
     int* par;                       //親
     int* rank;                      //木の深さ
     int* scale;                     //木のサイズ
+    int quantity;                   //木の個数
     unionFind(int n);
     ~unionFind();
     int find(int x);                //木の根を求める
     void unite(int x,int y);        //xとyの属する集合を併合
     bool same(int x,int y);         //xとyが同じ集合に属するか否か
     int size(int x);                //xの属する集合のサイズ
+    int count();                    //木の個数
 };
 
 unionFind::unionFind(int n){
     par=new int[n];
     rank=new int[n];
     scale=new int[n];
+    quantity=n;
     for(int i=0;i<n;i++){
         par[i]=i;
         rank[i]=0;
@@ -36,6 +39,7 @@ void unionFind::unite(int x,int y){
     x=find(x);
     y=find(y);
     if(x==y) return;
+    quantity--;
     if(rank[x]<rank[y]){
         par[x]=y;
         scale[y]+=scale[x];
@@ -53,4 +57,8 @@ bool unionFind::same(int x,int y){
 int unionFind::size(int x){
     x=find(x);
     return scale[x];
+}
+
+int unionFind::count(){
+    return quantity;
 }
