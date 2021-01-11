@@ -36,6 +36,11 @@ int main(){
     }
     //repr(e,s) cout<<e<<endl;
     cout<<score<<endl;
+
+
+    // for(auto i1=st.begin(),i2=++st.begin();i2!=st.end();i1++,i2++){
+    //     *i2=100;
+    // }
     
     return 0;
 }

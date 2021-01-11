@@ -32,7 +32,26 @@ int main(){
     cin>>N>>C;
     rep(i,N) cin>>a[i]>>b[i]>>c[i];
 
-    vector<ll> price();
+    map<ll,ll> m;
+    rep(i,N){
+        m[a[i]]+=c[i];
+        m[b[i]+1]-=c[i];
+    }
+
+    for(auto i1=m.begin(),i2=++m.begin();i2!=m.end();i1++,i2++){
+        (*i2).second+=(*i1).second;
+    }
+
+    // repr(e,m) cout<<e.first<<' '<<e.second<<endl;
+
+    ll ans=0;
+    for(auto i1=m.begin(),i2=++m.begin();i2!=m.end();i1++,i2++){
+        ll k=(*i2).first-(*i1).first;
+        if((*i1).second>=C) ans+=k*C;
+        else ans+=k*((*i1).second);
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }
