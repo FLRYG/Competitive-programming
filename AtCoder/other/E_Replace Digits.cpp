@@ -5,8 +5,10 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <stack>
 #include <queue>
 #include <deque>
+#include <set>
 #include <map>
 #include <unordered_map>
 #define rep(i,n) for(int i=0;i<n;i++)
@@ -21,32 +23,13 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,K;
-int A[300000];
+int N,Q;
+string S;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
+    cin>>N>>Q;
 
-    vector<int> cnt(300002);
-    rep(i,N){
-        int l,r;
-        l=max(A[i]-K,0);
-        r=min(A[i]+K+1,300001);
-        cnt[l]++;
-        cnt[r]--;
-    }
-    repn(i,300000){
-        cnt[i]+=cnt[i-1];
-    }
-    repn(i,20){
-        cout<<i<<' '<<cnt[i]<<endl;
-    }
-
-    int ans=0;
-    rep(i,300002){
-        ans=max(ans,cnt[i]);
-    }
-
-    cout<<ans<<endl;
+    
+    
+    return 0;
 }

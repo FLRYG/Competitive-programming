@@ -29,6 +29,7 @@
     D - 高橋くんと木の直径               木の直径
     D - increment of coins              期待値、メモ化再帰
     D - Snuke Prime                     座標圧縮＋累積和
+    D - Xor Sum 4                       xor bitは独立
     E - Dividing Chocolate              全探索と貪欲法を使い分ける問題
     E - Crested Ibis vs Monster         dp
     E - Almost Everywhere Zero          dp
