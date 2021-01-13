@@ -23,22 +23,16 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-string S;
+template<class T>T gcd(T a, T b){return b?gcd(b,a%b):a;}
+template<class T>T lcm(T a, T b){return a/gcd(a,b)*b;}
+
+int X;
 
 int main(){
-    cin>>S;
+    cin>>X;
 
-    map<string,int> m;
-    int i=0;
-    int ans=0;
-    repn(j,S.size()){
-        if(m[S.substr(i,j-i)]==0){
-            m[S.substr(i,j-i)]++;
-            i=j;
-            ans++;
-        }else if(j==S.size()) ans++;
-    }
-    
+    int ans=lcm(X,360)/X;
+
     cout<<ans<<endl;
     
     return 0;
