@@ -23,10 +23,13 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-
+int x,a,b;
 
 int main(){
-    
+    cin>>x>>a>>b;
+
+    if(abs(x-a)<abs(x-b)) cout<<"A"<<endl;
+    else cout<<"B"<<endl;
     
     return 0;
 }
