@@ -45,6 +45,7 @@
     D - アンバランス                    鳩ノ巣原理
     C - Exoswap                         愚直
     A - Simple Math 2                   式変形
+    C - Sequence                        貪欲
 
 <<AGC>>
     A - Diverse Word                    辞書順
