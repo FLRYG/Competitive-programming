@@ -23,34 +23,32 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N=20;
+int N;
+int A[10000];
 
 int main(){
-    set<int> st{0,10,13,20};
-    //rep(i,N) st.insert(i);
+    cin>>N;
+    rep(i,N) cin>>A[i];
 
-    ll score=0;
-    for(auto i1=st.begin(),i2=++st.begin();i2!=st.end();i1++,i2++){
-        cout<<*i1<<' '<<*i2<<endl;
-        score+=(*i2-*i1)*(*i2-*i1-1)/2;
+    vector<int> L(N),R(N);
+    stack<int> s,ss;
+    rep(i,N){
+        while(!s.empty() && A[s.top()]>=A[i]) s.pop();
+        L[i]=s.size()==0?0:(s.top()+1);
+        s.push(i);
     }
-    //repr(e,s) cout<<e<<endl;
-    cout<<score<<endl;
+    for(int i=N-1;i>=0;i--){
+        while(!ss.empty() && A[ss.top()]>=A[i]) ss.pop();
+        R[i]=ss.size()==0?N:ss.top();
+        ss.push(i);
+    }
 
+    int ans=0;
+    rep(i,N){
+        ans=max(ans,A[i]*(R[i]-L[i]));
+    }
 
-    // for(auto i1=st.begin(),i2=++st.begin();i2!=st.end();i1++,i2++){
-    //     *i2=100;
-    // }
+    cout<<ans<<endl;
 
-
-
-    vector<int> v1{0,1,2,3};
-    vector<int> *v2=&v1;
-    cout<<&v1<<'\n'<<&v2<<endl;
-    //*v2[0]=999;
-    cout<<v2<<endl;
-    v2->at(0)=999;
-    rep(i,v1.size()) cout<<v1[i]<<' '; cout<<endl;
-    
     return 0;
 }

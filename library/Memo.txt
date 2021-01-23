@@ -46,6 +46,7 @@
     C - Exoswap                         愚直
     A - Simple Math 2                   式変形
     C - Sequence                        貪欲
+    D - Xor Sum 2                       足し算とxorの関係
 
 <<AGC>>
     A - Diverse Word                    辞書順

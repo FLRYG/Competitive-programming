@@ -23,34 +23,24 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N=20;
+int N;
+string S[60];
+ll dpx[61][2];
+ll dpy[61][2];
 
 int main(){
-    set<int> st{0,10,13,20};
-    //rep(i,N) st.insert(i);
+    cin>>N;
+    rep(i,N) cin>>S[i];
 
-    ll score=0;
-    for(auto i1=st.begin(),i2=++st.begin();i2!=st.end();i1++,i2++){
-        cout<<*i1<<' '<<*i2<<endl;
-        score+=(*i2-*i1)*(*i2-*i1-1)/2;
+    dpy[0][0]=1;
+    dpy[0][1]=1;
+    repn(i,N){
+        if(S[i-1]=="AND"){
+            dpy[i][0]=dpy[i-1][0]
+            dpy[i][1]=dpy[i-1][1]*dpx[i-1][1];
+        }
+        else ans*=2;
     }
-    //repr(e,s) cout<<e<<endl;
-    cout<<score<<endl;
-
-
-    // for(auto i1=st.begin(),i2=++st.begin();i2!=st.end();i1++,i2++){
-    //     *i2=100;
-    // }
-
-
-
-    vector<int> v1{0,1,2,3};
-    vector<int> *v2=&v1;
-    cout<<&v1<<'\n'<<&v2<<endl;
-    //*v2[0]=999;
-    cout<<v2<<endl;
-    v2->at(0)=999;
-    rep(i,v1.size()) cout<<v1[i]<<' '; cout<<endl;
     
     return 0;
 }
