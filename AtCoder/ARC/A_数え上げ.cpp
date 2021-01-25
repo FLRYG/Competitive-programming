@@ -24,31 +24,15 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-int A[10000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
-
-    vector<int> L(N),R(N);
-    stack<int> s,ss;
-    rep(i,N){
-        while(!s.empty() && A[s.top()]>=A[i]) s.pop();
-        L[i]=s.size()==0?0:(s.top()+1);
-        s.push(i);
-    }
-    for(int i=N-1;i>=0;i--){
-        while(!ss.empty() && A[ss.top()]>=A[i]) ss.pop();
-        R[i]=ss.size()==0?N:ss.top();
-        ss.push(i);
-    }
-
-    int ans=0;
-    rep(i,N){
-        ans=max(ans,A[i]*(R[i]-L[i]));
-    }
+    
+    string ans="1";
+    rep(i,N-1) ans+='0';
+    ans+='7';
 
     cout<<ans<<endl;
-
+    
     return 0;
 }

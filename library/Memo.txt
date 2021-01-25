@@ -39,6 +39,8 @@
     E - Colorful Blocks                 組み合わせ
     E - Roaming                         組み合わせ
 
+    E - Rotate and Flip                 アフィン変換                   
+
 <<ARC>>
     D - Remainder Reminder              余りの問題
     B - ムーアの法則                    三分探索、二分法
@@ -93,6 +95,10 @@ string S; cin.ignore(); getline(cin,S); 空白を含む文をそのまま入力(
 lower
 
 a/b の切り上げは (a+(b-1))/b
+
+./a.out < in.txt                        ./a.out の標準入力を in.txt から読み込む
+./a.out > out.txt                       ./a.out の標準出力を out.txt に書き込む(先頭から)
+./a.out >> out.txt                      ./a.out の標準出力を out.txt に書き込む(末尾から)
 
 
 <<典型的問題>>

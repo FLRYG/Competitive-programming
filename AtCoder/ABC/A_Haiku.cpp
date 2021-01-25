@@ -23,39 +23,15 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[200000];
-
-bool f(vector<int> v){
-    bool res=true;
-    rep(i,v.size()){
-        res&=(v[i]<=1)?true:false;
-    }
-    return res;
-}
+string S;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    cin>>S;
 
-    vector<int> cnt(20);
-    ll ans=0;
-    int r=0;
-    rep(l,N){
-        while(r<N){
-            rep(i,20) cnt[i]+=A[r]>>i&1;
-            if(!f(cnt)){
-                rep(i,20) cnt[i]-=A[r]>>i&1;
-                break;
-            }
-            r++;
-        }
-        // cout<<l<<' '<<r<<endl;
-        ans+=r-l;
-        rep(i,20) cnt[i]-=A[l]>>i&1;
-    }
+    S[5]=' ';
+    S[13]=' ';
 
-    cout<<ans<<endl;
-
+    cout<<S<<endl;
+    
     return 0;
 }
