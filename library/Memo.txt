@@ -40,6 +40,7 @@
     E - Roaming                         組み合わせ
 
     E - Rotate and Flip                 アフィン変換                   
+    D - Logical Expression              dp              ***
 
 <<ARC>>
     D - Remainder Reminder              余りの問題

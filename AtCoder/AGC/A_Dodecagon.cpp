@@ -21,28 +21,20 @@ typedef long double ld;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
-ll const MOD=1000000007;
+ll const MOD=998244353;
 
-int N;
-string S[61];
-ll dp[61][2];
+ll d;
+
+ll mpow(ll x,ll n){
+    if(n==0) return 1;
+    else if(n%2) return x*mpow(x,n-1)%MOD;
+    return mpow(x*x%MOD,n/2)%MOD;
+}
 
 int main(){
-    cin>>N;
-    repn(i,N) cin>>S[i];
+    cin>>d;
 
-    dp[0][0]=1;
-    dp[0][1]=1;
-    repn(i,N){
-        rep(x,2) rep(y,2){
-            int n=x;
-            if(S[i]=="AND") n&=y;
-            else n|=y;
-            dp[i][n]+=dp[i-1][y];
-        }
-    }
-
-    cout<<dp[N][1]<<endl;
+    cout<<mpow(2,d-1)<<endl;
     
     return 0;
 }
