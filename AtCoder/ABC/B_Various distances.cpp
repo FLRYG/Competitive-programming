@@ -24,19 +24,22 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 ll N;
-ll A[200000];
+ll x[100000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
-
-    sort(A,A+N);
+    rep(i,N) cin>>x[i];
 
     ll ans=0;
-    rep(i,N){
-        ans+=(A[i+1]-A[i])*(i+1)*(N-i-1);
-    }
+    rep(i,N) ans+=abs(x[i]);
+    cout<<ans<<endl;
 
+    ans=0;
+    rep(i,N) ans+=x[i]*x[i];
+    cout<<setprecision(16)<<sqrt(ans)<<endl;
+
+    ans=0;
+    rep(i,N) ans=max(ans,x[i]);
     cout<<ans<<endl;
     
     return 0;

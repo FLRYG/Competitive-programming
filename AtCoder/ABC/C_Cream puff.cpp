@@ -24,20 +24,11 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 ll N;
-ll A[200000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
 
-    sort(A,A+N);
-
-    ll ans=0;
-    rep(i,N){
-        ans+=(A[i+1]-A[i])*(i+1)*(N-i-1);
-    }
-
-    cout<<ans<<endl;
+    map
     
     return 0;
 }
