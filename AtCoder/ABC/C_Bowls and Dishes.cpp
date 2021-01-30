@@ -23,20 +23,33 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
+int N,M,K;
+int A[100];
+int B[100];
+int C[100];
+int D[100];
 
 int main(){
-    cin>>N;
+    cin>>N>>M;
+    rep(i,M) cin>>A[i]>>B[i];
+    cin>>K;
+    rep(i,K) cin>>C[i]>>D[i];
 
-    set<ll> s;
-    repn(i,1000000){
-        if(N%i==0){
-            s.insert(i);
-            s.insert(N/i);
+    int ans=0;
+    rep(i,1<<K){
+        vector<int> cnt(N+1,0);
+        rep(j,K){
+            if(i>>j&1) cnt[C[j]]++;
+            else cnt[D[j]]++;
         }
+        int res=0;
+        rep(j,M){
+            if(cnt[A[j]] && cnt[B[j]]) res++;
+        }
+        ans=max(ans,res);
     }
 
-    repr(e,s) cout<<e<<endl;
+    cout<<ans<<endl;
     
     return 0;
 }

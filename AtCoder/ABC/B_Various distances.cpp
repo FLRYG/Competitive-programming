@@ -39,7 +39,7 @@ int main(){
     cout<<setprecision(16)<<sqrt(ans)<<endl;
 
     ans=0;
-    rep(i,N) ans=max(ans,x[i]);
+    rep(i,N) ans=max(ans,abs(x[i]));
     cout<<ans<<endl;
     
     return 0;

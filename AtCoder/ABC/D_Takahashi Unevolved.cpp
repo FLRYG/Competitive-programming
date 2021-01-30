@@ -23,20 +23,22 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
+ll X,Y,A,B;
 
 int main(){
-    cin>>N;
+    cin>>X>>Y>>A>>B;
 
-    set<ll> s;
-    repn(i,1000000){
-        if(N%i==0){
-            s.insert(i);
-            s.insert(N/i);
-        }
+    if(Y/A<=X)
+
+    ll ans=0, cnt=0;
+    while(X<Y){
+        cout<<X<<endl;
+        ans=max(ans,cnt+(Y-X-1)/B);
+        X*=A;
+        cnt++;
     }
 
-    repr(e,s) cout<<e<<endl;
+    cout<<ans<<endl;
     
     return 0;
 }

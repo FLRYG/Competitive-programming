@@ -28,15 +28,17 @@ ll N;
 int main(){
     cin>>N;
 
-    set<ll> s;
-    repn(i,1000000){
-        if(N%i==0){
-            s.insert(i);
-            s.insert(N/i);
-        }
+    N*=2;
+    ll ans=0;
+    repn(i,sqrt(N)){
+        if(N%i==0 && (((N/i)^i)&1)){
+            if(N/i==i) ans++;
+            else ans+=2;
+            //cout<<i<<' '<<N/i<<endl;
+        } 
     }
 
-    repr(e,s) cout<<e<<endl;
+    cout<<ans<<endl;
     
     return 0;
 }

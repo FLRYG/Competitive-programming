@@ -23,20 +23,16 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
+int A,B,C;
 
 int main(){
-    cin>>N;
+    cin>>A>>B>>C;
 
-    set<ll> s;
-    repn(i,1000000){
-        if(N%i==0){
-            s.insert(i);
-            s.insert(N/i);
-        }
-    }
+    string ans="Takahashi";
+    if(C==0 && A<=B) ans="Aoki";
+    if(C==1 && A<B) ans="Aoki";
 
-    repr(e,s) cout<<e<<endl;
+    cout<<ans<<endl;
     
     return 0;
 }

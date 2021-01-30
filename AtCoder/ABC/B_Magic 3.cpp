@@ -23,20 +23,22 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
+int N,S,D;
+int X[100];
+int Y[100];
 
 int main(){
-    cin>>N;
+    cin>>N>>S>>D;
+    rep(i,N) cin>>X[i]>>Y[i];
 
-    set<ll> s;
-    repn(i,1000000){
-        if(N%i==0){
-            s.insert(i);
-            s.insert(N/i);
+    rep(i,N){
+        if(X[i]<S && Y[i]>D){
+            cout<<"Yes"<<endl;
+            return 0;
         }
     }
 
-    repr(e,s) cout<<e<<endl;
+    cout<<"No"<<endl;
     
     return 0;
 }
