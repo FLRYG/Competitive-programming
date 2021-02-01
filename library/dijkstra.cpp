@@ -18,6 +18,18 @@ void dijkstra(vector<vector<int>> &G, vector<int> &cost, int s){
 }
 
 int main(){
-    int N=7;
-    vector<vector<int>> G(N,vector<int>());
+    int nodeN, edgeN;
+    vector<vector<int>> G(nodeN,vector<int>());
+    cin>>nodeN>>edgeN;
+    for(int i=0;i<edgeN;i++){
+        int a,b;
+        cin>>a>>b;
+        G[a].push_back(b);
+        G[b].push_back(a);
+    }
+
+    vector<int> cost(nodeN,0);
+    dijkstra(G,cost,0);
+
+
 }
