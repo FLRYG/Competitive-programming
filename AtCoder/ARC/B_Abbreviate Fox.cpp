@@ -4,6 +4,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <list>
 #include <iomanip>
 #include <stack>
 #include <queue>
@@ -23,25 +24,24 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll X,Y,A,B;
+int N;
+string S;
 
 int main(){
-    cin>>X>>Y>>A>>B;
+    cin>>N>>S;
 
-    if(Y/A<=X){
-        cout<<(Y-X-1)/B<<endl;
-        return 0;
-    }
-
-    ll ans=0, cnt=0;
-    while(X<Y){
-        //cout<<X<<endl;
-        ans=max(ans,cnt+(Y-X-1)/B);
-        X*=A;
-        cnt++;
+    string T;
+    int ans=0;
+    rep(i,N){
+        T+=S[i];
+        ans++;
+        if(ans>=3 && T.substr(ans-3,3)=="fox"){
+            rep(j,3) T.pop_back();
+            ans-=3;
+        }
     }
 
     cout<<ans<<endl;
-    
+
     return 0;
 }
