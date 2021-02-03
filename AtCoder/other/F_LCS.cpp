@@ -17,17 +17,20 @@ typedef long long ll;
 typedef long double ld;
 
 string s,t;
-int dp[3001][3001];
 
 int main(){
     cin>>s>>t;
 
-    repn(i,s.size()){
-        repn(j,t.size()){
-            if(s[i-1]==t[j-1]) dp[i][j]=dp[i-1][j-1]+1;
-            else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+    vector<string> dp(t.size()+1,"");
+    rep(i,s.size()){
+        vector<string> tmp=dp;
+        rep(j,t.size()){
+            if(s[i]==t[j]) dp[j+1]=tmp[j]+s[i];
+            else if(tmp[j+1].size()<dp[j].size()) dp[j+1]=dp[j];
+            else dp[j+1]=tmp[j+1];
         }
+        // repn(j,t.size()) cout<<i+1<<','<<j<<' '<<dp[j]<<endl;
     }
 
-    cout<<dp[s.size()][t.size()]<<endl;
+    cout<<dp[t.size()]<<endl;
 }
