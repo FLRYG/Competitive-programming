@@ -24,24 +24,25 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll H,W;
-char a[1001][1001];
+int N;
+double p[3000];
 
 int main(){
-    cin>>H>>W;
-    repn(i,H) repn(j,W) cin>>a[i][j];
+    cin>>N;
+    repn(i,N) cin>>p[i];
 
-    vector<ll> dp(W+1,0);
-    dp[1]=1;
-    repn(i,H){
-        repn(j,W){
-            if(a[i][j]=='.') dp[j]+=dp[j-1];
-            else dp[j]=0;
-            dp[j]%=MOD;
+    vector<vector<double>> dp(N+1,vector<double>(N+1,0));
+    dp[0][0]=1;
+    repn(i,N){
+        rep(j,N+1){
+            dp[i][j]=dp[i-1][j-1]*p[i]+dp[i-1][j]*(1-p[i]);
         }
     }
 
-    cout<<dp[W]<<endl;
+    double ans=0;
+    for(int i=(N+1)/2;i<=N;i++) ans+=dp[N][i];
+
+    cout<<setprecision(16)<<ans<<endl;
     
     return 0;
 }

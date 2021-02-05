@@ -24,24 +24,30 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll H,W;
-char a[1001][1001];
+int N;
+int a[300];
+
+double dfs(int x, int y, int z){
+    if(x==0 && y==0 && z==0) return 0;
+    double res=1;
+    if(x>0) res+=dfs(x-1,y,z)*(x/N);
+    if(y>0) res+=dfs(x+1,y-1,z)*(y/N);
+    if(z>0) res+=dfs(x,y+1,z-1)*(z/N);
+    return res;
+}
 
 int main(){
-    cin>>H>>W;
-    repn(i,H) repn(j,W) cin>>a[i][j];
+    cin>>N;
+    rep(i,N) cin>>a[i];
 
-    vector<ll> dp(W+1,0);
-    dp[1]=1;
-    repn(i,H){
-        repn(j,W){
-            if(a[i][j]=='.') dp[j]+=dp[j-1];
-            else dp[j]=0;
-            dp[j]%=MOD;
-        }
+    int x,y,z;
+    rep(i,N){
+        if(a[i]==1) x++;
+        if(a[i]==2) y++;
+        if(a[i]==3) z++;
     }
 
-    cout<<dp[W]<<endl;
+    cout<<dfs(x,y,z)<<endl;
     
     return 0;
 }
