@@ -26,13 +26,24 @@ ll const MOD=1000000007;
 
 int N;
 int a[300];
+vector<vector<vector<double>>> memo;
 
 double dfs(int x, int y, int z){
     if(x==0 && y==0 && z==0) return 0;
-    double res=1;
-    if(x>0) res+=dfs(x-1,y,z)*(x/N);
-    if(y>0) res+=dfs(x+1,y-1,z)*(y/N);
-    if(z>0) res+=dfs(x,y+1,z-1)*(z/N);
+    if(memo[x][y][z]!=-1) return memo[x][y][z];
+    // f(x,y,z)=
+    //     +1
+    //     +f(x,y,z)*(N-x-y-z)/N
+    //     +f(x-1,y,z)*x/N
+    //     +f(x+1,y-1,z)*y/N
+    //     +f(x,y+1,z-1)*z/N
+    double m=1-(double)(N-x-y-z)/N;
+    double res=1/m;
+    if(x>0) res+=dfs(x-1,y,z)*x/N/m;
+    if(y>0) res+=dfs(x+1,y-1,z)*y/N/m;
+    if(z>0) res+=dfs(x,y+1,z-1)*z/N/m;
+    // cout<<x<<' '<<y<<' '<<z<<' '<<res<<endl;
+    memo[x][y][z]=res;
     return res;
 }
 
@@ -40,14 +51,16 @@ int main(){
     cin>>N;
     rep(i,N) cin>>a[i];
 
-    int x,y,z;
+    int x=0, y=0, z=0;
     rep(i,N){
         if(a[i]==1) x++;
         if(a[i]==2) y++;
         if(a[i]==3) z++;
     }
 
-    cout<<dfs(x,y,z)<<endl;
+    memo=vector<vector<vector<double>>>(x+y+z+1,vector<vector<double>>(y+z+1,vector<double>(z+1,-1)));
+
+    cout<<setprecision(16)<<dfs(x,y,z)<<endl;
     
     return 0;
 }

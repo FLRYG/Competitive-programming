@@ -71,6 +71,7 @@
     C - 錬金術士                        範囲
     B - エターナルスタティックファイナル  dp
     B - Numbers on Papers               dp　速
+    J - Sushi                           期待値　メモ化再帰
 
 
 Overflow
