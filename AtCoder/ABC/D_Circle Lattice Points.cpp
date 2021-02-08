@@ -28,19 +28,25 @@ double x,y,r;
 ll X,Y,R;
 
 int main(){
+    cout<<floor(-1.5)<<endl;
     cin>>x>>y>>r;
     X=x*10000;
     Y=y*10000;
     R=r*10000;
+    cout<<X<<endl;
+    cout<<Y<<endl;
+    cout<<R<<endl;
 
-    ll l=(X-R+9999)/10000*10000;
+    ll l=(abs(X-R)+9999)/10000*10000;
     ll r=(X+R)/10000*10000;
+
+    cout<<l<<' '<<r<<endl;
 
     ll ans=0;
     for(ll i=l;i<=r;i+=10000){
-        double a=sqrt(R*R-(X-i)*(X-i));
-        ll u=floor(Y+a)/10000;
-        ll d=ceil(Y-a)/10000;
+        ll a=sqrt(R*R-(X-i)*(X-i));
+        ll u=(Y+a)/10000;
+        ll d=(Y-a+9999)/10000;
         ans+=u-d+1;
     }
 

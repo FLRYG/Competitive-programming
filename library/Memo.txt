@@ -72,6 +72,7 @@
     B - エターナルスタティックファイナル  dp
     B - Numbers on Papers               dp　速
     J - Sushi                           期待値　メモ化再帰
+    M - Candies                         dp+累積和　がんばって漸化式をつくる
 
 
 Overflow

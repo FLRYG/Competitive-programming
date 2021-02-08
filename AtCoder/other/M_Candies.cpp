@@ -24,34 +24,35 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll a[3001];
-vector<vector<bool>> chk;
-vector<vector<ll>> dp;
-
-ll dfs(ll l, ll r){
-    // cout<<l<<' '<<r<<endl;
-    if(chk[l][r]) return dp[l][r];
-    ll res;
-    if((N&1)==((r-l+1)&1)){
-        if(l==r) res=a[l];
-        else res=max(dfs(l,r-1)+a[r],dfs(l+1,r)+a[l]);
-    }else{
-        if(l==r) res=-a[l];
-        else res=min(dfs(l,r-1)-a[r],dfs(l+1,r)-a[l]);
-    }
-    chk[l][r]=true;
-    dp[l][r]=res;
-    return res;
-}
+ll N,K;
+ll a[101];
 
 int main(){
-    cin>>N;
+    cin>>N>>K;
     repn(i,N) cin>>a[i];
-    chk=vector<vector<bool>>(N+1,vector<bool>(N+1,false));
-    dp=vector<vector<ll>>(N+1,vector<ll>(N+1));
 
-    cout<<dfs(1,N)<<endl;
-    
+    if(K==0){
+        cout<<1<<endl;
+        return 0;
+    }
+
+    vector<vector<ll>> dp(N+1,vector<ll>(K+1,0));
+    rep(i,N+1) dp[i][0]=1;
+    repn(j,K) dp[0][j]+=dp[0][j-1];
+    repn(i,N){
+        repn(j,K){
+            if(j-a[i]-1>=0) dp[i][j]+=dp[i-1][j]-dp[i-1][j-a[i]-1];
+            else dp[i][j]+=dp[i-1][j];
+            dp[i][j]+=dp[i][j-1];
+            dp[i][j]%=MOD;
+        }
+    }
+
+    // rep(j,K+1){rep(i,N+1){cout<<dp[i][j]<<' ';}cout<<endl;}
+
+    ll ans=dp[N][K]-dp[N][K-1];
+    if(ans<0) ans+=MOD;
+    cout<<ans<<endl;
+
     return 0;
 }
