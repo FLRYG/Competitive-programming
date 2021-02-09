@@ -24,21 +24,12 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll L[3],R[3];
+ll N,X;
 
 int main(){
-    rep(i,3) cin>>L[i]>>R[i];
+    cin>>N>>X;
 
-    ll P=0;
-    for(ll i=L[0];i<=R[0];i++){
-        ll P1=0,P2=0;
-        if(i<R[1]) P1=R[1]-max(L[1],i+1)+1;
-        if(i<R[2]) P2=R[2]-max(L[2],i+1)+1;
-        P+=P1*P2;
-    }
-
-    double ans=(double)P/(R[0]-L[0]+1)/(R[1]-L[1]+1)/(R[2]-L[2]+1);
-    cout<<setprecision(16)<<ans<<endl;
+    
     
     return 0;
 }
