@@ -20,8 +20,8 @@ typedef long long ll;
 typedef long double ld;
 //typedef pair<int,int> P;
 double const PI=3.141592653589793;
-int const INF=1001001001;
-ll const LINF=1001001001001001001;
+int const INF=2147483647;
+ll const LINF=9223372036854775807;
 ll const MOD=1000000007;
 
 double x,y,r;
@@ -44,7 +44,8 @@ int main(){
 
     ll ans=0;
     for(ll i=l;i<=r;i+=10000){
-        ll a=sqrt(R*R-(X-i)*(X-i));
+        ll y=R*R-(X-i)*(X-i);
+        ll a=0,b=LINF;
         ll u=(Y+a)/10000;
         ll d=(Y-a+9999)/10000;
         ans+=u-d+1;

@@ -20,16 +20,17 @@ typedef long long ll;
 typedef long double ld;
 //typedef pair<int,int> P;
 double const PI=3.141592653589793;
-int const INF=1001001001;
-ll const LINF=1001001001001001001;
+int const INF=2147483647;
+ll const LINF=9223372036854775807;
 ll const MOD=1000000007;
 
-ll N,X;
+int A,B;
 
 int main(){
-    cin>>N>>X;
+    cin>>A>>B;
 
-    
+
+    cout<<B-A+1<<endl;
     
     return 0;
 }
