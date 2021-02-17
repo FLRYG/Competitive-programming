@@ -24,26 +24,12 @@ int const INF=2147483647;
 ll const LINF=9223372036854775807;
 ll const MOD=1000000007;
 
-ll B,C;
+int a,b;
 
 int main(){
-    cin>>B>>C;
+    cin>>a>>b;
 
-    ll ans=2;
-    if(B>0){
-        ans+=min(2*B-1,max(0LL,C-1));
-        C--;
-        ans+=max(0LL,C-1);
-    }else if(B==0){
-        ans=max(1LL,C);
-    }else{
-        ans+=max(0LL,C-1);
-        C--;
-        B*=-1;
-        ans+=min(2*B-1,max(0LL,C-1));
-    }
-
-    cout<<ans<<endl;
-
+    cout<<(a+b+1)/2<<endl;
+    
     return 0;
 }

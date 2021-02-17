@@ -24,26 +24,21 @@ int const INF=2147483647;
 ll const LINF=9223372036854775807;
 ll const MOD=1000000007;
 
-ll B,C;
+int N;
 
 int main(){
-    cin>>B>>C;
+    cin>>N;
 
-    ll ans=2;
-    if(B>0){
-        ans+=min(2*B-1,max(0LL,C-1));
-        C--;
-        ans+=max(0LL,C-1);
-    }else if(B==0){
-        ans=max(1LL,C);
-    }else{
-        ans+=max(0LL,C-1);
-        C--;
-        B*=-1;
-        ans+=min(2*B-1,max(0LL,C-1));
+    int f=0, n=N;
+    while(n>0){
+        f+=n%10;
+        n/=10;
     }
 
-    cout<<ans<<endl;
+    string ans="No";
+    if(N%f==0) ans="Yes";
 
+    cout<<ans<<endl;
+    
     return 0;
 }
