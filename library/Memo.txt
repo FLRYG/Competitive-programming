@@ -42,6 +42,7 @@
     E - Rotate and Flip                 アフィン変換                   
     D - Logical Expression              dp              ***
     D - Restoring Road Network          O(N^3)
+    E - ∙ (Bullet)                      速
 
 <<ARC>>
     D - Remainder Reminder              余りの問題

@@ -16,7 +16,7 @@ struct Edge{
 };
 
 void dijkstra(vector<vector<Edge>> &G, vector<int> &cost, int s){
-    for(int i=0;i<cost.size();i++) cost[i]=1<<30; 
+    for(int i=0;i<cost.size();i++) cost[i]=INF; 
     priority_queue<Edge,vector<Edge>,greater<Edge>> que;
     que.push(Edge(s,0));
     while(!que.empty()){

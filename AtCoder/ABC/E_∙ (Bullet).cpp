@@ -41,46 +41,83 @@ ll B[200000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
-
-    rep(i,N){
-        if(A[i]!=0 && B[i]!=0){
-            ll g=gcd(abs(A[i]),abs(B[i]));
-            A[i]/=g;
-            B[i]/=g;
-        }
-    }
-    
+    vector<P> v;
     map<P,P> m;
-    rep(i,N) m[P(A[i],B[i])].first++;
+    ll zero=0;
+    rep(i,N){
+        ll a,b;
+        cin>>a>>b;
+        if(a==0 && b==0){
+            zero++;
+            continue;
+        }
+        ll g=gcd(a,b);
+        a/=g;
+        b/=g;
+        if(b<0){
+            a*=-1;
+            b*=-1;
+        }else if(b==0 && a<0){
+            a*=-1;
+        }
+        if(a>0) m[P(a,b)].first++;
+        else m[P(b,-a)].second++;
+    }
 
     ll ans=1;
-    ll n=N;
-    rep(i,N){
-        if(A[i]==0 && B[i]==0) n--;
-        if(m[P(A[i],B[i])].second) continue;
-        ll cnt1=m[P(A[i],B[i])].first;
-        ll cnt2=m[P(B[i],-A[i])].first+m[P(-B[i],A[i])].first;
-        if(cnt2>0){
-            ans*=(mpow(2,cnt1)+mpow(2,cnt2)-1)%MOD;
-            ans%=MOD;
-            n-=cnt1+cnt2;
-            m[P(A[i],B[i])].second=1;
-            m[P(B[i],-A[i])].second=1;
-            m[P(-B[i],A[i])].second=1;
-        }
+    repr(e,m){
+        ans*=(mpow(2,e.second.first)+mpow(2,e.second.second)-1)%MOD;
+        ans%=MOD;
     }
-    ans*=mpow(2,n);
-    ans%=MOD;
-    ans--;
-    ans+=m[P(0,0)].first;
-    ans%=MOD;
-    if(ans<0) ans+=MOD;
-    
+    ans=ans-1+zero;
+    ans=(ans+MOD)%MOD;
+
     cout<<ans<<endl;
 
     return 0;
 }
+
+// ll N;
+// ll A[200000];
+// ll B[200000];
+
+// int main(){
+//     cin>>N;
+//     rep(i,N) cin>>A[i]>>B[i];
+
+//     rep(i,N){
+//         if(A[i]!=0 && B[i]!=0){
+//             ll g=gcd(A[i],B[i]);
+//             A[i]/=g;
+//             B[i]/=g;
+//         }
+//     }
+    
+//     map<P,P> m;
+//     rep(i,N) m[P(A[i],B[i])].first++;
+
+//     ll ans=1;
+//     rep(i,N){
+//         if(A[i]==0 && B[i]==0) continue;
+//         if(m[P(A[i],B[i])].second) continue;
+//         ll cnt1=m[P(A[i],B[i])].first+m[P(-A[i],-B[i])].first;
+//         ll cnt2=m[P(B[i],-A[i])].first+m[P(-B[i],A[i])].first;
+//         ans*=(mpow(2,cnt1)+mpow(2,cnt2)-1)%MOD;
+//         ans%=MOD;
+//         m[P(A[i],B[i])].second=1;
+//         m[P(-A[i],-B[i])].second=1;
+//         m[P(B[i],-A[i])].second=1;
+//         m[P(-B[i],A[i])].second=1;
+//     }
+//     ans--;
+//     ans+=m[P(0,0)].first;
+//     ans%=MOD;
+//     if(ans<0) ans+=MOD;
+    
+//     cout<<ans<<endl;
+
+//     return 0;
+// }
 
 // ll N;
 // ll A[200000];

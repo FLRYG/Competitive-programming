@@ -4,6 +4,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <list>
 #include <iomanip>
 #include <stack>
 #include <queue>
@@ -19,39 +20,19 @@ typedef long long ll;
 typedef long double ld;
 //typedef pair<int,int> P;
 double const PI=3.141592653589793;
-int const INF=1001001001;
-ll const LINF=1001001001001001001;
+int const INF=2147483647;
+ll const LINF=9223372036854775807;
 ll const MOD=1000000007;
 
-string S;
+int x;
 
 int main(){
-    cin>>S;
-    int N=S.size();
+    cin>>x;
 
-    vector<int> dp(N+1,0);
+    string ans="ABC";
+    if(x>=1200) ans="ARC";
+
+    cout<<ans<<endl;
     
-
     return 0;
 }
-
-// string S;
-
-// int main(){
-//     cin>>S;
-
-//     map<string,int> m;
-//     int i=0;
-//     int ans=0;
-//     repn(j,S.size()){
-//         if(m[S.substr(i,j-i)]==0){
-//             m[S.substr(i,j-i)]++;
-//             i=j;
-//             ans++;
-//         }else if(j==S.size()) ans++;
-//     }
-    
-//     cout<<ans<<endl;
-    
-//     return 0;
-// }
