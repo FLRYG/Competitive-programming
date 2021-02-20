@@ -15,22 +15,42 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-//typedef pair<int,int> P;
+typedef pair<ll,ll> P;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,D,A;
-int X[200000];
-int H[200000];
+ll N,D,A;
 
 int main(){
     cin>>N>>D>>A;
-    rep(i,N) cin>>X[i]>>H[i];
+    vector<P> XH(N+1);
+    repn(i,N) cin>>XH[i].first>>XH[i].second;
+    XH.push_back(P(LINF,0));
+    sort(XH.begin(),XH.end());
 
-    map<int,int> m;
-    rep(i,N) m[X[i]]=H[i];
+    ll ans=0;
+    vector<ll> dam(N+2,0);
+    repn(i,N){
+        dam[i]+=dam[i-1];
+        XH[i].second-=dam[i];
+        if(XH[i].second>0){
+            ll cnt=(XH[i].second+A-1)/A;
+            ans+=cnt;
+            dam[i]+=A*cnt;
+            ll d=XH[i].first+2*D;
+            ll l=0,r=N+1;
+            while(r-l>1){
+                ll m=(l+r)/2;
+                if(d<XH[m].first) r=m;
+                else l=m;
+            }
+            dam[r]-=A*cnt;
+        }
+    }
 
-    
+    cout<<ans<<endl;
+
+    return 0;
 }
