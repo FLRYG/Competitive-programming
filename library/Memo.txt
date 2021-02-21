@@ -44,6 +44,9 @@
     D - Restoring Road Network          O(N^3)
     E - ∙ (Bullet)                      速
     E - Get Everything                  bitDP
+    D - Base n                          二分探索　掛け算のオーバーフローに注意
+    E - Traveling Salesman among Aerial Cities      TSP DP解法
+
 
 <<ARC>>
     D - Remainder Reminder              余りの問題

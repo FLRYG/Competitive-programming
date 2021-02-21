@@ -4,6 +4,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <list>
 #include <iomanip>
 #include <stack>
 #include <queue>
@@ -11,16 +12,17 @@
 #include <set>
 #include <map>
 #include <unordered_map>
+#include <bitset>
 #define rep(i,n) for(int i=0;i<n;i++)
 #define repn(i,n) for(int i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+//typedef pair<int,int> P;
 double const PI=3.141592653589793;
-int const INF=2147483647;
-ll const LINF=9223372036854775807;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 struct Edge{
@@ -85,42 +87,20 @@ int main(){
     // }
 
 
-    vector<int> dp(1<<K,0);
-    for(int i=1;i<(1<<K);i=i<<1) dp[i]=1;
-    repn(i,(1<<K)-1){
-        if(dp[i]==1) continue;
+    vector<vector<int>> dp(1<<K,vector<int>(K,INF));
+    rep(i,K) dp[(1<<K)-1-(1<<i)][i]=1;
+    for(int i=(1<<K)-1;i>=0;i--){
         rep(j,K){
-            if(i>>j&1){
-                int c=INF;
-                rep(k,K){
-                    c=min(c,cost[j][C[k]]);
-                }
-            }
-        }    
-    }
-
-    vector<int> dp(1<<K,0);
-    for(int i=1;i<(1<<K);i=i<<1) dp[i]=1;
-    repn(i,(1<<K)-1){
-        int idx=-1;
-        int cc=INF;
-        rep(j,K){
-            if(i>>j&1){
-                int x=i-(1<<j);
-                int c=INF;
-                rep(k,K){
-                    if(x>>k&1) c=min(c,cost[j][C[k]]);
-                }
-                if(c<cc){
-                    idx=x;
-                    cc=c;
-                }
+            rep(k,K){
+                dp[i][j]=min(dp[i][j],dp[i|1<<j][k]+cost[j][C[k]]);
             }
         }
-        if(idx!=-1) dp[i]=dp[idx]+cc;
     }
+    int ans=INF;
+    // for(int i=(1<<K)-1;i>=0;i--) rep(j,K) cout<<bitset<4>(i)<<' '<<dp[i][j]<<endl;
+    rep(i,K) ans=min(ans,dp[0][i]);
 
-    cout<<dp[(1<<K)-1]<<endl;
+    cout<<ans<<endl; 
 
     return 0;
 }

@@ -24,38 +24,30 @@ int const INF=2147483647;
 ll const LINF=9223372036854775807;
 ll const MOD=1000000007;
 
-ll N,K;
-ll a[1001];
+ll N,X;
+ll A[101];
 
 int main(){
-    cin>>N>>K;
-    repn(i,N) cin>>a[i];
-    repn(i,N) a[i]+=a[i-1];
+    cin>>N>>X;
+    repn(i,N) cin>>A[i];
+    sort(A+1,A+N+1);
 
-    vector<ll> val(0);
+    vector<vector<ll>> dp(N+1,vector<ll>(N+1));
+    dp[0][0]=1;
     repn(i,N){
-        for(int j=i;j<=N;j++) val.push_back(a[j]-a[i-1]);
-    }
-
-    vector<ll> cnt(50);
-    repr(e,val){
-        // cout<<e<<endl;
-        rep(i,50) cnt[i]+=e>>i&1;
-    }
-
-    ll ans=(1LL<<50)-1;
-    rep(i,50){
-        if(cnt[49-i]>=K){
-            vector<ll> v;
-            repr(e,val) if(e>>(49-i)&1) v.push_back(e);
-            sort(v.begin(),v.end(),greater<>());
-            rep(j,K) ans&=v[j];
-            break;
+        repn(j,N){
+            if(j>=A[i]) rep(k,i){
+                dp[i][j]=max(dp[i][j],dp[k][j-A[i]]);
+            }
+            rep(k,i) dp[i][j]=max(dp[i][j],dp[i][j]);
         }
     }
-    if(ans==(1LL<<50)-1) ans=0;
 
-    cout<<ans<<endl;
+    ll ans=LINF;
+    rep(i,N+1){
+        if(dp[N][i]==0) continue;
+        if(X-dp[N][i])
+    }
     
     return 0;
 }
