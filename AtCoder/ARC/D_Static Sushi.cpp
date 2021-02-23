@@ -25,24 +25,18 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-string S;
+ll N,C;
+ll x[100001];
+ll v[100001];
 
 int main(){
-    cin>>S;
-    int N=S.size();
+    cin>>N>>C;
+    repn(i,N) cin>>x[i]>>v[i];
+
+    repn(i,N) v[i]+=v[i-1];
 
     ll ans=0;
-    vector<int> cnt(26,0);
-    cnt[S[N-1]-'a']++;
-    cnt[S[N-2]-'a']++;
-    for(int i=N-3;i>=0;i--){
-        cnt[S[i]-'a']++;
-        if(S[i]==S[i+1]){
-            ans+=N-i-cnt[S[i]-'a'];
-            rep(i,26) cnt[i]=0;
-            cnt[S[i]-'a']=N-i;
-        }
-    }
+    repn(i,N) ans=max(ans,v[i]-x[i]);
 
     cout<<ans<<endl;
     

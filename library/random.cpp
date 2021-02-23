@@ -2,30 +2,45 @@
 #include <random>
 using namespace std;
 
-int N;
-int MIN;
-int MAX;
 
 struct Random{
-    int SEED;
-    Random(int seed){SEED=seed;}
+    int seed, min, max;
+    mt19937 mt;
+    uniform_int_distribution<int> rand;
+    Random(int _seed, int _min, int _max): seed(_seed),min(_min),max(_max){
+        mt.seed(seed);
+        uniform_int_distribution<int>::param_type param(min,max);
+        rand.param(param);
+    }
     ~Random(){}
-    void setSeed(int seed){SEED=seed;}
-
+    int nextInt(){
+        return rand(mt);
+    }
 };
 
 int main(){
-    std::cin>>N>>MIN>>MAX;
+    int N,seed,a,b;
+    cin>>N>>seed>>a>>b;
 
-    std::random_device seed_gen;
-    std::mt19937 engine(seed_gen());
-
-    for (int i = 1; i <= N; ++i) {
-        std::uint32_t result = engine();
-        int a=result%(MAX-MIN+1)+MIN;
-        if(i%10!=0)
-            std::cout << a << ' ';
-        else
-            std::cout << a << ' ' << std::endl;
-    }
+    Random rand(seed,a,b);
+    for(int i=0;i<N;i++) cout<<i+1<<": "<<rand.nextInt()<<endl;
 }
+
+// int N;
+// int MIN;
+// int MAX;
+// int main(){
+//     std::cin>>N>>MIN>>MAX;
+
+//     std::random_device seed_gen;
+//     std::mt19937 engine(seed_gen());
+
+//     for (int i = 1; i <= N; ++i) {
+//         std::uint32_t result = engine();
+//         int a=result%(MAX-MIN+1)+MIN;
+//         if(i%10!=0)
+//             std::cout << a << ' ';
+//         else
+//             std::cout << a << ' ' << std::endl;
+//     }
+// }
