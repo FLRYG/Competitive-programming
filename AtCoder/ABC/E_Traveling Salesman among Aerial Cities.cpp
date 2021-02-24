@@ -37,17 +37,29 @@ int main(){
         G[i][j]=abs(X[j]-X[i])+abs(Y[j]-Y[i])+max(0,Z[j]-Z[i]);
     }
 
+    // vector<vector<int>> dp(1<<N,vector<int>(N,INF));
+    // dp[(1<<N)-1][0]=0;
+    // for(int S=(1<<N)-2;S>=0;S--){
+    //     rep(v,N){
+    //         rep(u,N){
+    //             dp[S][v]=min(dp[S][v],dp[S|1<<u][u]+G[v][u]);
+    //         }
+    //     }
+    // }
+
+    // cout<<dp[0][0]<<endl;
+
     vector<vector<int>> dp(1<<N,vector<int>(N,INF));
-    dp[(1<<N)-1][0]=0;
-    for(int S=(1<<N)-2;S>=0;S--){
+    dp[0][0]=0;
+    rep(S,1<<N){
         rep(v,N){
             rep(u,N){
-                dp[S][v]=min(dp[S][v],dp[S|1<<u][u]+G[v][u]);
+                dp[S|1<<u][u]=min(dp[S|1<<u][u],dp[S][v]+G[v][u]);
             }
         }
     }
 
-    cout<<dp[0][0]<<endl;
+    cout<<dp[(1<<N)-1][0]<<endl;
     
     return 0;
 }

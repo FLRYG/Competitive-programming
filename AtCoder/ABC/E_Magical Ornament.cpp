@@ -69,36 +69,21 @@ int main(){
         C[i]--;
     }
 
-    vector<vector<int>> cost(K,vector<int>(N));
+    vector<vector<int>> cost(K,vector<int>(N,INF));
     rep(i,K) dijkstra(G,cost[i],C[i]);
-    rep(i,K){
-        bool b=false;
-        rep(j,K){
-            if(i==j) continue;
-            b|=cost[i][C[j]]==INF?false:true;
-        }
-        if(!b){
-            cout<<-1<<endl;
-            return 0;
-        }
-    }
-    // rep(i,K){
-    //     rep(j,N) cout<<cost[i][j]<<' '; cout<<endl;
-    // }
-
 
     vector<vector<int>> dp(1<<K,vector<int>(K,INF));
-    rep(i,K) dp[(1<<K)-1-(1<<i)][i]=1;
-    for(int i=(1<<K)-1;i>=0;i--){
+    rep(i,K) dp[1<<i][i]=1;
+    repn(i,(1<<K)-1){
         rep(j,K){
             rep(k,K){
-                dp[i][j]=min(dp[i][j],dp[i|1<<j][k]+cost[j][C[k]]);
+                dp[i|1<<k][k]=min(dp[i|1<<k][k],dp[i][j]+cost[j][C[k]]);
             }
         }
     }
     int ans=INF;
-    // for(int i=(1<<K)-1;i>=0;i--) rep(j,K) cout<<bitset<4>(i)<<' '<<dp[i][j]<<endl;
-    rep(i,K) ans=min(ans,dp[0][i]);
+    rep(i,K) ans=min(ans,dp[(1<<K)-1][i]);
+    if(ans==INF) ans=-1;
 
     cout<<ans<<endl; 
 

@@ -27,6 +27,22 @@ ll const MOD=1000000007;
 ll N,K;
 ll a[1001];
 
+ll f(vector<ll> &val, ll n){
+    vector<ll> cnt(n);
+    repr(e,val) rep(i,n) cnt[i]+=e>>i&1;
+    ll res=0;
+    rep(i,n){
+        if(cnt[n-i-1]>=K){
+            vector<ll> v;
+            repr(e,val) if(e>>(n-i-1)&1) v.push_back(e);
+            res+=f(v,n-i-1);
+            res+=1<<(n-i-1);
+            break;
+        }
+    }
+    return res;
+}
+
 int main(){
     cin>>N>>K;
     repn(i,N) cin>>a[i];
@@ -37,23 +53,7 @@ int main(){
         for(int j=i;j<=N;j++) val.push_back(a[j]-a[i-1]);
     }
 
-    vector<ll> cnt(50);
-    repr(e,val){
-        // cout<<e<<endl;
-        rep(i,50) cnt[i]+=e>>i&1;
-    }
-
-    ll ans=(1LL<<50)-1;
-    rep(i,50){
-        if(cnt[49-i]>=K){
-            vector<ll> v;
-            repr(e,val) if(e>>(49-i)&1) v.push_back(e);
-            sort(v.begin(),v.end(),greater<>());
-            rep(j,K) ans&=v[j];
-            break;
-        }
-    }
-    if(ans==(1LL<<50)-1) ans=0;
+    ll ans=f(val,50);
 
     cout<<ans<<endl;
     
