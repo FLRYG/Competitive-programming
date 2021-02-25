@@ -12,8 +12,8 @@
 #include <set>
 #include <map>
 #include <unordered_map>
-#define rep(i,n) for(int i=0;i<n;i++)
-#define repn(i,n) for(int i=1;i<=n;i++)
+#define rep(i,n) for(long long i=0;i<n;i++)
+#define repn(i,n) for(long long i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
@@ -32,11 +32,11 @@ ll f(vector<ll> &val, ll n){
     repr(e,val) rep(i,n) cnt[i]+=e>>i&1;
     ll res=0;
     rep(i,n){
-        if(cnt[n-i-1]>=K){
+        if(cnt[n-1-i]>=K){
             vector<ll> v;
-            repr(e,val) if(e>>(n-i-1)&1) v.push_back(e);
-            res+=f(v,n-i-1);
-            res+=1<<(n-i-1);
+            repr(e,val) if(e>>(n-1-i)&1) v.push_back(e);
+            res+=f(v,n-1-i);
+            res+=1<<(n-1-i);
             break;
         }
     }
@@ -53,7 +53,18 @@ int main(){
         for(int j=i;j<=N;j++) val.push_back(a[j]-a[i-1]);
     }
 
-    ll ans=f(val,50);
+    // ll ans=f(val,60);
+
+    ll ans=0;
+    rep(i,50){
+        ll x=1LL<<i;
+        ll cnt=0;
+        repr(e,val){
+            if((ans+x)&e) cnt++;
+        }
+        if(cnt>=K) cout<<x<<endl;
+        if(cnt>=K) ans+=x;
+    }
 
     cout<<ans<<endl;
     

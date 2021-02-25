@@ -66,11 +66,11 @@ int s[365+1][26+1];
 
 struct Score{
     int scr;
-    vector<int> typescr;
+    vector<int> scr_type;
     vector<set<int>> type2day;
     vector<int> scd;
     Score(vector<int> &_scd): scd(_scd){
-        typescr=vector<int>(26,0);
+        scr_type=vector<int>(26+1,0);
         type2day=vector<set<int>>(26+1,set<int>());
         repn(i,26) type2day[i].insert(0);
         repn(d,scd.size()) type2day[scd[d]].insert(d);
@@ -82,16 +82,16 @@ struct Score{
         scr=0;
         repn(d,365){
             scr+=s[d][scd[d]];
-            typescr[scd[d]]+=s[d][scd[d]];
+            scr_type[scd[d]]+=s[d][scd[d]];
         }
         repn(i,26) for(auto i1=type2day[i].begin(),i2=++type2day[i].begin();i2!=type2day[i].end();i1++,i2++){
-            int n=(*i2)-(*i1);
-            scr-=c[i]*n*(n-1)/2;
-            typescr[i]-=c[i]*n*(n-1)/2;
+            int n=c[i]*((*i2)-(*i1))*((*i2)-(*i1)-1)/2;
+            scr-=n;
+            scr_type[i]-=n;
         }
     }
     bool computeScore(int day, int type){
-        int scr2=scr;
+        int scr_bef=scr_type[scd[day]]+scr_type[type];
     }
 };
 
