@@ -12,16 +12,19 @@
 #include <set>
 #include <map>
 #include <unordered_map>
-#define rep(i,n) for(long long i=0;i<n;i++)
-#define repn(i,n) for(long long i=1;i<=n;i++)
+#include <bitset>
+#include <chrono>
+#include <random>
+#define rep(i,n) for(int i=0;i<n;i++)
+#define repn(i,n) for(int i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
 typedef long double ld;
 //typedef pair<int,int> P;
 double const PI=3.141592653589793;
-int const INF=2147483647;
-ll const LINF=9223372036854775807;
+int const INF=1001001001;
+ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 ll N,K;
@@ -57,12 +60,15 @@ int main(){
 
     ll ans=0;
     rep(i,50){
-        ll x=1LL<<i;
+        // cout<<bitset<4>(ans)<<endl;
+        ll x=1LL<<(49-i);
         ll cnt=0;
         repr(e,val){
-            if((ans+x)&e) cnt++;
+            // cout<<(ans+x)<<' '<<e<<' '<<((ans+x)&e)<<endl;
+            if(((ans+x)&e) && ((ans+x)&e)==(ans+x)) cnt++;
+            // if(((ans+x)&e) && ((ans+x)&e)==(ans+x)) cout<<bitset<4>(ans+x)<<' '<<bitset<4>(e)<<endl;
         }
-        if(cnt>=K) cout<<x<<endl;
+        // if(cnt>=K) cout<<x<<endl;
         if(cnt>=K) ans+=x;
     }
 

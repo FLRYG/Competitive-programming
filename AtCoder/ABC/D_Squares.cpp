@@ -30,14 +30,42 @@ int main(){
     rep(t,T){
         ll N,A,B;
         cin>>N>>A>>B;
+        ll n=A+B-1;
+
+        if(n>=N){
+            ans[t]=0;
+            continue;
+        }
 
         ll res=0;
-        res+=(N-A-B)*(N-A-B+1)%MOD*(N-B+1)%MOD;
-        res-=(N-B+1)*((N-A-B)*(N-A-B+1)/2)%MOD;
-        res=(res+MOD)%MOD;
+        res+=(N-A+1)*(N-A+1)%MOD*(N-B+1)%MOD*(N-B+1)%MOD;
+        res-=(n-A+1)*(n-A+1)%MOD*(n-B+1)%MOD*(n-B+1)%MOD*(N-n+1)%MOD;
+        res%=MOD;
+        if(res<0) res+=MOD;
 
         ans[t]=res;
     }
 
     rep(i,T) cout<<ans[i]<<endl;
 }
+
+// int T;
+
+// int main(){
+//     cin>>T;
+
+//     vector<ll> ans(T);
+//     rep(t,T){
+//         ll N,A,B;
+//         cin>>N>>A>>B;
+
+//         ll res=0;
+//         res+=(N-A-B)*(N-A-B+1)%MOD*(N-B+1)%MOD;
+//         res-=(N-B+1)*((N-A-B)*(N-A-B+1)/2)%MOD;
+//         res=(res+MOD)%MOD;
+
+//         ans[t]=res;
+//     }
+
+//     rep(i,T) cout<<ans[i]<<endl;
+// }
