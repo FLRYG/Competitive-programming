@@ -28,33 +28,31 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll A[200000];
-ll F[200000];
+int N,M;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
-    rep(i,N) cin>>F[i];
-    sort(A,A+N);
-    sort(F,F+N,greater<ll>());
-    
+    map<string,int> S,T;
+    string u;
+    cin>>N;
     rep(i,N){
-        if(K>=A[i]){
-            K-=A[i];
-            A[i]=0;
-        }else{
-            A[i]-=K;
-            break;
-        }
+        cin>>u;
+        S[u]++;
+    }
+    cin>>M;
+    rep(i,M){
+        cin>>u;
+        T[u]++;
     }
 
-    ll ans=0;
-    rep(i,N){
-        ans=max(ans,A[i]*F[i]);
+    int ans=0;
+    repr(e,S){
+        int x=0;
+        x+=e.second;
+        x-=T[e.first];
+        ans=max(ans,x);
     }
 
     cout<<ans<<endl;
-    
+
     return 0;
 }
