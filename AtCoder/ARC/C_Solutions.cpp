@@ -21,37 +21,21 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<int,int> P;
+typedef pair<int,int> P;
 // typedef pair<int,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll A[200000];
-ll F[200000];
+int N,M;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
-    rep(i,N) cin>>F[i];
-    sort(A,A+N);
-    sort(F,F+N,greater<ll>());
+    cin>>N>>M;
 
-    ll ok=-1, ng=LINF;
-    while(ng-ok>1){
-        ll m=(ok+ng)/2;
-        ll k=0;
-        rep(i,N){
-            k+=max(0LL,A[i]-m/F[i]);
-        }
-        // cout<<m<<' '<<k<<endl;
-        if(k>K) ok=m;
-        else ng=m;
-    }
+    if()
 
-    cout<<ok+1<<endl;
+    vector<P> ans;
     
     return 0;
 }

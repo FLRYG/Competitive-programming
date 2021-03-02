@@ -46,7 +46,7 @@ int main(){
     ll zer=z*(a+b)+z*(z-1)/2;
     ll pos=a*(a-1)/2+b*(b-1)/2;
 
-    ll ok=0, ng=LINF;
+    ll ok=-LINF, ng=LINF;
     while(ng-ok>1){
         ll m=(ok+ng)/2;
         

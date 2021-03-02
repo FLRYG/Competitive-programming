@@ -48,6 +48,7 @@
     E - Traveling Salesman among Aerial Cities      TSP(BitDP)
     E - Magical Ornament                Dijkstra + TSP(BitDP)
     B - Sum AND Subarrays               5*10^7  計算量は余裕
+    E - Gluttony                        二分探索
 
 
 <<ARC>>

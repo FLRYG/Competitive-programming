@@ -28,30 +28,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll A[200000];
-ll F[200000];
+int N;
+int A[2][101];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>A[i];
-    rep(i,N) cin>>F[i];
-    sort(A,A+N);
-    sort(F,F+N,greater<ll>());
+    cin>>N;
+    rep(i,2) repn(j,N) cin>>A[i][j];
 
-    ll ok=-1, ng=LINF;
-    while(ng-ok>1){
-        ll m=(ok+ng)/2;
-        ll k=0;
-        rep(i,N){
-            k+=max(0LL,A[i]-m/F[i]);
-        }
-        // cout<<m<<' '<<k<<endl;
-        if(k>K) ok=m;
-        else ng=m;
+    rep(i,2) repn(j,N){
+        A[i][j]+=A[i][j-1];
     }
 
-    cout<<ok+1<<endl;
+    int ans=0;
+    repn(i,N){
+        ans=max(ans,A[0][i]+A[1][N]-A[1][i-1]);
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }
