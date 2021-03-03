@@ -134,6 +134,7 @@ a/b の切り上げは (a+(b-1))/b
     C - 列
     D - Anything Goes to Zero
     B - ヘイホー君と削除
+    
     E - Sequence Decomposing
     E - Coprime
     D - Patisserie ABC
