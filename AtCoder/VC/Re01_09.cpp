@@ -28,30 +28,24 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int popcount(string S){
+int popcount(int n){
     int res=0;
-    rep(i,S.size()) res+=(S[i]-'0')&1;
+    while(n>0){
+        res+=n&1;
+        n>>=1;
+    }
     return res;
 }
 
-int f(string S){
-    if(S=="0") return 0;
-    int n=popcount(S);
-    int x=0;
-    // cout<<n<<endl;
-    rep(i,S.size()){
-        x=x*2+(S[i]-'0');
-        x%=n;
-    }
-    string T;
-    while(x>0){
-        T+='0'+(x&1);
-        x/=2;
-    }
-    reverse(T.begin(),T.end());
-    if(T=="") T+='0';
-    // cout<<"T "<<T<<endl;
-    return 1+f(T);
+int f(int n){
+    if(n==0) return 0;
+    return 1+f(n%popcount(n));
+}
+
+ll mpow(ll x,ll n,ll MOD){
+    if(n==0) return 1;
+    else if(n%2) return x*mpow(x,n-1,MOD)%MOD;
+    return mpow(x*x%MOD,n/2,MOD)%MOD;
 }
 
 int N;
@@ -60,12 +54,32 @@ string X;
 int main(){
     cin>>N>>X;
 
+    int cnt=0;
+    rep(i,N) cnt+=X[i]&1;
+
+    int x=0, y=0;
     rep(i,N){
-        string x=X;
-        if(x[i]=='1') x[i]='0';
-        else x[i]='1';
-        // cout<<x<<endl;
-        cout<<f(x)<<endl;
+        x=x*2+(X[i]-'0');
+        y=y*2+(X[i]-'0');
+        x%=cnt+1;
+        if(cnt>1) y%=cnt-1;
+    }
+    rep(i,N){
+        int z;
+        if(X[i]=='1'){
+            if(cnt==1){
+                cout<<0<<endl;
+                continue;
+            }
+            z=y-mpow(2,N-1-i,cnt-1);
+            z%=cnt-1;
+            if(z<0) z+=cnt-1;
+        }else{
+            z=x+mpow(2,N-1-i,cnt+1);
+            z%=cnt+1;
+            if(z<0) z+=cnt+1;
+        }
+        cout<<1+f(z)<<endl;
     }
     
     return 0;

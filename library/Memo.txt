@@ -61,6 +61,8 @@
     D - Xor Sum 2                       足し算とxorの関係
     B - Abbreviate Fox                  stack?
 
+    C - Solutions                       区間スケジューリング　場合分け
+
 <<AGC>>
     A - Diverse Word                    辞書順
     A - Pay to Win                      メモ化再帰
@@ -126,15 +128,15 @@ a/b の切り上げは (a+(b-1))/b
 <<再1>>
     C - Repsept
     E - 常ならずグラフ
-    D - Multiple of 2019
-    E - Count Median
+    D - Multiple of 2019        **
+    E - Count Median            **
     E - Logs
     B - Backfront
-    E - Strings of Impurity
+    E - Strings of Impurity     **
     C - 列
-    D - Anything Goes to Zero
+    D - Anything Goes to Zero   **
     B - ヘイホー君と削除
-    
+
     E - Sequence Decomposing
     E - Coprime
     D - Patisserie ABC
@@ -158,6 +160,18 @@ a/b の切り上げは (a+(b-1))/b
     C - Exoswap
     D - Equal Cut                       speed
     E - Roaming
+    
+    E - Rotate and Flip                 アフィン変換                   
+    D - Logical Expression              dp              ***
+    D - Restoring Road Network          O(N^3)
+    E - ∙ (Bullet)                      速
+    E - Get Everything                  bitDP
+    D - Base n                          二分探索　掛け算のオーバーフローに注意
+    E - Traveling Salesman among Aerial Cities      TSP(BitDP)
+    E - Magical Ornament                Dijkstra + TSP(BitDP)
+    B - Sum AND Subarrays               5*10^7  計算量は余裕
+    E - Gluttony                        二分探索
+    C - Solutions                       区間スケジューリング　場合分け
 
 <<再2>>
     D - Practical Skill Test

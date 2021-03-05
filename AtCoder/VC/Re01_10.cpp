@@ -21,35 +21,37 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+// typedef pair<int,int> P;
 // typedef pair<int,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M;
+int N;
+string S;
 
 int main(){
-    cin>>N>>M;
+    cin>>N>>S;
 
-    if(M==0){
-        repn(i,N) cout<<2*i-1<<' '<<2*i<<endl;
-        return 0;
-    }
-    if(M<0 || N<=M+1){
-        cout<<-1<<endl;
-        return 0;
+    int ans=0;
+    string a="", b=S;
+    rep(i,N-1){
+        a+=S[i];
+        b.erase(b.begin());
+        vector<vector<int>> dp(a.size()+1,vector<int>(b.size()+1,0));
+        repn(j,a.size()){
+            repn(k,b.size()){
+                if(a[j-1]==b[k-1]) dp[j][k]=dp[j-1][k-1]+1;
+                dp[j][k]=max(dp[j][k],max(dp[j-1][k],dp[j][k-1]));
+            }
+        }
+        // cout<<a<<' '<<b<<' '<<dp[a.size()][b.size()]<<endl;
+        ans=max(ans,dp[a.size()][b.size()]);
     }
 
-    vector<P> ans;
-    repn(i,N-1){
-        if(2*i+1<2*(M+2)) ans.push_back({2*i,2*i+1});
-        else ans.push_back({2*i+1,2*i+2});
-    }
-    ans.push_back({1,2*(M+2)});
-
-    rep(i,N) cout<<ans[i].first<<' '<<ans[i].second<<endl;
+    ans=N-2*ans;
+    cout<<ans<<endl;
     
     return 0;
 }
