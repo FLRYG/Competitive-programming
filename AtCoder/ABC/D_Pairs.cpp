@@ -35,27 +35,36 @@ int main(){
     cin>>N>>K;
     rep(i,N) cin>>A[i];
 
-    ll z=0, a=0, b=0;
+    ll z=0;
+    vector<ll> a,b;
     rep(i,N){
         if(A[i]==0) z++;
-        if(A[i]>0) a++;
-        if(A[i]<0) b++;
+        if(A[i]>0) a.push_back(A[i]);
+        if(A[i]<0) b.push_back(A[i]);
     }
+    sort(a.begin(),b.begin());
 
-    ll neg=a*b;
-    ll zer=z*(a+b)+z*(z-1)/2;
-    ll pos=a*(a-1)/2+b*(b-1)/2;
-
-    ll ok=-LINF, ng=LINF;
-    while(ng-ok>1){
-        ll m=(ok+ng)/2;
-        
-    }
+    ll neg=a.size()*b.size();
+    ll zer=z*(a.size()+b.size())+z*(z-1)/2;
+    ll pos=a.size()*(a.size()-1)/2+b.size()*(b.size()-1)/2;
 
     if(neg<K && K<=neg+zer){
         cout<<0<<endl;
     }else if(K<=neg){
-
+        ll ok=-LINF, ng=0;
+        while(ng-ok>1){
+            ll m=(ok+ng)/2;
+            int cnt=0;
+            int j=0;
+            rep(i,a.size()){
+                while(j<b.size() && a[i]*b[j]<m) j++;
+                cnt+=j;
+            }
+            // cout<<m<<' '<<cnt<<endl;
+            if(cnt<K) ok=m;
+            else ng=m;
+        }
+        cout<<ok+1<<endl;
     }else{
 
     }
