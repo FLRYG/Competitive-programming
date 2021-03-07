@@ -22,26 +22,29 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 // typedef pair<int,int> P;
-// typedef pair<int,P> PP;
+// typedef pair<int,P> IP;
+// typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-int A[200000];
-int B[200000];
+string S;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i]>>B[i];
+    cin>>N>>S;
 
-    sort(A,A+N);
-    sort(B,B+N);
-
-    int ans;
-    if(N&1) ans=B[N/2]-A[N/2]+1;
-    else ans=(B[(N-1)/2]+B[N/2])-(A[(N-1)/2]+A[N/2])+1;
+    int ans=0;
+    vector<int> dp(N,0);
+    for(int i=N-1;i>=0;i--){
+        vector<int> v(N);
+        for(int j=i;j>=0;j--){
+            if(S[i]==S[j]) v[j]=dp[j+1]+1;
+            ans=max(ans,min(i-j,v[j]));
+        }
+        dp=v;
+    }
 
     cout<<ans<<endl;
     

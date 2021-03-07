@@ -50,7 +50,8 @@
     B - Sum AND Subarrays               5*10^7  計算量は余裕
     E - Gluttony                        二分探索
     C - Squared Error                   Σ計算 or 全探索
-    E - Mex Min                         貪欲　速
+    E - Mex Min                         貪欲 inv　速
+    E - Who Says a Pun?                 dp Z-Algorithm
 
 
 <<ARC>>

@@ -30,7 +30,7 @@ ll const MOD=2019;
 
 int mpow(int x, int n){
     if(n==0) return 1;
-    if(x&1) return x*mpow(x,n-1)%MOD;
+    if(n&1) return x*mpow(x,n-1)%MOD;
     return mpow(x*x%MOD,n/2)%MOD;
 }
 
@@ -40,9 +40,18 @@ int main(){
     cin>>S;
     int N=S.size();
 
+    vector<int> cnt(2019,0);
+    cnt[0]=1;
+    int x=0;
+    ll ans=0;
     for(int i=N-1;i>=0;i--){
-        
+        x+=(S[i]-'0')*mpow(10,N-1-i);
+        x%=MOD;
+        ans+=cnt[x];
+        cnt[x]++;
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }
