@@ -2,7 +2,7 @@
 #include <random>
 using namespace std;
 
-
+// 整数の乱数を[a,b]の範囲で返す
 struct Random{
     int seed, min, max;
     mt19937 mt;
