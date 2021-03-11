@@ -67,42 +67,104 @@ struct Random{
 
 struct SQ{
     int a,b,c,d;
-    SQ()
+    SQ(): a(0), b(0), c(0), d(0){}
+    SQ(int _a, int _b, int _c, int _d): a(_a), b(_b), c(_c), d(_d){}
+    ~SQ(){}
+    SQ operator+=(const SQ &x){
+        a+=x.a; b+=x.b; c+=x.c; d+=x.d;
+        return (*this); 
+    }
+    SQ operator+(const SQ &x){ return (*this)+=x; }
+    SQ operator-=(const SQ &x){
+        a-=x.a; b-=x.b; c-=x.c; d-=x.d;
+        return (*this); 
+    }
+    SQ operator-(const SQ &x){ return (*this)-=x; }
 };
+
+SQ unitsq[4]={SQ(-1,0,0,0),SQ(0,-1,0,0),SQ(0,0,1,0),SQ(0,0,0,1)};
 
 int N;
 IP A[200];
 Timer timer;
 
-ll computeScore(vector<PP> &ans){
+ll computeScore(vector<SQ> &ans){
     double res=0;
     rep(i,N){
-        if(ans[i].first.first<=A[i].second.first
-        && A[i].second.first<ans[i].second.first
-        && ans[i].first.second<=A[i].second.second
-        && A[i].second.second<ans[i].second.second){
-            int s=(ans[i].second.first-ans[i].first.first)*(ans[i].second.second-ans[i].first.second);
+        if(ans[i].a<=A[i].second.first
+        && A[i].second.first<ans[i].c
+        && ans[i].b<=A[i].second.second
+        && A[i].second.second<ans[i].d){
+            int s=(ans[i].c-ans[i].a)*(ans[i].d-ans[i].b);
             res+=(1-pow(1-(double)min(A[i].first,s)/max(A[i].first,s),2))/N;
         }
     }
     return (ll)1e9*res;
 }
 
-void solve01(vector<PP> &ans){
+void solve01(vector<SQ> &ans){
     rep(i,N){
-        ans[i].first.first=A[i].second.first;
-        ans[i].first.second=A[i].second.second;
-        ans[i].second.first=A[i].second.first+1;
-        ans[i].second.second=A[i].second.second+1;
+        ans[i].a=A[i].second.first;
+        ans[i].b=A[i].second.second;
+        ans[i].c=A[i].second.first+1;
+        ans[i].d=A[i].second.second+1;
     }
 
     ll prevScr=computeScore(ans);
     Random rand1(SEED,0,N-1);
     Random rand2(SEED,0,3);
+    // int cnt=0;
     while(timer.getTime()<4800){
-        int idx=rand1.nextInt();
+        rep(n,500){
+        // cnt++;
+        int id=rand1.nextInt();
         int d=rand2.nextInt();
-        if()
+        // SQ tmp=(ans[id]+unitsq[d]);
+        vector<SQ> tmp=ans;
+        tmp[id]+=unitsq[d];
+        if(tmp[id].a>=0 && tmp[id].b>=0 && tmp[id].c<=10000 && tmp[id].d<=10000){
+            switch(d){
+            case 0:
+                rep(j,N) if(ans[id].a==ans[j].c) tmp[j].c--;
+                break;
+            case 1:
+                rep(j,N) if(ans[id].b==ans[j].d) tmp[j].d--;
+                break;
+            case 2:
+                rep(j,N) if(ans[id].c==ans[j].a) tmp[j].a++;
+                break;
+            case 3:
+                rep(j,N) if(ans[id].d==ans[j].b) tmp[j].b++;
+                break;
+            }
+            rep(j,N) if(tmp[j].a==tmp[j].c || tmp[j].b==tmp[j].d) continue;
+            ll scr=computeScore(tmp);
+            if(prevScr<scr){
+                prevScr=scr;
+                ans=tmp;
+            }
+        }
+        }
+    }
+    // cout<<cnt<<endl;
+}
+
+void solve02(vector<SQ> &ans){
+    vector<int> cnt(N,0);
+    vector<vector<P>> hw(N,vector<P>(500));
+    rep(i,N){
+        repn(j,sqrt(A[i].first)){
+            if(A[i].first%j==0){
+                hw[i][cnt[i]].first=j;
+                hw[i][cnt[i]++].second=A[i].first/j;
+            }
+        }
+    }
+    rep(i,N){
+        ans[i].a=A[i].second.first-(hw[i][cnt[i]-1].first+1)/2;
+        ans[i].b=A[i].second.second-(hw[i][cnt[i]-1].second+1)/2;
+        ans[i].c=A[i].second.first+hw[i][cnt[i]-1].first/2;
+        ans[i].d=A[i].second.second+hw[i][cnt[i]-1].second/2;
     }
 }
 
@@ -114,11 +176,15 @@ int main(){
     cin>>N;
     rep(i,N) cin>>A[i].second.first>>A[i].second.second>>A[i].first;
 
-    vector<PP> ans(N);
-    solve01(ans);
+    vector<SQ> ans(N);
+    // solve01(ans);
     repr(e,ans){
-        cout<<e.first.first<<' '<<e.first.second<<' '<<e.second.first<<' '<<e.second.second<<endl;
+        cout<<e.a<<' '<<e.b<<' '<<e.c<<' '<<e.d<<endl;
     }
+    rep(i,N){
+        if(!(ans[i].a<ans[i].c && ans[i].b<ans[i].d)) cout<<i<<endl;
+    }
+    // cout<<computeScore(ans)<<endl;
     
     return 0;
 }
