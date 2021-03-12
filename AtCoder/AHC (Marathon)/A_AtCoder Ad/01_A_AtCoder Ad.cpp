@@ -157,6 +157,7 @@ void solve02(vector<SQ> &ans){
             if(A[i].first%j==0){
                 hw[i][cnt[i]].first=j;
                 hw[i][cnt[i]++].second=A[i].first/j;
+                
             }
         }
     }
@@ -178,12 +179,13 @@ int main(){
 
     vector<SQ> ans(N);
     // solve01(ans);
+    solve02(ans);
     repr(e,ans){
         cout<<e.a<<' '<<e.b<<' '<<e.c<<' '<<e.d<<endl;
     }
-    rep(i,N){
-        if(!(ans[i].a<ans[i].c && ans[i].b<ans[i].d)) cout<<i<<endl;
-    }
+    // rep(i,N){
+    //     if(!(ans[i].a<ans[i].c && ans[i].b<ans[i].d)) cout<<i<<endl;
+    // }
     // cout<<computeScore(ans)<<endl;
     
     return 0;
