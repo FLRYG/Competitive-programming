@@ -49,7 +49,7 @@ int main(){
     repn(j,W) C[0][j]='X';
 
     vector<vector<ll>> cnt(H+1,vector<ll>(W+1,0));
-    cnt[1][1]=1;
+    cnt[1][1]=mpow(3,H*W-K-1);
     repn(i,H) repn(j,W){
         if(C[i-1][j]=='D') cnt[i][j]+=cnt[i-1][j];
         else if(C[i-1][j]=='X') cnt[i][j]+=cnt[i-1][j];
