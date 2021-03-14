@@ -113,17 +113,19 @@ void solve01(vector<SQ> &ans){
     ll prevScr=computeScore(ans);
     Random rand1(SEED,0,N-1);
     Random rand2(SEED,0,3);
+    Random rand3(SEED,1,1000);
     // int cnt=0;
     while(timer.getTime()<4800){
         rep(n,500){
         // cnt++;
         int id=rand1.nextInt();
-        int d=rand2.nextInt();
+        int dir=rand2.nextInt();
+        int dx=rand3.nextInt();
         // SQ tmp=(ans[id]+unitsq[d]);
         vector<SQ> tmp=ans;
-        tmp[id]+=unitsq[d];
+        tmp[id]+=unitsq[dir];
         if(tmp[id].a>=0 && tmp[id].b>=0 && tmp[id].c<=10000 && tmp[id].d<=10000){
-            switch(d){
+            switch(dir){
             case 0:
                 rep(j,N) if(ans[id].a==ans[j].c) tmp[j].c--;
                 break;
@@ -153,11 +155,12 @@ void solve02(vector<SQ> &ans){
     vector<int> cnt(N,0);
     vector<vector<P>> hw(N,vector<P>(500));
     rep(i,N){
+        cout<<i<<endl;
         repn(j,sqrt(A[i].first)){
             if(A[i].first%j==0){
                 hw[i][cnt[i]].first=j;
                 hw[i][cnt[i]++].second=A[i].first/j;
-                
+                cout<<"  "<<j<<' '<<A[i].first/j<<endl;
             }
         }
     }

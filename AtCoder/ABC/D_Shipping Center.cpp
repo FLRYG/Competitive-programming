@@ -30,22 +30,46 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N,M,Q;
-int W[51];
-int V[51];
-int X[51];
+int W[50];
+int V[50];
+int X[50];
 
 int main(){
     cin>>N>>M>>Q;
     rep(i,N) cin>>W[i]>>V[i];
     rep(i,M) cin>>X[i];
 
-    vector<int> ans(Q);
+    vector<int> ans(Q,0);
     rep(q,Q){
         int L,R;
         cin>>L>>R;
-
-        
+        L--, R--;
+        vector<int> XX;
+        rep(i,M){
+            if(L<=i && i<=R) continue;
+            XX.push_back(X[i]);
+        }
+        sort(XX.begin(),XX.end());
+        repr(e,XX) cout<<e<<' '; cout<<endl;
+        vector<int> chk(N,false);
+        rep(i,XX.size()){
+            int val=0, idx=-1;
+            rep(j,N){
+                if(chk[j]) continue;
+                if(W[j]<=XX[i] && val<=V[j]){
+                    if(val==V[i] && W[i]<=W[idx]) continue;
+                    val=V[j];
+                    idx=j;
+                }
+            }
+            if(idx==-1) continue;
+            chk[idx]=true;
+            ans[q]+=val;
+        }
+        // cout<<ans[q]<<endl;
     }
+
+    repr(e,ans) cout<<e<<endl;
     
     return 0;
 }

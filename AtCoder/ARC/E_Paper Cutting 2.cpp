@@ -21,25 +21,13 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<int,int> P;
+typedef pair<ll,ll> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
-ll const MOD=1000000007;
-
-ll euler_phi(ll n) {
-  ll ret = n;
-  for(ll i = 2; i * i <= n; i++) {
-    if(n % i == 0) {
-      ret -= ret / i;
-      while(n % i == 0) n /= i;
-    }
-  }
-  if(n > 1) ret -= ret / n;
-  return ret;
-}
+ll const MOD=998244353;
 
 ll mpow(ll x,ll n){
     if(n==0) return 1;
@@ -64,25 +52,44 @@ ll mcomb(ll n,ll r){
     return res*mpow(mfrac(r),MOD-2)%MOD;
 }
 
-template<class T>T gcd(T a, T b){return b?gcd(b,a%b):a;}
-template<class T>T lcm(T a, T b){return a/gcd(a,b)*b;}
+ll H,W;
+ll h1,w1,h2,w2;
+ll cntB;
+vector<ll> m; 
 
-ll A,B;
+ll f(ll cntA){
+    if(cntA==0){
+        return 1;
+    }
+    if(m[cntA]!=0) return m[cntA];
+    ll res=0;
+    rep(i,cntA){
+        res+=1+f(i)*cntA%MOD*mpow(cntA+cntB,MOD-2)%MOD;
+        res%=MOD;
+    }
+    m[cntA]=res;
+    return res;
+}
 
 int main(){
-    cin>>A>>B;
+    cin>>H>>W;
+    cin>>h1>>w1>>h2>>w2;
 
-    ll ans=1;
-    for(ll i=A;i<=B;i++){
-        ll cnt=1;
-        for(ll j=i+1;j<=B;j++){
-            if(gcd(i,j)==1) cnt++;
-        }
-        // cout<<i<<' '<<cnt<<endl;
-        ans+=mpow(2,cnt-1);
+    cntB=abs(h1-h2)+abs(w1-w2);
+    ll A=(H-1)+(W-1)-cntB;
+    m=vector<ll>(A+1,0);
+    // cout<<A<<' '<<cntB<<endl;
+
+    cout<<f(A)<<endl;
+
+    ll B=abs(h1-h2)+abs(w1-w2);
+    ll A=(H-1)+(W-1)-cntB;
+    vector<ll> dp(A+1,0);
+    dp[0]=1;
+    repn(i,A){
+        ll x=i*(i+1)%MOD;
+        dp[i]=1+dp[i-1]*
     }
-
-    cout<<ans<<endl;
-
+    
     return 0;
 }
