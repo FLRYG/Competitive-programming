@@ -50,18 +50,19 @@ int main(){
             XX.push_back(X[i]);
         }
         sort(XX.begin(),XX.end());
-        repr(e,XX) cout<<e<<' '; cout<<endl;
+        // repr(e,XX) cout<<e<<' '; cout<<endl;
         vector<int> chk(N,false);
         rep(i,XX.size()){
             int val=0, idx=-1;
             rep(j,N){
                 if(chk[j]) continue;
                 if(W[j]<=XX[i] && val<=V[j]){
-                    if(val==V[i] && W[i]<=W[idx]) continue;
+                    if(val==V[j] && W[j]<=W[idx]) continue;
                     val=V[j];
                     idx=j;
                 }
             }
+            // cout<<idx<<' '<<val<<endl;
             if(idx==-1) continue;
             chk[idx]=true;
             ans[q]+=val;
