@@ -53,6 +53,7 @@
     E - Mex Min                         貪欲 inv　速
     E - Who Says a Pun?                 dp Z-Algorithm
     D - Shipping Center                 ひっかけ
+    E - Divisible Substring             コーナーケース
 
 
 <<ARC>>
