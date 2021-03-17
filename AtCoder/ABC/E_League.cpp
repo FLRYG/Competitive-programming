@@ -32,7 +32,8 @@ ll const MOD=1000000007;
 int N;
 
 int main(){
-    
+    cin>>N;
+    vector<vector<int>> 
     
     return 0;
 }

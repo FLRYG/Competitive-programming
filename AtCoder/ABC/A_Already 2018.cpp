@@ -29,29 +29,13 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-string mpow(string x,ll n){
-    if(n==0) return "";
-    else if(n%2) return x+mpow(x,n-1);
-    return mpow(x+x,n/2);
-}
-
-int T;
+string S;
 
 int main(){
-    cin>>T;
+    cin>>S;
 
-    vector<string> ans(T,"");
-    rep(t,T){
-        int N;
-        string S[3];
-        cin>>N;
-        rep(i,3) cin>>S[i];
-        ans[t]+=mpow("0",N);
-        ans[t]+=mpow("1",N);
-        ans[t]+="0";
-    }
-
-    repr(e,ans) cout<<e<<endl;
+    S[3]='8';
+    cout<<S<<endl;
     
     return 0;
 }
