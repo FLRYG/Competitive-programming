@@ -30,10 +30,45 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
+int A[1000][1000];
+
+int f(int s, int k, vector<vector<int>> &G, vector<int> &chk, vector<int> &cnt){
+    if(chk[s]==k) return -1;
+    chk[s]=k;
+    int res=1;
+    repr(e,G[s]){
+        int x=f(e,k,G,chk,cnt);
+        if(x==-1) return -1;
+        else res=max(res,1+x);
+    }
+    cnt[s]=res;
+    return res;
+}
 
 int main(){
     cin>>N;
-    vector<vector<int>> 
+    rep(i,N) rep(j,N-1){
+        cin>>A[i][j];
+        A[i][j]--;
+    }
+
+    vector<vector<int>> id(N,vector<int>(N,0));
+    int k=0;
+    rep(i,N-1) for(int j=i+1;j<N;j++){
+        id[i][j]=k;
+        id[j][i]=k++;
+    }
+    vector<vector<int>> G(N*(N-1)/2,vector<int>(0));
+    rep(i,N) repn(j,N-2){
+        G[id[i][A[i][j]]].push_back(id[i][A[i][j+1]]);
+    }
+
+    vector<int> chk(N*(N-1)/2,-1);
+    vector<int> cnt(N*(N-1)/2,0);
+    rep(i,N*(N-1)/2){
+        if(chk[i]) continue;
+        int x=f(i,i,G,chk,cnt);
+    }
     
     return 0;
 }
