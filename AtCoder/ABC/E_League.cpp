@@ -29,18 +29,38 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
+bool topological_sort(vector<vector<int>> &G, vector<int> &res) {
+    int N=G.size();
+    vector<int> indegree(N);
+    for(int i=0;i<N;i++) for(auto e:G[i]) indegree[e]++;
+
+    queue<int> que;
+    for (int i=0;i<N;i++) if(indegree[i]==0) que.push(i);
+
+    if(que.empty()) return false;
+    while(!que.empty()){
+        int v=que.front(); que.pop();
+        for(auto e:G[v]){
+            if(indegree[e]==0) return false;
+            indegree[e]--;
+            if(indegree[e]==0) que.push(e);
+        }
+        res.push_back(v);
+    }
+
+    return true;
+}
+
 int N;
 int A[1000][1000];
 
-int f(int s, int k, vector<vector<int>> &G, vector<int> &chk, vector<int> &cnt){
-    if(chk[s]==k) return -1;
-    chk[s]=k;
-    int res=1;
+int f(int s, vector<vector<int>> &G, vector<int> &cnt){
+    if(cnt[s]!=0) return cnt[s];
+    int res=0;
     repr(e,G[s]){
-        int x=f(e,k,G,chk,cnt);
-        if(x==-1) return -1;
-        else res=max(res,1+x);
+        res=max(res,f(e,G,cnt));
     }
+    res++;
     cnt[s]=res;
     return res;
 }
@@ -51,6 +71,12 @@ int main(){
         cin>>A[i][j];
         A[i][j]--;
     }
+    // cout<<endl;
+    // rep(i,N){
+    //     rep(j,N-1) cout<<A[i][j]<<' ';
+    //     cout<<endl;
+    // }
+    // cout<<endl;
 
     vector<vector<int>> id(N,vector<int>(N,0));
     int k=0;
@@ -58,17 +84,37 @@ int main(){
         id[i][j]=k;
         id[j][i]=k++;
     }
-    vector<vector<int>> G(N*(N-1)/2,vector<int>(0));
-    rep(i,N) repn(j,N-2){
+    // rep(i,N){
+    //     rep(j,N) cout<<id[i][j]<<' ';
+    //     cout<<endl;
+    // }
+
+    int NN=N*(N-1)/2;
+    vector<vector<int>> G(NN,vector<int>(0));
+    rep(i,N) rep(j,N-2){
         G[id[i][A[i][j]]].push_back(id[i][A[i][j+1]]);
+        // cout<<i<<'-'<<A[i][j]<<" ("<<id[i][A[i][j]]<<")"<<" -> ";
+        // cout<<i<<'-'<<A[i][j+1]<<" ("<<id[i][A[i][j+1]]<<")"<<endl;
+    }
+    // rep(i,NN){
+    //     cout<<i<<' ';
+    //     repr(e,G[i]) cout<<e<<' ';
+    //     cout<<endl;
+    // }
+
+    vector<int> tmp(0);
+    if(!topological_sort(G,tmp)){
+        cout<<-1<<endl;
+        return 0;
     }
 
-    vector<int> chk(N*(N-1)/2,-1);
-    vector<int> cnt(N*(N-1)/2,0);
-    rep(i,N*(N-1)/2){
-        if(chk[i]) continue;
-        int x=f(i,i,G,chk,cnt);
+    vector<int> cnt(NN,0);
+    int ans=0;
+    rep(i,NN){
+        ans=max(ans,f(i,G,cnt));
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }
