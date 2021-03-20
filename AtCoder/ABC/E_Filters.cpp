@@ -29,18 +29,30 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W,K;
-int x1,y1,x2,y2;
-vector<vector<char>> G;
+ll N,Q;
+ll a[200000];
+ll t[200000];
+
+ll f(ll n){
+    if(n==0){
+        if(t[n]==1) return 0;
+    }
+    if(t[n]==1);
+    if(t[n]==2){
+        if(t[n-1]==3)
+    }
+    if(t[n]==3){
+        if(t[n-1]==2){
+            
+        }
+    }
+}
 
 int main(){
-    cin>>H>>W>>K;
-    cin>>x1>>y1>>x2>>y2;
-    G.resize(H);
-    rep(i,H) G[i].resize(W);
-    rep(i,H) rep(j,W) cin>>G[i][j];
+    cin>>N;
+    rep(i,N) cin>>a[i]>>t[i];
 
-    priority_queue<int>
+
     
     return 0;
 }

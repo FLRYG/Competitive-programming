@@ -29,18 +29,17 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W,K;
-int x1,y1,x2,y2;
-vector<vector<char>> G;
+int H,W,A,B;
 
 int main(){
-    cin>>H>>W>>K;
-    cin>>x1>>y1>>x2>>y2;
-    G.resize(H);
-    rep(i,H) G[i].resize(W);
-    rep(i,H) rep(j,W) cin>>G[i][j];
+    cin>>H>>W>>A>>B;
 
-    priority_queue<int>
+    int ans=0;
+    rep(i,H-1){
+        rep(j,W){
+            
+        }
+    }
     
     return 0;
 }

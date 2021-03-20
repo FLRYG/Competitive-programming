@@ -54,6 +54,7 @@
     E - Who Says a Pun?                 dp Z-Algorithm
     D - Shipping Center                 ひっかけ
     E - Divisible Substring             コーナーケース
+    E - League                          有向グラフの閉路検出
 
 
 <<ARC>>

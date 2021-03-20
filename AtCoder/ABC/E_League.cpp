@@ -37,18 +37,17 @@ bool topological_sort(vector<vector<int>> &G, vector<int> &res) {
     queue<int> que;
     for (int i=0;i<N;i++) if(indegree[i]==0) que.push(i);
 
-    if(que.empty()) return false;
     while(!que.empty()){
         int v=que.front(); que.pop();
         for(auto e:G[v]){
-            if(indegree[e]==0) return false;
             indegree[e]--;
             if(indegree[e]==0) que.push(e);
         }
         res.push_back(v);
     }
 
-    return true;
+    if(res.size()==N) return true;
+    else return false;
 }
 
 int N;
