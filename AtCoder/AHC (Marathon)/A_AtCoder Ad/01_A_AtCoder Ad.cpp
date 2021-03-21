@@ -113,7 +113,7 @@ void solve01(vector<SQ> &ans){
     ll prevScr=computeScore(ans);
     Random rand1(SEED,0,N-1);
     Random rand2(SEED,0,3);
-    Random rand3(SEED,1,1000);
+    Random rand3(SEED,1,100);
     // int cnt=0;
     while(timer.getTime()<4800){
         rep(n,500){

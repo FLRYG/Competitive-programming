@@ -21,31 +21,26 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
-typedef pair<int,P> IP;
-typedef pair<P,P> PP;
+// typedef pair<int,int> P;
+// typedef pair<int,P> IP;
+// typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
-ll const MOD=1000000007;
+ll const MOD=998244353;
 
-int H,W,K;
-int x1,y1,x2,y2;
-vector<vector<char>> G;
+ll N;
+ll A[500000];
 
 int main(){
-    cin>>H>>W>>K;
-    cin>>x1>>y1>>x2>>y2;
-    x1--, y1--;
-    x2--, y2--;
-    G.resize(H);
-    rep(i,H) G[i].resize(W);
-    rep(i,H) rep(j,W) cin>>G[i][j];
+    cin>>N;
+    rep(i,N) cin>>A[i];
 
-    vector<vector<int>> cnt(H,vector<int>(W,INF));
-    priority_queue<PP> q;
-    q.push(PP({x1,y1},{x1,x1}));
+    ll ans=1;
+    rep(i,N){
+        ans*=A[i]-i;
+        ans%=MOD;
+    }
 
-    
     return 0;
 }

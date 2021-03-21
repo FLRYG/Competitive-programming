@@ -31,15 +31,25 @@ ll const MOD=1000000007;
 
 int H,W,A,B;
 
+int f(int g, int i, int a, int b){
+    if(i==H*W){
+        if(a==0 && b==0) return 1;
+        else return 0;
+    }
+    if(g>>i&1) return f(g,i+1,a,b);
+    int res=0;
+    res+=f(g|1<<i,i+1,a,b-1);
+    if(i+W<H*W && !(g>>(i+W)&1)) res+=f(g|1<<i|1<<(i+W),i+1,a-1,b);
+    if((i+1)%W && !(g>>(i+1)&1)) res+=f(g|1<<i|1<<(i+1),i+1,a-1,b);
+    return res;
+}
+
 int main(){
     cin>>H>>W>>A>>B;
 
-    int ans=0;
-    rep(i,H-1){
-        rep(j,W){
-            
-        }
-    }
+    int ans=f(0,0,A,B);
+
+    cout<<ans<<endl;
     
     return 0;
 }
