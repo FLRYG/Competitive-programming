@@ -36,10 +36,10 @@ int main(){
     cin>>N>>M;
     rep(i,N) cin>>S[i];
 
-    int odd=0, even=0;
+    ll odd=0, even=0;
     rep(i,N){
         int cnt=0;
-        rep(j,M) cnt+=S[i][j]=='1';
+        rep(j,M) if(S[i][j]=='1') cnt++;
         if(cnt&1) odd++;
         else even++;
     }

@@ -69,6 +69,7 @@
     B - Abbreviate Fox                  stack?
 
     C - Solutions                       区間スケジューリング　場合分け
+    B - Reversible Cards                グラフへの帰着　閉路検出
 
 <<AGC>>
     A - Diverse Word                    辞書順

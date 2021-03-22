@@ -27,20 +27,34 @@ typedef long double ld;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
-ll const MOD=998244353;
+ll const MOD=1000000007;
 
 ll N;
-ll A[500000];
+ll C[500][500];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
+    rep(i,N) rep(j,N) cin>>C[i][j];
 
-    ll ans=1;
-    rep(i,N){
-        ans*=A[i]-i;
-        ans%=MOD;
+    rep(i,N-1){
+        rep(j,N-1){
+            if(C[i+1][j]-C[i][j]!=C[i+1][j+1]-C[i][j+1]){
+                cout<<"No"<<endl;
+                return 0;
+            }
+        }
     }
+
+    int id=0;
+    rep(j,N) if(C[0][j]<C[0][id]) id=j;
+
+    vector<ll> A(N), B(N);
+    rep(i,N) A[i]=C[i][id];
+    rep(j,N) B[j]=C[0][j]-C[0][id];
+
+    cout<<"Yes"<<endl;
+    rep(i,N) cout<<A[i]<<' '; cout<<endl;
+    rep(i,N) cout<<B[i]<<' '; cout<<endl;
 
     return 0;
 }
