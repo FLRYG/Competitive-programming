@@ -70,16 +70,21 @@ struct SQ{
     SQ(): a(0), b(0), c(0), d(0){}
     SQ(int _a, int _b, int _c, int _d): a(_a), b(_b), c(_c), d(_d){}
     ~SQ(){}
-    SQ operator+=(const SQ &x){
+    SQ operator+=(SQ const &x){
         a+=x.a; b+=x.b; c+=x.c; d+=x.d;
         return (*this); 
     }
-    SQ operator+(const SQ &x){ return (*this)+=x; }
-    SQ operator-=(const SQ &x){
+    SQ operator+(SQ const &x){ return (*this)+=x; }
+    SQ operator-=(SQ const &x){
         a-=x.a; b-=x.b; c-=x.c; d-=x.d;
         return (*this); 
     }
-    SQ operator-(const SQ &x){ return (*this)-=x; }
+    SQ operator-(SQ const &x){ return (*this)-=x; }
+    bool overlap(SQ const &sq){
+        if(max(c,sq.c)-min(a,sq.a)<c-a+sq.c-sq.a) return true;
+        if(max(d,sq.d)-min(b,sq.b)<d-b+sq.d-sq.b) return true;
+        return false;
+    }
 };
 
 SQ unitsq[4]={SQ(-1,0,0,0),SQ(0,-1,0,0),SQ(0,0,1,0),SQ(0,0,0,1)};
@@ -121,33 +126,42 @@ void solve01(vector<SQ> &ans){
         int id=rand1.nextInt();
         int dir=rand2.nextInt();
         int dx=rand3.nextInt();
-        // SQ tmp=(ans[id]+unitsq[d]);
-        vector<SQ> tmp=ans;
-        tmp[id]+=unitsq[dir];
-        if(tmp[id].a>=0 && tmp[id].b>=0 && tmp[id].c<=10000 && tmp[id].d<=10000){
-            switch(dir){
-            case 0:
-                rep(j,N) if(ans[id].a==ans[j].c) tmp[j].c--;
-                break;
-            case 1:
-                rep(j,N) if(ans[id].b==ans[j].d) tmp[j].d--;
-                break;
-            case 2:
-                rep(j,N) if(ans[id].c==ans[j].a) tmp[j].a++;
-                break;
-            case 3:
-                rep(j,N) if(ans[id].d==ans[j].b) tmp[j].b++;
-                break;
-            }
-            rep(j,N) if(tmp[j].a==tmp[j].c || tmp[j].b==tmp[j].d) continue;
-            ll scr=computeScore(tmp);
-            if(prevScr<scr){
-                prevScr=scr;
-                ans=tmp;
-            }
-        }
+        
         }
     }
+    // while(timer.getTime()<4800){
+    //     rep(n,500){
+    //     // cnt++;
+    //     int id=rand1.nextInt();
+    //     int dir=rand2.nextInt();
+    //     int dx=rand3.nextInt();
+    //     // SQ tmp=(ans[id]+unitsq[d]);
+    //     vector<SQ> tmp=ans;
+    //     tmp[id]+=unitsq[dir];
+    //     if(tmp[id].a>=0 && tmp[id].b>=0 && tmp[id].c<=10000 && tmp[id].d<=10000){
+    //         switch(dir){
+    //         case 0:
+    //             rep(j,N) if(ans[id].a==ans[j].c) tmp[j].c--;
+    //             break;
+    //         case 1:
+    //             rep(j,N) if(ans[id].b==ans[j].d) tmp[j].d--;
+    //             break;
+    //         case 2:
+    //             rep(j,N) if(ans[id].c==ans[j].a) tmp[j].a++;
+    //             break;
+    //         case 3:
+    //             rep(j,N) if(ans[id].d==ans[j].b) tmp[j].b++;
+    //             break;
+    //         }
+    //         rep(j,N) if(tmp[j].a==tmp[j].c || tmp[j].b==tmp[j].d) continue;
+    //         ll scr=computeScore(tmp);
+    //         if(prevScr<scr){
+    //             prevScr=scr;
+    //             ans=tmp;
+    //         }
+    //     }
+    //     }
+    // }
     // cout<<cnt<<endl;
 }
 
