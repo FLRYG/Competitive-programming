@@ -65,125 +65,112 @@ struct Random{
     }
 };
 
-struct SQ{
+int N;
+// IP rxy[200];
+Timer timer;
+
+struct Rect{
+    int x,y,r;
     int a,b,c,d;
-    SQ(): a(0), b(0), c(0), d(0){}
-    SQ(int _a, int _b, int _c, int _d): a(_a), b(_b), c(_c), d(_d){}
-    ~SQ(){}
-    SQ operator+=(SQ const &x){
+    Rect(){}
+    Rect(int _x, int _y ,int _r):x(_x), y(_y), r(_r), a(0), b(0), c(1), d(1){}
+    Rect(int _a, int _b, int _c, int _d): a(_a), b(_b), c(_c), d(_d){}
+    ~Rect(){}
+    Rect operator+=(Rect const &x){
         a+=x.a; b+=x.b; c+=x.c; d+=x.d;
         return (*this); 
     }
-    SQ operator+(SQ const &x){ return (*this)+=x; }
-    SQ operator-=(SQ const &x){
+    Rect operator+(Rect const &x){ return (*this)+=x; }
+    Rect operator-=(Rect const &x){
         a-=x.a; b-=x.b; c-=x.c; d-=x.d;
         return (*this); 
     }
-    SQ operator-(SQ const &x){ return (*this)-=x; }
-    bool overlap(SQ const &sq){
-        if(max(c,sq.c)-min(a,sq.a)<c-a+sq.c-sq.a) return true;
-        if(max(d,sq.d)-min(b,sq.b)<d-b+sq.d-sq.b) return true;
+    Rect operator-(Rect const &x){ return (*this)-=x; }
+    bool overlap(Rect const &sq){
+        if(max(c,sq.c)-min(a,sq.a)<c-a+sq.c-sq.a
+        && max(d,sq.d)-min(b,sq.b)<d-b+sq.d-sq.b) return true;
         return false;
+    }
+    int area(){ return (c-a)*(d-b); }
+    void expand(int dir, int dx){
+        if(dir==0) a=max(0,a-dx);
+        else if(dir==1) b=max(0,b-dx);
+        else if(dir==2) c=min(10000,c+dx);
+        else if(dir==3) d=min(10000,d+dx);
+    }
+    ll socre(){
+        double res=0;
+        if(a<=x && x<c && b<=y && y<d){
+            int s=(c-a)*(d-b);
+            res=(1-pow(1-(double)min(r,s)/max(r,s),2))/N;
+        }
+        return (ll)1e9*res;
     }
 };
 
-SQ unitsq[4]={SQ(-1,0,0,0),SQ(0,-1,0,0),SQ(0,0,1,0),SQ(0,0,0,1)};
+Rect unitRect[4]={Rect(-1,0,0,0),Rect(0,-1,0,0),Rect(0,0,1,0),Rect(0,0,0,1)};
 
-int N;
-IP A[200];
-Timer timer;
-
-ll computeScore(vector<SQ> &ans){
+ll computeScore(vector<Rect> &ans){
     double res=0;
     rep(i,N){
-        if(ans[i].a<=A[i].second.first
-        && A[i].second.first<ans[i].c
-        && ans[i].b<=A[i].second.second
-        && A[i].second.second<ans[i].d){
+        if(ans[i].a<=ans[i].x
+        && ans[i].x<ans[i].c
+        && ans[i].b<=ans[i].y
+        && ans[i].y<ans[i].d){
             int s=(ans[i].c-ans[i].a)*(ans[i].d-ans[i].b);
-            res+=(1-pow(1-(double)min(A[i].first,s)/max(A[i].first,s),2))/N;
+            res+=(1-pow(1-(double)min(ans[i].r,s)/max(ans[i].r,s),2))/N;
         }
     }
     return (ll)1e9*res;
 }
 
-void solve01(vector<SQ> &ans){
+void solve01(vector<Rect> &ans){
     rep(i,N){
-        ans[i].a=A[i].second.first;
-        ans[i].b=A[i].second.second;
-        ans[i].c=A[i].second.first+1;
-        ans[i].d=A[i].second.second+1;
+        ans[i].a=ans[i].x;
+        ans[i].b=ans[i].y;
+        ans[i].c=ans[i].x+1;
+        ans[i].d=ans[i].y+1;
     }
 
-    ll prevScr=computeScore(ans);
+    ll prevScr;
+    Rect prevRect;
     Random rand1(SEED,0,N-1);
     Random rand2(SEED,0,3);
-    Random rand3(SEED,1,100);
-    // int cnt=0;
-    while(timer.getTime()<4800){
-        rep(n,500){
+    // Random rand3(SEED,1,3);
+    // int cnt=0, cnt2=0;
+    while(timer.getTime()<4900){
+        rep(i,1000){
         // cnt++;
         int id=rand1.nextInt();
         int dir=rand2.nextInt();
-        int dx=rand3.nextInt();
-        
-        }
-    }
-    // while(timer.getTime()<4800){
-    //     rep(n,500){
-    //     // cnt++;
-    //     int id=rand1.nextInt();
-    //     int dir=rand2.nextInt();
-    //     int dx=rand3.nextInt();
-    //     // SQ tmp=(ans[id]+unitsq[d]);
-    //     vector<SQ> tmp=ans;
-    //     tmp[id]+=unitsq[dir];
-    //     if(tmp[id].a>=0 && tmp[id].b>=0 && tmp[id].c<=10000 && tmp[id].d<=10000){
-    //         switch(dir){
-    //         case 0:
-    //             rep(j,N) if(ans[id].a==ans[j].c) tmp[j].c--;
-    //             break;
-    //         case 1:
-    //             rep(j,N) if(ans[id].b==ans[j].d) tmp[j].d--;
-    //             break;
-    //         case 2:
-    //             rep(j,N) if(ans[id].c==ans[j].a) tmp[j].a++;
-    //             break;
-    //         case 3:
-    //             rep(j,N) if(ans[id].d==ans[j].b) tmp[j].b++;
-    //             break;
-    //         }
-    //         rep(j,N) if(tmp[j].a==tmp[j].c || tmp[j].b==tmp[j].d) continue;
-    //         ll scr=computeScore(tmp);
-    //         if(prevScr<scr){
-    //             prevScr=scr;
-    //             ans=tmp;
-    //         }
-    //     }
-    //     }
-    // }
-    // cout<<cnt<<endl;
-}
-
-void solve02(vector<SQ> &ans){
-    vector<int> cnt(N,0);
-    vector<vector<P>> hw(N,vector<P>(500));
-    rep(i,N){
-        cout<<i<<endl;
-        repn(j,sqrt(A[i].first)){
-            if(A[i].first%j==0){
-                hw[i][cnt[i]].first=j;
-                hw[i][cnt[i]++].second=A[i].first/j;
-                cout<<"  "<<j<<' '<<A[i].first/j<<endl;
+        // int dx=rand3.nextInt();
+        prevScr=ans[id].socre();
+        prevRect=ans[id];
+        // ans[id]+=unitRect[dir];
+        ans[id].expand(dir,1);
+        // if(!(ans[id].a>=0 && ans[id].b>=0 && ans[id].c<=10000 && ans[id].d<=10000)){
+        //     ans[id]=prevRect;
+        //     continue;
+        // }
+        bool flag=true;
+        rep(i,N){
+            if(i==id) continue;
+            if(ans[id].overlap(ans[i])){
+                ans[id]=prevRect;
+                flag=false;
+                break;
             }
         }
+        if(flag){
+            ll scr=ans[id].socre();
+            if(scr>prevScr) prevScr=scr;// cnt2++;
+            else ans[id]=prevRect;
+        }else{
+            ans[id]=prevRect;
+        }
+        }
     }
-    rep(i,N){
-        ans[i].a=A[i].second.first-(hw[i][cnt[i]-1].first+1)/2;
-        ans[i].b=A[i].second.second-(hw[i][cnt[i]-1].second+1)/2;
-        ans[i].c=A[i].second.first+hw[i][cnt[i]-1].first/2;
-        ans[i].d=A[i].second.second+hw[i][cnt[i]-1].second/2;
-    }
+    // cout<<cnt<<endl;
 }
 
 int main(){
@@ -191,17 +178,24 @@ int main(){
 
     ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    cin>>N;
-    rep(i,N) cin>>A[i].second.first>>A[i].second.second>>A[i].first;
 
-    vector<SQ> ans(N);
-    // solve01(ans);
-    solve02(ans);
+    cin>>N;
+    vector<Rect> ans(0);
+    ans.reserve(N);
+    rep(i,N){
+        int x,y,r;
+        cin>>x>>y>>r;
+        ans.push_back(Rect(x,y,r));
+    }
+
+    solve01(ans);
+
     repr(e,ans){
         cout<<e.a<<' '<<e.b<<' '<<e.c<<' '<<e.d<<endl;
     }
+
     // rep(i,N){
-    //     if(!(ans[i].a<ans[i].c && ans[i].b<ans[i].d)) cout<<i<<endl;
+    //     cout<<i<<' '<<ans[i].socre()<<endl;
     // }
     // cout<<computeScore(ans)<<endl;
     
