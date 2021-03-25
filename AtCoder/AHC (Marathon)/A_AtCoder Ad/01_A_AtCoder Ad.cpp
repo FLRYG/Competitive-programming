@@ -76,27 +76,38 @@ struct Rect{
     Rect(int _x, int _y ,int _r):x(_x), y(_y), r(_r), a(0), b(0), c(1), d(1){}
     Rect(int _a, int _b, int _c, int _d): a(_a), b(_b), c(_c), d(_d){}
     ~Rect(){}
-    Rect operator+=(Rect const &x){
-        a+=x.a; b+=x.b; c+=x.c; d+=x.d;
-        return (*this); 
-    }
-    Rect operator+(Rect const &x){ return (*this)+=x; }
-    Rect operator-=(Rect const &x){
-        a-=x.a; b-=x.b; c-=x.c; d-=x.d;
-        return (*this); 
-    }
-    Rect operator-(Rect const &x){ return (*this)-=x; }
+    // Rect operator+=(Rect const &x){
+    //     a+=x.a; b+=x.b; c+=x.c; d+=x.d;
+    //     return (*this); 
+    // }
+    // Rect operator+(Rect const &x){ return (*this)+=x; }
+    // Rect operator-=(Rect const &x){
+    //     a-=x.a; b-=x.b; c-=x.c; d-=x.d;
+    //     return (*this); 
+    // }
+    // Rect operator-(Rect const &x){ return (*this)-=x; }
     bool overlap(Rect const &sq){
         if(max(c,sq.c)-min(a,sq.a)<c-a+sq.c-sq.a
         && max(d,sq.d)-min(b,sq.b)<d-b+sq.d-sq.b) return true;
         return false;
     }
     int area(){ return (c-a)*(d-b); }
-    void expand(int dir, int dx){
+    bool include(int const &_x, int const &_y){ 
+        return (a<=_x && x<c && b<=_y && y<d);
+    }
+    void expand(int const &dir, int const &dx){
         if(dir==0) a=max(0,a-dx);
         else if(dir==1) b=max(0,b-dx);
         else if(dir==2) c=min(10000,c+dx);
         else if(dir==3) d=min(10000,d+dx);
+    }
+    bool move(int const &dir, int const &dx){
+        if(dir==0 && dx<=a) a-=dx, c-=dx;
+        else if(dir==1 && dx<=b) b-=dx, d-=dx;
+        else if(dir==2 && dx+c<=10000) a+=dx, c+=dx;
+        else if(dir==3 && dx+d<=10000) b+=dx, d+=dx;
+        else return false;
+        return true;
     }
     ll socre(){
         double res=0;
@@ -132,45 +143,65 @@ void solve01(vector<Rect> &ans){
         ans[i].d=ans[i].y+1;
     }
 
-    ll prevScr;
-    Rect prevRect;
     Random rand1(SEED,0,N-1);
     Random rand2(SEED,0,3);
-    // Random rand3(SEED,1,3);
+    Random rand3(SEED,0,2);
     // int cnt=0, cnt2=0;
+    // vector<int> cnt3(N,0);
+    // vector<int> cnt4(4,0);
     while(timer.getTime()<4900){
         rep(i,1000){
+
         // cnt++;
         int id=rand1.nextInt();
         int dir=rand2.nextInt();
-        // int dx=rand3.nextInt();
-        prevScr=ans[id].socre();
-        prevRect=ans[id];
-        // ans[id]+=unitRect[dir];
-        ans[id].expand(dir,1);
-        // if(!(ans[id].a>=0 && ans[id].b>=0 && ans[id].c<=10000 && ans[id].d<=10000)){
-        //     ans[id]=prevRect;
-        //     continue;
-        // }
-        bool flag=true;
-        rep(i,N){
-            if(i==id) continue;
-            if(ans[id].overlap(ans[i])){
-                ans[id]=prevRect;
-                flag=false;
-                break;
+        int flagnum=rand3.nextInt();
+        // cnt3[id]++;
+        // cnt4[dir]++;
+
+        Rect prevRect=ans[id];
+        if(flagnum>0){
+            ll prevScr=ans[id].socre();
+            ans[id].expand(dir,1);
+            bool flag=true;
+            rep(i,N){
+                if(i==id) continue;
+                if(ans[id].overlap(ans[i])){
+                    ans[id]=prevRect;
+                    flag=false;
+                    break;
+                }
             }
-        }
-        if(flag){
-            ll scr=ans[id].socre();
-            if(scr>prevScr) prevScr=scr;// cnt2++;
-            else ans[id]=prevRect;
+            if(flag){
+                ll scr=ans[id].socre();
+                if(scr>prevScr) prevScr=scr;// cnt2++;
+                else ans[id]=prevRect;
+            }else{
+                ans[id]=prevRect;
+            }
         }else{
-            ans[id]=prevRect;
+            if(!ans[id].move(dir,1)) continue;
+            if(!ans[id].include(ans[id].x,ans[id].y)){
+                ans[id]=prevRect;
+                continue;
+            }
+            bool flag=true;
+            rep(i,N){
+                if(i==id) continue;
+                if(ans[id].overlap(ans[i])){
+                    ans[id]=prevRect;
+                    flag=false;
+                    break;
+                }
+            }
+            if(!flag) ans[id]=prevRect;
         }
+        
         }
     }
     // cout<<cnt<<endl;
+    // rep(i,N) cout<<i<<' '<<cnt3[i]<<endl;
+    // rep(i,4) cout<<i<<' '<<cnt4[i]<<endl;
 }
 
 int main(){

@@ -21,10 +21,10 @@ template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{
     T get(int k){return v[k+n-1];}
     T sum(int l, int r){return sum(l,r,0,0,n);}
     T sum(int l, int r, int k, int a, int b){
-        if(b<=l || r<=a) return 0;
+        if(b<=l || r<=a) return e();
         if(l<=a && b<=r) return v[k];
-        int vl=sum(l,r,k*2+1,a,(a+b)/2);
-        int vr=sum(l,r,k*2+2,(a+b)/2,b);
+        T vl=sum(l,r,k*2+1,a,(a+b)/2);
+        T vr=sum(l,r,k*2+2,(a+b)/2,b);
         return op(vl,vr);
     }
 };

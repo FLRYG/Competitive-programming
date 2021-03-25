@@ -36,21 +36,19 @@ int main(){
     cin>>N>>S;
     repn(i,N) cin>>A[i];
 
-    vector<vector<ll>> dp(3001,vector<ll>(S+1,0));
+    vector<vector<ll>> dp(N+1,vector<ll>(S+1,0));
     dp[0][0]=1;
-    repn(i,NULL){
-        repn(j,S){
-            
+    repn(i,N){
+        rep(j,S+1){
+            dp[i][j]+=2*dp[i-1][j];
+            if(j>=A[i]) dp[i][j]+=dp[i-1][j-A[i]];
+            dp[i][j]%=MOD;
+            // cout<<dp[i][j]<<' ';
         }
-    }
-    repn(i,4){
-        repn(j,S){
-            cout<<dp[i][j]<<' ';
-        }
-        cout<<endl;
+        // cout<<endl;
     }
 
-    cout<<dp[3000][S]<<endl;
+    cout<<dp[N][S]<<endl;
     
     return 0;
 }
