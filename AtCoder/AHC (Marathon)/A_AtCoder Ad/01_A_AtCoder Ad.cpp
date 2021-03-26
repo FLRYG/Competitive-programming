@@ -144,8 +144,8 @@ void solve01(vector<Rect> &ans){
     }
 
     Random rand1(SEED,0,N-1);
-    Random rand2(SEED,0,3);
-    Random rand3(SEED,0,2);
+    Random rand2(SEED,0,1<<30);
+    Random rand3(SEED,0,1);
     // int cnt=0, cnt2=0;
     // vector<int> cnt3(N,0);
     // vector<int> cnt4(4,0);
@@ -154,7 +154,7 @@ void solve01(vector<Rect> &ans){
 
         // cnt++;
         int id=rand1.nextInt();
-        int dir=rand2.nextInt();
+        ll dir=rand2.nextInt();
         int flagnum=rand3.nextInt();
         // cnt3[id]++;
         // cnt4[dir]++;
@@ -162,6 +162,15 @@ void solve01(vector<Rect> &ans){
         Rect prevRect=ans[id];
         if(flagnum>0){
             ll prevScr=ans[id].socre();
+            ll h=ans[id].c-ans[id].a;
+            ll w=ans[id].d-ans[id].b;
+            if(dir<=(1<<30)*w/(h+w)){
+                if(dir&1) dir=0;
+                else dir=2;
+            }else{
+                if(dir&1) dir=1;
+                else dir=3;
+            }
             ans[id].expand(dir,1);
             bool flag=true;
             rep(i,N){
@@ -180,7 +189,7 @@ void solve01(vector<Rect> &ans){
                 ans[id]=prevRect;
             }
         }else{
-            if(!ans[id].move(dir,1)) continue;
+            if(!ans[id].move(dir%4,1)) continue;
             if(!ans[id].include(ans[id].x,ans[id].y)){
                 ans[id]=prevRect;
                 continue;
