@@ -82,7 +82,7 @@ int main(){
     ll ans=0;
     repn(i,GY[1]-1) ans+=GX[i]-1;
     repn(j,GX[1]-1) ans+=GY[j]-1;
-    repn(i,H){
+    repn(i,GY[1]-1){
         repr(j,invGY[i]) st.set(j,0);
         ans-=st.sum(1,GX[i]);
     }

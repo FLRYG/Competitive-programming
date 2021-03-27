@@ -57,6 +57,7 @@
     E - League                          有向グラフの閉路検出
     D - Hanjo                           実装
     F - Knapsack for All Subsets        dp
+    F - Rook on Grid                    segment tree
 
 
 <<ARC>>
