@@ -32,22 +32,11 @@ ll const MOD=1000000007;
 int N,K;
 int x[100000];
 int y[100000];
-int c[100000];
+char c[100000];
 int K2;
 
-int f(vector<vector<int>> &G, int x1, int y1, int x2, int y2){
-    int res=0;
-    if(x1<=x2 && y1<=y2){
-        res+=G[x2][y2]-G[x1-1][y2]-G[x2][y1-1]+G[x1-1][y1-1];
-    }else if(x1<=x2){
-        res+=f(G,x1,y1,x2,K2)+f(G,x1,1,x2,y2);
-    }else if(y1<=y2){
-        res+=f(G,x1,y1,K2,y2)+f(G,1,y1,x2,y2);
-    }else{
-        res+=f(G,x1,y1,K2,K2)+f(G,x1,1,K2,y2)
-            +f(G,1,1,x2,y2)+f(G,1,y1,x2,K2);
-    }
-    return res;
+int f(vector<vector<int>> &G, int a, int b, int c, int d){
+    return G[c-1][d-1]-G[a-1][d-1]-G[c-1][b-1]+G[a-1][b-1];
 }
 
 int main(){
@@ -55,8 +44,8 @@ int main(){
     rep(i,N) cin>>x[i]>>y[i]>>c[i];
     K2=2*K;
 
-    vector<vector<int>> B(K2+1,vector<int>(K2+1,0));
-    vector<vector<int>> W(K2+1,vector<int>(K2+1,0));
+    vector<vector<int>> B(3*K+1,vector<int>(3*K+1,0));
+    vector<vector<int>> W(3*K+1,vector<int>(3*K+1,0));
     rep(i,N){
         x[i]=x[i]%K2+1;
         y[i]=y[i]%K2+1;
@@ -64,17 +53,39 @@ int main(){
         else W[x[i]][y[i]]++;
     }
     repn(i,K) repn(j,K){
+        B[i+K2][j+K2]=B[i][j];
+        W[i+K2][j+K2]=W[i][j];
+    }
+    repn(i,K) repn(j,K2){
+        B[i+K2][j]=B[i][j];
+        W[i+K2][j]=W[i][j];
+    }
+    repn(i,K2) repn(j,K){
+        B[i][j+K2]=B[i][j];
+        W[i][j+K2]=W[i][j];
+    }
+    repn(i,3*K) repn(j,3*K){
         B[i][j]+=B[i-1][j]+B[i][j-1]-B[i-1][j-1];
         W[i][j]+=W[i-1][j]+W[i][j-1]-W[i-1][j-1];
     }
 
     int ans=0;
-    rep(i,K) rep(j,K){
+    repn(i,K) repn(j,K){
         int cnt=0;
-        cnt+=f(B,i+1,j+1,(i+K-1)%K2+1,(j+K-1)%K2+1);
-        cnt+=f(B,(i+K)%K2+1,(j+K)%K2+1,(i-1+K2)%K2+1,(j-1+K2)%K2+1);
-        cnt+=f(W,(i+K)%K2+1,j+1,)
+        cnt+=f(B,i,j,i+K,j+K);
+        cnt+=f(B,i+K,j+K,i+K2,j+K2);
+        cnt+=f(W,i+K,j,i+K2,j+K);
+        cnt+=f(W,i,j+K,i+K,j+K2);
+        ans=max(ans,cnt);
+        cnt=0;
+        cnt+=f(W,i,j,i+K,j+K);
+        cnt+=f(W,i+K,j+K,i+K2,j+K2);
+        cnt+=f(B,i+K,j,i+K2,j+K);
+        cnt+=f(B,i,j+K,i+K,j+K2);
+        ans=max(ans,cnt);
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }
