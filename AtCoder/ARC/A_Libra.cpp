@@ -29,28 +29,16 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M;
-int S[2001];
-int T[2001];
+int A,B,C,D;
 
 int main(){
-    cin>>N>>M;
-    repn(i,N) cin>>S[i];
-    repn(i,M) cin>>T[i];
+    cin>>A>>B>>C>>D;
 
-    vector<vector<int>> dp(N+1,vector<int>(M+1,0));
-    rep(i,N+1) dp[i][0]=1;
-    rep(j,M+1) dp[0][j]=1;
-    repn(i,N) repn(j,M){
-        if(S[i]==T[j]) dp[i][j]=dp[i-1][j-1]*2;
-        else dp[i][j]=dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1];
-    }
-    rep(i,N+1){
-        rep(j,M+1) cout<<dp[i][j]<<' ';
-        cout<<endl;
-    }
+    string ans="Balanced";
+    if(A+B<C+D) ans="Right";
+    else if(A+B>C+D) ans="Left";
 
-    cout<<dp[N][M]<<endl;
+    cout<<ans<<endl;
     
     return 0;
 }
