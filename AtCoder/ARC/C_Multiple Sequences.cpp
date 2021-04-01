@@ -44,21 +44,38 @@ int main(){
     frac[0]=1;
     repn(i,N+100) frac[i]=frac[i-1]*i%MOD;
 
-    ll ans=0;
-
-    vector<ll> cnt(500,0);
-    for(int i=2;i*i<=M;i++){
-        while(M%i==0){
-            M/=i;
-            cnt[i]++;
+    vector<ll> prm(M+1,0);
+    for(ll i=M;i>=2;i--){
+        for(ll j=i;j<=M;j+=i){
+            prm[j]=i;
         }
-        cout<<i<<' '<<cnt[i]<<endl;
     }
 
-    ll res=1;
-    rep(i,500){
-        res*=frac[cnt[i]+N-1]*mpow(frac[N-1],MOD-2)%MOD*mpow(frac[cnt[i]],MOD-2)%MOD;
-        res%=MOD;
+    ll ans=1;
+    for(int m=2;m<=M;m++){
+        vector<ll> v(0);
+        ll x=m;
+        ll val=prm[x], cnt=0;
+        while(x>1){
+            if(prm[x]==val){
+                cnt++;
+                x/=val;
+            }else{
+                v.push_back(cnt);
+                val=prm[x];
+                cnt=0;
+            }
+        }
+        if(cnt) v.push_back(cnt);
+
+        ll res=1;
+        repr(e,v){
+            res*=frac[e+N-1]*mpow(frac[N-1],MOD-2)%MOD*mpow(frac[e],MOD-2)%MOD;
+            res%=MOD;
+        }
+        // cout<<m<<": "<<res<<endl;
+        ans+=res;
+        ans%=MOD;
     }
     
     cout<<ans<<endl;
