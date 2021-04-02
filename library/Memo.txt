@@ -58,6 +58,8 @@
     D - Hanjo                           実装
     F - Knapsack for All Subsets        dp
     F - Rook on Grid                    segment tree
+    E - Common Subsequence              dp 速
+    D - Circle Lattice Points           誤差
 
 
 <<ARC>>

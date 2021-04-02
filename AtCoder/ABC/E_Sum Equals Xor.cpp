@@ -29,30 +29,25 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,M;
-ll S[2001];
-ll T[2001];
+ll mpow(ll x,ll n){
+    if(n==0) return 1;
+    else if(n%2) return x*mpow(x,n-1)%MOD;
+    return mpow(x*x%MOD,n/2)%MOD;
+}
+
+string L;
 
 int main(){
-    cin>>N>>M;
-    repn(i,N) cin>>S[i];
-    repn(i,M) cin>>T[i];
+    cin>>L;
+    int N=L.size();
 
-    vector<vector<ll>> dp(N+1,vector<ll>(M+1,0));
-    rep(i,N+1) dp[i][0]=1;
-    rep(j,M+1) dp[0][j]=1;
-    repn(i,N) repn(j,M){
-        if(S[i]==T[j]) dp[i][j]=dp[i-1][j]+dp[i][j-1];
-        else dp[i][j]=dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1];
-        dp[i][j]%=MOD;
+    ll ans=0;
+    vector<ll> comb(N,0);;
+    comb[0]=1;
+    repn(i,N-1){
+        comb[i]*=comb[i-1]*(N-i)%MOD*mpow(i,MOD-2)%MOD;
+        comb[i]%=MOD;
     }
-    // rep(i,N+1){
-    //     rep(j,M+1) cout<<dp[i][j]<<' ';
-    //     cout<<endl;
-    // }
-
-    ll ans=(dp[N][M]+MOD)%MOD;
-    cout<<ans<<endl;
     
     return 0;
 }
