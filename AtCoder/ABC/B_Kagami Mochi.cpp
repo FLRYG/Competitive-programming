@@ -29,41 +29,21 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll mpow(ll x,ll n){
-    if(n==0) return 1;
-    else if(n%2) return x*mpow(x,n-1)%MOD;
-    return mpow(x*x%MOD,n/2)%MOD;
-}
-
-string L;
 int N;
-vector<ll> comb;
-
-ll f(ll i, bool prev){
-    if(prev){
-        if(L[i]=='0'){
-            return f(i+1,true)%MOD;
-        }else{
-            return 2*f(i+1,true)%MOD+
-        }
-    }else{
-        return  
-    }
-}
 
 int main(){
-    cin>>L;
-    N=L.size();
-
-    ll ans=0;
-    comb.resize(N+1);
-    comb[0]=1;
-    repn(i,N){
-        comb[i]*=comb[i-1]*(N-i)%MOD*mpow(i,MOD-2)%MOD;
-        comb[i]%=MOD;
+    cin>>N;
+    vector<int> cnt(101,0);
+    rep(i,N){
+        int d;
+        cin>>d;
+        cnt[d]++;
     }
 
-    ll ans=f(0,true,0);
+    int ans=0;
+    repn(i,100) if(cnt[i]) ans++;
+
+    cout<<ans<<endl;
     
     return 0;
 }
