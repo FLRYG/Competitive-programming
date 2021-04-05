@@ -36,7 +36,20 @@ int main(){
     cin>>N;
     rep(i,N) cin>>xy[i].first>>xy[i].second;
 
-    
+    sort(xy,xy+N);
+
+    ll prevx=xy[0].first;
+    bool flag=true;
+    set<ll> s;
+    ll ans=0;
+    rep(i,N){
+        if(xy[i].first==prevx){
+            if(s.find(xy[i].second)!=s.end()) flag=false;
+            s.insert(xy[i].second);
+        }else{
+            if(flag) ans+=
+        }
+    }
     
     return 0;
 }
