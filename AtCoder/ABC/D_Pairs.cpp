@@ -72,6 +72,53 @@ int main(){
     return 0;
 }
 
+// ll N,K;
+// ll A[200000];
+
+// int main(){
+//     cin>>N>>K;
+//     rep(i,N) cin>>A[i];
+
+//     ll z=0;
+//     vector<ll> a,b;
+//     rep(i,N){
+//         if(A[i]==0) z++;
+//         if(A[i]>0) a.push_back(A[i]);
+//         if(A[i]<0) b.push_back(A[i]);
+//     }
+//     sort(a.begin(),b.begin());
+
+//     ll neg=a.size()*b.size();
+//     ll zer=z*(a.size()+b.size())+z*(z-1)/2;
+//     ll pos=a.size()*(a.size()-1)/2+b.size()*(b.size()-1)/2;
+
+//     if(neg<K && K<=neg+zer){
+//         cout<<0<<endl;
+//     }else if(K<=neg){
+//         ll ok=-LINF, ng=0;
+//         while(ng-ok>1){
+//             ll m=(ok+ng)/2;
+//             int cnt=0;
+//             int j=0;
+//             rep(i,a.size()){
+//                 while(j<b.size() && a[i]*b[j]<m) j++;
+//                 cnt+=j;
+//             }
+//             // cout<<m<<' '<<cnt<<endl;
+//             if(cnt<K) ok=m;
+//             else ng=m;
+//         }
+//         cout<<ok+1<<endl;
+//     }else{
+
+//     }
+    
+//     return 0;
+// }
+
+
+
+
 
 // #include <iostream>
 // #include <vector>

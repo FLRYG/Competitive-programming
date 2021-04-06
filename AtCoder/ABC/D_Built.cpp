@@ -22,7 +22,7 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 typedef pair<ll,ll> P;
-// typedef pair<int,P> IP;
+// typedef pair<P,int> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
@@ -30,24 +30,37 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 ll N;
-P xy[100000];
+ll x[100000];
+ll y[100000];
+P xi[100000];
+P yi[100000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>xy[i].first>>xy[i].second;
-
-    sort(xy,xy+N);
-
-    ll prevx=xy[0].first;
-    bool flag=true;
-    set<ll> s;
-    ll ans=0;
+    rep(i,N) cin>>x[i]>>y[i];
     rep(i,N){
-        if(xy[i].first==prevx){
-            if(s.find(xy[i].second)!=s.end()) flag=false;
-            s.insert(xy[i].second);
-        }else{
-            if(flag) ans+=
+        xi[i].first=x[i];
+        yi[i].first=y[i];
+        xi[i].second=yi[i].second=i;
+    }
+
+    sort(xi,xi+N);
+    sort(yi,yi+N);
+
+    vector<int> idx(1,0), idy(1,0);
+    rep(i,N-1){
+        if(xi[i].first!=xi[i+1].first) idx.push_back(i+1);
+        if(yi[i].first!=yi[i+1].first) idy.push_back(i+1);
+    }
+    idx.push_back(N);
+    idy.push_back(N);
+
+    vector<vector<int>> G(N,vector<int>(0));
+    rep(i,idx.size()-2){
+        for(int j=idx[i];j<idx[i+1];j++){
+            for(int k=idx[i+1];k<idx[i+2];k++){
+                
+            }
         }
     }
     
