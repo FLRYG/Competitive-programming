@@ -21,8 +21,8 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> P;
-typedef pair<ll,P> IP;
+typedef pair<int,int> P;
+typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
@@ -75,34 +75,46 @@ struct unionFind{
     int count(){ return quantity; }
 };
 
-ll N;
-ll x[100000];
-ll y[100000];
+int N,M;
+IP yab[200000];
+int Q;
+IP wvi[100000];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>x[i]>>y[i];
-
-    vector<IP> G(0);
-    vector<int> id(N,0);
-    iota(id.begin(),id.end(),0);
-
-    sort(id.begin(),id.end(),[&](int i, int j){return x[i]<x[j];});
-    rep(i,N-1) G.push_back(IP(x[id[i+1]]-x[id[i]],P(id[i],id[i+1])));
-
-    sort(id.begin(),id.end(),[&](int i, int j){return y[i]<y[j];});
-    rep(i,N-1) G.push_back(IP(y[id[i+1]]-y[id[i]],P(id[i],id[i+1])));
-    
-    sort(G.begin(),G.end());
-    unionFind uf(N);
-    ll ans=0;
-    repr(e,G){
-        if(uf.same(e.second.first,e.second.second)) continue;
-        uf.unite(e.second.first,e.second.second);
-        ans+=e.first;
+    cin>>N>>M;
+    rep(i,M){
+        int a,b,y;
+        cin>>a>>b>>y;
+        a--, b--;
+        yab[i].first=y;
+        yab[i].second.first=a;
+        yab[i].second.second=b;
+    }
+    cin>>Q;
+    rep(i,Q){
+        int v,w;
+        cin>>v>>w;
+        v--;
+        wvi[i].first=w;
+        wvi[i].second.first=v;
+        wvi[i].second.second=i;
     }
 
-    cout<<ans<<endl;
+    sort(yab,yab+M,greater<>());
+    sort(wvi,wvi+Q,greater<>());
 
+    vector<int> ans(Q);
+    unionFind uf(N);
+    int i=0;
+    rep(q,Q){
+        while(i<M && yab[i].first>wvi[q].first){
+            uf.unite(yab[i].second.first,yab[i].second.second);
+            i++;
+        }
+        ans[wvi[q].second.second]=uf.size(wvi[q].second.first);
+    }
+
+    rep(i,Q) cout<<ans[i]<<endl;
+    
     return 0;
 }

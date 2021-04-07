@@ -63,6 +63,7 @@
     E - Sum Equals Xor                  再帰　速
     D - 11                              速
     D - FT Robot                        dp 速
+    D - Built?                          最小全域木　辺を減らす *****
 
 
 <<ARC>>

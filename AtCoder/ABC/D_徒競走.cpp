@@ -21,8 +21,8 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> P;
-typedef pair<ll,P> IP;
+// typedef pair<int,int> P;
+// typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
@@ -75,34 +75,40 @@ struct unionFind{
     int count(){ return quantity; }
 };
 
-ll N;
-ll x[100000];
-ll y[100000];
+ll mcomb(ll n,ll r){
+    if(r>n-r) r=n-r;
+    ll res=1;
+    rep(i,r){
+        res*=n-i;
+        res/=i+1;
+    }
+    return res;
+}
+
+ll N,M;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>x[i]>>y[i];
-
-    vector<IP> G(0);
-    vector<int> id(N,0);
-    iota(id.begin(),id.end(),0);
-
-    sort(id.begin(),id.end(),[&](int i, int j){return x[i]<x[j];});
-    rep(i,N-1) G.push_back(IP(x[id[i+1]]-x[id[i]],P(id[i],id[i+1])));
-
-    sort(id.begin(),id.end(),[&](int i, int j){return y[i]<y[j];});
-    rep(i,N-1) G.push_back(IP(y[id[i+1]]-y[id[i]],P(id[i],id[i+1])));
-    
-    sort(G.begin(),G.end());
+    cin>>N>>M;
     unionFind uf(N);
-    ll ans=0;
-    repr(e,G){
-        if(uf.same(e.second.first,e.second.second)) continue;
-        uf.unite(e.second.first,e.second.second);
-        ans+=e.first;
+    rep(i,M){
+        int x,y;
+        cin>>x>>y;
+        x--, y--;
+        uf.unite(x,y);
+    }
+
+    ll ans=1;
+    vector<int> chk(N,1);
+    int n=N;
+    rep(i,N){
+        if(chk[uf.find(i)]){
+            ans*=mcomb(n,uf.size(i));
+            n-=uf.size(i);
+            chk[uf.find(i)]=0;
+        }
     }
 
     cout<<ans<<endl;
-
+    
     return 0;
 }
