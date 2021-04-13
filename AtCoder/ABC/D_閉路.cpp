@@ -50,12 +50,12 @@ template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{
     T get(int k){return v[k+n-1];}
     const T& operator[](std::size_t n) const& { return v[n]; }
     T& operator[](std::size_t n) & { return v[n]; }
-    T sum(int l, int r){return sum(l,r,0,0,n);}     // [l,r) 半開区間に注意
-    T sum(int l, int r, int k, int a, int b){
+    T query(int l, int r){return query(l,r,0,0,n);}     // [l,r) 半開区間に注意
+    T query(int l, int r, int k, int a, int b){
         if(b<=l || r<=a) return e();
         if(l<=a && b<=r) return v[k];
-        T vl=sum(l,r,k*2+1,a,(a+b)/2);
-        T vr=sum(l,r,k*2+2,(a+b)/2,b);
+        T vl=query(l,r,k*2+1,a,(a+b)/2);
+        T vr=query(l,r,k*2+2,(a+b)/2,b);
         return op(vl,vr);
     }
 };
@@ -99,9 +99,28 @@ int main(){
     id.resize(N,-1);
     int k=0;
     dfs(0,0,k,-1);
+    rep(i,2*N-1) cout<<vs[i]+1<<' '; cout<<endl;
+    rep(i,2*N-1) cout<<depth[i]<<' '; cout<<endl;
+    rep(i,N) cout<<i+1<<' '<<id[i]<<endl;
     
     segmentTree<P,op,e> st(2*N-1);
+    rep(i,2*N-1) st[i]={depth[i],vs[i]};
 
+    int Q;
+    cin>>Q;
+    while(Q--){
+        int a,b;
+        cin>>a>>b;
+        a--, b--;
+        a=id[a];
+        b=id[b];
+        if(a>b) swap(a,b);
+        cout<<a<<' '<<b<<endl;
+        int v=st.query(a,b+1).second;
+        cout<<st.query(a,b+1).first<<' '<<v<<endl;
+        int ans=depth[a]+depth[b]-depth[id[v]]+1;
+        cout<<ans<<endl;
+    }
     
     return 0;
 }
