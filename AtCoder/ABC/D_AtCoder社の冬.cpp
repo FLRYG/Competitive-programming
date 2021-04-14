@@ -57,18 +57,6 @@ ll R,C,X,Y,D,L;
 int main(){
     cin>>R>>C>>X>>Y>>D>>L;
 
-    // ll ans=0;
-    // if(D>0){
-    //     ans+=mcomb(X*Y-1,D-1)*mcomb(X*Y-D,L)%MOD;
-    //     ans%=MOD;
-    // }
-    // if(L>0){
-    //     ans+=mcomb(X*Y-1,L-1)*mcomb(X*Y-L,D)%MOD;
-    //     ans%=MOD;
-    // }
-    // ans*=(R-X+1)*(C-Y+1)%MOD;
-    // ans%=MOD;
-
     vector<vector<ll>> cnt(X+1,vector<ll>(Y+1,0));
     repn(x,X){
         repn(y,Y){
@@ -86,23 +74,8 @@ int main(){
             cnt[x][y]%=MOD;
         }
     }
-    // repn(x,X){repn(y,Y){cout<<cnt[x][y]<<' ';}cout<<endl;}
-    // ll sum=0;
-    // for(int x=X;x>0;x--){
-    //     for(int y=Y;y>0;y--){
-    //         cnt[x][y]=cnt[x][y]-cnt[x-1][y]-cnt[x][y-1];
-    //         cnt[x][y]%=MOD;
-    //     }
-    // }
-    // repn(x,X){repn(y,Y){cout<<cnt[x][y]<<' ';}cout<<endl;}
 
-    ll ans=0;
-    repn(x,X){
-        repn(y,Y){
-            ans+=(R-x+1)*(C-y+1)%MOD*cnt[x][y]%MOD;
-            ans%=MOD;
-        }
-    }
+    ll ans=(R-X+1)*(C-Y+1)%MOD*cnt[X][Y]%MOD;
     if(ans<0) ans+=MOD;
 
     cout<<ans<<endl;
