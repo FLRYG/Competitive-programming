@@ -29,30 +29,18 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-map<ll,int> flag;
-map<ll,int> memo;
-
-int f(ll x, int p){
-    if(2*x>N) return p;
-    if(flag[x]) return memo[x];
-    flag[x]=1;
-    if(p){
-        return memo[x]=!(f(2*x,0)|f(2*x+1,0));
-    }else{
-        return memo[x]=!(f(2*x,1)&f(2*x+1,1));
-    }
-}
+string w;
 
 int main(){
-    cin>>N;
+    cin>>w;
 
-    string ans="Aoki";
-    if(f(1,0)) ans="Takahashi";
+    vector<int> cnt(26,0);
+    rep(i,w.size()) cnt[w[i]-'a']++;
 
-    int 
-    
+    string ans="Yes";
+    rep(i,26) if(cnt[i]&1) ans="No";
+
     cout<<ans<<endl;
-
+    
     return 0;
 }

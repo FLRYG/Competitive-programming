@@ -29,30 +29,29 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-map<ll,int> flag;
-map<ll,int> memo;
-
-int f(ll x, int p){
-    if(2*x>N) return p;
-    if(flag[x]) return memo[x];
-    flag[x]=1;
-    if(p){
-        return memo[x]=!(f(2*x,0)|f(2*x+1,0));
-    }else{
-        return memo[x]=!(f(2*x,1)&f(2*x+1,1));
-    }
-}
+int R,C,K,N;
 
 int main(){
-    cin>>N;
+    cin>>R>>C>>K>>N;
+    vector<vector<int>> h(R,vector<int>());
+    vector<vector<int>> v(C,vector<int>());
+    rep(i,N){
+        int r,c;
+        cin>>r>>c;
+        r--, c--;
+        h[r].push_back(c);
+        v[c].push_back(r);
+    }
 
-    string ans="Aoki";
-    if(f(1,0)) ans="Takahashi";
+    sort(h.begin(),h.end(),[&](int i, int j){ return h[i].size()<h[j].size(); });
+    sort(v.begin(),v.end(),[&](int i, int j){ return v[i].size()<v[j].size(); });
 
-    int 
+    ll ans=0;
+    rep(i,R){
+        int cnth=h[i].size();
+        int cntv=0;
+        int ng=-1, ok=
+    }
     
-    cout<<ans<<endl;
-
     return 0;
 }
