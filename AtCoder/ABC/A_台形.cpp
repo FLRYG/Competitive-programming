@@ -29,32 +29,12 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
+int a,b,h;
 
 int main(){
-    cin>>N;
+    cin>>a>>b>>h;
 
-    ll cnt=0;
-    for(ll n=N;n>0;n>>=1) cnt++;
-
-    bool flag;
-    if(cnt&1){
-        flag=false;
-        rep(i,cnt-1){
-            cout<<(i&1)<<' '<<(~(N>>i&1))<<endl;
-            if(i&1 && !(N>>i&1)) flag=true;
-        }
-    }else{
-        flag=true;
-        rep(i,cnt-1){
-            if(!(i&1) && !(N>>i&1)) flag=false;
-        }
-    }
-
-    string ans="Aoki";
-    if(flag) ans="Takahashi";
-
-    cout<<ans<<endl;
-
+    cout<<(a+b)*h/2<<endl;
+    
     return 0;
 }

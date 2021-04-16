@@ -50,7 +50,11 @@ int main(){
     rep(i,R){
         int cnth=h[i].size();
         int cntv=0;
-        int ng=-1, ok=
+        int ng=-1, ok=C;
+        while(ok-ng>1){
+            int m=(ng+ok)/2;
+            if(v[m]<K-cnth)
+        }
     }
     
     return 0;
