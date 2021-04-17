@@ -29,12 +29,16 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int main(){
-    int a,b,x;
-    cin>>a>>b>>x;
+double x,y,z;
 
-    cout<<(a<=x<=b)<<endl;
-    cout<<(a<=x && x<=b)<<endl;
+int main(){
+    cin>>x>>y>>z;
+
+    int ans=0;
+    while(ans/z<y/x) ans++;
+    ans--;
+
+    cout<<ans<<endl;
     
     return 0;
 }

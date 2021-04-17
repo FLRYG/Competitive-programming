@@ -38,16 +38,24 @@ int main(){
     for(ll n=N;n>0;n>>=1) cnt++;
 
     bool flag;
+    ll x=1;
     if(cnt&1){
-        flag=false;
-        rep(i,cnt-1){
-            cout<<(i&1)<<' '<<(~(N>>i&1))<<endl;
-            if(i&1 && !(N>>i&1)) flag=true;
+        rep(i,cnt){
+            x<<=1;
+            if(x>N){
+                flag=i&1;
+                break;
+            }
+            if(!(i&1)) x++;
         }
     }else{
-        flag=true;
-        rep(i,cnt-1){
-            if(!(i&1) && !(N>>i&1)) flag=false;
+        rep(i,cnt){
+            x<<=1;
+            if(x>N){
+                flag=i&1;
+                break;
+            }
+            if(i&1) x++;
         }
     }
 

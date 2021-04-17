@@ -29,12 +29,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int main(){
-    int a,b,x;
-    cin>>a>>b>>x;
+int N,M;
+int A[1000];
+int B[1000];
 
-    cout<<(a<=x<=b)<<endl;
-    cout<<(a<=x && x<=b)<<endl;
+int main(){
+    cin>>N>>M;
+    rep(i,N) cin>>A[i];
+    rep(i,M) cin>>B[i];
+
+    vector<int> cnt(1001,0);
+    rep(i,N) cnt[A[i]]=1;
+    rep(i,M) cnt[B[i]]^=1;
+
+    repn(i,1001){
+        if(cnt[i]) cout<<i<<' ';
+    }
+    cout<<endl;
     
     return 0;
 }

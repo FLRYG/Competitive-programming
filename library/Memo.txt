@@ -65,6 +65,7 @@
     D - FT Robot                        dp 速
     D - Built?                          最小全域木　辺を減らす *****
     D - 徒競走                          トポロジカルソートの数え上げ  bitDP  ***
+    C - 倍々ゲーム                      場合分け
 
 
 <<ARC>>
@@ -88,6 +89,8 @@
     B - Reverse and Compare             リバースさせるべき部分を考える ***
     B - Unplanned Queries               パリティ
     B - Joker                           bfs
+
+    B - Taking the middle               priority_queue  ***
 
 <<other>>
     B - Two Arrays                      考察

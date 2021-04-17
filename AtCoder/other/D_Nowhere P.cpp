@@ -29,12 +29,35 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int main(){
-    int a,b,x;
-    cin>>a>>b>>x;
+ll mpow(ll x,ll n){
+    if(n==0) return 1;
+    else if(n%2) return x*mpow(x,n-1)%MOD;
+    return mpow(x*x%MOD,n/2)%MOD;
+}
 
-    cout<<(a<=x<=b)<<endl;
-    cout<<(a<=x && x<=b)<<endl;
+ll mfrac(ll n){
+    if(n==0) return 1;
+    else return n*mfrac(n-1)%MOD;
+}
+
+ll mperm(ll n,ll r){
+    ll res=1;
+    for(ll i=0;i<r;i++) res=res*(n-i)%MOD;
+    return res;
+}
+
+ll mcomb(ll n,ll r){
+    if(r>n-r) r=n-r;
+    ll res=mperm(n,r);
+    return res*mpow(mfrac(r),MOD-2)%MOD;
+}
+
+ll N,P;
+
+int main(){
+    cin>>N>>P;
+
+    cout<<(P-1)*mpow(P-2,N-1)%MOD<<endl;
     
     return 0;
 }

@@ -29,12 +29,31 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int main(){
-    int a,b,x;
-    cin>>a>>b>>x;
+int K;
+string S;
 
-    cout<<(a<=x<=b)<<endl;
-    cout<<(a<=x && x<=b)<<endl;
+int main(){
+    cin>>K>>S;
+    int N=S.size();
+
+    if(K==0){
+        int ans=0;
+        rep(i,N/2) if(S[i]==S[N-1-i]) ans++;
+        cout<<ans<<endl;
+        return 0;
+    }
+
+    for(int i=1,j=1;i;i*=2,j++){
+        if(N<i){
+            cout<<"impossible"<<endl;
+            return 0;
+        }
+        if(j==K && i*2<=N && N<i*4){
+            cout<<"impossible"<<endl;
+            return 0;
+        }else if(j==K) break;
+    }
+
     
     return 0;
 }

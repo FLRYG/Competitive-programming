@@ -29,12 +29,18 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int main(){
-    int a,b,x;
-    cin>>a>>b>>x;
+int A,B;
 
-    cout<<(a<=x<=b)<<endl;
-    cout<<(a<=x && x<=b)<<endl;
+int main(){
+    cin>>A>>B;
+
+    int ans=0;
+    repn(i,B){
+        int x=(A+i-1)/i*i;
+        if(x+i<=B) ans=i;
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

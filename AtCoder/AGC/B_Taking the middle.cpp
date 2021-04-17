@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<ll,ll> P;
+typedef pair<ll,ll> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -29,7 +29,7 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
+ll N;
 ll V[400000];
 
 int main(){
@@ -37,12 +37,20 @@ int main(){
     rep(i,2*N) cin>>V[i];
 
     ll ans=0;
-    rep(i,N) ans+=max(V[i],V[2*N-1-i]);
+    rep(i,2*N) ans+=V[i];
+
+    priority_queue<ll,vector<ll>,greater<ll>> q;
+    rep(i,N){
+        q.push(V[N-1-i]);
+        q.push(V[N+i]);
+        ans-=q.top();
+        q.pop();
+    }
 
     cout<<ans<<endl;
-
-    return 0;
 }
+
+
 
 // template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{
 //     int n;
