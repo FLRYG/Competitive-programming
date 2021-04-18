@@ -82,6 +82,7 @@
     B - Reversible Cards                グラフへの帰着　閉路検出
     C - Multiple Sequences              二項係数　高速な素因数分解
     C - 魔法使い高橋君                  貪欲
+    C - Tricolor Pyramid                mod 3  ***
 
 <<AGC>>
     A - Diverse Word                    辞書順
