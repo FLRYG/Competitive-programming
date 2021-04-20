@@ -66,6 +66,7 @@
     D - Built?                          最小全域木　辺を減らす *****
     D - 徒競走                          トポロジカルソートの数え上げ  bitDP  ***
     C - 倍々ゲーム                      場合分け
+    E - Sequence Matching               dp 速   *****
 
 
 <<ARC>>
