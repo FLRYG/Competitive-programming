@@ -35,10 +35,22 @@ int B[3001];
 
 int main(){
     cin>>N>>T;
-    repn(i,N) cin>>A[i];
-    repn(i,N) cin>>B[i];
+    rep(i,N) cin>>A[i]>>B[i];
+    vector<int> id(N,0);
+    iota(id.begin(),id.end(),0);
+    sort(id.begin(),id.end(),[&](int i, int j){ return A[i]<A[j]; });
 
-    vector<vector<int>>
+    vector<vector<int>> dp(N+1,vector<int>(T,0));
+    int ans=0;
+    repn(i,N){
+        rep(j,T){
+            dp[i][j]=dp[i-1][j];
+            ans=max(ans,dp[i][j]+B[id[i-1]]);
+            if(0<=j-A[id[i-1]]) dp[i][j]=max(dp[i][j],dp[i-1][j-A[id[i-1]]]+B[id[i-1]]);
+        }
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }
