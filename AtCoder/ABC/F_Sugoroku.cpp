@@ -69,26 +69,33 @@ int main(){
     cin>>N>>M;
     cin>>S;
 
-    segmentTree<int,op,e> st(N+1);
-    st.set(0,0);
+    segmentTree<int,op,e> st1(N+1);
+    st1.set(0,0);
     repn(i,N){
-        // cout<<max(0,i-M)<<' '<<i<<' '<<st.query(max(0,i-M),i)<<endl;
-        if(S[i]=='0') st.set(i,st.query(max(0,i-M),i)+1);
+        if(S[i]=='0') st1.set(i,st1.query(max(0,i-M),i)+1);
     }
-    // rep(i,N+1) cout<<st.get(i)<<' '; cout<<endl;
 
-    if(st.get(N)>=INF){
+    segmentTree<int,op,e> st2(N+1);
+    st2.set(N,0);
+    for(int i=N-1;i>=0;i--){
+        if(S[i]=='0') st2.set(i,st2.query(i+1,min(N,i+M)+1)+1);
+    }
+
+    // rep(i,N+1) cout<<((st1.get(i)<INF)?st1.get(i):-1)<<' '; cout<<endl;
+    // rep(i,N+1) cout<<((st2.get(i)<INF)?st2.get(i):-1)<<' '; cout<<endl;
+
+    int X=st1.get(N);
+    if(X>=INF){
         cout<<-1<<endl;
         return 0;
     }
 
-    vector<int> id(st.get(N)+1,0);
+    vector<int> id(X+1,0);
     for(int i=N;i>=0;i--){
-        if(st.get(i)!=INF) id[st.get(i)]=i;
+        if(st1.get(i)!=INF && st1.get(i)+st2.get(i)==X) id[st1.get(i)]=i;
     }
-    id[st.get(N)]=N;
 
-    rep(i,st.get(N)) cout<<id[i+1]-id[i]<<' ';
+    rep(i,X) cout<<id[i+1]-id[i]<<' ';
     cout<<endl;
     
     return 0;

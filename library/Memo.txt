@@ -67,6 +67,7 @@
     D - 徒競走                          トポロジカルソートの数え上げ  bitDP  ***
     C - 倍々ゲーム                      場合分け
     E - Sequence Matching               dp 速   *****
+    F - Sugoroku                        セグツリーに頼らないで！　速
 
 
 <<ARC>>
