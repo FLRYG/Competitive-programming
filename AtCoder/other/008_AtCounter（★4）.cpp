@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+// typedef pair<int,int> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -30,30 +30,24 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-
-P f(int v, int p, int d, vector<vector<int>> &G){
-    P res={d,v};
-    repr(e,G[v]){
-        if(e!=p) res=max(res,f(e,v,d+1,G)); 
-    } 
-    return res;
-}
+string S;
 
 int main(){
-    cin>>N;
-    vector<vector<int>> G(N,vector<int>());
-    rep(i,N-1){
-        int A,B;
-        cin>>A>>B;
-        A--, B--;
-        G[A].push_back(B);
-        G[B].push_back(A);
+    cin>>N>>S;
+
+    string a="atcoder";
+    vector<int> cnt(8,0);
+    cnt[0]=1;
+    for(int i=N-1;i>=0;i--){
+        rep(j,7){
+            if(S[i]==a[j]){
+                cnt[7-j]+=cnt[6-j];
+                cnt[7-j]%=MOD;
+            }
+        }
     }
 
-    int s=f(0,-1,0,G).second;
-    int ans=f(s,-1,0,G).first+1;
+    cout<<cnt[7]<<endl;
 
-    cout<<ans<<endl;
-    
     return 0;
 }

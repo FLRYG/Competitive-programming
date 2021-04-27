@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<int,int> P;
+// typedef pair<int,int> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -31,29 +31,27 @@ ll const MOD=1000000007;
 
 int N;
 
-P f(int v, int p, int d, vector<vector<int>> &G){
-    P res={d,v};
-    repr(e,G[v]){
-        if(e!=p) res=max(res,f(e,v,d+1,G)); 
-    } 
-    return res;
-}
-
 int main(){
     cin>>N;
-    vector<vector<int>> G(N,vector<int>());
-    rep(i,N-1){
-        int A,B;
-        cin>>A>>B;
-        A--, B--;
-        G[A].push_back(B);
-        G[B].push_back(A);
+
+    vector<vector<int>> sum(2,vector<int>(N+1,0));
+    vector<int> sum2(N+1,0);
+    repn(i,N){
+        int c,p;
+        cin>>c>>p;
+        sum[c-1][i]=p;
+        rep(j,2) sum[j][i]+=sum[j][i-1];
     }
 
-    int s=f(0,-1,0,G).second;
-    int ans=f(s,-1,0,G).first+1;
-
-    cout<<ans<<endl;
+    int Q;
+    cin>>Q;
+    while(Q--){
+        int l,r;
+        cin>>l>>r;
+        int A=sum[0][r]-sum[0][l-1];
+        int B=sum[1][r]-sum[1][l-1];
+        cout<<A<<' '<<B<<endl;
+    }
     
     return 0;
 }
