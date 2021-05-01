@@ -29,36 +29,33 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll x[50];
-ll y[50];
+string S;
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>x[i]>>y[i];
+    cin>>S;
 
-    vector<int> id(N,0);
-    iota(id.begin(),id.end(),0);
-    sort(id.begin(),id.end(),[](int i, int j){ return x[i]<x[j]; });
+    deque<char> deq;
+    bool flag=true;
+    rep(i,S.size()){
+        if(S[i]=='R') flag^=1;
+        else if(flag) deq.push_back(S[i]);
+        else deq.push_front(S[i]);
+    }
+    if(!flag) reverse(deq.begin(),deq.end());
+    // repr(e,deq) cout<<e; cout<<endl;
 
-    ll ans=5*LINF;
-    rep(i,N-K+1){
-        vector<ll> v(0);
-        v.reserve(N);
-        for(int j=i;j<N;j++){
-            v.push_back(id[j]);
-            if(v.size()<K) continue;
-            sort(v.begin(),v.end(),[](int i, int j){ return y[i]<y[j]; });
-            rep(k,v.size()-K+1){
-                ll s=x[id[j]]-x[id[i]];
-                s*=y[v[k+K-1]]-y[v[k]];
-                // cout<<s<<endl;
-                ans=min(ans,s);
-            }
+    int N=deq.size();
+    string T;
+    rep(i,N){
+        if(T.size()>0 && T[T.size()-1]==deq.front()){
+            T.pop_back();
+        }else{
+            T.push_back(deq.front());
         }
+        deq.pop_front();
     }
 
-    cout<<ans<<endl;
+    cout<<T<<endl;
     
     return 0;
 }

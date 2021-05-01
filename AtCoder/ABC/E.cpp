@@ -29,36 +29,19 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll x[50];
-ll y[50];
+int R,C;
+int A[501][501];
+int B[501][501];
+
+ll dfs(int r, int c){
+    ll res=LINF;
+    if()
+}
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>x[i]>>y[i];
-
-    vector<int> id(N,0);
-    iota(id.begin(),id.end(),0);
-    sort(id.begin(),id.end(),[](int i, int j){ return x[i]<x[j]; });
-
-    ll ans=5*LINF;
-    rep(i,N-K+1){
-        vector<ll> v(0);
-        v.reserve(N);
-        for(int j=i;j<N;j++){
-            v.push_back(id[j]);
-            if(v.size()<K) continue;
-            sort(v.begin(),v.end(),[](int i, int j){ return y[i]<y[j]; });
-            rep(k,v.size()-K+1){
-                ll s=x[id[j]]-x[id[i]];
-                s*=y[v[k+K-1]]-y[v[k]];
-                // cout<<s<<endl;
-                ans=min(ans,s);
-            }
-        }
-    }
-
-    cout<<ans<<endl;
+    cin>>R>>C;
+    repn(i,R) repn(j,C-1) cin>>A[i][j];
+    repn(i,R-1) repn(j,C) cin>>A[i][j];
     
     return 0;
 }

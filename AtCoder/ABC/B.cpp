@@ -29,36 +29,21 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,K;
-ll x[50];
-ll y[50];
+int N;
+double D,H;
+double d[100];
+double h[100];
 
 int main(){
-    cin>>N>>K;
-    rep(i,N) cin>>x[i]>>y[i];
+    cin>>N>>D>>H;
+    rep(i,N) cin>>d[i]>>h[i];
 
-    vector<int> id(N,0);
-    iota(id.begin(),id.end(),0);
-    sort(id.begin(),id.end(),[](int i, int j){ return x[i]<x[j]; });
-
-    ll ans=5*LINF;
-    rep(i,N-K+1){
-        vector<ll> v(0);
-        v.reserve(N);
-        for(int j=i;j<N;j++){
-            v.push_back(id[j]);
-            if(v.size()<K) continue;
-            sort(v.begin(),v.end(),[](int i, int j){ return y[i]<y[j]; });
-            rep(k,v.size()-K+1){
-                ll s=x[id[j]]-x[id[i]];
-                s*=y[v[k+K-1]]-y[v[k]];
-                // cout<<s<<endl;
-                ans=min(ans,s);
-            }
-        }
+    double ans=0;
+    rep(i,N){
+        ans=max(ans,H-(H-h[i])/(D-d[i])*D);
     }
 
-    cout<<ans<<endl;
+    cout<<setprecision(16)<<ans<<endl;
     
     return 0;
 }
