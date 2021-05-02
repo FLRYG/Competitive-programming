@@ -30,7 +30,7 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-int A[]
+int A[];
 
 int main(){
     

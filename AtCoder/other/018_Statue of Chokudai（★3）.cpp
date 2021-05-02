@@ -29,19 +29,22 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int R,C;
-int A[501][501];
-int B[501][501];
-
-ll dfs(int r, int c){
-    ll res=LINF;
-    if()
-}
+int T,L,X,Y,Q;
 
 int main(){
-    cin>>R>>C;
-    repn(i,R) repn(j,C-1) cin>>A[i][j];
-    repn(i,R-1) repn(j,C) cin>>A[i][j];
+    cin>>T>>L>>X>>Y>>Q;
+
+    while(Q--){
+        int E;
+        cin>>E;
+        double a=sqrt(pow(X,2)+pow(Y+L*sin(2*PI/T*E)/2,2));
+        double b=L/2*(1-cos(2*PI/T*E));
+        // cout<<a<<' '<<b<<endl;
+        double ans;
+        if(a==0) ans=0;
+        else ans=atan(b/a)*180/PI;
+        cout<<setprecision(16)<<ans<<endl;
+    }
     
     return 0;
 }
