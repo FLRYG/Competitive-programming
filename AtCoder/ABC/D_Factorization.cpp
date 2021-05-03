@@ -57,7 +57,7 @@ ll N,M;
 int main(){
     cin>>N>>M;
 
-    vector<ll> cnt(100000,0);
+    map<ll,ll> cnt;
     ll m=M;
     for(ll i=2;i*i<=M;i++){
         while(m%i==0){
@@ -67,20 +67,13 @@ int main(){
     }
     if(m>1) cnt[m]++;
 
-    vector<ll> frac(33,0);
+    vector<ll> frac(100101,0);
     frac[0]=1;
-    repn(i,N-1){
-        frac[0]*=i;
-        frac[0]%=MOD;
-    }
-    repn(i,32){
-        frac[i]=frac[i-1]*(N-1+i)%MOD;
-    }
+    repn(i,100100) frac[i]=frac[i-1]*i%MOD;
 
     ll ans=1;
-    ll k=mpow(N-1,MOD-2);
-    rep(i,100000){
-        ans*=frac[cnt[i]]*mpow(N-1,MOD-2)%MOD*mpow(cnt[i],MOD-2)%MOD;
+    repr(e,cnt){
+        ans*=frac[N-1+e.second]*mpow(frac[N-1],MOD-2)%MOD*mpow(frac[e.second],MOD-2)%MOD;
         ans%=MOD;
     }
 
