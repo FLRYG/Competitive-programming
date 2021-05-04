@@ -29,22 +29,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int T,L,X,Y,Q;
+int N,K;
 
 int main(){
-    cin>>T>>L>>X>>Y>>Q;
+    cin>>N>>K;
 
-    while(Q--){
-        int E;
-        cin>>E;
-        double a=sqrt(pow(X,2)+pow(Y+L*sin(2*PI*E/T)/2,2));
-        double b=L*(1-cos(2*PI*E/T))/2;
-        // cout<<a<<' '<<b<<endl;
-        double ans;
-        if(a==0) ans=0;
-        else ans=atan(b/a)*180/PI;
-        cout<<setprecision(16)<<ans<<endl;
+    vector<int> cnt(N+1,0);
+    int ans=0;
+    for(int i=2;i<=N;i++){
+        if(cnt[i]==0){
+            for(int j=i;j<=N;j+=i){
+                cnt[j]++;
+            }
+        }
+        if(cnt[i]>=K) ans++;
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }

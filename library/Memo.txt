@@ -86,6 +86,7 @@
     C - Multiple Sequences              二項係数　高速な素因数分解
     C - 魔法使い高橋君                  貪欲
     C - Tricolor Pyramid                mod 3  ***
+    C - データ構造                      segmentTreeによる判定問題への帰着 *****  (or 平方分割   )
 
 <<AGC>>
     A - Diverse Word                    辞書順
