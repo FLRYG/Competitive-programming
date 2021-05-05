@@ -69,6 +69,7 @@
     E - Sequence Matching               dp 速   *****
     F - Sugoroku                        セグツリーに頼らないで！　速
     D - 閉路                            LCA
+    D - 連結                            UnionFind, mapによる数え上げ
 
 
 <<ARC>>
