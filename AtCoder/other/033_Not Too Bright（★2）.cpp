@@ -29,34 +29,15 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-
+int H,W;
 
 int main(){
-    int N;
-    cin>>N;
-    vector<int> perm(2*N-1);
-    repn(i,2*N-1) perm[i-1]=i;
-    vector<int> cnt(2*N);
-    do{
-        vector<int> v=perm;
-        repn(i,N-1){
-            rep(j,2*(i-1)) cout<<' ';
-            rep(j,v.size()) cout<<v[j]<<' '; cout<<endl;
-            vector<int> tmp(2*(N-i)-1);
-            rep(j,2*(N-i)-1){
-                vector<int> x;
-                rep(k,3) x.push_back(v[j+k]);
-                sort(x.begin(),x.end());
-                tmp[j]=x[1];
-            }
-            v=tmp;
-        }
-        cnt[v[0]]++;
-        rep(i,2*(N-1)) cout<<' ';
-        cout<<v[0]<<endl<<endl;
-    }while(next_permutation(perm.begin(),perm.end()));
+    cin>>H>>W;
 
-    repn(i,2*N-1) cout<<i<<' '<<cnt[i]<<endl;
+    H=(H+1)/2;
+    W=(W+1)/2;
+
+    cout<<H*W<<endl;
     
     return 0;
 }
