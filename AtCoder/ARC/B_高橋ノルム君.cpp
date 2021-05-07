@@ -29,17 +29,24 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int H,W;
+int N;
+int x[1000];
+int y[1000];
+int c[1000];
 
 int main(){
-    cin>>H>>W;
+    cin>>N;
+    rep(i,N) cin>>x[i]>>y[i]>>c[i];
 
-    if(H!=1 && W!=1){
-        H=(H+1)/2;
-        W=(W+1)/2;  
+    double ans=0;
+    rep(i,N-1){
+        for(int j=i+1;j<N;j++){
+            int d=max(abs(x[i]-x[j]),abs(y[i]-y[j]));
+            ans=max(ans,d*(double)(c[i]*c[j])/(c[i]+c[j]));
+        }
     }
 
-    cout<<H*W<<endl;
+    cout<<setprecision(16)<<ans<<endl;
     
     return 0;
 }

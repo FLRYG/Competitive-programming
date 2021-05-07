@@ -97,6 +97,7 @@
     B - Joker                           bfs
 
     B - Taking the middle               priority_queue  ***
+    B - 駐車場                          逆
 
 <<other>>
     B - Two Arrays                      考察
@@ -112,6 +113,8 @@
     B - Numbers on Papers               dp　速
     J - Sushi                           期待値　メモ化再帰
     M - Candies                         dp+累積和　がんばって漸化式をつくる
+
+    021 - Come Back in One Piece（★5） 強連結成分分解
 
 
 Overflow

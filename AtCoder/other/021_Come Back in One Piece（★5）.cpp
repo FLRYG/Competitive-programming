@@ -29,78 +29,65 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-struct unionFind{
-    int n;
-    vector<int> par;                       //親
-    vector<int> rank;                      //木の深さ
-    vector<int> scale;                     //木のサイズ
-    int quantity;                          //木の個数
-    unionFind(int _n): n(_n){
-        par.resize(n);
-        rank.resize(n);
-        scale.resize(n);
-        quantity=n;
-        for(int i=0;i<n;i++){
-            par[i]=i;
-            rank[i]=0;
-            scale[i]=1;
-        }
-    };
-    ~unionFind(){}
-    //木の根を求める
-    int find(int x){
-        if(par[x]==x) return x;
-        return par[x]=find(par[x]);
+struct SCC{
+    int N_origin;
+    vector<int> G_origin;
+    vector<int> G_origin_inv;
+    int N;
+    vector<int> G;
+    SCC(vector<vector<int>> _G): N_origin(_G.size()){
+
     }
-    //xとyの属する集合を併合
-    void unite(int x,int y){
-        x=find(x);
-        y=find(y);
-        if(x==y) return;
-        quantity--;
-        if(rank[x]<rank[y]){
-            par[x]=y;
-            scale[y]+=scale[x];
-        }else{
-            par[y]=x;
-            scale[x]+=scale[y];
-            if(rank[x]==rank[y]) rank[x]++;
-        }
-    }
-    //xとyが同じ集合に属するか否か
-    bool same(int x,int y){ return find(x)==find(y); }
-    //xの属する集合のサイズ
-    int size(int x){ return scale[find(x)]; }
-    //木の個数
-    int count(){ return quantity; }
 };
 
 int N,M;
 
+void f(int v, int &k, vector<int> &id ,vector<vector<int>> &G){
+    id[v]=-1;
+    repr(e,G[v]){
+        if(id[e]==-2) f(e,k,id,G);
+    }
+    id[v]=k++;
+}
+
+ll g(int v, vector<int> &chk, vector<vector<int>> &G_rev){
+    ll res=1;
+    chk[v]=0;
+    repr(e,G_rev[v]){
+        if(chk[e]) res+=g(e,chk,G_rev);
+    }
+    return res;
+}
+
 int main(){
     cin>>N>>M;
-    set<P> s;
+    vector<vector<int>> G(N,vector<int>(0));
+    vector<vector<int>> G_rev(N,vector<int>(0));
     rep(i,M){
         int a,b;
         cin>>a>>b;
         a--, b--;
-        s.insert({a,b});
+        G[a].push_back(b);
+        G_rev[b].push_back(a);
     }
+    
+    int k=0;
+    vector<int> id(N,-2);
+    rep(i,N) if(id[i]==-2) f(i,k,id,G);
 
-    unionFind uf(N);
-    repr(e,s){
-        if(s.find({e.second,e.first})!=s.end()){
-            uf.unite(e.first,e.second);
+    vector<int> id_inv(N);
+    rep(i,N) id_inv[id[i]]=i;
+
+    vector<int> chk(N,1);
+    ll ans=0;
+    for(int i=N-1;i>=0;i--){
+        if(chk[id_inv[i]]){
+            ll x=g(id_inv[i],chk,G_rev);
+            ans+=x*(x-1)/2;
         }
     }
 
-    ll ans=0;
-    vector<int> chk(N,true);
-    rep(i,N){
-        if()
-    }
-    
     cout<<ans<<endl;
-    
+
     return 0;
 }
