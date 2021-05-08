@@ -30,10 +30,35 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-int A[];
+int A[3000][5];
 
 int main(){
-    
+    cin>>N;
+    rep(i,N) rep(j,5) cin>>A[i][j];
+
+    int ok=0, ng=INF;
+    while(ng-ok>1){
+        int m=(ok+ng)/2;
+        vector<int> bit(1<<5,0);
+        rep(i,N){
+            int x=0;
+            rep(j,5){
+                if(A[i][j]>=m) x|=1<<j;
+            }
+            bit[x]=1;
+        }
+        bool flag=false;
+        rep(i,32) rep(j,32) rep(k,32){
+            if(bit[i] && bit[j] && bit[k] && (i|j|k)==31){
+                flag=true;
+                break;
+            }
+        }
+        if(flag) ok=m;
+        else ng=m;
+    }
+
+    cout<<ok<<endl;
     
     return 0;
 }

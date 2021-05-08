@@ -70,6 +70,7 @@
     F - Sugoroku                        セグツリーに頼らないで！　速
     D - 閉路                            LCA
     D - 連結                            UnionFind, mapによる数え上げ
+    D - Happy Birthday! 2               鳩ノ巣原理 *****
 
 
 <<ARC>>
@@ -115,6 +116,8 @@
     M - Candies                         dp+累積和　がんばって漸化式をつくる
 
     021 - Come Back in One Piece（★5） 強連結成分分解
+    009 - Three Point Angle（★6）      sort, 二分探索
+    C - MAD TEAM                        bit全探索
 
 
 Overflow
