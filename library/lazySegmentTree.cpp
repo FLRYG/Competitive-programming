@@ -21,7 +21,7 @@ struct lazySegmentTree{
         data.resize(2*n-1,e());
         lazy.resize(2*n-1,e());
     }
-    segmentTree(vector<T> _vec){
+    segmentTree(vector<S> _vec){
         n=1;
         while(n<_n) n*=2;
         data.resize(2*n-1);
@@ -29,12 +29,17 @@ struct lazySegmentTree{
         for(int i=0; i<_vec.size(); i++) data[N-1+i]=_vec[i];
         for(int n-2; i>=0; i--) data[i]=data[i*2+1]+data[i*2+2];
     }
-    void add(int a, int b, int x, int k, int l, int r){
+    void set(int k, S x){}
+    S get(int k){}
+    void eval(int k, int l, int r){        // 遅延評価
+    }
+    void update(int a, int b, int x, int k, int l, int r){
         if(a<=l && r<=b) data[k]=op(data[k],x);
-        else if(l<=b && a<=r){
+        else if(l<b && a<r){
             add(a,b,x)
         }
     }
+    S sum(){}
 };
 
 template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{

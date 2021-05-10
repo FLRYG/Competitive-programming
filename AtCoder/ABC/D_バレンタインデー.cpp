@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<int,int> P;
+typedef pair<int,int> Pa;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -29,31 +29,34 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll H[100000];
-ll S[100000];
+int N,M,P,Q,R;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>H[i]>>S[i];
-
-    ll l=0, r=LINF;
-    while(r-l>1){
-        ll m=(l+r)/2;
-        bool flag=false;
-        vector<ll> cnt(N,0);
-        rep(i,N){
-            ll t=min(N-1,(m-H[i])/S[i]);
-            if(t<0) flag=true;
-            else cnt[t]++;
-        }
-        rep(i,N-1) cnt[i+1]+=cnt[i];
-        rep(i,N) flag|=cnt[i]>i+1;
-        if(flag) l=m;
-        else r=m;
+    cin>>N>>M>>P>>Q>>R;
+    vector<vector<Pa>> val(N,vector<Pa>(0));
+    rep(i,R){
+        int x,y,z;
+        cin>>x>>y>>z;
+        x--, y--;
+        val[x].push_back({y,z});
     }
 
-    cout<<r<<endl;
+    int ans=0;
+    rep(i,1<<N){
+        int cnt=0;
+        rep(j,N) cnt+=i>>j&1;
+        if(cnt!=P) continue;
+        vector<int> scr(M,0);
+        rep(j,N) if(i>>j&1){
+            repr(e,val[j]) scr[e.first]+=e.second;
+        }
+        sort(scr.begin(),scr.end(),greater<int>());
+        int sum=0;
+        rep(i,Q) sum+=scr[i];
+        ans=max(ans,sum);        
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

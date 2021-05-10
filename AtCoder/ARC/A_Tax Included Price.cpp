@@ -29,31 +29,22 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll H[100000];
-ll S[100000];
+ll t,N;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>H[i]>>S[i];
+    cin>>t>>N;
 
-    ll l=0, r=LINF;
+    ll l=0, r=1001001001001001;
     while(r-l>1){
-        ll m=(l+r)/2;
-        bool flag=false;
-        vector<ll> cnt(N,0);
-        rep(i,N){
-            ll t=min(N-1,(m-H[i])/S[i]);
-            if(t<0) flag=true;
-            else cnt[t]++;
-        }
-        rep(i,N-1) cnt[i+1]+=cnt[i];
-        rep(i,N) flag|=cnt[i]>i+1;
-        if(flag) l=m;
-        else r=m;
+        ll mid=(l+r)/2;
+        ll A=100*mid/(100+t);
+        ll cnt=(100+t)*A/100-A+max(0LL,mid-(100+t)*A/100-1);
+        // cout<<A<<' '<<(100+t)*A/100<<' '<<mid<<' '<<cnt<<endl;
+        if(cnt<N) l=mid;
+        else r=mid;
     }
 
-    cout<<r<<endl;
+    cout<<l<<endl;
     
     return 0;
 }

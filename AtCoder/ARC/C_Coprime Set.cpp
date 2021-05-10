@@ -29,31 +29,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll H[100000];
-ll S[100000];
+int N;
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>H[i]>>S[i];
 
-    ll l=0, r=LINF;
-    while(r-l>1){
-        ll m=(l+r)/2;
-        bool flag=false;
-        vector<ll> cnt(N,0);
-        rep(i,N){
-            ll t=min(N-1,(m-H[i])/S[i]);
-            if(t<0) flag=true;
-            else cnt[t]++;
+    vector<int> p(5001,0);
+    int cnt=0;
+    repn(i,5000){
+        for(int j=i;j<=5000;j+=i){
+            p[j]++;
         }
-        rep(i,N-1) cnt[i+1]+=cnt[i];
-        rep(i,N) flag|=cnt[i]>i+1;
-        if(flag) l=m;
-        else r=m;
+        if(p[i]==2){
+            cnt++;
+            cout<<i<<endl;
+        }
     }
-
-    cout<<r<<endl;
+    cout<<cnt<<endl;
     
     return 0;
 }

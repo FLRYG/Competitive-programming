@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<int,int> P;
+typedef pair<ll,ll> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -29,31 +29,20 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-ll H[100000];
-ll S[100000];
+int N,K;
+ll w[1001];
+ll p[1001];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>H[i]>>S[i];
+    cin>>N>>K;
+    repn(i,N) cin>>w[i]>>p[i];
 
-    ll l=0, r=LINF;
-    while(r-l>1){
-        ll m=(l+r)/2;
-        bool flag=false;
-        vector<ll> cnt(N,0);
-        rep(i,N){
-            ll t=min(N-1,(m-H[i])/S[i]);
-            if(t<0) flag=true;
-            else cnt[t]++;
+    vector<vector<P>> dp(N+1,vector<P>(K));
+    repn(i,N){
+        for(int j=1;j<=K;j++){
+            
         }
-        rep(i,N-1) cnt[i+1]+=cnt[i];
-        rep(i,N) flag|=cnt[i]>i+1;
-        if(flag) l=m;
-        else r=m;
     }
-
-    cout<<r<<endl;
     
     return 0;
 }
