@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> P;
+// typedef pair<int,int> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -29,31 +29,38 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,K;
-ll w[1001];
-ll p[1001];
+int N,W;
+int w[101];
+int v[101];
 
 int main(){
-    cin>>N>>K;   
-    repn(i,N) cin>>w[i]>>p[i];
-    vector<double> salt(N+1,0);
-    repn(i,N) salt[i]=w[i]*p[i]/100.0;
+    cin>>N>>W;
+    repn(i,N) cin>>w[i]>>v[i];
 
-    vector<vector<P>> dp(N+1,vector<P>(N+1));
+    map<int,int> w2id;
+    w2id[0]=0;
+    repn(i,N) rep(j,4) w2id[i*w[1]+j];
+    int i=0;
+    repr(e,w2id) e.second=i++; 
+
+    vector<int> id2w(1,0);
+    repr(e,w2id) id2w.push_back(e.first);
+
+    vector<vector<int>> dp(N+1,vector<int>(id2w.size(),0));
     repn(i,N){
-        for(int j=1;j<=i;j++){
+        repn(j,id2w.size()){
             dp[i][j]=dp[i-1][j];
-            double c1=(double)dp[i-1][j].second/dp[i-1][j].first;
-            double c2=(double)(dp[i-1][j-1].second+salt[i])/(dp[i-1][j-1].first+w[i]);
-            if(c1>c2 || c1==c2 && dp[i-1][j].first<=dp[i-1][j-1].first+w[i]){
-                dp[i][j]=dp[i-1][j];
-            }else{
-                dp[i][j]={dp[i-1][j-1].first+w[i],dp[i-1][j-1].second+salt[i]};
+            if(id2w[j]-w[i]>=0){
+                rep(k,w2id[id2w[j]-w[i]]+1){
+                    dp[i][j]=max(dp[i][j],dp[i-1][k]+v[i]);
+                }
             }
         }
     }
 
-    double ans=double(dp[N][K].second)/dp[N][K].first;
+    int ans=0;
+    rep(i,w2id[W]+1) ans=max(ans,dp[N][i]);
+
     cout<<ans<<endl;
     
     return 0;
