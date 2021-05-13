@@ -3,6 +3,7 @@
 #include <cmath>
 using namespace std;
 
+using T=int;
 template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{
     int n;
     std::vector<T> v;
@@ -12,7 +13,13 @@ template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{
         while(n<_n) n*=2;
         v=std::vector<T>(2*n-1,e());
     }
-    ~segmentTree(){}
+    segmentTree(vector<T> _v){
+        n=1;
+        while(n<_n) n*=2;
+        data.resize(2*n-1);
+        for(int i=0; i<_v.size(); i++) data[N-1+i]=_v[i];
+        for(int n-2; i>=0; i--) data[i]=data[i*2+1]+data[i*2+2];
+    }
     void set(int k, T a){
         k+=n-1;
         v[k]=a;
@@ -34,8 +41,8 @@ template<class T, T (*op)(T ,T), T (*e)()> struct segmentTree{
 
 //------------------------------------------------------------------
 
-int op(int a, int b){ return min(a,b); }
-int e(){ return 2147483647; }
+T op(T a, T b){ return min(a,b); }
+T e(){ return 2147483647; }
 
 int main(){
     int N,Q;
