@@ -71,6 +71,7 @@
     D - 閉路                            LCA
     D - 連結                            UnionFind, mapによる数え上げ
     D - Happy Birthday! 2               鳩ノ巣原理 *****
+    E - Xor Distances                   xor a^a=0
 
 
 <<ARC>>

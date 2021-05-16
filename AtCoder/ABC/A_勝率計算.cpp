@@ -21,7 +21,7 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> P;
+// typedef pair<int,int> P;
 // typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
@@ -29,44 +29,16 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N;
-
-void dfs(int v, int p, ll d, vector<ll> &dist, vector<vector<P>> &G){
-    dist[v]=d;
-    repr(e,G[v]){
-        if(e.first!=p) dfs(e.first,v,d^e.second,dist,G);
-    }
-}
+int A,B,C,D;
 
 int main(){
-    cin>>N;
-    vector<vector<P>> G(N,vector<P>());
-    rep(i,N-1){
-        ll u,v,w;
-        cin>>u>>v>>w;
-        u--, v--;
-        G[u].push_back({v,w});
-        G[v].push_back({u,w});
-    }
+    cin>>A>>B>>C>>D;
 
-    vector<ll> dist(N,0);
-    dfs(0,-1,0,dist,G);
-
-    vector<ll> cnt(60,0);
-    rep(i,N){
-        rep(j,60) cnt[j]+=dist[i]>>j&1;
-    }
-
-    ll ans=0;
-    ll two=1;
-    rep(i,60){
-        ans+=cnt[i]*(N-cnt[i])%MOD*two%MOD;
-        ans%=MOD;
-        two*=2;
-        two%=MOD;
-    }
+    string ans="DRAW";
+    if(B*C>A*D) ans="TAKAHASHI";
+    if(B*C<A*D) ans="AOKI";
 
     cout<<ans<<endl;
-    
+
     return 0;
 }
