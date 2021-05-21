@@ -38,13 +38,8 @@ int main(){
     repn(i,N) cin>>t[i]>>h[i];
 
     vector<vector<vector<int>>> dp(N+1,vector<vector<int>>(X+1,vector<int>(Y+1,0)));
-    repn(i,N) repn(j,X){
-        dp[i][j][0]=dp[i-1][j][0];
-        if(j>=t[i]) dp[i][j][0]=max(dp[i][j][0],dp[i][j-t[i]][0]+h[i]);
-    }
-    repn(i,N) repn(j,X) repn(k,Y){
-        dp[i][j][k]=max(dp[i][j-1][k],dp[i][j][k-1]);
-        dp[i][j][k]=max(dp[i][j][k],dp[i-1][j][k]);
+    repn(i,N) repn(j,X) rep(k,Y+1){
+        dp[i][j][k]=dp[i-1][j][k];
         if(j+k>=t[i]){
             int kk=max(0,k-(t[i]-1));
             int jj=min(j-1,j-1+k-(t[i]-1));
@@ -52,7 +47,10 @@ int main(){
         }
     }
 
-    cout<<dp[N][X][Y]<<endl;
+    int ans=0;
+    rep(j,X+1) rep(k,Y+1) ans=max(ans,dp[N][j][k]);
+
+    cout<<ans<<endl;
     
     return 0;
 }

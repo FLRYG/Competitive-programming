@@ -90,6 +90,7 @@
     C - 魔法使い高橋君                  貪欲
     C - Tricolor Pyramid                mod 3  ***
     C - データ構造                      segmentTreeによる判定問題への帰着 *****  (or 平方分割   )
+    C - 最高のトッピングにしような       dp 
 
 <<AGC>>
     A - Diverse Word                    辞書順
