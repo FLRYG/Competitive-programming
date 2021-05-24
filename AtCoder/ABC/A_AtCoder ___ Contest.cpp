@@ -29,24 +29,15 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
+string S[3];
 
 int main(){
-    vector<double> v(11,0);
-    v[0]=0.5;
-    repn(i,10) v[i]=(2*v[i-1]*v[i-1]*v[i-1]+3)/(3*v[i-1]*v[i-1]+5);
-    rep(i,11) cout<<setprecision(16)<<i<<' '<<v[i]<<endl;
+    rep(i,3) cin>>S[i];
 
+    string ans;
+    rep(i,3) ans+=S[i][0];
 
-    cin>>N;
-    vector<vector<ll>> cnt(3,vector<ll>(46,0));
-    rep(i,3) rep(j,N){
-        int a;
-        cin>>a;
-        cnt[i][a%46]++;
-    }
-
-
+    cout<<ans<<endl;
     
     return 0;
 }
