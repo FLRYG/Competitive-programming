@@ -2,13 +2,12 @@
 #include <vector>
 #include <queue>
 using namespace std;
+int INF=1001001001;
 
 struct Edge{
     int to,cost;
     Edge(): to(0), cost(0) {}
-    Edge(const int &_to, const int &_cost)
-    : to(_to), cost(_cost)
-    {}
+    Edge(int _to, int _cost): to(_to), cost(_cost){}
     bool operator<(const Edge &e) const{ return cost < e.cost; }
     bool operator>(const Edge &e) const{ return cost > e.cost; }
     bool operator<=(const Edge &e) const{ return !(cost > e.cost); }
@@ -16,7 +15,7 @@ struct Edge{
 };
 
 void dijkstra(vector<vector<Edge>> &G, vector<int> &cost, int s){
-    for(int i=0;i<cost.size();i++) cost[i]=INF; 
+    cost.assign(G.size(),INF);
     priority_queue<Edge,vector<Edge>,greater<Edge>> que;
     que.push(Edge(s,0));
     while(!que.empty()){

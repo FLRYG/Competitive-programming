@@ -27,25 +27,29 @@ typedef long double ld;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
-ll const MOD=1000000007;
+ll const MOD=998244353;
 
-int N;
+ll A,B,C,D;
 
 int main(){
-    cin>>N;
-    vector<vector<ll>> cnt(3,vector<ll>(46,0));
-    rep(i,3) rep(j,N){
-        int a;
-        cin>>a;
-        cnt[i][a%46]++;
+    cin>>A>>B>>C>>D;
+
+    vector<vector<ll>> dp(C+1,vector<ll>(D+1,0));
+    dp[A][B]=1;
+    for(ll i=A;i<=C;i++){
+        for(ll j=B;j<=D;j++){
+            if(i==A && j==B) continue;
+            // if(A<i && B<j) dp[i][j]=dp[i-1][j-1]*((i+j-1)*(i+j-2)/2)%MOD;
+            // else if(A<i) dp[i][j]=dp[i-1][j]*j%MOD;
+            // else if(B<j) dp[i][j]=dp[i][j-1]*i%MOD;
+            dp[i][j]+=dp[i-1][j]*j%MOD;
+            dp[i][j]+=dp[i][j-1]*i%MOD;
+            dp[i][j]+=MOD-(i-1)*(j-1)%MOD;
+            dp[i][j]%=MOD;
+        }
     }
 
-    ll ans=0;
-    rep(i,46) rep(j,46) rep(k,46){
-        if((i+j+k)%46==0) ans+=cnt[0][i]*cnt[1][j]*cnt[2][k];
-    }
-
-    cout<<ans<<endl;
+    cout<<dp[C][D]<<endl;
     
     return 0;
 }

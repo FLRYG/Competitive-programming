@@ -32,9 +32,7 @@ ll const MOD=1000000007;
 struct Edge{
     ll to,cost;
     Edge(): to(0), cost(0) {}
-    Edge(const ll &_to, const ll &_cost)
-    : to(_to), cost(_cost)
-    {}
+    Edge(ll _to, const ll _cost): to(_to), cost(_cost){}
     bool operator<(const Edge &e) const{ return cost < e.cost; }
     bool operator>(const Edge &e) const{ return cost > e.cost; }
     bool operator<=(const Edge &e) const{ return !(cost > e.cost); }
@@ -42,8 +40,7 @@ struct Edge{
 };
 
 void dijkstra(vector<vector<Edge>> &G, vector<ll> &cost, ll s){
-    cost.resize(G.size());
-    for(ll i=0;i<cost.size();i++) cost[i]=INF; 
+    cost.assign(G.size(),INF);
     priority_queue<Edge,vector<Edge>,greater<Edge>> que;
     que.push(Edge(s,0));
     while(!que.empty()){
@@ -60,13 +57,26 @@ ll A[100000];
 int main(){
     cin>>N>>M>>T;
     rep(i,N) cin>>A[i];
-    vector<vector<Edge>> G(N);
+    vector<vector<Edge>> G1(N);
+    vector<vector<Edge>> G2(N);
     rep(i,M){
         ll a,b,c;
         cin>>a>>b>>c;
         a--, b--;
-        G[a].push_back(Edge(b-1,c));
+        G1[a].push_back(Edge(b,c));
+        G2[b].push_back(Edge(a,c));
     }
+
+    vector<ll> cost1, cost2;
+    dijkstra(G1,cost1,0);
+    dijkstra(G2,cost2,0);
+
+    ll ans=0;
+    rep(i,N){
+        ans=max(ans,A[i]*(T-cost1[i]-cost2[i]));
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

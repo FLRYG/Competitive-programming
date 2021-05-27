@@ -29,23 +29,12 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
+int H,W;
 
 int main(){
-    cin>>N;
-    vector<vector<ll>> cnt(3,vector<ll>(46,0));
-    rep(i,3) rep(j,N){
-        int a;
-        cin>>a;
-        cnt[i][a%46]++;
-    }
+    cin>>H>>W;
 
-    ll ans=0;
-    rep(i,46) rep(j,46) rep(k,46){
-        if((i+j+k)%46==0) ans+=cnt[0][i]*cnt[1][j]*cnt[2][k];
-    }
-
-    cout<<ans<<endl;
+    cout<<H*(W-1)+(H-1)*W<<endl;
     
     return 0;
 }
