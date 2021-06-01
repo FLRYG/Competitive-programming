@@ -131,8 +131,8 @@ struct Grid{
     int est_result[1000];
 
     Grid(){
-        for(auto e:est_dist_h) fill(e,e+29,5000);
-        for(auto e:est_dist_v) fill(e,e+30,5000);
+        for(auto e:est_dist_h) fill(e,e+29,1);
+        for(auto e:est_dist_v) fill(e,e+30,1);
         prob[0]=1;
         rep(i,999) prob[i+1]=prob[i]*0.998;
     }
@@ -164,6 +164,7 @@ struct Grid{
     }
 
     string compute_est_short_path(int k){
+        // cout<<"begin: compute_est_short_path("<<k<<")"<<endl;
         // cout<<"  "<<si[k]<<' '<<sj[k]<<' '<<ti[k]<<' '<<tj[k]<<endl;
         vector<vector<int>> cost(30,vector<int>(30,700000));
         vector<vector<P>> prev(30,vector<P>(30));
@@ -177,7 +178,7 @@ struct Grid{
             int j=ip.second.second;
             if(v>=cost[i][j]) continue;
             cost[i][j]=v;
-            // if(k==191) cout<<i<<' '<<j<<' '<<v<<endl;
+            // if(k==79) cout<<i<<' '<<j<<' '<<v<<endl;
             if(i==ti[k] && j==tj[k]) break;
             if(i+1<30) que.push({v+est_dist_v[i][j],{i+1,j}});
             if(0<=i-1) que.push({v+est_dist_v[i-1][j],{i-1,j}});
@@ -185,7 +186,7 @@ struct Grid{
             if(0<=j-1) que.push({v+est_dist_h[i][j-1],{i,j-1}});
         }
         est_result[k]=cost[ti[k]][tj[k]];
-        // if(k==139){
+        // if(k==79){
         //     cout<<" "<<'\t';
         //     rep(i,30) cout<<i<<'\t'; cout<<endl;
         //     rep(i,30){
@@ -207,47 +208,52 @@ struct Grid{
             else if(0<=j-1 && cost[i][j]==cost[i][j-1]+est_dist_h[i][j-1]) path+='R', j--;
         }
         reverse(path.begin(),path.end());
+        // cout<<"end  : compute_est_short_path("<<k<<")"<<endl;
         return path;
     }
 
     void update_est_dist(int k, string path){
         int i=si[k], j=sj[k];
-        double ave_dist=(double)result[k]/path.size();
-        for(char &c:path){
-            if(c=='D') sum_est_dist_v[i][j]+=ave_dist, cnt_v[i++][j]++;
-            else if(c=='U') sum_est_dist_v[--i][j]+=ave_dist, cnt_v[i][j]++;
-            else if(c=='R') sum_est_dist_h[i][j]+=ave_dist, cnt_h[i][j++]++;
-            else if(c=='L') sum_est_dist_h[i][--j]+=ave_dist, cnt_h[i][j]++;
-        }
-        rep(i,30) rep(j,29) if(cnt_h[i][j]) est_dist_h[i][j]=min(1000,(int)round(sum_est_dist_h[i][j]/cnt_h[i][j]));
-        rep(i,29) rep(j,30) if(cnt_v[i][j]) est_dist_v[i][j]=min(1000,(int)round(sum_est_dist_v[i][j]/cnt_v[i][j]));
+        // double ave_dist=(double)result[k]/path.size();
         // for(char &c:path){
-        //     if(c=='D') sum_est_dist_v[i][j]=ave_dist, cnt_v[i++][j]++;
-        //     else if(c=='U') sum_est_dist_v[--i][j]=ave_dist, cnt_v[i][j]++;
-        //     else if(c=='R') sum_est_dist_h[i][j]=ave_dist, cnt_h[i][j++]++;
-        //     else if(c=='L') sum_est_dist_h[i][--j]=ave_dist, cnt_h[i][j]++;
+        //     if(c=='D') sum_est_dist_v[i][j]+=ave_dist, cnt_v[i++][j]++;
+        //     else if(c=='U') sum_est_dist_v[--i][j]+=ave_dist, cnt_v[i][j]++;
+        //     else if(c=='R') sum_est_dist_h[i][j]+=ave_dist, cnt_h[i][j++]++;
+        //     else if(c=='L') sum_est_dist_h[i][--j]+=ave_dist, cnt_h[i][j]++;
         // }
+        // rep(i,30) rep(j,29) if(cnt_h[i][j]) est_dist_h[i][j]=min(1000,(int)round(sum_est_dist_h[i][j]/cnt_h[i][j]));
+        // rep(i,29) rep(j,30) if(cnt_v[i][j]) est_dist_v[i][j]=min(1000,(int)round(sum_est_dist_v[i][j]/cnt_v[i][j]));
+        double ave_dist_diff=double(result[k]-est_result[k])/path.size();
+        for(char &c:path){
+            if(c=='D') est_dist_v[i][j]+=ave_dist_diff, cnt_v[i++][j]++;
+            else if(c=='U') est_dist_v[--i][j]+=ave_dist_diff, cnt_v[i][j]++;
+            else if(c=='R') est_dist_h[i][j]+=ave_dist_diff, cnt_h[i][j++]++;
+            else if(c=='L') est_dist_h[i][--j]+=ave_dist_diff, cnt_h[i][j]++;
+        }
+        rep(i,30) rep(j,29) if(cnt_h[i][j]) est_dist_h[i][j]=max(1,est_dist_h[i][j]);
+        rep(i,29) rep(j,30) if(cnt_v[i][j]) est_dist_v[i][j]=max(1,est_dist_v[i][j]);
     }
 };
 
 Random_double rand_dou(0,1);
 string query(int k, Grid &G) {
     string path;
-    if(rand_dou.nextDouble()<=G.prob[k]){
-        // cout<<k<<' '<<0<<':'<<endl;
-        // ランダムに構成
-        path=G.compute_random_path(k);
-    }else{
-        // cout<<k<<' '<<1<<':'<<endl;
-        // 推定最短パスを構成
-        path=G.compute_est_short_path(k);
-    }
+    // if(rand_dou.nextDouble()<=G.prob[k]){
+    //     // cout<<k<<' '<<0<<':'<<endl;
+    //     // ランダムに構成
+    //     path=G.compute_random_path(k);
+    // }else{
+    //     // cout<<k<<' '<<1<<':'<<endl;
+    //     // 推定最短パスを構成
+    //     path=G.compute_est_short_path(k);
+    // }
+    path=G.compute_est_short_path(k);
     return path;
 }
 
-const bool LOCAL_TEST=true;
+const bool LOCAL_TEST=false;
 
-int main() {
+int main(){
     Grid G;
     if(LOCAL_TEST){
         G.read_h_v();
@@ -267,7 +273,7 @@ int main() {
         }
         G.update_est_dist(k,path);
     }
-    if (LOCAL_TEST) {
+    if(LOCAL_TEST){
         cout<<setprecision(16)<<round(2312311*G.score)<<endl;
     }
     return 0;
