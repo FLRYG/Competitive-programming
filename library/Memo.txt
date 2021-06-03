@@ -74,6 +74,7 @@
     E - Xor Distances                   xor a^a=0
     E - Count Descendants               部分木　行きがけ・帰りがけ
     D - 塗り絵                          dp
+    D - Various Sushi                   考察　速
 
 
 <<ARC>>
