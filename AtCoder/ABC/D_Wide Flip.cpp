@@ -72,32 +72,52 @@ string S;
 int main(){
     cin>>S;
     int N=S.size();
-    vector<int> v(N,0);
-    rep(i,N) if(S[i]=='1') v[i]=1;
+    vector<int> v(N+1,0);
+    repn(i,N) if(S[i-1]=='1') v[i]=1;
 
     int l=1, r=S.size()+1;
     while(r-l>1){
         int k=(l+r)/2;
         vector<int> sv=v;
         vector<int> sum(N+1+k,0);
-        rep(i,N-k+1){
-            sum[i+1]+=sum[i];
-            sv[i]+=sum[i+1];
+        repn(i,N-k+1){
+            sum[i]+=sum[i-1];
+            sv[i]+=sum[i];
             sv[i]&=1;
             if(sv[i]){
-                sum[i+1]++;
-                sum[i+1+k]--;
+                sum[i]++;
+                sum[i+k]--;
                 sv[i]=0;
             }
         }
+        for(int i=N-k+2;i<=N;i++){
+            sum[i]+=sum[i-1];
+            sv[i]+=sum[i];
+            sv[i]&=1;
+        }
         string s;
-        rep(i,k) s+=sv[N-k+i]==0:
+        for(int i=N-k+1;i<=N;i++){
+            if(sv[i]) s+='1';
+            else s+='0';
+        }
+        cout<<k<<' '<<s<<endl;
         bool flag=false;
-        string zer="", one('1',k);
+        string zer="", one(k,'1');
         rep(i,k+1){
-            if(zer=)
-        } 
+            cout<<"  "<<s.substr(0,i)<<' '<<s.substr(i,k-i)<<endl;
+            // cout<<"  "<<zer<<' '<<one<<endl;
+            if(zer==s.substr(0,i) && one==s.substr(i,k-i)){
+                flag=true;
+                break;
+            }
+            zer+='0';
+            one.pop_back();
+        }
+        if(flag) l=k;
+        else r=k;
     }
+
+    cout<<l<<endl;
 
     return 0;
 }
