@@ -29,31 +29,31 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,Q;
-ll A[100001];
+ll N;
+ll A[100000];
 
 int main(){
-    cin>>N>>Q;
-    repn(i,N) cin>>A[i];
+    cin>>N;
+    rep(i,N) cin>>A[i];
 
-    while(Q--){
-        ll K;
-        cin>>K;
-        ll l=0, r=LINF;
-        while(r-l>1){
-            ll m=(l+r)/2;
-            ll l2=0, r2=N+1;
-            while(r2-l2>1){
-                ll m2=(l2+r2)/2;
-                if(A[m2]<=m) l2=m2;
-                else r2=m2;
-            }
-            // cout<<"m,l2 "<<m<<' '<<l2<<endl;
-            if(m-l2<K) l=m;
-            else r=m;
-        }
-        cout<<r<<endl;
+    vector<ll> p(N+1,0), m(N+1,0);
+    p[0]=1;
+    repn(i,N){
+       p[i]=p[i-1]+m[i-1];
+       m[i]=p[i-1];
+       p[i]%=MOD;
     }
+
+    ll ans=A[0]*(p[N-1]+m[N-1])%MOD;
+    // cout<<ans<<endl;
+    repn(i,N-1){
+        ans+=A[i]*(p[N-i-1]+m[N-i-1])%MOD*(p[i-1]+m[i-1])%MOD;
+        ans-=A[i]*(p[N-i-1])%MOD*(p[i-1])%MOD;
+        ans%=MOD;
+    }
+    if(ans<0) ans+=MOD;
+
+    cout<<ans<<endl;
     
     return 0;
 }

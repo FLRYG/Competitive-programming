@@ -35,36 +35,7 @@ int main(){
     cin>>A>>B>>C;
 
     char ans='?';
-    // if(abs(A)==abs(B)){
-    //     ans='=';
-    // }else if(A>=0 && B>=0){
-    //     if(A>B) ans='>';
-    //     else ans='<';
-    // }else if(A<=0 && B<=0){
-    //     if(C&1){
-    //         if(A>B) ans='>';
-    //         else ans='<';
-    //     }else{
-    //         if(A>B) ans='<';
-    //         else ans='>';
-    //     }
-    // }else if(A<0 && B>0){
-    //     if(C&1) ans='<';
-    //     else{
-    //         if(-A>B) ans='>';
-    //         else ans='<';
-    //     }
-    // }else if(A>0 && B<0){
-    //     if(C&1) ans='>';
-    //     else{
-    //         if(A>-B) ans='>';
-    //         else ans='<';
-    //     }
-    // }
-
-    if(abs(A)==abs(B)){
-        ans='=';
-    }else if(C&1 && (A<0 || B<0)){
+    if(C&1 && (A<0 || B<0)){
         if(A<0 && B<0){
             if(abs(A)>abs(B)) ans='<';
             else ans='>';
@@ -74,7 +45,8 @@ int main(){
             ans='>';
         }
     }else{
-        if(abs(A)>abs(B)) ans='>';
+        if(abs(A)==abs(B)) ans='=';
+        else if(abs(A)>abs(B)) ans='>';
         else ans='<';
     }
 

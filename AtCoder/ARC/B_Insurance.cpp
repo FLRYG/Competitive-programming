@@ -29,31 +29,34 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,Q;
-ll A[100001];
+int N;
+int A[100000];
+
+double f(double x){
+    double res=0;
+    rep(i,N){
+        res+=A[i]-min(double(A[i]),2*x);
+    }
+    res/=N;
+    res+=x;
+    return res;
+}
 
 int main(){
-    cin>>N>>Q;
-    repn(i,N) cin>>A[i];
+    cin>>N;
+    rep(i,N) cin>>A[i];
 
-    while(Q--){
-        ll K;
-        cin>>K;
-        ll l=0, r=LINF;
-        while(r-l>1){
-            ll m=(l+r)/2;
-            ll l2=0, r2=N+1;
-            while(r2-l2>1){
-                ll m2=(l2+r2)/2;
-                if(A[m2]<=m) l2=m2;
-                else r2=m2;
-            }
-            // cout<<"m,l2 "<<m<<' '<<l2<<endl;
-            if(m-l2<K) l=m;
-            else r=m;
-        }
-        cout<<r<<endl;
+    double l=0, r=1e9+1;
+    double diff=1e9+1;
+    while(r-l>1e-7){
+        // cout<<setprecision(16)<<l<<' '<<r<<endl;
+        double x1=l+(r-l)/3;
+        double x2=r-(r-l)/3;
+        if(f(x1)>f(x2)) l=x1;
+        else r=x2;
     }
+
+    cout<<setprecision(20)<<f(l)<<endl;
     
     return 0;
 }

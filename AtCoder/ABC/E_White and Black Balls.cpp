@@ -29,15 +29,18 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,M,K;
+ll W,B,K;
 
 int main(){
-    cin>>N>>M>>K;
+    cin>>W>>B>>K;
+    ll N=W+B;
 
-    if(2*N>K+N+M){
+    if(2*W>K+N){
         cout<<0<<endl;
         return 0;
     }
+
+    
     
     return 0;
 }
