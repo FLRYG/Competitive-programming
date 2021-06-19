@@ -29,20 +29,34 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int Q;
+ll N,Q;
+ll A[100001];
 
 int main(){
-    cin>>Q;
+    cin>>N>>Q;
+    repn(i,N) cin>>A[i];
 
-    int C=100050;
-    int l=C, r=C+1;
-    vector<int> v(200100,0);
+    ll ans=0;
+    vector<ll> diff(N+2,0);
+    repn(i,N-1){
+        diff[i]=A[i+1]-A[i];
+        ans+=abs(A[i+1]-A[i]);
+    }
+
     while(Q--){
-        int t,x;
-        cin>>t>>x;
-        if(t==1) v[l--]=x;
-        else if(t==2) v[r++]=x;
-        else cout<<v[l+x]<<endl;
+        ll L,R,V;
+        cin>>L>>R>>V;
+        if(L!=1){
+            ans-=abs(diff[L-1]);
+            diff[L-1]+=V;
+            ans+=abs(diff[L-1]);
+        }
+        if(R!=N){
+            ans-=abs(diff[R]);
+            diff[R]-=V;
+            ans+=abs(diff[R]);
+        }
+        cout<<ans<<endl;
     }
     
     return 0;

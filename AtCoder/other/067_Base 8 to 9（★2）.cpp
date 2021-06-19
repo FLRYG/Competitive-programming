@@ -29,21 +29,32 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int Q;
+ll K;
+
+string f(string x){
+    ll res=0, y=1, n=x.size();
+    rep(i,n){
+        res+=(x[n-1-i]-'0')*y;
+        y*=8;
+    }
+    string ans;
+    while(res>0){
+        ans+=(res%9)+'0';
+        res/=9;
+    }
+    repr(e,ans) if(e=='8') e='5';
+    reverse(ans.begin(),ans.end());
+    if(ans.size()==0) return "0";
+    return ans;
+}
 
 int main(){
-    cin>>Q;
+    string ans;
+    cin>>ans>>K;
 
-    int C=100050;
-    int l=C, r=C+1;
-    vector<int> v(200100,0);
-    while(Q--){
-        int t,x;
-        cin>>t>>x;
-        if(t==1) v[l--]=x;
-        else if(t==2) v[r++]=x;
-        else cout<<v[l+x]<<endl;
-    }
+    rep(i,K) ans=f(ans);
+
+    cout<<ans<<endl;
     
     return 0;
 }

@@ -29,21 +29,20 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int Q;
+ll L,R;
+
+
 
 int main(){
-    cin>>Q;
+    cin>>L>>R;
 
-    int C=100050;
-    int l=C, r=C+1;
-    vector<int> v(200100,0);
-    while(Q--){
-        int t,x;
-        cin>>t>>x;
-        if(t==1) v[l--]=x;
-        else if(t==2) v[r++]=x;
-        else cout<<v[l+x]<<endl;
+    ll ans=0;
+    vector<ll> cnt(R+1,0);
+    repn(i,R){
+        cnt[i]=R/i;
     }
+
+    
     
     return 0;
 }

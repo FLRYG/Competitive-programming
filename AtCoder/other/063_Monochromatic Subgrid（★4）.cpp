@@ -29,21 +29,39 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int Q;
+int H,W;
+int P[8][10000];
 
 int main(){
-    cin>>Q;
+    cin>>H>>W;
+    rep(i,H) rep(j,W) cin>>P[i][j];
 
-    int C=100050;
-    int l=C, r=C+1;
-    vector<int> v(200100,0);
-    while(Q--){
-        int t,x;
-        cin>>t>>x;
-        if(t==1) v[l--]=x;
-        else if(t==2) v[r++]=x;
-        else cout<<v[l+x]<<endl;
+    int ans=0;
+    rep(n,1<<H){
+        int h=0;
+        vector<int> cnt(H*W+1,0);
+        rep(m,H) if(n>>m&1) h++;
+        rep(j,W){
+            bool flag=true, first=true;
+            int val;
+            rep(i,H){
+                if(n>>i&1){
+                    if(first){
+                        first=false;
+                        val=P[i][j];
+                    }else{
+                        flag&=val==P[i][j];
+                    }
+                }
+            }
+            if(flag && !first){
+                cnt[val]++;
+            }
+        }
+        repr(e,cnt) ans=max(ans,h*e);
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }

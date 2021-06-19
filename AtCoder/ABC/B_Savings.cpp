@@ -29,21 +29,22 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int Q;
+int N;
 
 int main(){
-    cin>>Q;
+    cin>>N;
 
-    int C=100050;
-    int l=C, r=C+1;
-    vector<int> v(200100,0);
-    while(Q--){
-        int t,x;
-        cin>>t>>x;
-        if(t==1) v[l--]=x;
-        else if(t==2) v[r++]=x;
-        else cout<<v[l+x]<<endl;
+    ll ans=0;
+    ll v=0;
+    repn(i,1000000){
+        v+=i;
+        if(v>=N){
+            ans=i;
+            break;
+        }
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }

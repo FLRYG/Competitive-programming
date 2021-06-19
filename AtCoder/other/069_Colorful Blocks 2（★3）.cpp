@@ -29,21 +29,21 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int Q;
+ll N,K;
 
 int main(){
-    cin>>Q;
+    cin>>N>>K;
 
-    int C=100050;
-    int l=C, r=C+1;
-    vector<int> v(200100,0);
-    while(Q--){
-        int t,x;
-        cin>>t>>x;
-        if(t==1) v[l--]=x;
-        else if(t==2) v[r++]=x;
-        else cout<<v[l+x]<<endl;
+    ll ans=0;
+    if(N==1) ans=K;
+    else if(N==2) ans=K*(K-1)%MOD;
+    else if(N==3) ans=K*(K-1)%MOD*(K-2)%MOD;
+    else if(N==4) ans=K*(K-1)%MOD*(K-2)%MOD*(K-3)%MOD;
+    else{
+        ans=K*(K-1)%MOD*(K-2)%MOD*(K-3)%MOD*(N-4)%MOD*(K-4)%MOD;
     }
+
+    cout<<ans<<endl;
     
     return 0;
 }
