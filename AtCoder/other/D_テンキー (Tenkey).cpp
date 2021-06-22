@@ -21,69 +21,48 @@
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<int,int> P;
-// typedef pair<int,P> IP;
+typedef pair<int,int> P;
+typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
 int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-struct Edge{
-    int to,cost;
-    Edge(): to(0), cost(0) {}
-    Edge(ll _to, const ll _cost): to(_to), cost(_cost){}
-    bool operator<(const Edge &e) const{ return cost < e.cost; }
-    bool operator>(const Edge &e) const{ return cost > e.cost; }
-    bool operator<=(const Edge &e) const{ return !(cost > e.cost); }
-    bool operator>=(const Edge &e) const{ return !(cost < e.cost); }
-};
-
-void dijkstra(vector<vector<Edge>> &G, vector<int> &cost, int s){
-    cost.assign(G.size(),INF);
-    priority_queue<Edge,vector<Edge>,greater<Edge>> que;
-    que.push(Edge(s,0));
-    while(!que.empty()){
-        Edge e=que.top(); que.pop();
-        if(e.cost>=cost[e.to]) continue;
-        cost[e.to]=e.cost;
-        for(auto next:G[e.to]) que.push(Edge(next.to,e.cost+next.cost));
-    }
-}
-
-ll M,R;
+int M,R;
 
 int main(){
     cin>>M>>R;
 
-    vector<vector<Edge>> G(10*M,vector<Edge>(0));
-    G[0].push_back(Edge(1,1));
-    G[1].push_back(Edge(0,1));
-    rep(i,3) repn(j,2){
-        G[i*3+j].push_back(Edge(i*3+j+1,1));
-        G[i*3+j+1].push_back(Edge(i*3+j,1));
-    }
-    rep(i,2) repn(j,3){
-        G[i*3+j].push_back(Edge((i+1)*3+j,1));
-        G[(i+1)*3+j].push_back(Edge(i*3+j,1));
-    }
-
-    vector<vector<int>> cost(10,vector<int>());
-    rep(i,10) dijkstra(G,cost[i],i);
-
-    ll ans=LINF;
-    rep(i,10*M+1){
-        string N=to_string(M*i+R);
-        ll pos=0, res=0;
-        rep(i,N.size()){
-            int next=N[i]-'0';
-            res+=cost[pos][next]+1;
-            pos=next;
+    int ans=0;
+    vector<int> chk(10*M,true);
+    queue<IP> q;
+    q.push({0,{0,0}});
+    while(!q.empty()){
+        IP p=q.front(); q.pop();
+        int c=p.first;
+        int pos=p.second.first;
+        int r=p.second.second;
+        if(!chk[pos*M+r]) continue;
+        // cout<<c<<' '<<pos<<' '<<r<<endl;
+        if(r==R){
+            ans=p.first;
+            break;
         }
-        ans=min(ans,res);
+        chk[pos*M+r]=false;
+        q.push({c+1,{pos,(r*10+pos)%M}});
+        if(pos==0){
+            q.push({c+1,{1,r}});
+        }else{
+            if(pos==1) q.push({c+1,{0,r}});
+            if(pos%3!=0) q.push({c+1,{pos+1,r}});
+            if(pos%3!=1) q.push({c+1,{pos-1,r}});
+            if(pos<=6) q.push({c+1,{pos+3,r}});
+            if(pos>=4) q.push({c+1,{pos-3,r}});
+        }
     }
 
     cout<<ans<<endl;
-    
+
     return 0;
 }
