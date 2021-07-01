@@ -29,17 +29,38 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M;
-int S[100000];
-int V[100000];
-int C[100000];
+int N;
+int L[51];
 
 int main(){
-    cin>>N>>M;
-    rep(i,N) cin>>S[i]>>V[i];
-    rep(i,M) cin>>C[i];
+    cin>>N;
+    repn(i,N) cin>>L[i];
 
+    vector<int> sum(N+1,0);
+    repn(i,N) sum[i]=L[i]+sum[i-1];
 
+    int ans=INF;
+    rep(l,N) for(int r=l+1;r<=N;r++){
+        if(l==0 && r==N) continue;
+        int t=sum[r]-sum[l];
+        int len=0, sup=0, inf=INF;
+        repn(i,N){
+            if(len+L[i]<=t) len+=L[i];
+            else{
+                if(len==0) goto exit;
+                sup=max(sup,len);
+                inf=min(inf,len);
+                len=0;
+            }
+        }
+        sup=max(sup,len);
+        inf=min(inf,len);
+        ans=min(ans,sup-inf);
+        cout<<l<<' '<<r<<' '<<t<<' '<<sup<<' '<<inf<<' '<<sup-inf<<endl;
+        exit:;
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

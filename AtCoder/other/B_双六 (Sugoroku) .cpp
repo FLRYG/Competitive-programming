@@ -29,17 +29,25 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M;
-int S[100000];
-int V[100000];
-int C[100000];
+int N;
+int A[100];
 
 int main(){
-    cin>>N>>M;
-    rep(i,N) cin>>S[i]>>V[i];
-    rep(i,M) cin>>C[i];
+    cin>>N;
+    rep(i,N) cin>>A[i];
 
+    int ans=0, cnt=0;
+    rep(i,N){
+        if(A[i]==1) cnt++;
+        else{
+            ans=max(ans,cnt);
+            cnt=0;
+        }
+    }
+    ans=max(ans,cnt);
+    ans++;
 
+    cout<<ans<<endl;
     
     return 0;
 }

@@ -29,17 +29,15 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M;
-int S[100000];
-int V[100000];
-int C[100000];
+int N,A,B,C,D;
 
 int main(){
-    cin>>N>>M;
-    rep(i,N) cin>>S[i]>>V[i];
-    rep(i,M) cin>>C[i];
-
-
+    cin>>N>>A>>B>>C>>D;
     
+    int ans=B*((N+A-1)/A);
+    ans=min(ans,D*((N+C-1)/C));
+
+    cout<<ans<<endl;
+
     return 0;
 }

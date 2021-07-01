@@ -29,17 +29,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N,M;
-int S[100000];
-int V[100000];
-int C[100000];
+int H,W;
+int A[25][25];
 
 int main(){
-    cin>>N>>M;
-    rep(i,N) cin>>S[i]>>V[i];
-    rep(i,M) cin>>C[i];
+    cin>>H>>W;
+    rep(i,H) rep(j,W) cin>>A[i][j];
 
+    int ans=INF;
+    rep(i,H) rep(j,W){
+        int res=0;
+        rep(k,H) rep(l,W){
+            res+=A[k][l]*min(abs(i-k),abs(j-l));
+        }
+        ans=min(ans,res);
+    }
 
+    cout<<ans<<endl;
     
     return 0;
 }
