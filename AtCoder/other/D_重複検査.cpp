@@ -30,21 +30,27 @@ ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
 int N;
-int A[100000];
 
 int main(){
     cin>>N;
-    rep(i,N) cin>>A[i];
-
-    rep(i,N-1){
-        if(A[i]>A[i+1]){
-            cout<<"down "<<A[i]-A[i+1]<<endl;
-        }else if(A[i]<A[i+1]){
-            cout<<"up "<<A[i+1]-A[i]<<endl;
-        }else{
-            cout<<"stay"<<endl;
-        }
+    vector<int> cnt(N+1,0);
+    rep(i,N){
+        int a;
+        cin>>a;
+        cnt[a]++;
     }
-    
+
+    int two=-1, zero=-1;
+    repn(i,N){
+        if(cnt[i]==2) two=i;
+        if(cnt[i]==0) zero=i;
+    }
+
+    if(two==-1){
+        cout<<"Correct"<<endl;
+    }else{
+        cout<<two<<' '<<zero<<endl;
+    }
+
     return 0;
 }

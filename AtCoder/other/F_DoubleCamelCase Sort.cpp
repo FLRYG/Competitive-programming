@@ -29,22 +29,32 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[100000];
+string S;
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    cin>>S;
+    int N=S.size();
 
-    rep(i,N-1){
-        if(A[i]>A[i+1]){
-            cout<<"down "<<A[i]-A[i+1]<<endl;
-        }else if(A[i]<A[i+1]){
-            cout<<"up "<<A[i+1]-A[i]<<endl;
-        }else{
-            cout<<"stay"<<endl;
-        }
+    vector<string> memo;
+    int l=0, r=0;
+    while(l<N){
+        r=l+1;
+        while(r<N && 'a'<=S[r]) r++;
+        r++;
+        // cout<<S.substr(l,r-l)<<endl;
+        memo.push_back(S.substr(l,r-l));
+        l=r;
     }
+
+    sort(memo.begin(),memo.end(),[](string x, string y){
+        *(x.begin())+=-'A'+'a';
+        *(x.end()-1)+=-'A'+'a';
+        *(y.begin())+=-'A'+'a';
+        *(y.end()-1)+=-'A'+'a';
+        return x<y;
+    });
+
+    repr(e,memo) cout<<e; cout<<endl;
     
     return 0;
 }

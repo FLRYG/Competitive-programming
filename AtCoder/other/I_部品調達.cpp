@@ -29,22 +29,31 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[100000];
+ll N,M;
+string S[1000];
+ll C[1000];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    cin>>N>>M;
+    rep(i,M) cin>>S[i]>>C[i];
 
-    rep(i,N-1){
-        if(A[i]>A[i+1]){
-            cout<<"down "<<A[i]-A[i+1]<<endl;
-        }else if(A[i]<A[i+1]){
-            cout<<"up "<<A[i+1]-A[i]<<endl;
-        }else{
-            cout<<"stay"<<endl;
+    vector<ll> s(M,0);
+    rep(i,M){
+        rep(j,N) if(S[i][j]=='Y') s[i]|=1<<j;
+    }
+
+    vector<ll> dp(1<<N,LINF);
+    dp[0]=0;
+    rep(i,(1<<N)-1){
+        rep(j,M){
+            dp[i|s[j]]=min(dp[i|s[j]],dp[i]+C[j]);
         }
     }
+
+    ll ans=dp[(1<<N)-1];
+    if(ans==LINF) ans=-1;
+
+    cout<<ans<<endl;
     
     return 0;
 }

@@ -29,22 +29,14 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[100000];
+int A[6];
 
 int main(){
-    cin>>N;
-    rep(i,N) cin>>A[i];
+    rep(i,6) cin>>A[i];
 
-    rep(i,N-1){
-        if(A[i]>A[i+1]){
-            cout<<"down "<<A[i]-A[i+1]<<endl;
-        }else if(A[i]<A[i+1]){
-            cout<<"up "<<A[i+1]-A[i]<<endl;
-        }else{
-            cout<<"stay"<<endl;
-        }
-    }
+    sort(A,A+6);
+
+    cout<<A[3]<<endl;
     
     return 0;
 }
