@@ -38,25 +38,35 @@ int main(){
     cin>>N>>W>>C;
     rep(i,N) cin>>L[i]>>R[i]>>P[i];
 
-    // vector<ll> v(2*N);
-    // rep(i,N) v[2*i]=L[i]-C+1, v[2*i+1]=R[i];
-    // sort(v.begin(),v.end());
-
-    // unordered_map<ll,ll> id;
-    // rep(i,2*N) id[v[i]]=i+1;
-    unordered_map<ll,ll> id;
-    rep(i,N) id[L[i]-C+1], id[R[i]];
-    id[0];
-    int k=0;
-    repr(e,id) e.second=++k;
-
-    rep(i,2*N) id[v[i]]=i+1;
-
-    vector<ll> cost(id.size()+2,0);
+    vector<ll> G;
     rep(i,N){
-        cost[id[L[i]]]+=P[i];
-        cost[id[R[i]]+1]-=P[i];
+        G.push_back(max(0LL,L[i]-C+1));
+        G.push_back(R[i]);
     }
+    sort(G.begin(),G.end());
+    G.erase(unique(G.begin(),G.end()),G.end());
+
+    vector<ll> sum(G.size(),0);
+    rep(i,N){
+        ll idl=(ll)(lower_bound(G.begin(),G.end(),max(0LL,L[i]-C+1))-G.begin());
+        ll idr=(ll)(lower_bound(G.begin(),G.end(),R[i])-G.begin());
+        sum[idl]+=P[i];
+        sum[idr]-=P[i];
+    }
+
+    rep(i,sum.size()-1){
+        sum[i+1]+=sum[i];
+    }
+
+    // repr(e,G) cout<<e<<' '; cout<<endl;
+    // repr(e,sum) cout<<e<<' '; cout<<endl;
+
+    ll ans=LINF;
+    rep(i,sum.size()){
+        if(G[i]+C<=W) ans=min(ans,sum[i]);
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

@@ -76,6 +76,7 @@
     D - 塗り絵                          dp
     D - Various Sushi                   考察　速
     E - Max GCD                         考察  速
+    D - Shortest Path Queries 2         ワーシャルフロイド法
 
 
 <<ARC>>
@@ -127,7 +128,7 @@
     D - テンキー (Tenkey)               状態の持ち方を考える
     D - 水ようかん (Mizuyokan)          メモ化再帰　連続部分列はO(N^2)個
     M - おまかせ                        分数の形の最大化  (式変形 -> 二分探索) ***
-
+    N - 整地                            座標圧縮　***
 
 
 Overflow
@@ -151,7 +152,9 @@ char S[140]; cin.getline(S,sizeof(S));  空白を含む文をそのまま入力
 
 string S; cin.ignore(); getline(cin,S); 空白を含む文をそのまま入力(その2)
 
-lower
+lower_bound(v.begin(),v.end(),x)        指定された要素x以上の値が現れる最初の位置のイテレータを取得する。
+
+vec.erase(unique(vec.begin(),vec.end()),vec.end())      重複成分の削除
 
 a/b の切り上げは (a+(b-1))/b
 
@@ -159,7 +162,11 @@ a/b の切り上げは (a+(b-1))/b
 ./a.out > out.txt                       ./a.out の標準出力を out.txt に書き込む(先頭から)
 ./a.out >> out.txt                      ./a.out の標準出力を out.txt に書き込む(末尾から)
 
-演算子の優先順位
+
+
+
+
+
 
 <<典型的問題>>
     C - 列                              尺取り法

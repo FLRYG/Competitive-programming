@@ -15,39 +15,38 @@
 #include <bitset>
 #include <chrono>
 #include <random>
-#define rep(i,n) for(ll i=0;i<n;i++)
-#define repn(i,n) for(ll i=1;i<=n;i++)
+#define rep(i,n) for(int i=0;i<n;i++)
+#define repn(i,n) for(int i=1;i<=n;i++)
 #define repr(e,x) for(auto& e:x)
 using namespace std;
 typedef long long ll;
 typedef long double ld;
-// typedef pair<ll,ll> P;
-// typedef pair<ll,P> IP;
+// typedef pair<int,int> P;
+// typedef pair<int,P> IP;
 // typedef pair<P,P> PP;
 double const PI=3.141592653589793;
-ll const INF=1001001001;
+int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll N,M;
+int N,K;
 
 int main(){
-    cin>>N>>M;
-    vector<vector<ll>> dp(N,vector<ll>(N,LINF));
-    rep(i,M){
-        int a,b,c;
-        cin>>a>>b>>c;
-        a--, b--;
-        dp[a][b]=c;
+    cin>>N>>K;
+    vector<vector<int>> cnt(5001,vector<int>(5001,0));
+    rep(i,N){
+        int a,b;
+        cin>>a>>b;
+        cnt[a][b]++;
+    }
+    repn(i,5000) repn(j,5000){
+        cnt[i][j]+=cnt[i-1][j]+cnt[i][j-1]-cnt[i-1][j-1];
     }
 
-    ll ans=0;
-    rep(i,N) dp[i][i]=0;
-    rep(k,N) rep(i,N) rep(j,N){
-        dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]);
-        // printf("%lld %lld %lld %lld\n",k+1,i+1,j+1,dp[i][j]);
-        if(dp[i][j]<LINF) ans+=dp[i][j];
-    } 
+    int ans=0;
+    repn(i,5000-K) repn(j,5000-K){
+        ans=max(ans,cnt[i+K][j+K]-cnt[i-1][j+K]-cnt[i+K][j-1]+cnt[i-1][j-1]);
+    }
 
     cout<<ans<<endl;
     
