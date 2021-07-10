@@ -29,14 +29,19 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[30000][6];
+int N,X;
+int A[100];
 
 int main(){
-    cin>>N;
-    rep(i,N) rep(j,6) cin>>A[i][j];
+    cin>>N>>X;
+    rep(i,N) cin>>A[i];
+    
+    int sum=0;
+    rep(i,N) sum+=A[i];
+    sum-=N/2;
 
-    
-    
+    if(sum<=X) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
+
     return 0;
 }

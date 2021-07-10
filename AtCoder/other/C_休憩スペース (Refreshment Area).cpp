@@ -29,14 +29,25 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[30000][6];
+int N,M,D;
+string S[100];
 
 int main(){
-    cin>>N;
-    rep(i,N) rep(j,6) cin>>A[i][j];
+    cin>>N>>M>>D;
+    rep(i,N) cin>>S[i];
 
-    
+    int ans=0;
+    rep(i,N-D+1) rep(j,M-D+1){
+        bool flag;
+        flag=true;
+        rep(k,D) if(S[i+k][j]=='#') flag=false;
+        if(flag) ans++;
+        flag=true;
+        rep(k,D) if(S[i][j+k]=='#') flag=false;
+        if(flag) ans++;
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

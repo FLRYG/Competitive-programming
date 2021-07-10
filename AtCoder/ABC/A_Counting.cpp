@@ -29,14 +29,12 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[30000][6];
+int A,B;
 
 int main(){
-    cin>>N;
-    rep(i,N) rep(j,6) cin>>A[i][j];
+    cin>>A>>B;
 
-    
+    cout<<max(0,B-A+1)<<endl;
     
     return 0;
 }

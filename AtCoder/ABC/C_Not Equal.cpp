@@ -29,14 +29,26 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[30000][6];
+ll N;
+ll C[200000];
 
 int main(){
     cin>>N;
-    rep(i,N) rep(j,6) cin>>A[i][j];
+    rep(i,N) cin>>C[i];
 
-    
+    sort(C,C+N);
+
+    ll ans=C[0];
+    repn(i,N-1){
+        if(C[i]-i<=0){
+            cout<<0<<endl;
+            return 0;
+        }
+        ans*=C[i]-i;
+        ans%=MOD;
+    }
+
+    cout<<ans<<endl;
     
     return 0;
 }

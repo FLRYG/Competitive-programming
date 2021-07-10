@@ -29,14 +29,20 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-int N;
-int A[30000][6];
+int N,M;
+int A[1000];
+int B[1000];
 
 int main(){
-    cin>>N;
-    rep(i,N) rep(j,6) cin>>A[i][j];
+    cin>>N>>M;
+    rep(i,M) cin>>A[i]>>B[i];
 
-    
+    sort(A,A+M,greater<>());
+
+    int ans=0;
+    rep(i,M-1) ans+=max(0,N-A[i]);
+
+    cout<<ans<<endl;
     
     return 0;
 }
