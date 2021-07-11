@@ -29,39 +29,23 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll mpow(ll x,ll n){
-    if(n==0) return 1;
-    else if(n%2) return x*mpow(x,n-1)%MOD;
-    return mpow(x*x%MOD,n/2)%MOD;
-}
-
-ll L,R;
+string S;
 
 int main(){
-    cin>>L>>R;
+    cin>>S;
+    int N=S.size();
 
-    ll ten=1, digit=1, ans=0, inv2=mpow(2,MOD-2);
-    rep(i,18){
-        ll l=max(ten,L)-1;
-        ll r=min(ten*10-1,R);
-        if(l<r){
-            l%=MOD;
-            r%=MOD;
-            ans+=digit*r%MOD*(r+1)%MOD*inv2%MOD;
-            ans%=MOD;
-            ans-=digit*l%MOD*(l+1)%MOD*inv2%MOD;
-            ans%=MOD;
-        }
-        ten*=10;
-        digit++;
+    int l,r;
+    rep(i,N) if(S[i]=='A'){
+        l=i;
+        break;
     }
-    if(R==1'000'000'000'000'000'000){
-        ans+=1'000'000'000'000'000'000%MOD*19%MOD;
-        ans%=MOD;
+    rep(i,N) if(S[N-1-i]=='Z'){
+        r=N-1-i;
+        break;
     }
-    if(ans<0) ans+=MOD;
 
-    cout<<ans<<endl;
+    cout<<r-l+1<<endl;
     
     return 0;
 }
