@@ -165,7 +165,40 @@ a/b の切り上げは (a+(b-1))/b
 
 
 
+segment tree 大全 (平方分割も可)
+    1点に対する変更クエリ・区間に対する質問クエリ
+    <Range Sum Query>
+    <Range Minimum Query>
+    区間に対する変更クエリ・1点に対する質問クエリ
+    <Range Add Query>
+    <Range Update Query>
+    区間に対する変更クエリ・区間に対する質問クエリ
+    <RSQ and RAQ>
+    <RMQ and RUQ>
 
+    <Range Sum Query> http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
+        add(i,x): a[i]にxを加算する。
+        getSum(s,t): a[s],a[s+1],...,a[t]の合計値を出力する。
+
+    <Range Minimum Query> http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
+        update(i,x): a[i]をxに変更する。
+        find(s,t): a[s],a[s+1],...,a[t]の最小値を出力する。
+
+    <Range Add Query> http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
+        add(s,t,x): a[s],a[s+1],...,a[t] にxを加算する。
+        get(i): a[i]の値を出力する。
+
+    <Range Update Query> http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
+        update(s,t,x): a[s],a[s+1],...,a[t] をxに変更する。
+        find(i): a[i] の値を出力する。
+
+    <RSQ and RAQ> http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
+        add(s,t,x): a[s],a[s+1],...,a[t] にxを加算する。
+        getSum(s,t): a[s],a[s+1],...,a[t] の合計値を出力する。
+
+    <RMQ and RUQ> http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_
+        update(s,t,x): a[s],a[s+1],...,a[t] をxに変更する。
+        find(s,t): a[s],a[s+1],...,a[t]の最小値を出力する。
 
 
 <<典型的問題>>
