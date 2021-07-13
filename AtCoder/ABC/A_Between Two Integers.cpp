@@ -29,32 +29,13 @@ int const INF=1001001001;
 ll const LINF=1001001001001001001;
 ll const MOD=1000000007;
 
-ll K;
+int A,B,C;
 
 int main(){
-    cin>>K;
+    cin>>A>>B>>C;
 
-    vector<ll> v;
-    for(ll i=1;i<=1000000;i++){
-        if(K%i==0){
-            v.push_back(i);
-            v.push_back(K/i);
-        }
-    }
-
-    sort(v.begin(),v.end());
-    v.erase(unique(v.begin(),v.end()),v.end());
-    // repr(e,v) cout<<e<<' '; cout<<endl;
-
-    ll ans=0;
-    rep(i,v.size()){
-        for(int j=i;j<v.size() && v[j]<=K/v[i];j++){
-            if(K%(v[i]*v[j])==0 && K/(v[i]*v[j])>=v[j]){
-                // cout<<v[i]<<' '<<v[j]<<' '<<K/(v[i]*v[j])<<endl;
-                ans++;
-            }
-        }
-    }
+    string ans="No";
+    if(A<=C && C<=B) ans="Yes";
 
     cout<<ans<<endl;
     
